@@ -1,0 +1,250 @@
+@import "./custom.scss";
+@import "./font.scss";
+@import "./mediaqueries.scss";
+
+.addcard{
+    background: #D9D9D9;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0px;
+    transition: 0.3s;
+    height: 100%;
+    .addcard_container{
+        padding-inline: 48px;
+        padding-top: 32px;
+    h1{
+        font-family: 'Inter';
+        font-weight: 600;
+        font-size: 24px;
+        line-height: 18px;
+        color: #545455;
+        margin-bottom: 20px;
+    }
+    .addcard_container-para{
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 18px;
+        color: #858282;
+        margin-bottom: 48px;
+    }
+    .addcard_links{
+        display: grid;
+        grid-template-columns: auto auto auto;
+        gap: 16px;
+        row-gap: 2rem;
+        
+        .addcard_link{
+            background: rgba(29, 32, 60, 0.9);
+            border-radius: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 12px;
+            padding-right: 20px;
+            cursor: pointer;
+            .addcard_link-add{
+                background: #D9D9D9;
+                border-radius: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 60px;
+                height: 40px;
+                color: #252525;
+                font-size: 20px;
+            }
+            .addcard_link-item{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 8px;
+            .addcard_link-item-icon{
+                background: #3AE432;
+                width: 40px;
+                height: 40px;
+                border-radius: 8px;
+                font-size: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: $white-color;
+            }
+            
+            p{
+                font-family: 'Inter';
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 16px;
+                color: $white-color;
+            }
+            }
+        }
+        .addcard_link:nth-child(3){
+            .addcard_link-item{
+            .addcard_link-item-icon{
+                background: $white-color;
+                color: #2BB2E2;
+            }
+            }
+        }
+        .addcard_link:nth-child(5){
+            .addcard_link-item{
+            .addcard_link-item-icon{
+                background: #0A66C2;
+                color: $white-color;
+            }
+            }
+        }
+        .addcard_link:nth-child(6){
+            .addcard_link-item{
+            .addcard_link-item-icon{
+                background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+                color: $white-color;
+            }
+            }
+        }
+        .addcard_link:nth-child(7){
+            .addcard_link-item{
+            .addcard_link-item-icon{
+                background:#1296F4 ;
+                color: $white-color;
+            }
+           } 
+        }
+        .addcard_link:nth-child(8){
+            .addcard_link-item{
+            .addcard_link-item-icon{
+                background:#1DA1F2 ;
+                color: $white-color;
+            }
+           } 
+        }
+        .addcard_link:nth-child(9){
+            .addcard_link-item{
+            .addcard_link-item-icon{
+                background:$white-color ;
+                color: #FF0000;
+            }
+           } 
+        }
+        // .addcard_link:nth-child(7){
+        //     .addcard_link-item{
+        //     .addcard_link-item-icon{
+        //         background:#1296F4 ;
+        //         color: $white-color;
+        //     }
+        //    } 
+        // }
+       
+     
+    }
+    .addlink{
+        .addlink-back{
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 18px;
+            color: #858282;
+            display: inline-block;
+            margin-bottom: 32px;
+            cursor: pointer;
+            svg{
+                font-size: 22px;
+                margin-right: 10px;
+            }
+        }
+        .addlink_content{
+            .addlink_content-top{
+                display: flex;
+                align-items: center;
+                gap: 24px;
+                .addlink_content-top-icon{
+                    background: #3AE432;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 16px;
+                    font-size: 28px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: $white-color;
+                }
+                h1{
+                    margin-bottom: 0px;
+                }
+            }
+            .form{
+                padding: 0 0px;
+                margin-top: 0px;
+                .form-text{
+                    font-size: 20px;
+                }
+                .submit{
+                    justify-content: end;
+                    gap: 24px;
+                    .btn.btn-primary{
+                        background: rgba(0, 0, 0, 0.3);
+                        color: #fff;
+                        padding: 16px 48px;
+                        width: unset;
+                    }
+                    .btn.btn-primary:nth-child(1){
+                        background: $white-color;
+                        color: #252525;
+                    }
+                    .btn.btn-primary:hover{  
+                    background: #6c3dd3;
+                    color: $white-color;
+                    }
+                }
+            }
+        }
+        .addlink_phone{
+            .addlink_phone-frame{
+                background: url(../../public/bgPhone.png);
+                width: 325px;
+                height: 413px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                padding-top: 60px;
+                gap: 8px;
+                h3,h4,h5{
+                    font-family: 'Inter';
+                    font-weight: 500;
+                    font-size: 18px;
+                    line-height: 18px;
+                    color: #FFFFFF;
+                }
+                h4{
+                    font-weight: 500;
+                    font-size: 17px;
+                }
+                h5{
+                    font-weight: 400;
+                    font-size: 17px;
+                }
+                .signup_phone-box{
+                    background: rgba(217, 217, 217, 0.2);
+                    border-radius: 20px;
+                    width: 80%;
+                    font-family: 'Inter';
+                    font-style: normal;
+                    font-weight: 600;
+                    font-size: 18px;
+                    line-height: 18px;
+                    display: flex;
+                    align-items: center;
+                    color: #FFFFFF;
+                    padding: 16px 0px;
+                    margin-top: 24px;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}
+}

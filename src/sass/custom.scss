@@ -1,0 +1,60 @@
+$primary-color: #ffffff;
+$secondary-color: #1E2330;
+$white-color: #fff;
+$black-color: #000;
+$blue: #2665D6;
+$primary-font: 'Inter', sans-serif;
+
+body {
+  background: #efefef;
+}
+
+.container {
+  margin: 0 50px;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+pre {
+  font-family: $primary-font;
+  font-size: 16px;
+  color: $primary-color;
+  font-weight: 400;
+  font-style: normal;
+  user-select: none;
+  text-decoration: none;
+}
+.App{
+  width: 81%;
+  display: flex;
+  flex-direction: column;
+  gap: 68px;
+}
+.form-control:active,
+.form-control:focus,
+.form-control:hover,
+.form-control:focus-within,
+.form-control:visited,
+.form-control:focus-visible,
+.form-control:target,
+.form-control:visited,
+.form-control:focus-visible{
+  background: #e8f0fe !important;
+  color: #000000 !important;
+}
+
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

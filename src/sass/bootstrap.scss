@@ -1,0 +1,170 @@
+@import "./custom.scss";
+@import "./font.scss";
+@import "./mediaqueries.scss";
+.row{
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+}
+.col-3{
+    display: block;
+    flex: 0 0 auto;
+    width: 31.8%;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+  }
+  .text-center {
+    text-align: center;
+  }
+  .cursor_pointer {
+    cursor: pointer;
+  }
+  
+  .d-flex {
+    display: flex !important;
+  }
+  .d-none {
+    display: none !important;
+  }
+  .d-block {
+    display: block !important;
+  }
+  .d-inline-block {
+    display: inline-block !important;
+  }
+  .justify-content-center {
+    justify-content: center !important;
+  }
+  .justify-content-end {
+    justify-content: end !important;
+  }
+  .justify-content-between {
+    justify-content: space-between !important;
+  }
+  .flex-direction-column {
+    flex-direction: column !important;
+  }
+  .align-items-center {
+    align-items: center !important;
+  }
+  .align-items-start {
+    align-items: start !important;
+  }
+  .gap-2{
+    gap: 8px;
+  }
+  .round-0 {
+    border-radius: 0px !important;
+  }
+  .round-10 {
+    border-radius: 10px !important;
+  }
+  .round-20 {
+    border-radius: 20px !important;
+  }
+  .round-25 {
+    border-radius: 25px !important;
+  }
+  .rounded-circle {
+    border-radius: 50%;
+  }
+  .border-top-0 {
+    border-top: 0px !important;
+  }
+  .border-none {
+    border: none !important;
+  }
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .text-center {
+    text-align: center;
+  }
+  .m-auto {
+    margin: auto;
+  }
+  .ml-auto{
+    margin-left: auto;
+  }
+  .mt-5 {
+    margin-top: 3rem !important;
+  }
+  .mt-2rem {
+    margin-top: 2rem;
+  }
+  .mt-4 {
+    margin-top: 1.5rem !important;
+  }
+  .mb-4 {
+    margin-bottom: 1.5rem !important;
+  }
+  .mt-3 {
+    margin-top: 1rem !important;
+  }
+  .mt-2 {
+    margin-top: 0.5rem !important;
+  }
+  .mb-2 {
+    margin-bottom: 0.5rem !important;
+  }
+  .mb-3 {
+    margin-bottom: 1rem !important;
+  }
+  .mt-0 {
+    margin-top: 0rem !important;
+  }
+  .px-4 {
+    padding: 0px 24px;
+  }
+  .p-2 {
+    padding: 8px !important;
+  }
+  .p-1 {
+    padding: 4px !important;
+  }
+  .p-1px {
+    padding: 1px !important;
+  }
+  
+  .p-2px {
+    padding: 2px !important;
+  }
+  .pb-4 {
+    padding-bottom: 1.5rem;
+  }
+  .pb-3 {
+    padding-bottom: 1rem;
+  }
+  .text-underline {
+    text-decoration: underline;
+  }
+  .p-relative {
+    position: relative;
+  }
+  .p-initial {
+    position: initial;
+  }
+  .p-fixed {
+    position: fixed !important;
+  }  
+  .gap-4{
+    gap: 1.5rem;
+  }
+  .gap-3 {
+    gap: 1rem;
+  }
+
+  .w-78{
+    width: 78%;
+  }
+  .w-100{
+    width: 100%;
+  }
+  .h-100vh{
+    height: 100vh;
+  }
