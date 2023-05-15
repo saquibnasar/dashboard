@@ -199,22 +199,6 @@ export default function Signup() {
             </form>
           </div>
         </div>
-        {/* <div className="signup_phone text-center">
-          <p>Live Profile Preview</p>
-          <div className="signup_phone-container">
-            <img src="/phone_bannner.svg" className="img-fluid" alt="" />
-            <h3>Name</h3>
-            <h4>Designation</h4>
-            <h4>Company Name</h4>
-            <div className="signup_phone-boxs">
-              <div className="signup_phone-box"></div>
-              <div className="signup_phone-box"></div>
-              <div className="signup_phone-box"></div>
-              <div className="signup_phone-box"></div>
-              <div className="signup_phone-box"></div>
-            </div>
-          </div>
-        </div> */}
       </div>
       {/* <div className='signup'>
         <div className='signup_form-container'>
