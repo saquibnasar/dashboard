@@ -7,11 +7,11 @@ export default function Home() {
   return (
     <>
       <div className="d-flex">
-      <SIdebar/>
-      <div className="d-flex flex-direction-column w-78">
-      <Topbar/>
-      <TeamCard/>
-      </div>
+        <SIdebar />
+        <div className="d-flex flex-direction-column w-78">
+          <Topbar />
+          <TeamCard />
+        </div>
       </div>
     </>
   );

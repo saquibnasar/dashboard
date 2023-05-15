@@ -3,88 +3,160 @@
 @import "./mediaqueries.scss";
 
 .signup {
-  // height: 100vh;
-  background: #F0F0F0;
+  background: #f0f0f0;
   display: flex;
   overflow-x: auto;
   width: 100%;
-  // height: 100VH;
   overflow-y: hidden;
 
-  .signup_form-container{
-    background: #1D203C;
+  .signup_form-container {
+    background: #1d203c;
     padding-top: 40px;
     width: 50%;
     overflow: auto;
     max-width: 720px;
     min-width: 462px;
-    @include media992{
+    @include media992 {
       width: unset;
       overflow: unset;
       max-width: unset;
       min-width: unset;
     }
-    @include media576{
+    @include media576 {
       padding-bottom: 48px;
     }
-    .signup_navbar{
+    .signup_navbar {
       padding: 0 50px;
-      .signup_navbar-back{
+      .signup_navbar-back {
         display: flex;
         gap: 13px;
-       background: transparent ;
-       border: none;
-       cursor: pointer;
-       align-items: center;
-        svg{
-          color: $white-color;
-        }
-      p {
-      font-family: 'Roboto', sans-serif;
-      font-weight: 400;
-      font-size: 16px;
-      line-height: 21px;
-      color: $white-color;
-    
-    }
-      }
-      .signup_navbar-tab{
-        display: flex;
-        gap: 1.5rem;
-      
-      button{
-        font-family: $primary-font;
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 16px;
-        color: #BDBDBD;
-        padding-bottom: 6px;
-        width: 40px;
-        text-align: center;
         background: transparent;
         border: none;
-        border-bottom: 3px solid #E0E0E0;
         cursor: pointer;
+        align-items: center;
+        svg {
+          color: $white-color;
+        }
+        p {
+          font-family: "Roboto", sans-serif;
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 21px;
+          color: $white-color;
+        }
       }
-      .signup_navbar-active{
-        color: #6DFF7C;
-        border-bottom: 3px solid #6DFF7C;
-      }
-      }
+      .signup_navbar-tab {
+        display: flex;
+        gap: 1.5rem;
 
+        button {
+          font-family: $primary-font;
+          font-weight: 500;
+          font-size: 13px;
+          line-height: 16px;
+          color: #bdbdbd;
+          padding-bottom: 6px;
+          width: 40px;
+          text-align: center;
+          background: transparent;
+          border: none;
+          border-bottom: 3px solid #e0e0e0;
+          cursor: pointer;
+        }
+        .signup_navbar-active {
+          color: #6dff7c;
+          border-bottom: 3px solid #6dff7c;
+        }
+      }
     }
-  
-   
-    
+    .form {
+      form {
+        .form_or {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 13px;
+          line-height: 16px;
+          color: #fff;
+          display: flex;
+          gap: 8px;
+          margin-top: 48px;
+          align-items: center;
+          span {
+            width: 100%;
+            height: 1px;
+            background: #e0e0e0;
+          }
+        }
+        .form_btns {
+          display: flex;
+          flex-direction: column;
+          gap: 16px;
+          margin-top: 24px;
+          .btn-primary {
+            border: 3px solid #e0e0e0;
+            border-radius: 100px;
+            background: transparent;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 0;
+            transition: 0.3s;
+          }
+          .btn-primary:hover {
+            background: #fffaff;
+            color: #333;
+          }
+        }
+        h3 {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 18px;
+          line-height: 22px;
+          color: $white-color;
+          margin-top: 30px;
+          text-align: center;
+          a {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 500;
+            font-size: 18px;
+            line-height: 22px;
+            color: #29aef8;
+          }
+        }
+        p {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 26px;
+          color: #979797;
+          margin-top: 60px;
+          margin-bottom: 39px;
+          a {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 400;
+            font-size: 18px;
+            line-height: 26px;
+            color: #979797;
+            text-decoration: underline;
+          }
+        }
+      }
+    }
   }
-  .signup_phone{
+  .signup_phone {
     min-width: 50%;
     padding-bottom: 100px;
     margin: 0 24px;
-    @include media992{
+    @include media992 {
       display: none;
     }
-    P{
+    P {
       font-family: $primary-font;
       font-weight: 600;
       font-size: 24px;
@@ -92,24 +164,24 @@
       color: #587685;
       margin: 50px 0;
     }
-    .signup_phone-container{
+    .signup_phone-container {
       background: $white-color;
       border-radius: 40px;
       width: 430px;
       padding-bottom: 36px;
       margin: auto;
-  
-      h3{
-    font-family: $primary-font;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 34px;
-    line-height: 18px;
-    color: #121212;
-    margin-top: 30px;
+
+      h3 {
+        font-family: $primary-font;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 34px;
+        line-height: 18px;
+        color: #121212;
+        margin-top: 30px;
       }
 
-      h4{
+      h4 {
         font-family: $primary-font;
         font-style: normal;
         font-weight: 600;
@@ -118,19 +190,19 @@
         color: #121212;
         margin-top: 22px;
       }
-      .signup_phone-boxs{
+      .signup_phone-boxs {
         display: flex;
         flex-direction: column;
         gap: 15px;
         margin-top: 36px;
-      .signup_phone-box{
-        background: rgba(217, 217, 217, 0.2);
-        border-radius: 20px;
-        height: 54px;
-        width: 80%;
-        margin: auto;
+        .signup_phone-box {
+          background: rgba(217, 217, 217, 0.2);
+          border-radius: 20px;
+          height: 54px;
+          width: 80%;
+          margin: auto;
+        }
       }
     }
-    }
   }
-  }
+}
