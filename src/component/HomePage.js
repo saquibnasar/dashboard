@@ -165,26 +165,24 @@ export default function HomePage() {
               </div>
             </nav>
             <div className="links">
-              {/* <div className="link_container">
-    <div>
-     <h2>
-     This profile doesn’t have any linked content
-     </h2>
-     <h3>
-     Add links to contact Information, website,
-     <br/>
-     Social media handles and more
-     </h3>
+              <div className="link_container">
+                <div>
+                  <h2>This profile doesn’t have any linked content</h2>
+                  <h3>
+                    Add links to contact Information, website,
+                    <br />
+                    Social media handles and more
+                  </h3>
 
-     <button className="btn_add" onClick={addLin}>
-     <FontAwesomeIcon icon={faPlus} /> 
-        Add Links and contact info 
-    </button>
-    </div>
- 
-     <img src='/bglink.png' alt='' className='img-fluid'/>
-     </div> */}
-              <LInks />
+                  <button className="btn_add" onClick={addLin}>
+                    <FontAwesomeIcon icon={faPlus} />
+                    Add Links and contact info
+                  </button>
+                </div>
+
+                <img src="/bglink.png" alt="" className="img-fluid" />
+              </div>
+              {/* <LInks /> */}
             </div>
             <div className="signup_phone text-center">
               <p>

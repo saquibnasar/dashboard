@@ -4,6 +4,8 @@
 
 .teamCard {
   padding: 24px 48px;
+  row-gap: 24px;
+  overflow: scroll;
   .teamCard_btn {
     background: #1d203c;
     border-radius: 32px;
@@ -151,6 +153,7 @@
     gap: 16px;
   }
 }
-.teamCard.teamCard_list::-webkit-scrollbar {
+.teamCard.teamCard_list::-webkit-scrollbar,
+.teamCard::-webkit-scrollbar {
   display: none;
 }

@@ -28,7 +28,7 @@ export default function Signup() {
                 Get started with the #1 Digital Business Card <br /> Platform
               </h2>
             </div>
-            <form action="">
+            <form action="/">
               <div className="mt-4 email_input">
                 <div id="emailHelp" className="form-text">
                   Email
