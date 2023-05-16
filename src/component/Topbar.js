@@ -18,24 +18,21 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 export default function Topbar(props) {
   const [isFlaxLink, setIsFlaxLink] = useState(false);
 
-  setTimeout(() => {
-    const concernedElement = document.querySelector(".flax_link");
-    // const navbarbtn = document.querySelector(".navbar-btn");
-    console.log(concernedElement);
-    document.addEventListener("click", (event) => {
-      console.log(event.target);
+  window.addEventListener("click", function (e) {
+    if (document.querySelector(".navbar-btn").contains(e.target)) {
+      setIsFlaxLink(!isFlaxLink);
+    } else if (
+      document.querySelector(".flax_link") &&
+      !document.querySelector(".flax_link").contains(e.target)
+    ) {
       if (
-        event.target.contains("navbar-btn") &&
-        concernedElement.contains(event.target)
+        document.querySelector(".flax_link") &&
+        !document.querySelector(".flax_link").classList.contains("d-none")
       ) {
-        console.log(event.target);
-        console.log("Clicked Inside");
-      } else {
-        console.log(event.target);
-        console.log("Clicked Outside / Elsewhere");
+        setIsFlaxLink(false);
       }
-    });
-  }, 2000);
+    }
+  });
 
   return (
     <nav className="navbar">
@@ -169,14 +166,12 @@ export default function Topbar(props) {
           </form>
         )}
         <div className="p-relative">
-          <button
-            className="navbar-btn"
-            onClick={() => setIsFlaxLink(!isFlaxLink)}
-          >
+          <button className="navbar-btn">
             <svg
               width="32"
               height="32"
               viewBox="0 0 32 32"
+              c
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
