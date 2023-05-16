@@ -13,18 +13,21 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/homepage' element={<HomePage />} />
-        <Route path='/' element={<Home />} />
-        <Route path='/createCard' element={<CreateCard />} />
-        <Route path='/devices' element={<Devices />} />
-        <Route path='/sign-up' element={<Signup />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/flaxcode' element={<FlaxCode />} />
-        <Route path='/setting' element={<Setting type="setting" />} />
-        <Route path='/setting_subscription' element={<Setting type="subscription" />} />
-        <Route path='/setting_support' element={<Setting type="support" />} />
-        <Route path='/setting_devices' element={<Setting type="devices" />} />
-        <Route path='/setting_admin' element={<Setting type="admin" />} />
+        <Route path="/homepage" element={<HomePage />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/createCard" element={<CreateCard />} />
+        <Route path="/devices" element={<Devices />} />
+        <Route path="/sign-up" element={<Signup />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/flaxcode" element={<FlaxCode />} />
+        <Route path="/setting" element={<Setting type="setting" />} />
+        <Route
+          path="/setting_subscription"
+          element={<Setting type="subscription" />}
+        />
+        <Route path="/setting_support" element={<Setting type="support" />} />
+        <Route path="/setting_devices" element={<Setting type="devices" />} />
+        <Route path="/setting_admin" element={<Setting type="admin" />} />
       </Routes>
     </BrowserRouter>
   );

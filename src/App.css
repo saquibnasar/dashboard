@@ -31,8 +31,8 @@ pre {
   font-weight: 400;
   font-style: normal;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   text-decoration: none;
 }
 
@@ -234,17 +234,17 @@ pre {
   font-weight: 400;
   font-style: normal;
   -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  user-select: none;
   text-decoration: none;
 }
 
 .signup {
-  background: #F0F0F0;
+  background: #f0f0f0;
   display: flex;
 }
 .signup .signup_form-container {
-  background: #1D203C;
+  background: #1d203c;
   padding-top: 40px;
   width: 750px;
 }
@@ -278,18 +278,22 @@ pre {
   font-weight: 500;
   font-size: 13px;
   line-height: 16px;
-  color: #BDBDBD;
+  color: #bdbdbd;
   padding-bottom: 6px;
   width: 40px;
   text-align: center;
   background: transparent;
   border: none;
-  border-bottom: 3px solid #E0E0E0;
+  border-bottom: 3px solid #e0e0e0;
   cursor: pointer;
 }
-.signup .signup_form-container .signup_navbar .signup_navbar-tab .signup_navbar-active {
-  color: #6DFF7C;
-  border-bottom: 3px solid #6DFF7C;
+.signup
+  .signup_form-container
+  .signup_navbar
+  .signup_navbar-tab
+  .signup_navbar-active {
+  color: #6dff7c;
+  border-bottom: 3px solid #6dff7c;
 }
 .signup .signup_form-container .form {
   padding: 0 130px;
@@ -315,7 +319,7 @@ pre {
   font-weight: 600;
   font-size: 30px;
   line-height: 18px;
-  color: #F0F0F0;
+  color: #f0f0f0;
   margin-bottom: 24px;
 }
 .signup .signup_form-container .form .form-control {
@@ -386,7 +390,12 @@ pre {
   display: inline-block;
   width: 100%;
 }
-.signup .signup_form-container .form .email_input .input-group .did-floating-input {
+.signup
+  .signup_form-container
+  .form
+  .email_input
+  .input-group
+  .did-floating-input {
   border-radius: 16px;
   padding-left: 25px;
 }
@@ -458,14 +467,25 @@ pre {
 .signup .signup_form-container .form .did-floating-label-content:hover {
   border: 2px solid #cacaca;
 }
-.signup .signup_form-container .form .did-floating-label-content:has(.did-floating-input:focus) {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-label-content:has(.did-floating-input:focus) {
   background: #fff;
   border: 2px solid #cacaca;
 }
-.signup .signup_form-container .form .did-floating-label-content:has(.did-floating-input:not(:-moz-placeholder-shown)) {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-label-content:has(
+    .did-floating-input:not(:-moz-placeholder-shown)
+  ) {
   background: #fff;
 }
-.signup .signup_form-container .form .did-floating-label-content:has(.did-floating-input:not(:placeholder-shown)) {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-label-content:has(.did-floating-input:not(:placeholder-shown)) {
   background: #fff;
 }
 .signup .signup_form-container .form .did-floating-label {
@@ -508,8 +528,16 @@ pre {
   outline: none;
   background: #fff;
 }
-.signup .signup_form-container .form .did-floating-input:focus ~ .did-floating-label,
-.signup .signup_form-container .form .did-floating-select:focus ~ .did-floating-label {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-input:focus
+  ~ .did-floating-label,
+.signup
+  .signup_form-container
+  .form
+  .did-floating-select:focus
+  ~ .did-floating-label {
   color: #78c4cb;
   top: 2px;
   font-size: 0.75rem;
@@ -534,25 +562,43 @@ pre {
 .signup .signup_form-container .form select.did-floating-select::-ms-expand {
   display: none;
 }
-.signup .signup_form-container .form .did-floating-input:not(:-moz-placeholder-shown) {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-input:not(:-moz-placeholder-shown) {
   background: #fff;
 }
-.signup .signup_form-container .form .did-floating-input:not(:placeholder-shown) {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-input:not(:placeholder-shown) {
   background: #fff;
 }
-.signup .signup_form-container .form .did-floating-input:not(:-moz-placeholder-shown) ~ .did-floating-label {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-input:not(:-moz-placeholder-shown)
+  ~ .did-floating-label {
   color: #78c4cb;
   top: 2px;
   font-size: 0.75rem;
   background: transparent;
 }
-.signup .signup_form-container .form .did-floating-input:not(:placeholder-shown) ~ .did-floating-label {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-input:not(:placeholder-shown)
+  ~ .did-floating-label {
   color: #78c4cb;
   top: 2px;
   font-size: 0.75rem;
   background: transparent;
 }
-.signup .signup_form-container .form .did-floating-select:not([value=""]):valid ~ .did-floating-label {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-select:not([value=""]):valid
+  ~ .did-floating-label {
   top: 7px;
   font-family: "Roboto";
   font-style: normal;
@@ -562,11 +608,18 @@ pre {
   color: #338aff;
   left: 20px;
 }
-.signup .signup_form-container .form .did-floating-select[value=""]:focus ~ .did-floating-label {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-select[value=""]:focus
+  ~ .did-floating-label {
   top: 11px;
   font-size: 13px;
 }
-.signup .signup_form-container .form .did-floating-select:not([multiple]):not([size]) {
+.signup
+  .signup_form-container
+  .form
+  .did-floating-select:not([multiple]):not([size]) {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6' viewBox='0 0 8 6'%3E%3Cpath id='Path_1' data-name='Path 1' d='M371,294l4,6,4-6Z' transform='translate(-371 -294)' fill='%23003d71'/%3E%3C/svg%3E%0A");
   background-position: right 15px top 50%;
   background-repeat: no-repeat;
@@ -580,7 +633,11 @@ pre {
   font-weight: 600;
   color: #9d3b3b;
 }
-.signup .signup_form-container .form .did-error-input .did-floating-select:not([multiple]):not([size]) {
+.signup
+  .signup_form-container
+  .form
+  .did-error-input
+  .did-floating-select:not([multiple]):not([size]) {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='6' viewBox='0 0 8 6'%3E%3Cpath id='Path_1' data-name='Path 1' d='M371,294l4,6,4-6Z' transform='translate(-371 -294)' fill='%239d3b3b'/%3E%3C/svg%3E%0A");
 }
 .signup .signup_form-container .form .input-group {
@@ -669,10 +726,14 @@ pre {
   gap: 15px;
   margin-top: 36px;
 }
-.signup .signup_phone .signup_phone-container .signup_phone-boxs .signup_phone-box {
+.signup
+  .signup_phone
+  .signup_phone-container
+  .signup_phone-boxs
+  .signup_phone-box {
   background: rgba(217, 217, 217, 0.2);
   border-radius: 20px;
   height: 54px;
   width: 80%;
   margin: auto;
-}/*# sourceMappingURL=App.css.map */
+} /*# sourceMappingURL=App.css.map */

@@ -199,6 +199,28 @@ export default function Signup() {
             </form>
           </div>
         </div>
+        <div className="signup_promotion">
+          <h1>Save upto 100% cost while sharing your business card</h1>
+          <div className="d-flex justify-content-between mt-4 align-items-center">
+            <img className="img-fluid" src="/signup_spider.png" alt="" />
+            <img className="img-fluid" src="/signup_spider2.png" alt="" />
+          </div>
+
+          <div className="d-flex justify-content-between signup_promotion_cards">
+            <div className="signup_promotion_card">
+              <h2>Never Ends on business card again</h2>
+              <img className="img-fluid" src="/signup_card.png" alt="" />
+            </div>
+            <div className="signup_promotion_card">
+              <h2>Track your business card </h2>
+              <img
+                className="img-fluid"
+                src="/signup_businesscard.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
       </div>
       {/* <div className='signup'>
         <div className='signup_form-container'>

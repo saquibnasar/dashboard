@@ -2,113 +2,155 @@
 @import "./font.scss";
 @import "./mediaqueries.scss";
 
-.teamCard{
-    padding: 0px 48px;
-    .teamCard_btn{
-        background: #1D203C;
-        border-radius: 32px;
-        background: #1D203C;
-        border-radius: 32px;
-        height: 250px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 13px;
-        border: none;
-        cursor: pointer;
-        h3{
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 22px;
-            line-height: 18px;
-            display: flex;
-            align-items: center;
-            color: #FFFFFF;
-            margin-top: 6px;
-        }
-        h4{
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 12px;
-            line-height: 18px;
-            display: flex;
-            align-items: center;
-            color: #C2CDD8;
-            margin-top: 1px;
-        }
-        span{
-            width: 60px;
-            height: 60px;
-            background: #D9D9D9;
-            color: #A3A3A3;
-            font-size: 1.5rem;
-            display: flex;
-            border-radius: 50%;
-            justify-content: center;
-            align-items: center;
-        }
-        .editCard,
-        .ShareCard{
-            background: #D9D9D9;
-            border-radius: 16px;
-            border: none;
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 500;
-            font-size: 12px;
-            line-height: 18px;
-            display: flex;
-            align-items: center;
-            padding: 5px 12px;
-            color: #000000;
-            gap: 6px;
-            cursor: pointer;
-            svg{
-                font-size: 15px;
-            }
-        }
-        .ShareCard{
-            background: rgba(255, 255, 255, 0.2);
-            color: $white-color;
-            svg{
-                font-size: 14px;
-            }
-        }
+.teamCard {
+  padding: 24px 48px;
+  .teamCard_btn {
+    background: #1d203c;
+    border-radius: 32px;
+    background: #1d203c;
+    border-radius: 32px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 13px;
+    border: none;
+    cursor: pointer;
+    h3 {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 22px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      color: #ffffff;
+      margin-top: 6px;
     }
-    .add_btn{
-        background: #1D203C;
-        border-radius: 32px;
-        background: #1D203C;
-        border-radius: 32px;
-        height: 250px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 24px;
-        border: none;
-        cursor: pointer;
-        p{
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 24px;
-            line-height: 18px;
-            color: #71767B;
-        }
-        span{
-            width: 40px;
-            height: 40px;
-            background: #D9D9D9;
-            color: #252525;
-            font-size: 1.1rem;        
-            display: flex;
-            border-radius: 50%;
-            justify-content: center;
-            align-items: center;
-        }
+    h4 {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 12px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      color: #c2cdd8;
+      margin-top: 1px;
     }
+    span {
+      width: 60px;
+      height: 60px;
+      background: #d9d9d9;
+      color: #a3a3a3;
+      font-size: 1.5rem;
+      display: flex;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+    }
+    .editCard,
+    .ShareCard {
+      background: #d9d9d9;
+      border-radius: 16px;
+      border: none;
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 12px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      padding: 5px 12px;
+      color: #000000;
+      gap: 6px;
+      cursor: pointer;
+      svg {
+        font-size: 15px;
+      }
+    }
+    .ShareCard {
+      background: rgba(255, 255, 255, 0.2);
+      color: $white-color;
+      svg {
+        font-size: 14px;
+      }
+    }
+  }
+  .add_btn {
+    background: #1d203c;
+    border-radius: 32px;
+    background: #1d203c;
+    border-radius: 32px;
+    height: 250px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    border: none;
+    cursor: pointer;
+    p {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 24px;
+      line-height: 18px;
+      color: #71767b;
+    }
+    span {
+      width: 40px;
+      height: 40px;
+      background: #d9d9d9;
+      color: #252525;
+      font-size: 1.1rem;
+      display: flex;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+.teamCard.teamCard_list {
+  padding: 24px 24px;
+  row-gap: 24px;
+  overflow: scroll;
+  .teamCard_btn {
+    height: unset;
+    display: flex;
+    flex-direction: row;
+    padding: 16px 23px;
+    border-radius: 20px;
+    h3 {
+      font-size: 14.5px;
+    }
+    h4 {
+      font-size: 9px;
+    }
+    .editCard,
+    .ShareCard {
+      padding: 5px 8px;
+      font-size: 10px;
+      svg {
+        font-size: 13px;
+      }
+    }
+    .ShareCard {
+      svg {
+        font-size: 13px;
+      }
+    }
+  }
+  .add_btn {
+    height: unset;
+    display: flex;
+    flex-direction: row;
+    padding: 16px 23px;
+    border-radius: 20px;
+    gap: 16px;
+  }
+}
+.teamCard.teamCard_list::-webkit-scrollbar {
+  display: none;
 }

@@ -1,69 +1,68 @@
 @import "./custom.scss";
 @import "./font.scss";
 @import "./mediaqueries.scss";
-.sidebar{
-    background: #1D203C;
-    width: 22%;
-    padding-bottom: 28px;
-    .sidebar-brand{
-        display: block;
-        padding-top: 38px;
-        padding-left: 13px;
-        img{
-            width: 93.88px;
-        }
+.sidebar {
+  background: #1d203c;
+  width: 20%;
+  padding-bottom: 28px;
+  .sidebar-brand {
+    display: block;
+    padding-top: 38px;
+    padding-left: 13px;
+    img {
+      width: 93.88px;
     }
-    .sidebar-collapse{
-        margin-top: 48px;
-        padding-inline: 13px;
-        .btn.btn-primary{
-     font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 18px;
-    background: #318BFD;
-    border-radius: 20px;
-    color: $white-color;
-    padding: 18px 0;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 32px;
-    cursor: pointer;
-    border: none;
-    margin-bottom: 31px;
-        }
+  }
+  .sidebar-collapse {
+    margin-top: 48px;
+    padding-inline: 13px;
+    .btn.btn-primary {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 18px;
+      background: #318bfd;
+      border-radius: 20px;
+      color: $white-color;
+      padding: 18px 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 32px;
+      cursor: pointer;
+      border: none;
+      margin-bottom: 31px;
+    }
 
-    .sidebar-nav{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    .nav-box{
-        background: #98C5FF;
-    border-radius: 20px;
-    height: 150px;
-  
-    }
-    .nav-link{
-    padding: 16px 13px;
-    width: 100%;
-    gap: 16px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 18px;
-    display: flex;
-    align-items: center;
-    text-align: center;
-    color: $primary-color;
-    }
-    .nav-link.active{
+    .sidebar-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      .nav-box {
+        background: #98c5ff;
+        border-radius: 20px;
+        height: 150px;
+      }
+      .nav-link {
+        padding: 16px 13px;
+        width: 100%;
+        gap: 16px;
+        font-family: "Roboto";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        color: $primary-color;
+      }
+      .nav-link.active {
         background: rgba(217, 217, 217, 0.2);
         border-radius: 16px;
+      }
     }
-    }
-}
+  }
 }

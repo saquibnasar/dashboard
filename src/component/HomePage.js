@@ -24,7 +24,7 @@ export default function HomePage() {
         <SIdebar />
         <div className="d-flex flex-direction-column w-100">
           <Topbar type="setting" title="" />
-          <div className="homePage_container">
+          <div className="homePage_container mt-4">
             <nav className="sidebar">
               <div className="sidebar-collapse">
                 <ul className="sidebar-nav">
