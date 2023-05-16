@@ -18,17 +18,24 @@ import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 export default function Topbar(props) {
   const [isFlaxLink, setIsFlaxLink] = useState(false);
 
-  // setTimeout(() => {
-  //   const concernedElement = document.querySelector(".flax_link");
-  //   console.log(concernedElement);
-  //   document.addEventListener("click", (event) => {
-  //     if (concernedElement.contains(event.target)) {
-  //       console.log("Clicked Inside");
-  //     } else {
-  //       console.log("Clicked Outside / Elsewhere");
-  //     }
-  //   });
-  // }, 1000);
+  setTimeout(() => {
+    const concernedElement = document.querySelector(".flax_link");
+    // const navbarbtn = document.querySelector(".navbar-btn");
+    console.log(concernedElement);
+    document.addEventListener("click", (event) => {
+      console.log(event.target);
+      if (
+        event.target.contains("navbar-btn") &&
+        concernedElement.contains(event.target)
+      ) {
+        console.log(event.target);
+        console.log("Clicked Inside");
+      } else {
+        console.log(event.target);
+        console.log("Clicked Outside / Elsewhere");
+      }
+    });
+  }, 2000);
 
   return (
     <nav className="navbar">
