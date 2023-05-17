@@ -34,12 +34,15 @@
   }
   form {
     .form-text {
-      font-family: "Inter";
-      font-weight: 600;
-      font-size: 13px;
-      line-height: 18px;
       color: #868686;
       margin-bottom: 11px;
+      font-family: "Outfit";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px !important;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
     }
     .form-control {
       background: #f6f6f6;
@@ -212,16 +215,16 @@
     }
     .did-floating-label-content {
       position: relative;
-      background: #f6f6f6;
+      // background: #f6f6f6;
       border-radius: 16px;
-      border: 2px solid #fff;
+      // border: 2px solid #fff;
     }
     .did-floating-label-content:hover {
-      border: 2px solid #cacaca;
+      // border: 2px solid #cacaca;
     }
     .did-floating-label-content:has(.did-floating-input:focus) {
       background: #fff;
-      border: 2px solid #cacaca;
+      border: none;
     }
 
     .did-floating-label-content:has(
@@ -237,14 +240,13 @@
       }
     }
     .did-floating-label {
-      font-family: "Roboto";
-      font-style: normal;
+      font-family: "Inter";
+      font-size: 14px;
       font-weight: 400;
-      font-size: 16px;
       line-height: 19px;
       text-align: center;
       color: #848484;
-      background: #f6f6f6;
+      background: transparent;
       position: absolute;
       pointer-events: none;
       left: 50px;
@@ -266,7 +268,7 @@
       text-align: center;
       color: #848484;
       box-sizing: border-box;
-      background: #f6f6f6;
+      background: #2e3239;
       border-radius: 0 16px 16px 0;
       border: none;
       text-align: start;
@@ -276,7 +278,7 @@
         background: $white-color;
         ~ .did-floating-label {
           color: #78c4cb;
-          top: 2px;
+          top: 1px;
           font-size: 0.75rem;
           background: transparent;
         }
@@ -308,7 +310,7 @@
       background: $white-color;
       ~ .did-floating-label {
         color: #78c4cb;
-        top: 2px;
+        top: 1px;
         font-size: 0.75rem;
         background: transparent;
       }

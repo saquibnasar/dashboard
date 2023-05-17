@@ -14,12 +14,15 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-
+import { Link } from "react-router-dom";
 export default function Topbar(props) {
   const [isFlaxLink, setIsFlaxLink] = useState(false);
 
   window.addEventListener("click", function (e) {
-    if (document.querySelector(".navbar-btn").contains(e.target)) {
+    if (
+      document.querySelector(".navbar-btn") &&
+      document.querySelector(".navbar-btn").contains(e.target)
+    ) {
       setIsFlaxLink(!isFlaxLink);
     } else if (
       document.querySelector(".flax_link") &&
@@ -44,12 +47,12 @@ export default function Topbar(props) {
           Settings
         </button>
       ) : (
-        <button className="navbar-brand" type="button">
+        <Link to="/createCard" className="navbar-brand" type="button">
           My Team Cards
           <span className="navbar-toggler-icon">
             <FontAwesomeIcon icon={faPlus} />
           </span>
-        </button>
+        </Link>
       )}
 
       <div className="navbar-collapse">
@@ -149,6 +152,7 @@ export default function Topbar(props) {
               type="search"
               placeholder="Search"
               aria-label="Search"
+              onChange={(e) => props.setSearch(e.target.value)}
             />
 
             <svg

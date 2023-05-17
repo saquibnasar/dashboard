@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function AddLink(props) {
   const [formData, setFormData] = useState({
@@ -19,13 +20,12 @@ export default function AddLink(props) {
   };
 
   return (
-    <div className="addlink">
-      <div className="addlink-back" onClick={props.sendData}>
-        <FontAwesomeIcon icon={faArrowLeft} />
-        Back
-      </div>
-
-      <div className="d-flex justify-content-between align-items-center">
+    <div className="addlink d-flex justify-content-between align-items-center">
+      <div className="">
+        <div className="addlink-back" onClick={props.sendData}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+          Back
+        </div>
         <div className="addlink_content">
           <div className="addlink_content-top">
             <div className="addlink_content-top-icon">
@@ -88,21 +88,39 @@ export default function AddLink(props) {
             </form>
           </div>
         </div>
-        <div className="addlink_phone">
-          <div className="addlink_phone-frame">
-            <h3>Name</h3>
-            <h4>Designation</h4>
-            <h5>Company Name</h5>
-            <div className="signup_phone-box">
-              {formData.linkTitle ? formData.linkTitle : "Link title"}
+      </div>
+      <div className="addlink_phone">
+        <div className="addlink_phone-frame">
+          <div className="addlink_phone-frame_user">
+            <FontAwesomeIcon icon={faUser} />
+          </div>
+          <h3>Name</h3>
+          <h5>Company Name</h5>
+          <div className="signup_phone-box">
+            phoneNumber
+            <span>
+              {formData.linkData ? formData.linkData : "+91 80101 01010"}
+            </span>
+          </div>
+          <div className="signup_phone-box">
+            Link title
+            <span>
+              {formData.linkTitle ? formData.linkTitle : "admin@company.tld"}
+            </span>
+          </div>
+          <div className="signup_phone-box d-flex gap-2">
+            <div className="">
+              office website
+              <span>https://company website</span>
             </div>
-            {/* <div className='signup_phone-boxs'>
-           
-              <div className='signup_phone-box'></div>
-              <div className='signup_phone-box'></div>
-              <div className='signup_phone-box'></div>
-              <div className='signup_phone-box'></div>
-            </div> */}
+            <div className="">
+              linkedIn
+              <span>https://linkedIn.com/username</span>
+            </div>
+            <div className="">
+              instagram
+              <span>https://instagram.com/username</span>
+            </div>
           </div>
         </div>
       </div>
