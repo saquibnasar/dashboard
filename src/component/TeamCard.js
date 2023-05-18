@@ -160,6 +160,12 @@ export default function TeamCard(props) {
     <>
       {!props.mode ? (
         <div className="teamCard row gap-3">
+          <Link to="/createCard" className="add_btn col-3">
+            <span>
+              <FontAwesomeIcon icon={faPlus} />
+            </span>
+            <p>Create New Cards</p>
+          </Link>
           {data
             .filter((item) => {
               return props.search.toLowerCase() === ""
@@ -168,7 +174,11 @@ export default function TeamCard(props) {
             })
             .map((value) => {
               return (
-                <Link className="teamCard_btn col-3" to="/homepage">
+                <Link
+                  key={value.id}
+                  className="teamCard_btn col-3"
+                  to="/homepage"
+                >
                   <span>
                     <FontAwesomeIcon icon={faUser} />
                   </span>
@@ -187,16 +197,15 @@ export default function TeamCard(props) {
                 </Link>
               );
             })}
-
+        </div>
+      ) : (
+        <div className="teamCard row gap-3 teamCard_list">
           <Link to="/createCard" className="add_btn col-3">
             <span>
               <FontAwesomeIcon icon={faPlus} />
             </span>
             <p>Create New Cards</p>
           </Link>
-        </div>
-      ) : (
-        <div className="teamCard row gap-3 teamCard_list">
           {data
             .filter((item) => {
               return props.search.toLowerCase() === ""
@@ -205,7 +214,11 @@ export default function TeamCard(props) {
             })
             .map((value) => {
               return (
-                <Link className="teamCard_btn col-3" to="/homepage">
+                <Link
+                  key={value.id}
+                  className="teamCard_btn col-3"
+                  to="/homepage"
+                >
                   <div className="d-flex flex-direction-column">
                     <h3>{value.first_name}</h3>
                     <h4>{value.last_name}</h4>
@@ -223,13 +236,6 @@ export default function TeamCard(props) {
                 </Link>
               );
             })}
-
-          <Link to="/createCard" className="add_btn col-3">
-            <span>
-              <FontAwesomeIcon icon={faPlus} />
-            </span>
-            <p>Create New Cards</p>
-          </Link>
         </div>
       )}
     </>

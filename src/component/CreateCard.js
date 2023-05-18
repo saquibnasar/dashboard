@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 export default function CreateCard() {
   const [formData, setFormData] = useState({
     username: "",
@@ -95,6 +96,34 @@ export default function CreateCard() {
         <div className="signup_phone text-center">
           <p>Live Profile Preview</p>
           <div className="signup_phone-container">
+            <div className="signup_phone-left">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div className="signup_phone-right">
+              <span></span>
+            </div>
+            <div className="addlink_phone-frame_user">
+              <FontAwesomeIcon icon={faUser} />
+            </div>
+            <h3>{formData.username ? formData.username : "Name"}</h3>
+            <h4>{formData.company ? formData.company : "Company"}</h4>
+            <h4>
+              {formData.designation ? formData.designation : "Designation"}
+            </h4>
+            <div className="signup_phone-boxs">
+              <div className="signup_phone-box"></div>
+              <div className="signup_phone-box"></div>
+              <div className="signup_phone-box"></div>
+              <div className="signup_phone-box"></div>
+              <div className="signup_phone-box"></div>
+            </div>
+          </div>
+        </div>
+        {/* <div className="signup_phone text-center">
+          <p>Live Profile Preview</p>
+          <div className="signup_phone-container">
             <img src="/phone_bannner.svg" className="img-fluid" alt="" />
             <h3>{formData.username ? formData.username : "Name"}</h3>
             <h4>{formData.company ? formData.company : "Company"}</h4>
@@ -107,7 +136,7 @@ export default function CreateCard() {
               <div className="signup_phone-box"></div>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

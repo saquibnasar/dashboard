@@ -4,11 +4,26 @@ import Topbar from "./Topbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 export default function About() {
   const [startDate, setStartDate] = useState(new Date());
+  const [formData, setFormData] = useState({
+    username: "",
+    company: "",
+    designation: "",
+  });
+
+  const handleChange = (event) => {
+    setFormData((prevformData) => {
+      return {
+        ...prevformData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  };
   return (
     <>
       <div className="d-flex homePage about">
@@ -37,63 +52,63 @@ export default function About() {
                           stroke="white"
                           strokeWidth="0.583333"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M22.168 8.4585C23.6177 8.4585 24.793 7.28324 24.793 5.8335C24.793 4.38375 23.6177 3.2085 22.168 3.2085C20.7182 3.2085 19.543 4.38375 19.543 5.8335C19.543 7.28324 20.7182 8.4585 22.168 8.4585Z"
                           stroke="white"
                           strokeWidth="0.583333"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M14 8.4585C15.4497 8.4585 16.625 7.28324 16.625 5.8335C16.625 4.38375 15.4497 3.2085 14 3.2085C12.5503 3.2085 11.375 4.38375 11.375 5.8335C11.375 7.28324 12.5503 8.4585 14 8.4585Z"
                           stroke="white"
                           strokeWidth="0.583333"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M5.83203 16.625C7.28178 16.625 8.45703 15.4497 8.45703 14C8.45703 12.5503 7.28178 11.375 5.83203 11.375C4.38228 11.375 3.20703 12.5503 3.20703 14C3.20703 15.4497 4.38228 16.625 5.83203 16.625Z"
                           stroke="white"
                           strokeWidth="0.583333"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M22.168 16.625C23.6177 16.625 24.793 15.4497 24.793 14C24.793 12.5503 23.6177 11.375 22.168 11.375C20.7182 11.375 19.543 12.5503 19.543 14C19.543 15.4497 20.7182 16.625 22.168 16.625Z"
                           stroke="white"
                           strokeWidth="0.583333"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M5.83203 24.7915C7.28178 24.7915 8.45703 23.6163 8.45703 22.1665C8.45703 20.7168 7.28178 19.5415 5.83203 19.5415C4.38228 19.5415 3.20703 20.7168 3.20703 22.1665C3.20703 23.6163 4.38228 24.7915 5.83203 24.7915Z"
                           stroke="white"
                           strokeWidth="0.583333"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M22.168 24.7915C23.6177 24.7915 24.793 23.6163 24.793 22.1665C24.793 20.7168 23.6177 19.5415 22.168 19.5415C20.7182 19.5415 19.543 20.7168 19.543 22.1665C19.543 23.6163 20.7182 24.7915 22.168 24.7915Z"
                           stroke="white"
                           strokeWidth="0.583333"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M14 24.7915C15.4497 24.7915 16.625 23.6163 16.625 22.1665C16.625 20.7168 15.4497 19.5415 14 19.5415C12.5503 19.5415 11.375 20.7168 11.375 22.1665C11.375 23.6163 12.5503 24.7915 14 24.7915Z"
                           stroke="white"
                           strokeWidth="0.583333"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                         <path
                           d="M13.4952 11.3751L10.8008 16.0418C10.7496 16.1305 10.7227 16.2311 10.7227 16.3335C10.7227 16.4359 10.7496 16.5365 10.8008 16.6251C10.852 16.7138 10.9256 16.7874 11.0143 16.8386C11.103 16.8898 11.2036 16.9168 11.306 16.9168H16.6948C16.7972 16.9168 16.8978 16.8898 16.9865 16.8386C17.0751 16.7874 17.1488 16.7138 17.2 16.6251C17.2512 16.5365 17.2781 16.4359 17.2781 16.3335C17.2781 16.2311 17.2512 16.1305 17.2 16.0418L14.5056 11.3751C14.4544 11.2865 14.3807 11.2128 14.292 11.1616C14.2034 11.1104 14.1028 11.0835 14.0004 11.0835C13.898 11.0835 13.7974 11.1104 13.7087 11.1616C13.6201 11.2128 13.5464 11.2865 13.4952 11.3751Z"
                           stroke="white"
                           strokeWidth="0.583333"
                           strokeLinecap="round"
-                          stroke-linejoin="round"
+                          strokeLinejoin="round"
                         />
                       </svg>
                       Content
@@ -161,45 +176,41 @@ export default function About() {
                 <div className="admin_detail">
                   <h1>User details</h1>
                   <div className="">
-                    <label
-                      for="exampleFormControlInput1"
-                      className="form-label"
-                    >
-                      Name
-                    </label>
+                    <label className="form-label">Name</label>
                     <input
-                      type="email"
+                      type="text"
                       className="form-control"
-                      id="exampleFormControlInput1"
+                      id="Name"
                       placeholder="Name"
+                      required
+                      name="username"
+                      onChange={handleChange}
+                      value={formData.username}
                     />
                   </div>
                   <div className="">
-                    <label
-                      for="exampleFormControlInput1"
-                      className="form-label"
-                    >
-                      Job title
-                    </label>
+                    <label className="form-label">Job title</label>
                     <input
-                      type="email"
+                      type="text"
                       className="form-control"
-                      id="exampleFormControlInput1"
+                      id="designation"
                       placeholder="Job title"
+                      name="designation"
+                      onChange={handleChange}
+                      value={formData.designation}
                     />
                   </div>
                   <div className="">
-                    <label
-                      for="exampleFormControlInput1"
-                      className="form-label"
-                    >
-                      Company
-                    </label>
+                    <label className="form-label">Company</label>
                     <input
-                      type="email"
+                      type="text"
                       className="form-control"
-                      id="exampleFormControlInput1"
+                      id="company"
                       placeholder="Company"
+                      name="company"
+                      required
+                      onChange={handleChange}
+                      value={formData.company}
                     />
                   </div>
                 </div>
@@ -214,7 +225,7 @@ export default function About() {
                           id="cb4"
                           type="checkbox"
                         />
-                        <label className="tgl-btn" for="cb4"></label>
+                        <label className="tgl-btn" htmlFor="cb4"></label>
                       </div>
                     </div>
                   </div>
@@ -245,15 +256,28 @@ export default function About() {
                 Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
               </p>
               <div className="signup_phone-container">
-                <img src="/phone_bannner.svg" className="img-fluid" alt="" />
-                <h3>username</h3>
-                <h4>company</h4>
-                <h4>designation</h4>
+                <div className="signup_phone-left">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+                <div className="signup_phone-right">
+                  <span></span>
+                </div>
+                <div className="addlink_phone-frame_user">
+                  <FontAwesomeIcon icon={faUser} />
+                </div>
+                <h3>{formData.username ? formData.username : "Name"}</h3>
+                <h4>{formData.company ? formData.company : "Company"}</h4>
+                <h4>
+                  {formData.designation ? formData.designation : "Designation"}
+                </h4>
+
                 <div className="signup_phone-boxs">
-                  <div className="signup_phone-box">+91 8010101010</div>
-                  <div className="signup_phone-box">
-                    harsh@investersclinic.in
-                  </div>
+                  <div className="signup_phone-box"></div>
+                  <div className="signup_phone-box"></div>
+                  <div className="signup_phone-box"></div>
+                  <div className="signup_phone-box"></div>
                 </div>
               </div>
             </div>

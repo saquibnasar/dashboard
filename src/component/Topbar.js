@@ -14,9 +14,11 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
 export default function Topbar(props) {
   const [isFlaxLink, setIsFlaxLink] = useState(false);
+  const navigate = useNavigate();
 
   window.addEventListener("click", function (e) {
     if (
@@ -40,7 +42,11 @@ export default function Topbar(props) {
   return (
     <nav className="navbar">
       {props.type ? (
-        <button className="navbar-brand" type="button">
+        <button
+          onClick={() => navigate(-1)}
+          className="navbar-brand"
+          type="button"
+        >
           <span className="setting-toggler-icon">
             <FontAwesomeIcon icon={faArrowLeft} />
           </span>
