@@ -8,9 +8,10 @@ import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import AddLink from "./AddLink";
 
-export default function AddCard() {
+export default function AddCard(props) {
   const [linkData, setLinkData] = useState({});
   const [isClick, setIsClick] = useState(false);
 
@@ -19,20 +20,16 @@ export default function AddCard() {
     setIsClick(!isClick);
   };
 
-  // window.addEventListener("click", function (e) {
-  //   if (
-  //     document.querySelector(".addcard") &&
-  //     !document.querySelector(".addcard").contains(e.target)
-  //   ) {
-  //     setIsClick(false);
-  //   }
-  // });
   return (
     <>
       <div className="addcard d-none">
         <div className="addcard_container">
           {!isClick ? (
             <div>
+              <div className="addlink-back" onClick={props.removeLink}>
+                <FontAwesomeIcon icon={faArrowLeft} />
+                Back
+              </div>
               <h1>Add content to card</h1>
               <p className="addcard_container-para">
                 Select from our wide variety of links and contact info below

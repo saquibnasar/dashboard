@@ -37,25 +37,6 @@ export default function AddLink(props) {
             <form action="">
               <div className="mt-5 email_input">
                 <div id="emailHelp" className="form-text">
-                  {props.data.title}
-                </div>
-                <div className="did-floating-label-content input-group">
-                  <input
-                    className="did-floating-input"
-                    type="number"
-                    placeholder=" "
-                    required
-                    name="linkData"
-                    value={formData.linkData}
-                    onChange={handleChange}
-                  />
-                  <label className="did-floating-label">
-                    {props.data.titleInput}
-                  </label>
-                </div>
-              </div>
-              <div className="mt-4 email_input">
-                <div id="emailHelp" className="form-text">
                   Link title
                 </div>
                 <div className="did-floating-label-content input-group">
@@ -73,6 +54,26 @@ export default function AddLink(props) {
                   </label>
                 </div>
               </div>
+              <div className="mt-4 email_input">
+                <div id="emailHelp" className="form-text">
+                  {props.data.title}
+                </div>
+                <div className="did-floating-label-content input-group">
+                  <input
+                    className="did-floating-input"
+                    type="number"
+                    placeholder=" "
+                    required
+                    name="linkData"
+                    value={formData.linkData}
+                    onChange={handleChange}
+                  />
+                  <label className="did-floating-label">
+                    {props.data.titleInput}
+                  </label>
+                </div>
+              </div>
+
               <div className="submit d-flex">
                 <button
                   type="submit"

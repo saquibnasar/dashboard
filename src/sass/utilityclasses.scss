@@ -273,6 +273,8 @@
       border: none;
       text-align: start;
       padding-right: 25px;
+      transition: 0.4s;
+
       &:focus {
         outline: none;
         background: $white-color;
@@ -481,6 +483,110 @@
         margin: 0 5px;
         cursor: pointer;
       }
+    }
+  }
+}
+.signup_phone-container {
+  background: #1f252f;
+  border-radius: 58px;
+  box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
+  border-radius: 62px;
+  padding: 24px 0;
+  margin: auto;
+  width: 270px;
+  height: 450px;
+  position: relative;
+  .signup_phone-left {
+    position: absolute;
+    top: 21%;
+    left: -3px;
+    display: flex;
+    flex-direction: column;
+
+    span:nth-child(1) {
+      width: 3px;
+      height: 30px;
+      background: #333333;
+      box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+      border-radius: 1px 0px 0px 1px;
+      display: inline-block;
+    }
+    span:nth-child(2) {
+      width: 3px;
+      height: 62px;
+      background: #333333;
+      box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+      border-radius: 1px 0px 0px 1px;
+      display: inline-block;
+      margin-top: 24px;
+      margin-bottom: 18px;
+    }
+    span:nth-child(3) {
+      width: 3px;
+      height: 62px;
+      background: #333333;
+      box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+      display: inline-block;
+    }
+  }
+  .signup_phone-right {
+    position: absolute;
+    top: 30%;
+    right: -3px;
+    span {
+      width: 3px;
+      height: 100px;
+      background: #333333;
+      box-shadow: inset -1px 0px 2px rgba(255, 255, 255, 0.5);
+      display: inline-block;
+    }
+  }
+  // background: url(../../public/phone.png);
+  // border-radius: 40px;
+  // width: 302px;
+  // height: 480px;
+  // padding: 24px 0;
+  // margin: auto;
+  .addlink_phone-frame_user {
+    width: 70px;
+    height: 70px;
+    background: #f7f7f7;
+    color: #a3a3a3;
+    font-size: 1.5rem;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    margin: 0px auto;
+    margin-bottom: 16px;
+  }
+
+  h3 {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 18px;
+    color: $white-color;
+    margin-top: 10px;
+  }
+  h4 {
+    font-family: $primary-font;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 18px;
+    color: $white-color;
+    margin-top: 10px;
+  }
+  .signup_phone-boxs {
+    display: flex;
+    flex-direction: column;
+    gap: 9px;
+    margin-top: 12px;
+    .signup_phone-box {
+      background: #2e3239;
+      border-radius: 20px;
+      height: 45px;
+      width: 80%;
+      margin: auto;
     }
   }
 }

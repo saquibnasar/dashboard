@@ -13,6 +13,21 @@
   .addcard_container {
     padding-inline: 48px;
     padding-top: 32px;
+    .addlink-back {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 18px;
+      color: #858282;
+      display: inline-block;
+      margin-bottom: 32px;
+      cursor: pointer;
+      svg {
+        font-size: 22px;
+        margin-right: 10px;
+      }
+    }
     h1 {
       font-family: "Inter";
       font-weight: 600;
@@ -27,13 +42,13 @@
       font-size: 16px;
       line-height: 18px;
       color: #858282;
-      margin-bottom: 48px;
+      margin-bottom: 24px;
     }
     .addcard_links {
       display: grid;
       grid-template-columns: auto auto auto;
       gap: 16px;
-      row-gap: 2rem;
+      row-gap: 1.5rem;
 
       .addcard_link {
         background: rgba(29, 32, 60, 0.9);
