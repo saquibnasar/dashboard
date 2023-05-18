@@ -9,7 +9,7 @@ export default function TeamCard(props) {
   const data = [
     {
       id: 1,
-      first_name: "Wilmette fdaaad",
+      first_name: "Wilmette",
       last_name: "Maasz",
       email: "wmaasz0@jalbum.net",
       phone: "130-309-6439",
@@ -200,12 +200,12 @@ export default function TeamCard(props) {
         </div>
       ) : (
         <div className="teamCard row gap-3 teamCard_list">
-          <Link to="/createCard" className="add_btn col-3">
+          {/* <Link to="/createCard" className="add_btn col-3">
             <span>
               <FontAwesomeIcon icon={faPlus} />
             </span>
             <p>Create New Cards</p>
-          </Link>
+          </Link> */}
           {data
             .filter((item) => {
               return props.search.toLowerCase() === ""
@@ -214,23 +214,24 @@ export default function TeamCard(props) {
             })
             .map((value) => {
               return (
-                <Link
-                  key={value.id}
-                  className="teamCard_btn col-3"
-                  to="/homepage"
-                >
-                  <div className="d-flex flex-direction-column">
-                    <h3>{value.first_name}</h3>
-                    <h4>{value.last_name}</h4>
+                <Link key={value.id} className="teamCard_btn" to="/homepage">
+                  <div className="d-flex gap-2">
+                    <span>
+                      <FontAwesomeIcon icon={faUser} />
+                    </span>
+                    <div className="d-flex flex-direction-column gap-2">
+                      <h3>{value.first_name}</h3>
+                      <h4>{value.last_name}</h4>
+                    </div>
                   </div>
-                  <div className="d-flex gap-1">
+                  <div className="d-flex gap-2 align-items-center">
                     <button className="editCard">
+                      Edit
                       <FontAwesomeIcon icon={faPencil} />
-                      Edit Card
                     </button>
                     <button className="ShareCard">
+                      Share
                       <FontAwesomeIcon icon={faShareSquare} />
-                      Share Card
                     </button>
                   </div>
                 </Link>
