@@ -14,6 +14,8 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
+
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Topbar(props) {
@@ -157,22 +159,9 @@ export default function Topbar(props) {
               className="form-control me-2"
               type="search"
               placeholder="Search"
-              aria-label="Search"
               onChange={(e) => props.setSearch(e.target.value)}
             />
-
-            <svg
-              width="25"
-              height="25"
-              viewBox="0 0 25 25"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M19.0349 17.3865L24.0317 22.3822L22.3809 24.033L17.3852 19.0362C15.5264 20.5263 13.2144 21.3367 10.832 21.3333C5.03603 21.3333 0.332031 16.6293 0.332031 10.8333C0.332031 5.03734 5.03603 0.333344 10.832 0.333344C16.628 0.333344 21.332 5.03734 21.332 10.8333C21.3354 13.2157 20.525 15.5277 19.0349 17.3865ZM16.6945 16.5208C18.1752 14.9982 19.002 12.9572 18.9987 10.8333C18.9987 6.32184 15.3435 2.66668 10.832 2.66668C6.32053 2.66668 2.66536 6.32184 2.66536 10.8333C2.66536 15.3448 6.32053 19 10.832 19C12.9559 19.0034 14.9969 18.1765 16.5195 16.6958L16.6945 16.5208Z"
-                fill="#636060"
-              />
-            </svg>
+            <FontAwesomeIcon icon={faSearch} />
           </form>
         )}
         <div className="p-relative">

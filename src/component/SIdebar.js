@@ -42,7 +42,11 @@ export default function SIdebar() {
           </li>
           <li className="nav-box"></li>
           <li className="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="/setting">
+            <NavLink
+              className="nav-link"
+              aria-current="page"
+              to="/setting/team"
+            >
               <FontAwesomeIcon icon={faGear} /> Settings
             </NavLink>
           </li>

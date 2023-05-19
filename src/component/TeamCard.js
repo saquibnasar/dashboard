@@ -200,12 +200,16 @@ export default function TeamCard(props) {
         </div>
       ) : (
         <div className="teamCard row gap-3 teamCard_list">
-          {/* <Link to="/createCard" className="add_btn col-3">
-            <span>
-              <FontAwesomeIcon icon={faPlus} />
-            </span>
+          <Link to="/createCard" className="add_btn">
             <p>Create New Cards</p>
-          </Link> */}
+            <button className="editCard">
+              add
+              <FontAwesomeIcon icon={faPlus} />
+            </button>
+            {/* <span>
+              <FontAwesomeIcon icon={faPlus} />
+            </span> */}
+          </Link>
           {data
             .filter((item) => {
               return props.search.toLowerCase() === ""

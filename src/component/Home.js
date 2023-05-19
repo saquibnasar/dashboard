@@ -12,7 +12,7 @@ export default function Home() {
   };
   return (
     <>
-      <div className="d-flex h-100vh">
+      <div className="d-flex h-100vh bg-white">
         <SIdebar />
         <div className="d-flex flex-direction-column w-80">
           <Topbar handleChange={handleChange} setSearch={setSearch} />

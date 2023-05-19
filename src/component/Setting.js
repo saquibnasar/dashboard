@@ -1,4 +1,4 @@
-import React from "react";
+// import React, { useState } from "react";
 import SIdebar from "./SIdebar";
 import Topbar from "./Topbar";
 import Subscription from "./setting/Subscription";
@@ -12,6 +12,10 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { NavLink } from "react-router-dom";
 
 export default function Setting(props) {
+  // const [imgUpload, setImgUpload] = useState("");
+  // const handleChange = (event) => {
+  //   setImgUpload(event.target.value);
+  // };
   return (
     <>
       <div className="d-flex">
@@ -26,7 +30,7 @@ export default function Setting(props) {
                     <NavLink
                       className="nav-link"
                       aria-current="page"
-                      to="/setting"
+                      to="/setting/team"
                     >
                       <svg
                         width="28"
@@ -106,7 +110,7 @@ export default function Setting(props) {
                     <NavLink
                       className="nav-link"
                       aria-current="page"
-                      to="/setting_subscription"
+                      to="/setting/subscription"
                     >
                       <svg
                         width="28"
@@ -127,7 +131,7 @@ export default function Setting(props) {
                     <NavLink
                       className="nav-link"
                       aria-current="page"
-                      to="/setting_support"
+                      to="/setting/support"
                     >
                       <svg
                         width="28"
@@ -149,7 +153,7 @@ export default function Setting(props) {
                     <NavLink
                       className="nav-link"
                       aria-current="page"
-                      to="/setting_devices"
+                      to="/setting/devices"
                     >
                       <FontAwesomeIcon icon={faNfcSymbol} />
                       Add Flax Devices
@@ -159,7 +163,7 @@ export default function Setting(props) {
                     <NavLink
                       className="nav-link"
                       aria-current="page"
-                      to="/setting_admin"
+                      to="/setting/admin"
                     >
                       <FontAwesomeIcon icon={faUserShield} />
                       Admin Details
@@ -173,11 +177,17 @@ export default function Setting(props) {
                 <form>
                   <div className="Company_logo">
                     <h3>Company logo</h3>
-                    <duv className="logo">
+                    {/* <input
+                      type="file"
+                      value={imgUpload}
+                      onChange={handleChange}
+                    />
+                    <img src={imgUpload} alt="" /> */}
+                    <div className="logo">
                       <span>
                         <FontAwesomeIcon icon={faPlus} />
                       </span>
-                    </duv>
+                    </div>
                   </div>
                   <div className="Company_name">
                     <h3>Company name</h3>

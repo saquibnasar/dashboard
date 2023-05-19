@@ -56,6 +56,7 @@
         left: 21px;
         top: 50%;
         transform: translateY(-50%);
+        font-size: 1.5rem;
       }
       .form-control {
         box-shadow: none;
@@ -63,20 +64,32 @@
         background: #d9d9d9;
         border-radius: 80px;
         font-family: "Inter";
-        font-style: normal;
         font-weight: 500;
         font-size: 18px;
         line-height: 18px;
-        display: flex;
-        align-items: center;
         color: #929292;
         border: none;
-        /* text-align: center; */
-        /* padding: 1rem; */
         justify-content: center;
         padding-left: 70px;
         padding-right: 24px;
       }
+      .form-control::placeholder {
+        color: #929292;
+      }
+      .label {
+        font-family: "Inter";
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 18px;
+        color: #929292;
+        position: absolute;
+        left: 66px;
+        transform: translateY(-50%);
+        top: 50%;
+        padding: 0 5px;
+        transition: 0.2s ease all;
+      }
+
       input[type="search"]::-webkit-search-decoration,
       input[type="search"]::-webkit-search-cancel-button,
       input[type="search"]::-webkit-search-results-button,
@@ -84,6 +97,32 @@
         display: none;
       }
     }
+    form:hover:hover {
+      .form-control {
+        color: #fff;
+        background: #6e56ce;
+      }
+      .form-control::placeholder {
+        color: #fff;
+      }
+      svg {
+        color: $white-color;
+      }
+    }
+
+    form:has(.form-control:not(:placeholder-shown)) {
+      .form-control {
+        color: #fff;
+        background: #6e56ce;
+      }
+      .form-control::placeholder {
+        color: #fff;
+      }
+      svg {
+        color: $white-color;
+      }
+    }
+
     .navbar-btn {
       background: transparent;
       border-radius: 80px;

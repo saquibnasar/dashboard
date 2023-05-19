@@ -49,8 +49,8 @@ pre {
 .form-control:target,
 .form-control:visited,
 .form-control:focus-visible {
-  background: $white-color !important;
-  color: $black-color !important;
+  background: $white-color;
+  color: $black-color;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
