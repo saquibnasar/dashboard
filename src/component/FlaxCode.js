@@ -10,7 +10,7 @@ export default function FlaxCode() {
     <>
       <div className="d-flex homePage flaxcode">
         <SIdebar />
-        <div className="d-flex flex-direction-column">
+        <div className="d-flex flex-direction-column w-100">
           <Topbar type="setting" title="" />
           <div className="homePage_container mt-4">
             <nav className="sidebar">

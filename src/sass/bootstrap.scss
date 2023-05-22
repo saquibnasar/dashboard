@@ -169,6 +169,10 @@
 .w-78 {
   width: 78%;
 }
+
+.w-lg-80 {
+  width: 80%;
+}
 .w-80 {
   width: 80%;
 }
@@ -180,4 +184,9 @@
 }
 .bg-white {
   background: $white-color;
+}
+@include media992 {
+  .w-lg-80 {
+    width: unset;
+  }
 }

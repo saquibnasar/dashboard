@@ -9,13 +9,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 export default function Setting(props) {
+  const { settingId } = useParams();
+
   // const [imgUpload, setImgUpload] = useState("");
   // const handleChange = (event) => {
   //   setImgUpload(event.target.value);
   // };
+
   return (
     <>
       <div className="d-flex">
@@ -172,7 +175,7 @@ export default function Setting(props) {
                 </ul>
               </div>
             </nav>
-            {props.type === "setting" ? (
+            {settingId === "team" ? (
               <div className="team_setting">
                 <form>
                   <div className="Company_logo">
@@ -200,11 +203,11 @@ export default function Setting(props) {
                   <button type="summit">Update</button>
                 </form>
               </div>
-            ) : props.type === "subscription" ? (
+            ) : settingId === "subscription" ? (
               <Subscription />
-            ) : props.type === "support" ? (
+            ) : settingId === "support" ? (
               <Support />
-            ) : props.type === "devices" ? (
+            ) : settingId === "devices" ? (
               <SettingDevices />
             ) : (
               <Admin />

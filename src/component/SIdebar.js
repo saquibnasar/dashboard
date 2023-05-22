@@ -43,7 +43,11 @@ export default function SIdebar() {
           <li className="nav-box"></li>
           <li className="nav-item">
             <NavLink
-              className="nav-link"
+              className={
+                window.location.pathname.split("/")[1] === "setting"
+                  ? "nav-link active"
+                  : "nav-link"
+              }
               aria-current="page"
               to="/setting/team"
             >

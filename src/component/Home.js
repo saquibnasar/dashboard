@@ -14,7 +14,7 @@ export default function Home() {
     <>
       <div className="d-flex h-100vh bg-white">
         <SIdebar />
-        <div className="d-flex flex-direction-column w-80">
+        <div className="d-flex flex-direction-column w-100">
           <Topbar handleChange={handleChange} setSearch={setSearch} />
           <TeamCard mode={toggle} search={search} />
         </div>

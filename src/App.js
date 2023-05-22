@@ -20,14 +20,15 @@ function App() {
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/about" element={<About />} />
         <Route path="/flaxcode" element={<FlaxCode />} />
-        <Route path="/setting/team" element={<Setting type="setting" />} />
+        <Route path="/setting/:settingId" element={<Setting />} />
+        {/* <Route path="/setting" element={<Setting type="setting" />} />
         <Route
           path="/setting/subscription"
           element={<Setting type="subscription" />}
         />
         <Route path="/setting/support" element={<Setting type="support" />} />
         <Route path="/setting/devices" element={<Setting type="devices" />} />
-        <Route path="/setting/admin" element={<Setting type="admin" />} />
+        <Route path="/setting/admin" element={<Setting type="admin" />} /> */}
       </Routes>
     </BrowserRouter>
   );

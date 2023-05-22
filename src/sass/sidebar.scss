@@ -3,8 +3,18 @@
 @import "./mediaqueries.scss";
 .sidebar {
   background: #1d203c;
-  width: 20%;
+  width: 276px;
   padding-bottom: 28px;
+  @include media992 {
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    width: auto;
+    ul {
+      list-style: none;
+    }
+  }
+
   .sidebar-brand {
     display: block;
     padding-top: 38px;
