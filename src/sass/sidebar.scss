@@ -3,7 +3,7 @@
 @import "./mediaqueries.scss";
 .sidebar {
   background: #1d203c;
-  width: 276px;
+  min-width: 240px;
   padding-bottom: 28px;
   @include media992 {
     position: absolute;
