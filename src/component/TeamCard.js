@@ -160,7 +160,7 @@ export default function TeamCard(props) {
     <>
       {!props.mode ? (
         <div className="teamCard row gap-3">
-          <Link to="/createCard" className="add_btn col-3">
+          <Link to="/createCard" className="add_btn col-lg-6 col-md-12 col-4">
             <span>
               <FontAwesomeIcon icon={faPlus} />
             </span>
@@ -176,7 +176,7 @@ export default function TeamCard(props) {
               return (
                 <Link
                   key={value.id}
-                  className="teamCard_btn col-3"
+                  className="teamCard_btn col-lg-6 col-md-12 col-4"
                   to="/homepage"
                 >
                   <span>
@@ -184,7 +184,7 @@ export default function TeamCard(props) {
                   </span>
                   <h3>{value.first_name}</h3>
                   <h4>{value.last_name}</h4>
-                  <div className="d-flex gap-2">
+                  <div className="d-flex gap-2 f-sm400-direction-column">
                     <button className="editCard">
                       <FontAwesomeIcon icon={faPencil} />
                       Edit Card
@@ -219,16 +219,16 @@ export default function TeamCard(props) {
             .map((value) => {
               return (
                 <Link key={value.id} className="teamCard_btn" to="/homepage">
-                  <div className="d-flex gap-2">
-                    <span>
+                  <div className="d-flex gap-2 f-md-column">
+                    <span className="mx-auto">
                       <FontAwesomeIcon icon={faUser} />
                     </span>
                     <div className="d-flex flex-direction-column gap-2">
                       <h3>{value.first_name}</h3>
-                      <h4>{value.last_name}</h4>
+                      <h4 className="mx-auto">{value.last_name}</h4>
                     </div>
                   </div>
-                  <div className="d-flex gap-2 align-items-center">
+                  <div className="d-flex gap-2 align-items-center f-md-column">
                     <button className="editCard">
                       Edit
                       <FontAwesomeIcon icon={faPencil} />

@@ -6,6 +6,9 @@
   padding: 24px 48px;
   row-gap: 24px;
   overflow: scroll;
+  @include media576 {
+    padding: 24px 16px;
+  }
   .teamCard_btn {
     background: #1d203c;
     border-radius: 32px;
@@ -93,6 +96,9 @@
     gap: 24px;
     border: none;
     cursor: pointer;
+    @include media400 {
+      gap: 12px;
+    }
     p {
       font-family: "Inter";
       font-style: normal;
@@ -100,6 +106,9 @@
       font-size: 24px;
       line-height: 18px;
       color: #71767b;
+      @include media400 {
+        font-size: 20px;
+      }
     }
     span {
       width: 40px;
@@ -135,6 +144,9 @@
     width: 90%;
     justify-content: space-between;
     margin: auto;
+    @include media576 {
+      flex-direction: column;
+    }
     h3 {
       color: #2d254e;
     }
@@ -203,9 +215,15 @@
     width: 90%;
     justify-content: space-between;
     margin: auto;
+    @include media576 {
+      flex-direction: column;
+    }
     p {
       color: #2d254e;
       font-size: 22px;
+      @include media400 {
+        font-size: 18px;
+      }
     }
     .editCard {
       font-family: "Inter";

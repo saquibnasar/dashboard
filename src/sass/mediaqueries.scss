@@ -1,20 +1,26 @@
-@mixin media992 {
-  @media (max-width: 992px) {
-    @content;
-  }
-}
 @mixin media1200 {
   @media (max-width: 1200px) {
     @content;
   }
 }
-@mixin media576 {
-  @media (max-width: 576px) {
+@mixin media992 {
+  @media (max-width: 992px) {
     @content;
   }
 }
 @mixin media768 {
   @media (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin media576 {
+  @media (max-width: 576px) {
+    @content;
+  }
+}
+@mixin media400 {
+  @media (max-width: 400px) {
     @content;
   }
 }

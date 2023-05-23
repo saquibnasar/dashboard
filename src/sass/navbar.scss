@@ -10,6 +10,9 @@
   justify-content: space-between;
   // margin-bottom: 32px;
   gap: 24px;
+  @include media992 {
+    display: none;
+  }
   .navbar-brand {
     background: transparent;
     border: none;
