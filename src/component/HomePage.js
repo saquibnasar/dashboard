@@ -165,50 +165,52 @@ export default function HomePage() {
                 </ul>
               </div>
             </nav>
-            <div className="links">
-              <div className="link_container">
-                <div>
-                  <h2>This profile doesn’t have any linked content</h2>
-                  <h3>
-                    Add links to contact Information, website,
-                    <br />
-                    Social media handles and more
-                  </h3>
+            <div className="d-flex">
+              <div className="links">
+                <div className="link_container">
+                  <div>
+                    <h2>This profile doesn’t have any linked content</h2>
+                    <h3>
+                      Add links to contact Information, website,
+                      <br />
+                      Social media handles and more
+                    </h3>
 
-                  <button className="btn_add" onClick={addLin}>
-                    <FontAwesomeIcon icon={faPlus} />
-                    Add Links and contact info
-                  </button>
+                    <button className="btn_add" onClick={addLin}>
+                      <FontAwesomeIcon icon={faPlus} />
+                      Add Links and contact info
+                    </button>
+                  </div>
+
+                  <img src="/bglink.png" alt="" className="img-fluid" />
                 </div>
-
-                <img src="/bglink.png" alt="" className="img-fluid" />
+                {/* <LInks /> */}
               </div>
-              {/* <LInks /> */}
-            </div>
-            <div className="signup_phone text-center">
-              <p>
-                Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
-              </p>
-              <div className="signup_phone-container">
-                <div className="signup_phone-left">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <div className="signup_phone-right">
-                  <span></span>
-                </div>
-                <div className="addlink_phone-frame_user">
-                  <FontAwesomeIcon icon={faUser} />
-                </div>
-                <h3>Name</h3>
-                <h4>company</h4>
-                <h4>designation</h4>
-                <div className="signup_phone-boxs">
-                  <div className="signup_phone-box"></div>
-                  <div className="signup_phone-box"></div>
-                  <div className="signup_phone-box"></div>
-                  <div className="signup_phone-box"></div>
+              <div className="signup_phone text-center">
+                <p>
+                  Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
+                </p>
+                <div className="signup_phone-container">
+                  <div className="signup_phone-left">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div className="signup_phone-right">
+                    <span></span>
+                  </div>
+                  <div className="addlink_phone-frame_user">
+                    <FontAwesomeIcon icon={faUser} />
+                  </div>
+                  <h3>Name</h3>
+                  <h4>company</h4>
+                  <h4>designation</h4>
+                  <div className="signup_phone-boxs">
+                    <div className="signup_phone-box"></div>
+                    <div className="signup_phone-box"></div>
+                    <div className="signup_phone-box"></div>
+                    <div className="signup_phone-box"></div>
+                  </div>
                 </div>
               </div>
             </div>

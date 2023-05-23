@@ -21,9 +21,9 @@ export default function Setting(props) {
 
   return (
     <>
-      <div className="d-flex">
+      <div className="d-flex h-100vh">
         <SIdebar />
-        <div className="d-flex flex-direction-column w-80">
+        <div className="d-flex flex-direction-column w-100">
           <Topbar type="setting" />
           <div className="setting mt-4">
             <nav className="sidebar">

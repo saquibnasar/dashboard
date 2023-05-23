@@ -5,6 +5,7 @@ import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
 import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
+import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, Link } from "react-router-dom";
 export default function SIdebar() {
   return (
@@ -18,13 +19,14 @@ export default function SIdebar() {
           <li className="nav-item">
             <NavLink className="nav-link" aria-current="page" to="/">
               <FontAwesomeIcon icon={faUser} />
-              My Cards
+              <p className="d-xl-none">My Cards </p>
             </NavLink>
           </li>
 
           <li className="nav-item">
             <NavLink className="nav-link" aria-current="page" to="/devices">
-              <FontAwesomeIcon icon={faNfcSymbol} /> Devices
+              <FontAwesomeIcon icon={faNfcSymbol} />
+              <p className="d-xl-none">Devices</p>
             </NavLink>
           </li>
 
@@ -35,12 +37,12 @@ export default function SIdebar() {
               href="https://caard.mini.store/"
             >
               <FontAwesomeIcon icon={faBasketShopping} />{" "}
-              <div className="d-flex gap-2">
-                Get Flax Devices <FontAwesomeIcon icon={faShareSquare} />{" "}
+              <div className="d-flex gap-2 d-xl-none">
+                <p>Get Flax Devices</p> <FontAwesomeIcon icon={faShareSquare} />{" "}
               </div>
             </a>
           </li>
-          <li className="nav-box"></li>
+          <li className="nav-box d-xl-none"></li>
           <li className="nav-item">
             <NavLink
               className={
@@ -51,11 +53,18 @@ export default function SIdebar() {
               aria-current="page"
               to="/setting/team"
             >
-              <FontAwesomeIcon icon={faGear} /> Settings
+              <FontAwesomeIcon icon={faGear} />
+              <p className="d-xl-none">Settings</p>
             </NavLink>
           </li>
         </ul>
-        <button className="btn btn-primary">Upgrade Now</button>
+
+        <button className="btn btn-primary">
+          <span className="d-xl-block d-none">
+            <FontAwesomeIcon icon={faPenToSquare} />
+          </span>
+          <p className="d-xl-none">Upgrade Now </p>
+        </button>
       </div>
     </nav>
   );

@@ -190,3 +190,11 @@
     width: unset;
   }
 }
+@include media1200 {
+  .d-xl-block {
+    display: block !important;
+  }
+  .d-xl-none {
+    display: none !important;
+  }
+}

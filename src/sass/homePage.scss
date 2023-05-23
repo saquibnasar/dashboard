@@ -20,6 +20,10 @@
       background: transparent;
       width: 29%;
       border-right: 3px solid #fff;
+      @include media1200 {
+        min-width: unset;
+        max-width: unset;
+      }
       .sidebar-collapse {
         padding-inline: 32px;
 
@@ -34,6 +38,8 @@
             line-height: 18px;
             padding: unset;
             padding: 14px 8px;
+            justify-content: start;
+
             svg {
               font-size: 1.6rem;
             }
@@ -172,7 +178,7 @@
     }
 
     .links {
-      width: 49%;
+      // width: 49%;
       padding: 14px 24px;
       .link_container {
         background: #30334c;

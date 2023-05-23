@@ -2,439 +2,439 @@
 @import "./font.scss";
 @import "./mediaqueries.scss";
 
-.setting{
-    background: #1D203C;
-    border-radius: 22px;
-    margin-left: 16px;
-    display: flex;
-    margin-right: 16px;
-    margin-bottom: 16px;
-    height: 100%;
-    .sidebar{
-        background: transparent;
-        width: unset;
-        border-right: 3px solid #fff;
-     .sidebar-collapse{
-        padding-inline: 32px;
-
-        .sidebar-nav{
-            list-style: none;
-            // gap: 32px;
-            .nav-link{
-                font-family: 'Roboto';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 20px;
-                line-height: 18px;
-                padding: unset;
-                padding: 14px 8px;
-                svg{
-                    font-size: 1.6rem;
-                }
-            }
-            .nav-link.active{
-                background: rgba(217, 217, 217, 0.2);
-                border-radius: 16px;
-            }
-        
-        }
+.setting {
+  background: #1d203c;
+  border-radius: 22px;
+  margin-left: 16px;
+  display: flex;
+  margin-right: 16px;
+  margin-bottom: 16px;
+  height: 100%;
+  .sidebar {
+    background: transparent;
+    width: unset;
+    border-right: 3px solid #fff;
+    @include media1200 {
+      min-width: unset;
+      max-width: unset;
     }
+    @include media992 {
+      position: unset;
+      z-index: 1;
+      right: 0;
+      width: unset;
+      ul {
+        list-style: none;
+      }
     }
-    .team_setting{
-        margin-top: 48px;
-        margin-left: 60px;
-        h3{
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 22px;
-            line-height: 18px;
-            color: #DDD6D6;
+    .sidebar-collapse {
+      padding-inline: 32px;
 
+      .sidebar-nav {
+        list-style: none;
+        // gap: 32px;
+        .nav-link {
+          font-family: "Roboto";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 18px;
+          padding: unset;
+          padding: 14px 8px;
+          justify-content: start;
+          svg {
+            font-size: 1.6rem;
+          }
         }
-        button{
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 18px;
-            display: flex;
-            align-items: center;
-            background: #FFFFFF;
-            border-radius: 80px;
-            color: #252525;
-            padding: 18px 64px;
-            margin-top: 70px;
-            cursor: pointer;
-            border: none;
-            transition: 0.3s;
+        .nav-link.active {
+          background: rgba(217, 217, 217, 0.2);
+          border-radius: 16px;
         }
-        button:hover{   
-    background: rgba(217, 217, 217, 0.2);
-    color: $white-color;
-        }
-
-        .Company_logo{
-            .logo{
-                background: rgba(217, 217, 217, 0.2);
-                border: 1px solid #FFFFFF;
-                border-radius: 16px;
-                width: 102px;
-                margin-top: 17px;
-                height: 102px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                span{
-                    background: #D9D9D9;
-                    border-radius: 10px;
-                    width: 40px;
-                    height: 40px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    font-size: 1.25rem;
-                    color: #252525;
-
-                }
-            }
-        }
-        .Company_name{
-            margin-top: 26px;
-            input{
-                width: 400px;
-                background: rgba(217, 217, 217, 0.2);
-                border-radius: 20px;
-                padding: 11px 12px;
-                padding-right: 24px;
-                padding-left: 12px;
-                font-family: 'Inter';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 18px;
-                display: flex;
-                align-items: center;
-                color: rgba(255, 255, 255, 0.3);
-                border: none;
-                box-shadow: unset;
-                outline: unset;
-                margin-top: 17px;
-            }
-          
-        }
+      }
     }
-    .subscription{
-        padding: 64px 48px;
+  }
+  .team_setting {
+    margin-top: 48px;
+    margin-left: 60px;
+    h3 {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 22px;
+      line-height: 18px;
+      color: #ddd6d6;
+    }
+    button {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      background: #ffffff;
+      border-radius: 80px;
+      color: #252525;
+      padding: 18px 64px;
+      margin-top: 70px;
+      cursor: pointer;
+      border: none;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: rgba(217, 217, 217, 0.2);
+      color: $white-color;
+    }
+
+    .Company_logo {
+      .logo {
+        background: rgba(217, 217, 217, 0.2);
+        border: 1px solid #ffffff;
+        border-radius: 16px;
+        width: 102px;
+        margin-top: 17px;
+        height: 102px;
         display: flex;
-        flex-direction: column;
-        gap: 32px;
-        width: 72%;
-        .subscription_plan{
-            display: flex;
-            justify-content: space-between;
-            border-bottom: 1px solid #FFFFFF;
-            padding-bottom: 16px;
-            align-items: center;
-            h2{
-                font-family: 'Inter';
-                font-weight: 600;
-                font-size: 28px;
-                line-height: 18px;
-                color: #A9B3BC;
-            }
-            button{
-                font-family: 'Inter';
-                font-style: normal;
-                font-weight: 600;
-                font-size: 18px;
-                line-height: 18px;
-                color: #FFFFFF;
-                border: 1px solid #FFFFFF;
-                border-radius: 80px;
-                background: transparent;
-                padding: 18px 48px;
-
-            }
-        
+        justify-content: center;
+        align-items: center;
+        span {
+          background: #d9d9d9;
+          border-radius: 10px;
+          width: 40px;
+          height: 40px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1.25rem;
+          color: #252525;
         }
-        .subscription_member{
-            h3{
-                font-family: 'Inter';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 22px;
-                line-height: 18px;
-                color: #DDD6D6;
-            }
-            h4{
-                font-family: 'Inter';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 22px;
-                line-height: 18px;
-                color: #DDD6D6;
-
-            }
-        }
-        .subscription_Team{ 
-         h3{
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 28px;
-            line-height: 18px;
-            color: #D8EBFF;
-         }
-         h4{
-            font-family: 'Inter';
-            font-style: normal;
-            font-weight: 600;
-            font-size: 18px;
-            line-height: 18px;
-            color: #FFFFFF;
-
-         }
-        }
-        
-        .subscription_member,
-        .subscription_Team,
-        .subscription_charged{
-            display: flex;
-            justify-content: space-between;
-            margin-right: 24px;
-            // align-items: center;
-        }
-        .subscription_charged{
-            h3,h4{
-                font-family: 'Inter';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 18px;
-                color: rgba(255, 255, 255, 0.3);
-                line-height: 22px;
-            }
-            h3{
-                span{
-                    color: $white-color;
-                }
-            }
-        }
+      }
     }
-    .Support{
-        .subscription_member,
-        .subscription_Team,
-        .subscription_charged{
-            display: flex;
-            justify-content: flex-start;
-            margin-right: 0px;
-            gap: 48px;
-            h3{
-                font-family: 'Inter';
-                font-weight: 400;
-                font-size: 22px;
-                line-height: 18px;
-                color: #DDD6D6;
-
-            }
-            h4{
-                font-family: 'Inter';
-                font-weight: 600;
-                font-size: 18px;
-                line-height: 18px;
-                color: #FFFFFF;
-            }
-        }
-        .subscription_member{
-            gap: 68px;
-        }
-        .subscription_charged {
-            gap: 98px;
-        }
+    .Company_name {
+      margin-top: 26px;
+      input {
+        width: 400px;
+        background: rgba(217, 217, 217, 0.2);
+        border-radius: 20px;
+        padding: 11px 12px;
+        padding-right: 24px;
+        padding-left: 12px;
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.3);
+        border: none;
+        box-shadow: unset;
+        outline: unset;
+        margin-top: 17px;
+      }
     }
-    .devices{
-        width: 72.6%;
-        text-align: center;
-        h1{
-            font-family: 'Inter';
-            font-weight: 600;
-            font-size: 28px;
-            line-height: 18px;
-            color: #A9B3BC;
-            margin-bottom: 24px;
-        }
-        h2,h3{
-            font-family: 'Inter';
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 21px;
-            color: rgba(255, 255, 255, 0.5);
-        }
-        h3{
-            color: rgba(255, 255, 255, 0.8);
-            margin-top: 28px;
-            margin-bottom: 48px;
-        }
+  }
+  .subscription {
+    padding: 64px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    width: 72%;
+    .subscription_plan {
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid #ffffff;
+      padding-bottom: 16px;
+      align-items: center;
+      h2 {
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 18px;
+        color: #a9b3bc;
+      }
+      button {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 18px;
+        color: #ffffff;
+        border: 1px solid #ffffff;
+        border-radius: 80px;
+        background: transparent;
+        padding: 18px 48px;
+      }
     }
-    .admin{
-        padding-top: 48px;
-        width: 72.6%;
-        padding-left: 60px;
-        padding-right: 60px;
-        .admin_detail,
-        .admin_authentication{
-
-            h1{
-                font-family: 'Inter';
-                font-weight: 600;
-                font-size: 28px;
-                line-height: 18px;
-                color: #A9B3BC;
-                margin-bottom: 24px;
-            }
-            .form-label{
-                font-family: 'Inter';
-                font-weight: 400;
-                font-size: 22px;
-                line-height: 18px;
-                color: #DDD6D6;
-                display: block;
-                margin-bottom: 10px;
-            }
-            .form-control{
-                font-family: 'Inter';
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 18px;
-                color: rgba(255, 255, 255, 0.3);
-                background: rgba(217, 217, 217, 0.2);
-                border-radius: 20px;
-                width: 100%;
-                padding: 16px 12px 16px;
-                border: none;
-                margin-bottom: 16px;
-                outline: none;
-            }
-  
-
-
-
-        }
-        .admin_detail{
-            // margin-bottom: 100px;
-        }
-        .admin_authentication{
-            .tgl {
-                display: none;
-                
-                // add default box-sizing for this scope
-                &,
-                &:after,
-                &:before,
-                & *,
-                & *:after,
-                & *:before,
-                & + .tgl-btn {
-                  box-sizing: border-box;
-                  &::selection {
-                    background: none;
-                  }
-                }
-                
-                + .tgl-btn {
-                  outline: 0;
-                  display: block;
-                  width: 4em;
-                  height: 2em;
-                  position: relative;
-                  cursor: pointer;
-                  user-select: none;
-                  &:after,
-                  &:before {
-                    position: relative;
-                    display: block;
-                    content: "";
-                    width: 50%;
-                    height: 100%;
-                  }
-                  
-                  &:after {
-                    left: 0;
-                  }
-                  
-                  &:before {
-                    display: none;
-                  }
-                }
-                
-                &:checked + .tgl-btn:after {
-                  left: 50%;
-                }
-              }
-              
-            .tg-list-item{
-
-                 .tgl-btn {
-                    padding: 2px;
-                    transition: all .2s ease;
-                    background: transparent;
-                    border: 4px solid #f2f2f2;
-                    border-radius: 2em;
-                    &:after {
-                      transition: all .2s ease;
-                      background: #f2f2f2;
-                      content: "";
-                      border-radius: 1em;
-                    }
-                  }
-            .tgl-flat {
-                &:checked + .tgl-btn {
-                  border: 4px solid rgba(255, 255, 255, 0.3);
-                  &:after {
-                    left: 50%;
-                    background: rgba(255, 255, 255, 0.3);
-                  }
-                }
-              }
-            }
-            h2{
-                font-family: 'Inter';
-                font-weight: 400;
-                font-size: 22px;
-                line-height: 18px;
-                color: #DDD6D6;
-            }
-
-            p{
-                font-family: 'Inter';
-                font-style: normal;
-                font-weight: 400;
-                font-size: 18px;
-                line-height: 18px;
-                display: flex;
-                align-items: center;
-                color: rgba(255, 255, 255, 0.3);
-                margin-bottom: 20px;
-            }
-            button.btn-primary{
-                font-family: 'Inter';
-                font-weight: 600;
-                font-size: 18px;
-                line-height: 18px;
-                display: flex;
-                align-items: center;
-                color: #252525;
-                background: #FFFFFF;
-                border-radius: 80px;
-                padding: 18px 48px;
-                cursor: pointer;
-                border: none;
-            }
-            button:hover{
-                background: rgba(217, 217, 217, 0.2);
-                color: #fff;            
-            }
-        }
+    .subscription_member {
+      h3 {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 18px;
+        color: #ddd6d6;
+      }
+      h4 {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 18px;
+        color: #ddd6d6;
+      }
+    }
+    .subscription_Team {
+      h3 {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 18px;
+        color: #d8ebff;
+      }
+      h4 {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 18px;
+        color: #ffffff;
+      }
     }
 
+    .subscription_member,
+    .subscription_Team,
+    .subscription_charged {
+      display: flex;
+      justify-content: space-between;
+      margin-right: 24px;
+      // align-items: center;
+    }
+    .subscription_charged {
+      h3,
+      h4 {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        color: rgba(255, 255, 255, 0.3);
+        line-height: 22px;
+      }
+      h3 {
+        span {
+          color: $white-color;
+        }
+      }
+    }
+  }
+  .Support {
+    .subscription_member,
+    .subscription_Team,
+    .subscription_charged {
+      display: flex;
+      justify-content: flex-start;
+      margin-right: 0px;
+      gap: 48px;
+      h3 {
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 18px;
+        color: #ddd6d6;
+      }
+      h4 {
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 18px;
+        color: #ffffff;
+      }
+    }
+    .subscription_member {
+      gap: 68px;
+    }
+    .subscription_charged {
+      gap: 98px;
+    }
+  }
+  .devices {
+    width: 72.6%;
+    text-align: center;
+    h1 {
+      font-family: "Inter";
+      font-weight: 600;
+      font-size: 28px;
+      line-height: 18px;
+      color: #a9b3bc;
+      margin-bottom: 24px;
+    }
+    h2,
+    h3 {
+      font-family: "Inter";
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 21px;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    h3 {
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 28px;
+      margin-bottom: 48px;
+    }
+  }
+  .admin {
+    padding-top: 48px;
+    width: 72.6%;
+    padding-left: 60px;
+    padding-right: 60px;
+    .admin_detail,
+    .admin_authentication {
+      h1 {
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 18px;
+        color: #a9b3bc;
+        margin-bottom: 24px;
+      }
+      .form-label {
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 18px;
+        color: #ddd6d6;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .form-control {
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 18px;
+        color: rgba(255, 255, 255, 0.3);
+        background: rgba(217, 217, 217, 0.2);
+        border-radius: 20px;
+        width: 100%;
+        padding: 16px 12px 16px;
+        border: none;
+        margin-bottom: 16px;
+        outline: none;
+      }
+    }
+    .admin_detail {
+      // margin-bottom: 100px;
+    }
+    .admin_authentication {
+      .tgl {
+        display: none;
+
+        // add default box-sizing for this scope
+        &,
+        &:after,
+        &:before,
+        & *,
+        & *:after,
+        & *:before,
+        & + .tgl-btn {
+          box-sizing: border-box;
+          &::selection {
+            background: none;
+          }
+        }
+
+        + .tgl-btn {
+          outline: 0;
+          display: block;
+          width: 4em;
+          height: 2em;
+          position: relative;
+          cursor: pointer;
+          user-select: none;
+          &:after,
+          &:before {
+            position: relative;
+            display: block;
+            content: "";
+            width: 50%;
+            height: 100%;
+          }
+
+          &:after {
+            left: 0;
+          }
+
+          &:before {
+            display: none;
+          }
+        }
+
+        &:checked + .tgl-btn:after {
+          left: 50%;
+        }
+      }
+
+      .tg-list-item {
+        .tgl-btn {
+          padding: 2px;
+          transition: all 0.2s ease;
+          background: transparent;
+          border: 4px solid #f2f2f2;
+          border-radius: 2em;
+          &:after {
+            transition: all 0.2s ease;
+            background: #f2f2f2;
+            content: "";
+            border-radius: 1em;
+          }
+        }
+        .tgl-flat {
+          &:checked + .tgl-btn {
+            border: 4px solid rgba(255, 255, 255, 0.3);
+            &:after {
+              left: 50%;
+              background: rgba(255, 255, 255, 0.3);
+            }
+          }
+        }
+      }
+      h2 {
+        font-family: "Inter";
+        font-weight: 400;
+        font-size: 22px;
+        line-height: 18px;
+        color: #ddd6d6;
+      }
+
+      p {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        color: rgba(255, 255, 255, 0.3);
+        margin-bottom: 20px;
+      }
+      button.btn-primary {
+        font-family: "Inter";
+        font-weight: 600;
+        font-size: 18px;
+        line-height: 18px;
+        display: flex;
+        align-items: center;
+        color: #252525;
+        background: #ffffff;
+        border-radius: 80px;
+        padding: 18px 48px;
+        cursor: pointer;
+        border: none;
+      }
+      button:hover {
+        background: rgba(217, 217, 217, 0.2);
+        color: #fff;
+      }
+    }
+  }
 }

@@ -1,74 +1,71 @@
 @import "./custom.scss";
 @import "./font.scss";
 @import "./mediaqueries.scss";
-.devices{
-    h1{
-        font-family: 'Inter';
+.devices {
+  h1 {
+    font-family: "Inter";
     font-style: normal;
     font-weight: 600;
     font-size: 28px;
     line-height: 18px;
-    color: #71767B;
+    color: #71767b;
     margin-top: 38px;
     margin-left: 48px;
-    }
-    .devices_content{
-        width: 78%;
-
-.devices_content_container{
-
-
-        background: #1D203C;
-        border-radius: 32px;
-        display: flex;
-        justify-content: space-between;
-        padding: 70px 100px;
-        margin: 34px 48px;
-    .devices_content_left,
-    .devices_content_right{
+  }
+  .devices_content {
+    .devices_content_container {
+      background: #1d203c;
+      border-radius: 32px;
+      display: flex;
+      justify-content: space-between;
+      padding: 70px 100px;
+      margin: 34px 48px;
+      @include media1200 {
+        margin: 31px 48px;
+      }
+      .devices_content_left,
+      .devices_content_right {
         text-align: center;
-        h2{
-            font-family: 'Inter';
-font-weight: 600;
-font-size: 18px;
-line-height: 18px;
+        h2 {
+          font-family: "Inter";
+          font-weight: 600;
+          font-size: 18px;
+          line-height: 18px;
 
-color: #FFFFFF;
-margin-top: 24px;
-margin-bottom: 16px;
-
-
+          color: #ffffff;
+          margin-top: 24px;
+          margin-bottom: 16px;
         }
-        p{
-            font-family: 'Inter';
-font-style: normal;
-font-weight: 300;
-font-size: 16px;
-line-height: 18px;
-color: #FFFFFF;
+        p {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 300;
+          font-size: 16px;
+          line-height: 18px;
+          color: #ffffff;
         }
-        .devices-primary{
-            font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 18px;
-color: #252525;
-background: #FFFFFF;
-border-radius: 80px;
-padding: 18px 20px;
-margin-top: 48px;
-cursor: pointer;
-border: none;
+        .devices-primary {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 600;
+          font-size: 18px;
+          color: #252525;
+          background: #ffffff;
+          border-radius: 80px;
+          padding: 18px 20px;
+          margin-top: 48px;
+          cursor: pointer;
+          border: none;
         }
+      }
+      .devices_content_left {
+        .devices-primary {
+          padding: 18px 40px;
+        }
+      }
+      .devices_content_border {
+        border: 1px solid #ffffff;
+      }
     }
-    .devices_content_left{
-        .devices-primary{
-            padding: 18px 40px;
-        }
-    }
-    .devices_content_border{
-        border: 1px solid #FFFFFF;
-    }
-}}
-    
+  }
 }

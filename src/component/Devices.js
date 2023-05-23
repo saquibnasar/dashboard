@@ -3,10 +3,10 @@ import SIdebar from "./SIdebar";
 import { Link } from "react-router-dom";
 export default function Devices() {
   return (
-    <div className="devices">
+    <div className="devices h-100vh">
       <div className="d-flex">
         <SIdebar />
-        <div className="devices_content d-flex flex-direction-column">
+        <div className="devices_content d-flex flex-direction-column w-100">
           <h1>Devices</h1>
           <div className="devices_content_container">
             <div className="devices_content_left">
