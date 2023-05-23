@@ -2,6 +2,7 @@
 @import "./font.scss";
 @import "./mediaqueries.scss";
 .devices {
+  overflow: hidden;
   h1 {
     font-family: "Inter";
     font-style: normal;
@@ -20,8 +21,23 @@
       justify-content: space-between;
       padding: 70px 100px;
       margin: 34px 48px;
+
       @include media1200 {
         margin: 31px 48px;
+      }
+      @include media992 {
+        padding: 70px 48px;
+        margin: 31px 24px;
+      }
+      @include media768 {
+        padding: 48px 100px;
+        flex-direction: column;
+        gap: 20px;
+        overflow-y: scroll;
+      }
+      @include media576 {
+        padding: 24px 16px;
+        margin: 24px 16px;
       }
       .devices_content_left,
       .devices_content_right {
@@ -31,10 +47,16 @@
           font-weight: 600;
           font-size: 18px;
           line-height: 18px;
-
           color: #ffffff;
           margin-top: 24px;
           margin-bottom: 16px;
+          @include media576 {
+            margin-top: 16px;
+            margin-bottom: 12px;
+
+            font-weight: 500;
+            font-size: 17px;
+          }
         }
         p {
           font-family: "Inter";
@@ -42,7 +64,10 @@
           font-weight: 300;
           font-size: 16px;
           line-height: 18px;
-          color: #ffffff;
+          color: $white-color;
+          @include media576 {
+            font-size: 15px;
+          }
         }
         .devices-primary {
           font-family: "Inter";
@@ -56,11 +81,20 @@
           margin-top: 48px;
           cursor: pointer;
           border: none;
+          @include media576 {
+            font-size: 16px;
+
+            padding: 13px 16px;
+            margin-top: 20px;
+          }
         }
       }
       .devices_content_left {
         .devices-primary {
           padding: 18px 40px;
+          @include media576 {
+            padding: 13px 32px;
+          }
         }
       }
       .devices_content_border {
