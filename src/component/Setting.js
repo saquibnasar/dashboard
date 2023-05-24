@@ -106,7 +106,8 @@ export default function Setting(props) {
                           strokeLinejoin="round"
                         />
                       </svg>
-                      Team settings
+
+                      <p className="d-lg-none"> Team settings</p>
                     </NavLink>
                   </li>
                   <li className="nav-item">
@@ -127,7 +128,7 @@ export default function Setting(props) {
                           fill="#F8F8F8"
                         />
                       </svg>
-                      My subscription
+                      <p className="d-lg-none">My subscription</p>
                     </NavLink>
                   </li>
                   <li className="nav-item">
@@ -148,7 +149,7 @@ export default function Setting(props) {
                           fill="#F8F8F8"
                         />
                       </svg>
-                      Support
+                      <p className="d-lg-none">Support</p>
                     </NavLink>
                   </li>
 
@@ -159,7 +160,7 @@ export default function Setting(props) {
                       to="/setting/devices"
                     >
                       <FontAwesomeIcon icon={faNfcSymbol} />
-                      Add Flax Devices
+                      <p className="d-lg-none">Add Flax Devices</p>
                     </NavLink>
                   </li>
                   <li className="nav-item">
@@ -169,7 +170,7 @@ export default function Setting(props) {
                       to="/setting/admin"
                     >
                       <FontAwesomeIcon icon={faUserShield} />
-                      Admin Details
+                      <p className="d-lg-none">Admin Details</p>
                     </NavLink>
                   </li>
                 </ul>

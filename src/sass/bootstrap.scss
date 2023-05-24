@@ -214,6 +214,9 @@
     flex: 0 0 auto;
     width: 48.5%;
   }
+  .d-lg-none {
+    display: none !important;
+  }
 }
 @include media768 {
   .col-md-12 {
