@@ -73,7 +73,7 @@ export default function HomePage() {
                 </ul>
               </div>
             </nav>
-            <div className="d-flex">
+            <div className="homePage_container-bottom">
               <div className="links">
                 <div className="link_container">
                   <div>
@@ -108,8 +108,8 @@ export default function HomePage() {
                     <span></span>
                   </div>
                   <iframe
-                    width="352px"
-                    height="724px"
+                    width="428"
+                    height="887"
                     src="https://flax.ai/business/avinashassociates"
                   />
                 </div>
