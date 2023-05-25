@@ -227,10 +227,16 @@
   .f-md-column {
     flex-direction: column !important;
   }
+  .mb-lg-3 {
+    margin-bottom: 1rem !important;
+  }
 }
 @include media576 {
   .mx-auto {
     margin-inline: auto;
+  }
+  .d-md-none {
+    display: none !important;
   }
 }
 

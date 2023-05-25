@@ -18,6 +18,11 @@
     display: flex;
     flex-direction: column;
   }
+  @include media400 {
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+
   .sidebar {
     background: transparent;
     width: unset;
@@ -42,14 +47,19 @@
       max-width: unset;
       padding-bottom: 0px;
       border-bottom: 3px solid #fff;
+      border-right: unset;
     }
     .sidebar-collapse {
       padding-inline: 32px;
+      padding-bottom: 0.5rem;
       @include media992 {
         padding-inline: 16px;
       }
       @include media768 {
         margin-top: 16px;
+      }
+      @include media576 {
+        padding-inline: 8px;
       }
       .sidebar-nav {
         list-style: none;
@@ -58,6 +68,9 @@
           justify-content: center;
           flex-direction: row;
           align-items: center;
+        }
+        @include media576 {
+          gap: 0px;
         }
         .nav-link {
           font-family: "Roboto";
@@ -71,8 +84,19 @@
           @include media992 {
             justify-content: center;
           }
+          @include media576 {
+            padding: 8px 8px;
+          }
+          img {
+            @include media576 {
+              width: 90%;
+            }
+          }
           svg {
             font-size: 1.6rem;
+            @include media576 {
+              font-size: 1.1rem;
+            }
           }
         }
         .nav-link.active {
@@ -97,6 +121,9 @@
       font-size: 22px;
       line-height: 18px;
       color: #ddd6d6;
+      @include media768 {
+        font-size: 18px;
+      }
     }
     button {
       font-family: "Inter";
@@ -118,6 +145,11 @@
         padding: 12px 48px;
         margin-top: 32px;
       }
+      @include media400 {
+        font-size: 14px;
+        padding: 10px 30px;
+        margin-top: 24px;
+      }
     }
     button:hover {
       background: rgba(217, 217, 217, 0.2);
@@ -130,11 +162,15 @@
         border: 1px solid #ffffff;
         border-radius: 16px;
         width: 102px;
-        margin-top: 17px;
         height: 102px;
+        margin-top: 17px;
         display: flex;
         justify-content: center;
         align-items: center;
+        @include media576 {
+          width: 80px;
+          height: 80px;
+        }
         span {
           background: #d9d9d9;
           border-radius: 10px;
@@ -145,6 +181,11 @@
           align-items: center;
           font-size: 1.25rem;
           color: #252525;
+          @include media576 {
+            width: 30px;
+            height: 30px;
+            font-size: 1rem;
+          }
         }
       }
     }
@@ -172,6 +213,10 @@
         @include media768 {
           width: 90%;
         }
+        @include media576 {
+          font-size: 14px;
+          margin-top: 13px;
+        }
       }
     }
   }
@@ -182,6 +227,9 @@
     gap: 32px;
     @include media768 {
       padding: 32px 24px;
+    }
+    @include media576 {
+      gap: 16px;
     }
     .subscription_plan {
       display: flex;
@@ -199,6 +247,13 @@
         @include media768 {
           font-size: 20px;
         }
+        @include media576 {
+          font-size: 13px;
+        }
+
+        @include media400 {
+          font-size: 11px;
+        }
       }
       button {
         font-family: "Inter";
@@ -215,6 +270,14 @@
           padding: 12px 36px;
           font-size: 16px;
         }
+        @include media576 {
+          padding: 8px 19px;
+          font-size: 13px;
+        }
+        @include media400 {
+          padding: 5px 16px;
+          font-size: 11px;
+        }
       }
     }
     .subscription_member {
@@ -225,6 +288,12 @@
         font-size: 22px;
         line-height: 18px;
         color: #ddd6d6;
+        @include media576 {
+          font-size: 13px;
+        }
+        @include media400 {
+          font-size: 11px;
+        }
       }
       h4 {
         font-family: "Inter";
@@ -233,6 +302,12 @@
         font-size: 22px;
         line-height: 18px;
         color: #ddd6d6;
+        @include media576 {
+          font-size: 13px;
+        }
+        @include media400 {
+          font-size: 11px;
+        }
       }
     }
     .subscription_Team {
@@ -243,6 +318,12 @@
         font-size: 28px;
         line-height: 18px;
         color: #d8ebff;
+        @include media576 {
+          font-size: 13px;
+        }
+        @include media400 {
+          font-size: 11px;
+        }
       }
       h4 {
         font-family: "Inter";
@@ -251,6 +332,12 @@
         font-size: 18px;
         line-height: 18px;
         color: #ffffff;
+        @include media576 {
+          font-size: 13px;
+        }
+        @include media400 {
+          font-size: 11px;
+        }
       }
     }
 
@@ -261,6 +348,9 @@
       justify-content: space-between;
       margin-right: 24px;
       // align-items: center;
+      @include media576 {
+        margin-right: 0px;
+      }
     }
     .subscription_charged {
       h3,
@@ -274,15 +364,27 @@
         @include media768 {
           font-size: 15.8px;
         }
+        @include media576 {
+          font-size: 10.8px;
+        }
+        @include media400 {
+          font-size: 8.8px;
+        }
       }
       h3 {
         span {
           color: $white-color;
+          @include media576 {
+            font-size: 8px;
+          }
         }
       }
     }
   }
   .Support {
+    @include media768 {
+      padding: 24px 16px;
+    }
     .subscription_member,
     .subscription_Team,
     .subscription_charged {
@@ -290,7 +392,13 @@
       justify-content: flex-start;
       margin-right: 0px;
       gap: 48px;
+      @include media430 {
+        justify-content: space-between;
+      }
       @include media768 {
+        gap: 42px;
+      }
+      @include media576 {
         gap: 42px;
       }
       h3 {
@@ -302,6 +410,12 @@
         @include media768 {
           font-size: 18px;
         }
+        @include media576 {
+          font-size: 15px;
+        }
+        @include media430 {
+          font-size: 13px;
+        }
       }
       h4 {
         font-family: "Inter";
@@ -311,6 +425,12 @@
         color: #ffffff;
         @include media768 {
           font-size: 18px;
+        }
+        @include media576 {
+          font-size: 15px;
+        }
+        @include media430 {
+          font-size: 13px;
         }
       }
     }
@@ -329,6 +449,9 @@
   }
   .devices {
     text-align: center;
+    @include media768 {
+      padding-bottom: 16px;
+    }
     h1 {
       font-family: "Inter";
       font-weight: 600;
@@ -342,6 +465,11 @@
         margin-bottom: 15px;
         margin-top: 32px;
       }
+      @include media576 {
+        font-size: 15px;
+        margin-bottom: 12px;
+        margin-top: 24px;
+      }
     }
     h2,
     h3 {
@@ -353,6 +481,9 @@
       @include media768 {
         font-size: 15px;
       }
+      @include media576 {
+        font-size: 12px;
+      }
     }
     h3 {
       color: rgba(255, 255, 255, 0.8);
@@ -362,6 +493,19 @@
         margin-top: 14px;
         margin-bottom: 32px;
       }
+      @include media576 {
+        margin-top: 6px;
+        margin-bottom: 32px;
+      }
+    }
+    img {
+      width: 35%;
+      @include media576 {
+        width: 45%;
+      }
+      @include media430 {
+        width: 50%;
+      }
     }
   }
   .admin {
@@ -369,7 +513,7 @@
     padding-left: 60px;
     padding-right: 60px;
     @include media768 {
-      padding-top: 32px;
+      padding-top: 24px;
       padding-left: 24px;
       padding-right: 24px;
     }
@@ -383,7 +527,8 @@
         color: #a9b3bc;
         margin-bottom: 24px;
         @include media768 {
-          font-size: 20px;
+          font-size: 18px;
+          margin-bottom: 16px;
         }
       }
       .form-label {
@@ -395,7 +540,7 @@
         display: block;
         margin-bottom: 10px;
         @include media768 {
-          font-size: 18px;
+          font-size: 16px;
         }
       }
       .form-control {
@@ -411,6 +556,12 @@
         border: none;
         margin-bottom: 16px;
         outline: none;
+        @include media768 {
+          font-size: 16px;
+          border-radius: 12px;
+          padding: 10px 12px 10px;
+          margin-bottom: 12px;
+        }
       }
     }
     .admin_detail {
@@ -442,6 +593,10 @@
           position: relative;
           cursor: pointer;
           user-select: none;
+          @include media768 {
+            width: 3em;
+            height: 1.5em;
+          }
           &:after,
           &:before {
             position: relative;
@@ -470,21 +625,27 @@
           padding: 2px;
           transition: all 0.2s ease;
           background: transparent;
-          border: 4px solid #f2f2f2;
+          border: 4px solid rgba(255, 255, 255, 0.3);
           border-radius: 2em;
+          @include media768 {
+            border: 2px solid rgba(255, 255, 255, 0.3);
+          }
           &:after {
             transition: all 0.2s ease;
-            background: #f2f2f2;
+            background: rgba(255, 255, 255, 0.3);
             content: "";
             border-radius: 1em;
           }
         }
         .tgl-flat {
           &:checked + .tgl-btn {
-            border: 4px solid rgba(255, 255, 255, 0.3);
+            border: 4px solid #f2f2f2;
+            @include media768 {
+              border: 2px solid #f2f2f2;
+            }
             &:after {
               left: 50%;
-              background: rgba(255, 255, 255, 0.3);
+              background: #f2f2f2;
             }
           }
         }
@@ -495,6 +656,12 @@
         font-size: 22px;
         line-height: 18px;
         color: #ddd6d6;
+        @include media768 {
+          font-size: 16px;
+        }
+        @include media430 {
+          font-size: 14px;
+        }
       }
 
       p {
@@ -508,7 +675,13 @@
         color: rgba(255, 255, 255, 0.3);
         margin-bottom: 20px;
         @include media768 {
-          font-size: 15px;
+          font-size: 14px;
+          margin-bottom: 16px;
+        }
+        @include media430 {
+          font-size: 13px;
+          margin-bottom: 14px;
+          line-height: 15px;
         }
       }
       button.btn-primary {
@@ -527,6 +700,10 @@
         @include media768 {
           padding: 12px 36px;
           font-size: 16px;
+        }
+        @include media430 {
+          padding: 8px 24px;
+          font-size: 14px;
         }
       }
       button:hover {

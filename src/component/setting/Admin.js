@@ -23,7 +23,7 @@ export default function Admin() {
    </div> */}
         </div>
         <div className="admin_authentication">
-          <div className="d-flex justify-content-between align-items-center mb-4">
+          <div className="d-flex justify-content-between align-items-center mb-4 mb-lg-3">
             <h2>2-factor authentication</h2>
             <div className="form-check form-switch">
               {/* <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault"/> */}

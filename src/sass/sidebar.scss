@@ -9,6 +9,10 @@
     min-width: 90px;
     max-width: 90px;
   }
+  @include media400 {
+    min-width: 70px;
+    max-width: 70px;
+  }
   @include media992 {
     // position: absolute;
     // z-index: 1;
@@ -67,6 +71,11 @@
       @include media1200 {
         margin-top: 70px;
       }
+      @include media400 {
+        padding: 13px;
+        width: unset;
+        border-radius: 16px;
+      }
     }
 
     .sidebar-nav {
@@ -86,6 +95,7 @@
         @include media1200 {
           justify-content: center;
           font-size: 19px;
+          padding: 13px 13px;
         }
         p {
           font-family: "Roboto";

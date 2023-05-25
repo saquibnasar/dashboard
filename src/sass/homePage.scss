@@ -4,21 +4,20 @@
 
 .homePage {
   height: 100vh;
-  // .sidebar {
-  //   width: 24%;
-  // }
+
   .homePage_container {
     background: #1d203c;
     border-radius: 22px;
     margin-left: 16px;
-    display: flex;
     margin-right: 16px;
     margin-bottom: 16px;
     height: 81vh;
     position: relative;
+    display: grid;
+    grid-template-columns: 250px auto auto;
+
     .sidebar {
       background: transparent;
-      width: 29%;
       border-right: 3px solid #fff;
       @include media1200 {
         min-width: unset;
@@ -73,12 +72,11 @@
       }
       .signup_phone-container {
         background: #1f252f;
-        border-radius: 58px;
+        border-radius: 15px;
         box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
-        border-radius: 62px;
-        padding: 24px 0;
+        padding: 0px;
         margin: auto;
-        width: 270px;
+        width: 222px;
         height: 450px;
         position: relative;
         .signup_phone-left {
@@ -125,6 +123,16 @@
             box-shadow: inset -1px 0px 2px rgba(255, 255, 255, 0.5);
             display: inline-block;
           }
+        }
+        iframe {
+          border: none;
+          border-radius: 15px;
+          transform: scale(0.62) translateX(-30%) translateY(-31%)
+            translate3d(0px, 0px, 0px);
+        }
+        iframe::-webkit-scrollbar {
+          display: none;
+          width: 10px;
         }
         // background: url(../../public/phone.png);
         // border-radius: 40px;
@@ -178,7 +186,6 @@
     }
 
     .links {
-      // width: 49%;
       padding: 14px 24px;
       .link_container {
         background: #30334c;
