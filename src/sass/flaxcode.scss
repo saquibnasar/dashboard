@@ -6,65 +6,80 @@
   // .sidebar{
   //     width: 19.35%;
   // }
-  .links {
-    // padding-top: 48px;
-    h2 {
-      font-weight: 600;
-      font-size: 24px;
-      color: #a9b3bc;
-      margin-bottom: 48px;
-      margin-top: 10px;
+  .homePage_container {
+    .homePage_container-bottom {
+      grid-template-columns: auto 330px;
+      @include media768 {
+        grid-template-columns: unset;
+        overflow-y: scroll;
+        padding-bottom: 24px;
+      }
+      .links {
+        // padding-top: 48px;
+        h2 {
+          font-weight: 600;
+          font-size: 24px;
+          color: #a9b3bc;
+          margin-bottom: 48px;
+          margin-top: 10px;
+        }
+        h3 {
+          font-size: 18px;
+        }
+        P {
+          font-size: 15px;
+          color: rgba(255, 255, 255, 0.3);
+          margin-top: 20px;
+        }
+        button {
+          font-family: "Inter";
+          font-weight: 300;
+          font-size: 16px;
+          line-height: 18px;
+          color: #ffffff;
+          border: 1px solid #ffffff;
+          border-radius: 80px;
+          background: transparent;
+          padding: 14px 60px;
+          margin-top: 48px;
+          cursor: pointer;
+        }
+      }
+      .signup_phone {
+        h3 {
+          font-size: 18px;
+          margin-top: 48px;
+        }
+        h2 {
+          font-family: "Outfit";
+          font-weight: 600;
+          font-size: 28px;
+          color: #c6d4e2;
+          margin-top: 32px;
+          margin-bottom: 16px;
+        }
+        img {
+          width: 125px;
+        }
+        button {
+          font-family: "Inter";
+          font-weight: 300;
+          font-size: 16px;
+          line-height: 18px;
+          color: #ffffff;
+          border: 1px solid #ffffff;
+          border-radius: 80px;
+          background: transparent;
+          padding: 14px 18px;
+          margin-top: 32px;
+          cursor: pointer;
+          margin-inline: auto;
+          display: flex;
+        }
+      }
     }
-    h3 {
-      font-size: 18px;
-    }
-    P {
-      font-size: 15px;
-      color: rgba(255, 255, 255, 0.3);
-      margin-top: 20px;
-    }
-    button {
-      font-family: "Inter";
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 18px;
-      color: #ffffff;
-      border: 1px solid #ffffff;
-      border-radius: 80px;
-      background: transparent;
-      padding: 14px 60px;
-      margin-top: 48px;
-      cursor: pointer;
-    }
-  }
-  .signup_phone {
-    h3 {
-      font-size: 18px;
-      margin-top: 48px;
-    }
-    h2 {
-      font-family: "Outfit";
-      font-weight: 600;
-      font-size: 28px;
-      color: #c6d4e2;
-      margin-top: 32px;
-      margin-bottom: 16px;
-    }
-    img {
-      width: 125px;
-    }
-    button {
-      font-family: "Inter";
-      font-weight: 300;
-      font-size: 16px;
-      line-height: 18px;
-      color: #ffffff;
-      border: 1px solid #ffffff;
-      border-radius: 80px;
-      background: transparent;
-      padding: 14px 18px;
-      margin-top: 32px;
-      cursor: pointer;
+    .homePage_container-bottom::-webkit-scrollbar {
+      display: none;
     }
   }
 }

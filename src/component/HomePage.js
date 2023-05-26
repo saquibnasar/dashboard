@@ -36,7 +36,7 @@ export default function HomePage() {
                       to="/homepage"
                     >
                       <img className="img-fluid" src="/dots.png" alt="" />
-                      Content
+                      <p className="d-lg-none">Content</p>
                     </NavLink>
                   </li>
                   <li className="nav-item">
@@ -46,7 +46,7 @@ export default function HomePage() {
                       to="/about"
                     >
                       <FontAwesomeIcon icon={faUser} />
-                      About
+                      <p className="d-lg-none">About</p>
                     </NavLink>
                   </li>
                   <li className="nav-item">
@@ -56,7 +56,7 @@ export default function HomePage() {
                       to="/flaxcode"
                     >
                       <img className="img-fluid" src="/iconqr.png" alt="" />
-                      FlaxCode
+                      <p className="d-lg-none">FlaxCode</p>
                     </NavLink>
                   </li>
 
@@ -67,7 +67,7 @@ export default function HomePage() {
                       to="/setting_devices"
                     >
                       <FontAwesomeIcon icon={faNfcSymbol} />
-                      Add Flax Devices
+                      <p className="d-lg-none">Add Flax Devices</p>
                     </NavLink>
                   </li>
                 </ul>
@@ -80,7 +80,7 @@ export default function HomePage() {
                     <h2>This profile doesn’t have any linked content</h2>
                     <h3>
                       Add links to contact Information, website,
-                      <br />
+                      <br className="d-lg-none" />
                       Social media handles and more
                     </h3>
 
@@ -115,21 +115,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            {/* <div className="signup_phone text-center">
-              <p>
-                Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
-              </p>
-              <div className="signup_phone-container">
-                <img src="/phone_bannner.svg" className="img-fluid" alt="" />
-                <h3>username</h3>
-                <h4>company</h4>
-                <h4>designation</h4>
-                <div className="signup_phone-boxs">
-                  <div className="signup_phone-box"></div>
-                  <div className="signup_phone-box"></div>
-                </div>
-              </div>
-            </div> */}
+
             <AddCard removeLink={addLin} />
           </div>
         </div>

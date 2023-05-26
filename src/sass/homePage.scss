@@ -15,7 +15,14 @@
     position: relative;
     display: grid;
     grid-template-columns: 250px auto;
-
+    @include media992 {
+      grid-template-columns: 90px auto;
+    }
+    @include media768 {
+      grid-template-columns: unset;
+      overflow-y: scroll;
+      padding-bottom: 24px;
+    }
     .sidebar {
       background: transparent;
       border-right: 3px solid #fff;
@@ -23,12 +30,42 @@
         min-width: unset;
         max-width: unset;
       }
+      @include media992 {
+        position: unset;
+        z-index: 1;
+        right: 0;
+        width: unset;
+        min-width: 90px;
+        max-width: 90px;
+        ul {
+          list-style: none;
+        }
+      }
+      @include media768 {
+        min-width: unset;
+        max-width: unset;
+        padding-bottom: 0.5rem;
+        border-bottom: 3px solid #fff;
+        border-right: unset;
+      }
       .sidebar-collapse {
         padding-inline: 32px;
-
+        @include media992 {
+          padding-inline: 16px;
+        }
+        @include media768 {
+          margin-top: 16px;
+        }
+        @include media576 {
+          padding-inline: 8px;
+        }
         .sidebar-nav {
           list-style: none;
-          // gap: 32px;
+          @include media768 {
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+          }
           .nav-link {
             font-family: "Roboto";
             font-style: normal;
@@ -38,7 +75,12 @@
             padding: unset;
             padding: 14px 8px;
             justify-content: start;
-
+            @include media992 {
+              justify-content: center;
+            }
+            @include media576 {
+              padding: 8px 8px;
+            }
             svg {
               font-size: 1.6rem;
             }
@@ -53,7 +95,9 @@
     .homePage_container-bottom {
       display: grid;
       grid-template-columns: auto 280px;
-
+      @include media768 {
+        grid-template-columns: unset;
+      }
       .signup_phone {
         padding-bottom: 60px;
         border-left: 1px solid #fff;
@@ -83,6 +127,18 @@
           width: 222px;
           height: 450px;
           position: relative;
+          @include media768 {
+            width: 308px;
+            height: 628px;
+          }
+          @include media576 {
+            width: 222px;
+            height: 450px;
+          }
+          @include media400 {
+            width: 203px;
+            height: 420px;
+          }
           .signup_phone-left {
             position: absolute;
             top: 21%;
@@ -133,6 +189,18 @@
             border-radius: 15px;
             transform: scale(0.5) translateX(-48%) translateY(-49%)
               translate3d(0px, 0px, 0px);
+            @include media768 {
+              transform: scale(0.7) translateX(-20%) translateY(-21%)
+                translate3d(0px, 0px, 0px);
+            }
+            @include media576 {
+              transform: scale(0.5) translateX(-48%) translateY(-49%)
+                translate3d(0px, 0px, 0px);
+            }
+            @include media400 {
+              transform: scale(0.47) translateX(-55%) translateY(-56%)
+                translate3d(0px, 0px, 0px);
+            }
           }
           iframe::-webkit-scrollbar {
             display: none;
@@ -207,6 +275,15 @@
             font-size: 16px;
             line-height: 16px;
             color: $white-color;
+            @include media992 {
+              font-size: 15px;
+            }
+            @include media768 {
+              font-size: 16px;
+            }
+            @include media400 {
+              font-size: 13px;
+            }
           }
           h3 {
             font-family: "Inter";
@@ -217,6 +294,16 @@
             color: $white-color;
             margin-top: 32px;
             margin-bottom: 48px;
+            @include media992 {
+              margin-bottom: 32px;
+              margin-top: 24px;
+            }
+            @include media400 {
+              font-size: 10px;
+              line-height: 17px;
+              margin-bottom: 24px;
+              margin-top: 16px;
+            }
           }
           .btn_add {
             font-family: "Inter";
@@ -240,13 +327,46 @@
             svg {
               font-size: 1.5rem;
             }
+            @include media1200 {
+              font-size: 14px;
+            }
+            @include media992 {
+              font-size: 13px;
+              padding: 12px 9px;
+              gap: 5px;
+              svg {
+                font-size: 1.3rem;
+              }
+            }
+            @include media768 {
+              padding: 12px 16px;
+              gap: 8px;
+              svg {
+                font-size: 1.3rem;
+              }
+            }
+            @include media400 {
+              font-size: 11px;
+              padding: 8px 9px;
+              gap: 5px;
+              svg {
+                font-size: 1.1rem;
+              }
+            }
           }
           img {
             width: 100%;
             height: 245px;
+            @include media1200 {
+              width: unset;
+              height: auto;
+            }
           }
         }
       }
     }
+  }
+  .homePage_container::-webkit-scrollbar {
+    display: none;
   }
 }
