@@ -6,12 +6,13 @@ import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, Link } from "react-router-dom";
 export default function SIdebar() {
   return (
     <nav className="sidebar">
       <Link className="sidebar-brand" to="/">
-        <img className="img-fluid" src="/logofill.svg" alt="" />
+        <img className="img-fluid" src="/logo.svg" alt="" />
       </Link>
 
       <div className="sidebar-collapse">
@@ -34,6 +35,7 @@ export default function SIdebar() {
             <a
               className="nav-link"
               aria-current="page"
+              target="black"
               href="https://caard.mini.store/"
             >
               <FontAwesomeIcon icon={faBasketShopping} />{" "}
@@ -42,7 +44,7 @@ export default function SIdebar() {
               </div>
             </a>
           </li>
-          <li className="nav-box d-xl-none"></li>
+          {/* <li className="nav-box d-xl-none"></li> */}
           <li className="nav-item">
             <NavLink
               className={
@@ -59,12 +61,12 @@ export default function SIdebar() {
           </li>
         </ul>
 
-        <button className="btn btn-primary">
+        {/* <button className="btn btn-primary">
           <span className="d-xl-block d-none">
-            <FontAwesomeIcon icon={faPenToSquare} />
+            <FontAwesomeIcon icon={faWrench} />
           </span>
           <p className="d-xl-none">Upgrade Now </p>
-        </button>
+        </button> */}
       </div>
     </nav>
   );
