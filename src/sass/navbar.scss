@@ -10,8 +10,14 @@
   justify-content: space-between;
   // margin-bottom: 32px;
   gap: 24px;
+  z-index: 1000;
   @include media992 {
-    display: none;
+    position: absolute;
+    flex-direction: column;
+    background: #f8f7fc;
+    height: 100%;
+    justify-content: start;
+    // display: none;
   }
   .navbar-brand {
     background: transparent;
@@ -28,6 +34,7 @@
     @include media1200 {
       font-size: 19px;
     }
+
     cursor: pointer;
     span {
       color: #252525;
@@ -52,6 +59,10 @@
     display: flex;
     align-items: center;
     gap: 16px;
+    @include media992 {
+      flex-direction: column;
+      align-items: start;
+    }
     form {
       height: 50px;
       position: relative;

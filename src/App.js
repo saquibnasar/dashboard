@@ -13,22 +13,12 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/homepage" element={<HomePage />} />
         <Route path="/" element={<Home />} />
         <Route path="/createCard" element={<CreateCard />} />
         <Route path="/devices" element={<Devices />} />
         <Route path="/sign-up" element={<Signup />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/flaxcode" element={<FlaxCode />} />
+        <Route path="/homepage/:homepageId" element={<HomePage />} />
         <Route path="/setting/:settingId" element={<Setting />} />
-        {/* <Route path="/setting" element={<Setting type="setting" />} />
-        <Route
-          path="/setting/subscription"
-          element={<Setting type="subscription" />}
-        />
-        <Route path="/setting/support" element={<Setting type="support" />} />
-        <Route path="/setting/devices" element={<Setting type="devices" />} />
-        <Route path="/setting/admin" element={<Setting type="admin" />} /> */}
       </Routes>
     </BrowserRouter>
   );

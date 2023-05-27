@@ -5,10 +5,10 @@ import { faBasketShopping } from "@fortawesome/free-solid-svg-icons";
 import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
-import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faWrench } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, Link } from "react-router-dom";
-export default function SIdebar() {
+export default function SIdebar(props) {
   return (
     <nav className="sidebar">
       <Link className="sidebar-brand" to="/">
@@ -67,6 +67,14 @@ export default function SIdebar() {
           </span>
           <p className="d-xl-none">Upgrade Now </p>
         </button> */}
+        <button
+          className="btn btn-primary navbarToggle d-xl-block d-none"
+          onClick={props.navbarToggle}
+        >
+          <span className="">
+            <FontAwesomeIcon icon={faBars} />
+          </span>
+        </button>
       </div>
     </nav>
   );

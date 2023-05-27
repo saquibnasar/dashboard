@@ -3,15 +3,11 @@
 @import "./mediaqueries.scss";
 
 .flaxcode {
-  // .sidebar{
-  //     width: 19.35%;
-  // }
   .homePage_container {
     .homePage_container-bottom {
       grid-template-columns: auto 330px;
       @include media768 {
         grid-template-columns: unset;
-        overflow-y: scroll;
         padding-bottom: 24px;
       }
       .links {
@@ -45,7 +41,9 @@
           cursor: pointer;
         }
       }
-      .signup_phone {
+      .flaxCode-bottom {
+        border-left: 1px solid #fff;
+        padding: 0 24px;
         h3 {
           font-size: 18px;
           margin-top: 48px;
@@ -77,9 +75,9 @@
           display: flex;
         }
       }
-    }
-    .homePage_container-bottom::-webkit-scrollbar {
-      display: none;
+      .signup_phone {
+        display: none;
+      }
     }
   }
 }

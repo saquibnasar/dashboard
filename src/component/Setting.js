@@ -11,21 +11,30 @@ import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useParams } from "react-router-dom";
+import { useState } from "react";
 
 export default function Setting(props) {
   const { settingId } = useParams();
 
+  const [isNavbar, setIsNavbar] = useState(true);
+  const navbarToggle = () => {
+    setIsNavbar(!isNavbar);
+  };
   // const [imgUpload, setImgUpload] = useState("");
   // const handleChange = (event) => {
   //   setImgUpload(event.target.value);
   // };
 
+  window.addEventListener("change", (e) => {
+    console.log(window.innerWidth);
+  });
+
   return (
     <>
       <div className="d-flex h-100vh">
-        <SIdebar />
+        <SIdebar navbarToggle={navbarToggle} />
         <div className="d-flex flex-direction-column w-100">
-          <Topbar type="setting" />
+          <Topbar type="setting" isNavbar={isNavbar} />
           <div className="setting mt-4">
             <nav className="sidebar">
               <div className="sidebar-collapse">

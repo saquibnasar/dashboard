@@ -177,7 +177,7 @@ export default function TeamCard(props) {
                 <Link
                   key={value.id}
                   className="teamCard_btn col-lg-6 col-md-12 col-4"
-                  to="/homepage"
+                  to="/homepage/content"
                 >
                   <span>
                     <FontAwesomeIcon icon={faUser} />
@@ -218,8 +218,12 @@ export default function TeamCard(props) {
             })
             .map((value) => {
               return (
-                <Link key={value.id} className="teamCard_btn" to="/homepage">
-                  <div className="d-flex gap-2 f-md-column">
+                <Link
+                  key={value.id}
+                  className="teamCard_btn"
+                  to="/homepage/content"
+                >
+                  <div className="d-flex gap-2">
                     <span className="mx-auto">
                       <FontAwesomeIcon icon={faUser} />
                     </span>
