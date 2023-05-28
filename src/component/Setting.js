@@ -10,16 +10,13 @@ import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faHourglassEmpty } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useParams } from "react-router-dom";
 import { useState } from "react";
 
 export default function Setting(props) {
   const { settingId } = useParams();
 
-  const [isNavbar, setIsNavbar] = useState(true);
-  const navbarToggle = () => {
-    setIsNavbar(!isNavbar);
-  };
   // const [imgUpload, setImgUpload] = useState("");
   // const handleChange = (event) => {
   //   setImgUpload(event.target.value);
@@ -32,9 +29,9 @@ export default function Setting(props) {
   return (
     <>
       <div className="d-flex h-100vh">
-        <SIdebar navbarToggle={navbarToggle} />
+        <SIdebar navbarToggle={props.navbarToggle} />
         <div className="d-flex flex-direction-column w-100">
-          <Topbar type="setting" isNavbar={isNavbar} />
+          <Topbar type="setting" isNavbar={props.isNavbar} />
           <div className="setting mt-4">
             <nav className="sidebar">
               <div className="sidebar-collapse">
@@ -66,6 +63,7 @@ export default function Setting(props) {
                       to="/setting/support"
                     >
                       <img className="img-fluid" src="/iconqr.png" alt="" />
+                      {/* <FontAwesomeIcon icon={faHourglassEmpty} /> */}
                       <p className="d-lg-none">Support</p>
                     </NavLink>
                   </li>

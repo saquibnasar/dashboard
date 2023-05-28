@@ -2,8 +2,7 @@
 @import "./font.scss";
 @import "./mediaqueries.scss";
 .sidebar {
-  background: #c2b4ef;
-  background: #bbacee;
+  background: #6e56ce;
   min-width: 240px;
   padding-bottom: 28px;
   @include media1200 {
@@ -116,6 +115,65 @@
         color: #848484;
         p {
           color: #848484;
+        }
+      }
+    }
+  }
+}
+// .homePage {
+//   .homePage_container,
+
+// }
+.homePage {
+  .homePage_container {
+    .sidebar {
+      background: #6e56ce;
+      border-top-left-radius: 22px;
+      border-bottom-left-radius: 22px;
+      @include media768 {
+        border-bottom-left-radius: 0px;
+        border-top-right-radius: 22px;
+      }
+      .sidebar-collapse {
+        .sidebar-nav {
+          .nav-item {
+            .nav-link.active {
+              background-color: $white-color;
+              color: #848484;
+              border-radius: 12px;
+              img {
+                filter: invert(63%) sepia(7%) saturate(0%) hue-rotate(212deg)
+                  brightness(81%) contrast(90%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.setting {
+  .sidebar {
+    background: #6e56ce;
+    border-top-left-radius: 22px;
+    border-bottom-left-radius: 22px;
+    @include media768 {
+      border-bottom-left-radius: 0px;
+      border-top-right-radius: 22px;
+    }
+    .sidebar-collapse {
+      .sidebar-nav {
+        .nav-item {
+          .nav-link.active {
+            background-color: $white-color;
+            color: #848484;
+            border-radius: 12px;
+            img {
+              filter: invert(63%) sepia(7%) saturate(0%) hue-rotate(212deg)
+                brightness(81%) contrast(90%);
+            }
+          }
         }
       }
     }

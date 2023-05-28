@@ -24,7 +24,6 @@
       padding-bottom: 24px;
     }
     .sidebar {
-      background: transparent;
       border-right: 3px solid #fff;
       @include media1200 {
         min-width: unset;
@@ -78,11 +77,13 @@
             @include media992 {
               justify-content: center;
             }
-            @include media576 {
+
+            @include media768 {
+              border-radius: 12px;
               padding: 8px 8px;
             }
             svg {
-              font-size: 1.6rem;
+              font-size: 19px;
             }
           }
           .nav-link.active {

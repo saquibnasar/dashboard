@@ -101,5 +101,8 @@
         border: 1px solid #ffffff;
       }
     }
+    .devices_content_container::-webkit-scrollbar {
+      display: none;
+    }
   }
 }

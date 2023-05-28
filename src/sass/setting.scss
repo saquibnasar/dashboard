@@ -24,9 +24,8 @@
   }
 
   .sidebar {
-    background: transparent;
     width: unset;
-    border-right: 3px solid #fff;
+    border-right: unset;
     @include media1200 {
       min-width: unset;
       max-width: unset;
@@ -108,11 +107,15 @@
     }
   }
   .team_setting {
-    margin-top: 48px;
-    margin-left: 60px;
+    padding-top: 48px;
+    padding-left: 60px;
+    border: 2px solid #e9e9e9;
+    border-top-right-radius: 22px;
+    border-bottom-right-radius: 22px;
+    background: #fdfdfd;
     @include media768 {
-      margin-top: 32px;
-      margin-left: 24px;
+      padding-top: 32px;
+      padding-left: 24px;
     }
     h3 {
       font-family: "Inter";
@@ -120,7 +123,7 @@
       font-weight: 400;
       font-size: 22px;
       line-height: 18px;
-      color: #ddd6d6;
+      color: #848484;
       @include media768 {
         font-size: 18px;
       }
@@ -133,9 +136,9 @@
       line-height: 18px;
       display: flex;
       align-items: center;
-      background: #ffffff;
+      background: #6e56ce;
       border-radius: 80px;
-      color: #252525;
+      color: $white-color;
       padding: 18px 64px;
       margin-top: 70px;
       cursor: pointer;
@@ -152,13 +155,15 @@
       }
     }
     button:hover {
-      background: rgba(217, 217, 217, 0.2);
-      color: $white-color;
+      // background: rgba(217, 217, 217, 0.2);
+      color: #848484;
+      border: 2px solid #e9e9e9;
+      background: #fdfdfd;
     }
 
     .Company_logo {
       .logo {
-        background: rgba(217, 217, 217, 0.2);
+        background: #6e56ce;
         border: 1px solid #ffffff;
         border-radius: 16px;
         width: 102px;
@@ -172,7 +177,7 @@
           height: 80px;
         }
         span {
-          background: #d9d9d9;
+          background: $white-color;
           border-radius: 10px;
           width: 40px;
           height: 40px;
@@ -193,7 +198,7 @@
       margin-top: 26px;
       input {
         width: 400px;
-        background: rgba(217, 217, 217, 0.2);
+        background: #6e56ce;
         border-radius: 20px;
         padding: 11px 12px;
         padding-right: 24px;
@@ -205,7 +210,7 @@
         line-height: 18px;
         display: flex;
         align-items: center;
-        color: rgba(255, 255, 255, 0.3);
+        color: $white-color;
         border: none;
         box-shadow: unset;
         outline: unset;
@@ -217,6 +222,9 @@
           font-size: 14px;
           margin-top: 13px;
         }
+      }
+      input::placeholder {
+        color: $white-color;
       }
     }
   }

@@ -11,12 +11,8 @@ import LInks from "./LInks";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import About from "./About";
 import FlaxCode from "./FlaxCode";
-export default function HomePage() {
+export default function HomePage(props) {
   const { homepageId } = useParams();
-  const [isNavbar, setIsNavbar] = useState(true);
-  const navbarToggle = () => {
-    setIsNavbar(!isNavbar);
-  };
 
   const addLin = () => {
     const addcard = document.querySelector(".addcard");
@@ -30,9 +26,9 @@ export default function HomePage() {
   return (
     <>
       <div className={`d-flex homePage ${homepageId}`}>
-        <SIdebar navbarToggle={navbarToggle} />
+        <SIdebar navbarToggle={props.navbarToggle} />
         <div className="d-flex flex-direction-column w-100">
-          <Topbar type="setting" title="" isNavbar={isNavbar} />
+          <Topbar type="setting" title="" isNavbar={props.isNavbar} />
           <div className="homePage_container mt-4">
             <nav className="sidebar">
               <div className="sidebar-collapse">
