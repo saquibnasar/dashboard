@@ -1,4 +1,3 @@
-// import React, { useState } from "react";
 import SIdebar from "./SIdebar";
 import Topbar from "./Topbar";
 import Subscription from "./setting/Subscription";
@@ -10,9 +9,7 @@ import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faHourglassEmpty } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useParams } from "react-router-dom";
-import { useState } from "react";
 
 export default function Setting(props) {
   const { settingId } = useParams();

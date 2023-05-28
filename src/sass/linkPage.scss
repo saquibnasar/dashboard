@@ -108,6 +108,10 @@
   overflow-y: scroll;
   position: relative;
   display: inline-block;
+  height: 94vh;
+  @include media768 {
+    height: unset;
+  }
 }
 .links:has(.linkPage)::-webkit-scrollbar {
   display: none;
