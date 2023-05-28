@@ -160,7 +160,7 @@ export default function TeamCard(props) {
     <>
       {!props.mode ? (
         <div className="teamCard row gap-3">
-          <Link to="/createCard" className="add_btn col-lg-6 col-md-12 col-4">
+          <Link to="/createCard" className="add_btn col-lg-6 col-md-12 col-6">
             <span>
               <FontAwesomeIcon icon={faPlus} />
             </span>
@@ -176,7 +176,7 @@ export default function TeamCard(props) {
               return (
                 <Link
                   key={value.id}
-                  className="teamCard_btn col-lg-6 col-md-12 col-4"
+                  className="teamCard_btn col-lg-6 col-md-12 col-6"
                   to="/homepage/content"
                 >
                   <span>
