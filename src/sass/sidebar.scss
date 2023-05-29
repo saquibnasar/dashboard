@@ -2,9 +2,11 @@
 @import "./font.scss";
 @import "./mediaqueries.scss";
 .sidebar {
-  background: #c2b4ef;
+  background: #fff;
   min-width: 240px;
   padding-bottom: 28px;
+  border-right: 3px solid #efefef;
+
   @include media1200 {
     min-width: 90px;
     max-width: 90px;
@@ -93,7 +95,8 @@
         gap: 16px;
         display: flex;
         align-items: center;
-        color: $white-color;
+        // color: $white-color;
+        color: #8a898e;
         @include media1200 {
           justify-content: center;
           font-size: 19px;
@@ -106,15 +109,19 @@
           font-size: 16px;
           line-height: 18px;
           text-align: center;
-          color: $white-color;
+          // color: $white-color;
+          color: #8a898e;
         }
       }
       .nav-link.active {
-        background: #fff;
+        // background: #fff;
+        // border-radius: 16px;
+        // color: #848484;
+        background: #52459e;
         border-radius: 16px;
-        color: #848484;
+        color: #fefdfe;
         p {
-          color: #848484;
+          color: #fefdfe;
         }
       }
     }

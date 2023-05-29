@@ -3,12 +3,13 @@
 @import "./mediaqueries.scss";
 
 .navbar {
-  background: $white-color;
+  // background: $white-color;
+  background: #52459e;
   display: flex;
   padding: 20px 24px;
   display: flex;
   justify-content: space-between;
-  border-bottom: 3px solid #efefef;
+  // border-bottom: 3px solid #efefef;
   gap: 24px;
   z-index: 1000;
   @include media992 {
@@ -29,7 +30,8 @@
     line-height: 18px;
     display: flex;
     align-items: center;
-    color: #71767b;
+    // color: #71767b;
+    color: $white-color;
     gap: 15px;
     @include media1200 {
       font-size: 19px;
@@ -40,7 +42,8 @@
       color: #252525;
       font-size: 1rem;
       padding: 14px;
-      background: #d9d9d9;
+      // background: #d9d9d9;
+      background: $white-color;
       border-radius: 50%;
       display: flex;
       width: 40px;
@@ -78,7 +81,8 @@
       .form-control {
         box-shadow: none;
         outline: unset;
-        background: #d9d9d9;
+        background: $white-color;
+        // background: #d9d9d9;
         border-radius: 80px;
         font-family: "Inter";
         font-weight: 500;
@@ -163,7 +167,8 @@
         height: 50px;
         position: relative;
         display: block;
-        background: #ebebeb;
+        background: $white-color;
+        // background: #ebebeb;
         border-radius: 200px;
         box-shadow: inset 0px 5px 5px rgba(0, 0, 0, 0.4),
           inset 0px -5px 5px rgba(255, 255, 255, 0.4);
@@ -177,7 +182,8 @@
         top: 0px;
         background: linear-gradient(180deg, #ffcc89, #d8860b);
         border-radius: 180px;
-        background: #d9d9d9;
+        // background: #d9d9d9;
+        background: $white-color;
         box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
         left: 0;
       }
