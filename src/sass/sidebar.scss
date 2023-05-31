@@ -97,6 +97,10 @@
         align-items: center;
         // color: $white-color;
         color: #8a898e;
+        img {
+          filter: invert(63%) sepia(6%) saturate(187%) hue-rotate(212deg)
+            brightness(84%) contrast(90%);
+        }
         @include media1200 {
           justify-content: center;
           font-size: 19px;
@@ -134,7 +138,8 @@
 .homePage {
   .homePage_container {
     .sidebar {
-      background: #6e56ce;
+      border: 3px solid #efefef;
+      background: #fff;
       border-top-left-radius: 22px;
       border-bottom-left-radius: 22px;
       @include media768 {
@@ -145,24 +150,49 @@
         .sidebar-nav {
           .nav-item {
             .nav-link.active {
-              background-color: $white-color;
-              color: #848484;
+              background: #52459e;
+              color: #fefdfe;
               border-radius: 12px;
+
               img {
-                filter: invert(63%) sepia(7%) saturate(0%) hue-rotate(212deg)
-                  brightness(81%) contrast(90%);
+                filter: unset;
               }
             }
           }
         }
       }
     }
+    // .sidebar {
+    //   background: #6e56ce;
+    //   border-top-left-radius: 22px;
+    //   border-bottom-left-radius: 22px;
+    //   @include media768 {
+    //     border-bottom-left-radius: 0px;
+    //     border-top-right-radius: 22px;
+    //   }
+    //   .sidebar-collapse {
+    //     .sidebar-nav {
+    //       .nav-item {
+    //         .nav-link.active {
+    //           background-color: $white-color;
+    //           color: #848484;
+    //           border-radius: 12px;
+    //           img {
+    //             filter: invert(63%) sepia(7%) saturate(0%) hue-rotate(212deg)
+    //               brightness(81%) contrast(90%);
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
 
 .setting {
   .sidebar {
-    background: #6e56ce;
+    border: 3px solid #efefef;
+    background: #fff;
     border-top-left-radius: 22px;
     border-bottom-left-radius: 22px;
     @include media768 {
@@ -173,12 +203,12 @@
       .sidebar-nav {
         .nav-item {
           .nav-link.active {
-            background-color: $white-color;
-            color: #848484;
+            background: #52459e;
+            color: #fefdfe;
             border-radius: 12px;
+
             img {
-              filter: invert(63%) sepia(7%) saturate(0%) hue-rotate(212deg)
-                brightness(81%) contrast(90%);
+              filter: unset;
             }
           }
         }

@@ -160,7 +160,7 @@ export default function TeamCard(props) {
     <>
       {!props.mode ? (
         <div className="teamCard row gap-3">
-          <Link to="/createCard" className="add_btn col-lg-6 col-md-12 col-6">
+          <Link to="/createCard" className="add_btn col-lg-6 col-md-12 col-4">
             <span>
               <FontAwesomeIcon icon={faPlus} />
             </span>
@@ -176,12 +176,29 @@ export default function TeamCard(props) {
               return (
                 <Link
                   key={value.id}
-                  className="teamCard_btn col-lg-6 col-md-12 col-6"
+                  className="teamCard_btn col-lg-6 col-md-12 col-4"
                   to="/homepage/content"
                 >
                   <span>
                     <FontAwesomeIcon icon={faUser} />
                   </span>
+
+                  {/* <div className="">
+                    <span>
+                      <FontAwesomeIcon icon={faUser} />
+                    </span>
+                    <div className="d-flex gap-2 f-sm400-direction-column">
+                      <button className="editCard">
+                        <FontAwesomeIcon icon={faPencil} />
+                        Edit Card
+                      </button>
+                      <button className="ShareCard">
+                        <FontAwesomeIcon icon={faShareSquare} />
+                        Share Card
+                      </button>
+                    </div>
+                  </div> */}
+
                   <h3>{value.first_name}</h3>
                   <h4>{value.last_name}</h4>
                   <div className="d-flex gap-2 f-sm400-direction-column">
