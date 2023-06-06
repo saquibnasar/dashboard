@@ -22,6 +22,7 @@
       max-width: unset;
       min-width: unset;
     }
+
     @include media576 {
       padding-bottom: 48px;
     }
@@ -60,6 +61,7 @@
           text-align: center;
           background: transparent;
           border: none;
+
           border-bottom: 3px solid #e0e0e0;
           cursor: pointer;
         }
