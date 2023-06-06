@@ -4,9 +4,14 @@ $white-color: #fff;
 $black-color: #000;
 $blue: #2665d6;
 $primary-font: "Inter", sans-serif;
-
+$primary: #4353fc;
+$secondary: #e9e4ed;
+$text: #4a4a4a;
+$text-secondary: #878787;
+$bg-primary: #f5f3f7;
 body {
   background: $white-color;
+  background: #f5f3f7;
 }
 
 .container {

@@ -158,7 +158,7 @@ export default function TeamCard(props) {
 
   return (
     <>
-      {!props.mode ? (
+      {props.mode ? (
         <div className="teamCard row gap-3">
           <Link to="/createCard" className="add_btn col-lg-6 col-md-12 col-4">
             <span>

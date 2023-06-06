@@ -2,10 +2,10 @@
 @import "./font.scss";
 @import "./mediaqueries.scss";
 .sidebar {
-  background: #fff;
+  // background: #fff;
   min-width: 240px;
   padding-bottom: 28px;
-  border-right: 3px solid #efefef;
+  border-right: 3px solid $white-color;
 
   @include media1200 {
     min-width: 90px;
@@ -97,7 +97,7 @@
         display: flex;
         align-items: center;
         // color: $white-color;
-        color: #8a898e;
+        color: #878787;
         img {
           filter: invert(63%) sepia(6%) saturate(187%) hue-rotate(212deg)
             brightness(84%) contrast(90%);
@@ -115,18 +115,19 @@
           line-height: 18px;
           text-align: center;
           // color: $white-color;
-          color: #8a898e;
+          color: #878787;
         }
       }
       .nav-link.active {
         // background: #fff;
         // border-radius: 16px;
         // color: #848484;
-        background: #52459e;
+        // background: #52459e;
         border-radius: 16px;
-        color: #fefdfe;
+        // color: #fefdfe;
+        color: $primary;
         p {
-          color: #fefdfe;
+          color: $primary;
         }
       }
     }
@@ -151,10 +152,10 @@
         .sidebar-nav {
           .nav-item {
             .nav-link.active {
-              background: #52459e;
-              color: #fefdfe;
-              border-radius: 12px;
-
+              // background: #52459e;
+              // color: #fefdfe;
+              color: $primary;
+              // border-radius: 12px;
               img {
                 filter: unset;
               }

@@ -13,7 +13,7 @@ export default function Home(props) {
 
   return (
     <>
-      <div className="d-flex h-100vh bg-white">
+      <div className="d-flex h-100vh">
         <SIdebar navbarToggle={props.navbarToggle} />
         <div className="d-flex flex-direction-column w-100">
           <Topbar

@@ -77,77 +77,78 @@ export default function Topbar(props) {
                 <FontAwesomeIcon icon={faAngleDown} />
               </button>
             ) : (
-              <button className="form-check">
-                <input
-                  type="checkbox"
-                  id="darkmode-toggle"
-                  onChange={props.handleChange}
-                />
-                <label htmlFor="darkmode-toggle">
-                  <svg
-                    className="sun"
-                    width="28"
-                    height="28"
-                    viewBox="0 0 28 28"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M7.8737 12.5417C10.451 12.5417 12.5404 10.4523 12.5404 7.87501C12.5404 5.29768 10.451 3.20834 7.8737 3.20834C5.29637 3.20834 3.20703 5.29768 3.20703 7.87501C3.20703 10.4523 5.29637 12.5417 7.8737 12.5417Z"
-                      stroke="#111111"
-                      strokeWidth="0.583333"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M20.1237 24.7917C22.701 24.7917 24.7904 22.7023 24.7904 20.125C24.7904 17.5477 22.701 15.4583 20.1237 15.4583C17.5464 15.4583 15.457 17.5477 15.457 20.125C15.457 22.7023 17.5464 24.7917 20.1237 24.7917Z"
-                      stroke="#111111"
-                      strokeWidth="0.583333"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M20.1237 12.5417C22.701 12.5417 24.7904 10.4523 24.7904 7.87501C24.7904 5.29768 22.701 3.20834 20.1237 3.20834C17.5464 3.20834 15.457 5.29768 15.457 7.87501C15.457 10.4523 17.5464 12.5417 20.1237 12.5417Z"
-                      stroke="#111111"
-                      strokeWidth="0.583333"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M7.8737 24.7917C10.451 24.7917 12.5404 22.7023 12.5404 20.125C12.5404 17.5477 10.451 15.4583 7.8737 15.4583C5.29637 15.4583 3.20703 17.5477 3.20703 20.125C3.20703 22.7023 5.29637 24.7917 7.8737 24.7917Z"
-                      stroke="#111111"
-                      strokeWidth="0.583333"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                  <svg
-                    className="moon"
-                    width="28"
-                    height="28"
-                    viewBox="0 0 28 28"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M23.334 4.66669H4.66732C3.37865 4.66669 2.33398 5.71136 2.33398 7.00002V9.33335C2.33398 10.622 3.37865 11.6667 4.66732 11.6667H23.334C24.6226 11.6667 25.6673 10.622 25.6673 9.33335V7.00002C25.6673 5.71136 24.6226 4.66669 23.334 4.66669Z"
-                      fill="white"
-                      stroke="#111111"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M23.334 16.3334H4.66732C3.37865 16.3334 2.33398 17.378 2.33398 18.6667V21C2.33398 22.2887 3.37865 23.3334 4.66732 23.3334H23.334C24.6226 23.3334 25.6673 22.2887 25.6673 21V18.6667C25.6673 17.378 24.6226 16.3334 23.334 16.3334Z"
-                      fill="white"
-                      stroke="#111111"
-                      strokeWidth="1.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </label>
-              </button>
+              // <button className="form-check">
+              //   <input
+              //     type="checkbox"
+              //     id="darkmode-toggle"
+              //     onChange={props.handleChange}
+              //   />
+              //   <label htmlFor="darkmode-toggle">
+              //     <svg
+              //       className="sun"
+              //       width="28"
+              //       height="28"
+              //       viewBox="0 0 28 28"
+              //       fill="none"
+              //       xmlns="http://www.w3.org/2000/svg"
+              //     >
+              //       <path
+              //         d="M7.8737 12.5417C10.451 12.5417 12.5404 10.4523 12.5404 7.87501C12.5404 5.29768 10.451 3.20834 7.8737 3.20834C5.29637 3.20834 3.20703 5.29768 3.20703 7.87501C3.20703 10.4523 5.29637 12.5417 7.8737 12.5417Z"
+              //         stroke="#111111"
+              //         strokeWidth="0.583333"
+              //         strokeLinecap="round"
+              //         strokeLinejoin="round"
+              //       />
+              //       <path
+              //         d="M20.1237 24.7917C22.701 24.7917 24.7904 22.7023 24.7904 20.125C24.7904 17.5477 22.701 15.4583 20.1237 15.4583C17.5464 15.4583 15.457 17.5477 15.457 20.125C15.457 22.7023 17.5464 24.7917 20.1237 24.7917Z"
+              //         stroke="#111111"
+              //         strokeWidth="0.583333"
+              //         strokeLinecap="round"
+              //         strokeLinejoin="round"
+              //       />
+              //       <path
+              //         d="M20.1237 12.5417C22.701 12.5417 24.7904 10.4523 24.7904 7.87501C24.7904 5.29768 22.701 3.20834 20.1237 3.20834C17.5464 3.20834 15.457 5.29768 15.457 7.87501C15.457 10.4523 17.5464 12.5417 20.1237 12.5417Z"
+              //         stroke="#111111"
+              //         strokeWidth="0.583333"
+              //         strokeLinecap="round"
+              //         strokeLinejoin="round"
+              //       />
+              //       <path
+              //         d="M7.8737 24.7917C10.451 24.7917 12.5404 22.7023 12.5404 20.125C12.5404 17.5477 10.451 15.4583 7.8737 15.4583C5.29637 15.4583 3.20703 17.5477 3.20703 20.125C3.20703 22.7023 5.29637 24.7917 7.8737 24.7917Z"
+              //         stroke="#111111"
+              //         strokeWidth="0.583333"
+              //         strokeLinecap="round"
+              //         strokeLinejoin="round"
+              //       />
+              //     </svg>
+              //     <svg
+              //       className="moon"
+              //       width="28"
+              //       height="28"
+              //       viewBox="0 0 28 28"
+              //       fill="none"
+              //       xmlns="http://www.w3.org/2000/svg"
+              //     >
+              //       <path
+              //         d="M23.334 4.66669H4.66732C3.37865 4.66669 2.33398 5.71136 2.33398 7.00002V9.33335C2.33398 10.622 3.37865 11.6667 4.66732 11.6667H23.334C24.6226 11.6667 25.6673 10.622 25.6673 9.33335V7.00002C25.6673 5.71136 24.6226 4.66669 23.334 4.66669Z"
+              //         fill="white"
+              //         stroke="#111111"
+              //         strokeWidth="1.5"
+              //         strokeLinecap="round"
+              //         strokeLinejoin="round"
+              //       />
+              //       <path
+              //         d="M23.334 16.3334H4.66732C3.37865 16.3334 2.33398 17.378 2.33398 18.6667V21C2.33398 22.2887 3.37865 23.3334 4.66732 23.3334H23.334C24.6226 23.3334 25.6673 22.2887 25.6673 21V18.6667C25.6673 17.378 24.6226 16.3334 23.334 16.3334Z"
+              //         fill="white"
+              //         stroke="#111111"
+              //         strokeWidth="1.5"
+              //         strokeLinecap="round"
+              //         strokeLinejoin="round"
+              //       />
+              //     </svg>
+              //   </label>
+              // </button>
+              ""
             )}
 
             {props.type ? (
