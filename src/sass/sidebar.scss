@@ -204,6 +204,9 @@
     .sidebar-collapse {
       border-right: 3px solid #fff;
       height: 100%;
+      @include media768 {
+        border-right: unset;
+      }
       .sidebar-nav {
         .nav-item {
           .nav-link.active {
