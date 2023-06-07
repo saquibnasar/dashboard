@@ -3,7 +3,7 @@
 @import "./mediaqueries.scss";
 
 .setting {
-  background: #1d203c;
+  background: $secondary;
   // background: #52459e;
   border-radius: 22px;
   margin-left: 16px;
@@ -100,7 +100,7 @@
           }
         }
         .nav-link.active {
-          background: rgba(217, 217, 217, 0.2);
+          // background: rgba(217, 217, 217, 0.2);
           border-radius: 12px;
           padding: 8px 8px;
         }
@@ -110,10 +110,10 @@
   .team_setting {
     padding-top: 48px;
     padding-left: 60px;
-    border: 2px solid #e9e9e9;
+    // border: 2px solid #e9e9e9;
     border-top-right-radius: 22px;
     border-bottom-right-radius: 22px;
-    background: #fdfdfd;
+    // background: $secondary;
     @include media768 {
       padding-top: 32px;
       padding-left: 24px;
@@ -124,12 +124,13 @@
       font-weight: 400;
       font-size: 22px;
       line-height: 18px;
-      color: #848484;
+      color: $text;
       @include media768 {
         font-size: 18px;
       }
     }
-    button {
+    button[type="submit"],
+    button[type="button"] {
       font-family: "Inter";
       font-style: normal;
       font-weight: 600;
@@ -137,9 +138,9 @@
       line-height: 18px;
       display: flex;
       align-items: center;
-      background: #6e56ce;
+      background: $bg-primary;
       border-radius: 80px;
-      color: $white-color;
+      color: $text;
       padding: 18px 64px;
       margin-top: 70px;
       cursor: pointer;
@@ -155,16 +156,22 @@
         margin-top: 24px;
       }
     }
+    button[type="button"] {
+      margin-top: 22px;
+      // background: #dbdeff;
+      border-radius: 14px;
+      padding: 14px 30px;
+      cursor: pointer;
+    }
+
     button:hover {
-      // background: rgba(217, 217, 217, 0.2);
-      color: #848484;
-      border: 2px solid #e9e9e9;
-      background: #fdfdfd;
+      color: $white-color;
+      background: $primary;
     }
 
     .Company_logo {
       .logo {
-        background: #6e56ce;
+        background: $bg-primary;
         border: 1px solid #ffffff;
         border-radius: 16px;
         width: 102px;
@@ -178,7 +185,7 @@
           height: 80px;
         }
         span {
-          background: $white-color;
+          background: $secondary;
           border-radius: 10px;
           width: 40px;
           height: 40px;
@@ -186,7 +193,7 @@
           justify-content: center;
           align-items: center;
           font-size: 1.25rem;
-          color: #252525;
+          color: $text;
           @include media576 {
             width: 30px;
             height: 30px;
@@ -199,19 +206,20 @@
       margin-top: 26px;
       input {
         width: 400px;
-        background: #6e56ce;
+        background: $bg-primary;
         border-radius: 20px;
         padding: 11px 12px;
         padding-right: 24px;
         padding-left: 12px;
-        font-family: "Inter";
+        // font-family: "Inter";
+        font-family: "Outfit";
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
         line-height: 18px;
         display: flex;
         align-items: center;
-        color: $white-color;
+        color: $text;
         border: none;
         box-shadow: unset;
         outline: unset;
@@ -225,7 +233,7 @@
         }
       }
       input::placeholder {
-        color: $white-color;
+        color: $text;
       }
     }
   }
@@ -243,7 +251,7 @@
     .subscription_plan {
       display: flex;
       justify-content: space-between;
-      border-bottom: 1px solid #ffffff;
+      border-bottom: 2px solid #ffffff;
       padding-bottom: 16px;
       align-items: center;
 
@@ -252,7 +260,7 @@
         font-weight: 600;
         font-size: 28px;
         line-height: 18px;
-        color: #a9b3bc;
+        color: $text;
         @include media768 {
           font-size: 20px;
         }
@@ -270,11 +278,13 @@
         font-weight: 600;
         font-size: 18px;
         line-height: 18px;
-        color: #ffffff;
-        border: 1px solid #ffffff;
+        color: $text;
+        border: 1px solid $bg-primary;
         border-radius: 80px;
-        background: transparent;
+        background: $bg-primary;
         padding: 18px 48px;
+        cursor: pointer;
+        transition: 0.3s;
         @include media768 {
           padding: 12px 36px;
           font-size: 16px;
@@ -288,29 +298,20 @@
           font-size: 11px;
         }
       }
+      button:hover {
+        background: $primary;
+        color: $white-color;
+      }
     }
     .subscription_member {
-      h3 {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 22px;
-        line-height: 18px;
-        color: #ddd6d6;
-        @include media576 {
-          font-size: 13px;
-        }
-        @include media400 {
-          font-size: 11px;
-        }
-      }
+      h3,
       h4 {
         font-family: "Inter";
         font-style: normal;
         font-weight: 400;
         font-size: 22px;
         line-height: 18px;
-        color: #ddd6d6;
+        color: $text;
         @include media576 {
           font-size: 13px;
         }
@@ -321,12 +322,10 @@
     }
     .subscription_Team {
       h3 {
-        font-family: "Inter";
-        font-style: normal;
         font-weight: 600;
         font-size: 28px;
         line-height: 18px;
-        color: #d8ebff;
+        color: $primary;
         @include media576 {
           font-size: 13px;
         }
@@ -335,12 +334,10 @@
         }
       }
       h4 {
-        font-family: "Inter";
-        font-style: normal;
         font-weight: 600;
         font-size: 18px;
         line-height: 18px;
-        color: #ffffff;
+        color: $text-secondary;
         @include media576 {
           font-size: 13px;
         }
@@ -368,7 +365,7 @@
         font-style: normal;
         font-weight: 400;
         font-size: 18px;
-        color: rgba(255, 255, 255, 0.3);
+        color: $text;
         line-height: 22px;
         @include media768 {
           font-size: 15.8px;
@@ -382,7 +379,7 @@
       }
       h3 {
         span {
-          color: $white-color;
+          color: $text-secondary;
           @include media576 {
             font-size: 8px;
           }
@@ -415,7 +412,7 @@
         font-weight: 400;
         font-size: 22px;
         line-height: 18px;
-        color: #ddd6d6;
+        color: $text;
         @include media768 {
           font-size: 18px;
         }
@@ -431,7 +428,7 @@
         font-weight: 600;
         font-size: 16px;
         line-height: 18px;
-        color: #ffffff;
+        color: $text-secondary;
         @include media768 {
           font-size: 18px;
         }
@@ -466,7 +463,7 @@
       font-weight: 600;
       font-size: 28px;
       line-height: 18px;
-      color: #a9b3bc;
+      color: $text;
       margin-bottom: 24px;
       @include media768 {
         margin-left: 0px;
@@ -486,7 +483,7 @@
       font-weight: 400;
       font-size: 18px;
       line-height: 21px;
-      color: rgba(255, 255, 255, 0.5);
+      color: $text-secondary;
       @include media768 {
         font-size: 15px;
       }
@@ -495,7 +492,7 @@
       }
     }
     h3 {
-      color: rgba(255, 255, 255, 0.8);
+      // color: rgba(255, 255, 255, 0.8);
       margin-top: 28px;
       margin-bottom: 48px;
       @include media768 {
@@ -533,7 +530,7 @@
         font-weight: 600;
         font-size: 28px;
         line-height: 18px;
-        color: #a9b3bc;
+        color: $text;
         margin-bottom: 24px;
         @include media768 {
           font-size: 18px;
@@ -545,7 +542,7 @@
         font-weight: 400;
         font-size: 22px;
         line-height: 18px;
-        color: #ddd6d6;
+        color: $text;
         display: block;
         margin-bottom: 10px;
         @include media768 {
@@ -557,8 +554,8 @@
         font-weight: 400;
         font-size: 18px;
         line-height: 18px;
-        color: rgba(255, 255, 255, 0.3);
-        background: rgba(217, 217, 217, 0.2);
+        color: $text;
+        background: $bg-primary;
         border-radius: 20px;
         width: 100%;
         padding: 16px 12px 16px;
@@ -572,10 +569,11 @@
           margin-bottom: 12px;
         }
       }
+      .form-control::placeholder {
+        color: $text;
+      }
     }
-    .admin_detail {
-      // margin-bottom: 100px;
-    }
+
     .admin_authentication {
       .tgl {
         display: none;
@@ -634,27 +632,27 @@
           padding: 2px;
           transition: all 0.2s ease;
           background: transparent;
-          border: 4px solid rgba(255, 255, 255, 0.3);
+          border: 4px solid $bg-primary;
           border-radius: 2em;
           @include media768 {
-            border: 2px solid rgba(255, 255, 255, 0.3);
+            border: 2px solid $bg-primary;
           }
           &:after {
             transition: all 0.2s ease;
-            background: rgba(255, 255, 255, 0.3);
+            background: $bg-primary;
             content: "";
             border-radius: 1em;
           }
         }
         .tgl-flat {
           &:checked + .tgl-btn {
-            border: 4px solid #f2f2f2;
+            border: 4px solid $primary;
             @include media768 {
-              border: 2px solid #f2f2f2;
+              border: 2px solid $primary;
             }
             &:after {
               left: 50%;
-              background: #f2f2f2;
+              background: $primary;
             }
           }
         }
@@ -664,7 +662,7 @@
         font-weight: 400;
         font-size: 22px;
         line-height: 18px;
-        color: #ddd6d6;
+        color: $text;
         @include media768 {
           font-size: 16px;
         }
@@ -681,7 +679,7 @@
         line-height: 18px;
         display: flex;
         align-items: center;
-        color: rgba(255, 255, 255, 0.3);
+        color: $text-secondary;
         margin-bottom: 20px;
         @include media768 {
           font-size: 14px;
@@ -700,12 +698,13 @@
         line-height: 18px;
         display: flex;
         align-items: center;
-        color: #252525;
-        background: #ffffff;
+        color: $text;
+        background: $bg-primary;
         border-radius: 80px;
         padding: 18px 48px;
         cursor: pointer;
         border: none;
+        transition: 0.3s;
         @include media768 {
           padding: 12px 36px;
           font-size: 16px;
@@ -716,8 +715,8 @@
         }
       }
       button:hover {
-        background: rgba(217, 217, 217, 0.2);
-        color: #fff;
+        background: $primary;
+        color: $white-color;
       }
     }
   }

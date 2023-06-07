@@ -106,14 +106,30 @@ export default function Setting(props) {
                     </div>
                   </div>
                   <div className="Company_name">
-                    <h3>Company name</h3>
+                    {/* <h3>Company name</h3> */}
                     <input
                       className="form-control"
                       type="text"
-                      placeholder="Enter Company name"
+                      placeholder="Company name"
                     />
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Website"
+                    />
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Copyright"
+                    />
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Disclaimer "
+                    />
+                    <button type="button">Company social media links</button>
                   </div>
-                  <button type="summit">Update</button>
+                  <button type="submit">Update</button>
                 </form>
               </div>
             ) : settingId === "subscription" ? (

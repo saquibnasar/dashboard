@@ -19,6 +19,7 @@
     height: 100%;
     justify-content: start;
     // display: none;
+    background: $bg-primary;
   }
   .navbar-brand {
     background: transparent;
@@ -43,7 +44,7 @@
       font-size: 1rem;
       padding: 14px;
       // background: #d9d9d9;
-      background: $white-color;
+      // background: $white-color;
       border-radius: 50%;
       display: flex;
       width: 40px;
@@ -52,6 +53,9 @@
       align-items: center;
       background: $secondary;
       color: $text;
+      // @include media992 {
+      //   background: $white-color;
+      // }
     }
     .setting-toggler-icon {
       color: #000000;
@@ -126,7 +130,7 @@
     form:hover:hover {
       .form-control {
         color: #fff;
-        background: #6e56ce;
+        background: $primary;
       }
       .form-control::placeholder {
         color: #fff;
@@ -139,7 +143,7 @@
     form:has(.form-control:not(:placeholder-shown)) {
       .form-control {
         color: #fff;
-        background: #6e56ce;
+        background: $primary;
       }
       .form-control::placeholder {
         color: #fff;
@@ -159,10 +163,17 @@
       svg {
         filter: invert(70%) sepia(0%) saturate(1651%) hue-rotate(142deg)
           brightness(93%) contrast(92%);
+        @include media992 {
+        }
       }
     }
     .navbar-btn:hover {
       background: $secondary;
+
+      background: $primary;
+      svg {
+        filter: none;
+      }
     }
     .form-check {
       display: flex;

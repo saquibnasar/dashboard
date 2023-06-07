@@ -22,7 +22,7 @@
       justify-content: space-between;
       padding: 70px 100px;
       margin: 34px 48px;
-
+      height: 100%;
       @include media1200 {
         margin: 31px 48px;
       }
@@ -43,6 +43,7 @@
       .devices_content_left,
       .devices_content_right {
         text-align: center;
+        margin-block: auto;
         h2 {
           font-family: "Inter";
           font-weight: 600;

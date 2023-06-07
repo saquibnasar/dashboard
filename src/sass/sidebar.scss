@@ -193,8 +193,8 @@
 
 .setting {
   .sidebar {
-    border: 3px solid #efefef;
-    background: #fff;
+    // border: 3px solid #efefef;
+    background: $secondary;
     border-top-left-radius: 22px;
     border-bottom-left-radius: 22px;
     @include media768 {
@@ -202,15 +202,20 @@
       border-top-right-radius: 22px;
     }
     .sidebar-collapse {
+      border-right: 3px solid #fff;
+      height: 100%;
       .sidebar-nav {
         .nav-item {
           .nav-link.active {
-            background: #52459e;
-            color: #fefdfe;
+            // background: #52459e;
+            // color: #fefdfe;
             border-radius: 12px;
 
             img {
-              filter: unset;
+              // filter: invert(27%) sepia(54%) saturate(5402%) hue-rotate(233deg)
+              //   brightness(102%) contrast(98%);
+              filter: invert(55%) sepia(90%) saturate(6481%) hue-rotate(228deg)
+                brightness(95%) contrast(110%);
             }
           }
         }
