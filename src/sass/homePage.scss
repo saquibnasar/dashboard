@@ -6,7 +6,7 @@
   height: 100vh;
 
   .homePage_container {
-    background: #1d203c;
+    background: $secondary;
     border-radius: 22px;
     margin-left: 16px;
     margin-right: 16px;
@@ -24,7 +24,8 @@
       padding-bottom: 24px;
     }
     .sidebar {
-      border-right: 3px solid #fff;
+      border-right: unset;
+
       @include media1200 {
         min-width: unset;
         max-width: unset;
@@ -87,7 +88,7 @@
             }
           }
           .nav-link.active {
-            background: rgba(217, 217, 217, 0.2);
+            // background: rgba(217, 217, 217, 0.2);
             border-radius: 16px;
           }
         }
@@ -115,9 +116,19 @@
           cursor: pointer;
           margin-top: 24px;
           margin-bottom: 20px;
+          background: $white-color;
+          color: $text;
+          padding: 8px 20px;
+          box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+          transition: 0.3s;
           svg {
             margin-left: 4px;
           }
+        }
+        p:hover {
+          background: $primary;
+          color: $white-color;
+          box-shadow: none;
         }
         .signup_phone-container {
           background: #1f252f;
@@ -262,7 +273,7 @@
         padding: 14px 24px;
 
         .link_container {
-          background: #30334c;
+          background: $bg-primary;
           border-radius: 30px;
           text-align: center;
           padding-top: 32px;
@@ -276,7 +287,7 @@
             font-weight: 500;
             font-size: 16px;
             line-height: 16px;
-            color: $white-color;
+            color: $text;
             @include media992 {
               font-size: 15px;
             }
@@ -293,7 +304,7 @@
             font-weight: 400;
             font-size: 14px;
             line-height: 21px;
-            color: $white-color;
+            color: $text-secondary;
             margin-top: 32px;
             margin-bottom: 48px;
             @include media992 {
@@ -313,8 +324,8 @@
             font-size: 19px;
             line-height: 27px;
             text-transform: capitalize;
-            color: #ffffff;
-            background: #000000;
+            color: $text;
+            background: $white-color;
             box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
             border-radius: 56px;
             padding: 12px 16px;
@@ -355,6 +366,11 @@
                 font-size: 1.1rem;
               }
             }
+          }
+          .btn_add:hover {
+            background: $primary;
+            color: $white-color;
+            box-shadow: none;
           }
           img {
             width: 100%;

@@ -10,13 +10,66 @@
     width: 100%;
     background: transparent;
     .admin {
-      padding-top: 32px;
+      padding-top: 55px;
       width: 100%;
       padding-left: 24px;
       padding-right: 24px;
       .admin_detail {
-        h1 {
-          font-size: 24px;
+        .addImage {
+          margin-bottom: 22px;
+
+          span {
+            width: 60px;
+            height: 60px;
+            background: #fff;
+            color: #a3a3a3;
+            font-size: 1.4rem;
+            display: flex;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            border-radius: 60px;
+          }
+          .btn-primary {
+            font-family: "Outfit";
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 18px;
+            color: $text;
+            background: $white-color;
+            border: none;
+            border-radius: 80px;
+            padding: 14px 60px;
+            // margin-top: 48px;
+            cursor: pointer;
+            transition: 0.3s;
+          }
+          .btn-primary:hover {
+            background: $primary;
+            color: $white-color;
+          }
+        }
+        h3 {
+          // font-family: "Outfit";
+          font-style: normal;
+          font-weight: 500;
+          font-size: 16px;
+          line-height: 18px;
+          color: $text;
+        }
+        .admin_detail-social {
+          button {
+            font-family: "Outfit";
+            font-style: normal;
+            font-weight: 700;
+            font-size: 17.5px;
+            line-height: 32px;
+            color: $text-secondary;
+            border-radius: 18px;
+            padding: 3px 22px;
+            background: $white-color;
+            border: none;
+          }
         }
       }
       .form-label {

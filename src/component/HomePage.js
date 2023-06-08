@@ -123,7 +123,7 @@ export default function HomePage(props) {
                     title="phone"
                     width="428"
                     height="887"
-                    src="https://flax.ai/business/avinashassociates"
+                    src="https://flax.ai/business/a"
                   />
                 </div>
               </div>
