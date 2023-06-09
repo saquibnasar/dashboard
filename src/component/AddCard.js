@@ -22,7 +22,7 @@ export default function AddCard(props) {
 
   return (
     <>
-      <div className="addcard d-none">
+      <div className="addcard">
         <div className="addcard_container">
           {!isClick ? (
             <div>

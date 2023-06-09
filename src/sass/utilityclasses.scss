@@ -34,7 +34,7 @@
   }
   form {
     .form-text {
-      color: #868686;
+      color: $text-secondary;
       margin-bottom: 11px;
       font-family: "Outfit";
       font-style: normal;
@@ -268,7 +268,7 @@
       text-align: center;
       color: #848484;
       box-sizing: border-box;
-      background: #2e3239;
+      background: $white-color;
       border-radius: 0 16px 16px 0;
       border: none;
       text-align: start;

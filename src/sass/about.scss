@@ -43,6 +43,15 @@
             // margin-top: 48px;
             cursor: pointer;
             transition: 0.3s;
+            @include media992 {
+              padding: 12px 34px;
+            }
+            @include media768 {
+              padding: 14px 60px;
+            }
+            @include media430 {
+              padding: 12px 34px;
+            }
           }
           .btn-primary:hover {
             background: $primary;
@@ -56,19 +65,42 @@
           font-size: 16px;
           line-height: 18px;
           color: $text;
+          margin-bottom: 20px;
         }
         .admin_detail-social {
-          button {
-            font-family: "Outfit";
-            font-style: normal;
-            font-weight: 700;
-            font-size: 17.5px;
-            line-height: 32px;
-            color: $text-secondary;
-            border-radius: 18px;
-            padding: 3px 22px;
-            background: $white-color;
-            border: none;
+          margin-bottom: 20px;
+          .admin_detail-social-grid {
+            gap: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            button {
+              font-family: "Outfit";
+              font-style: normal;
+              font-weight: 700;
+              font-size: 17.5px;
+              line-height: 32px;
+              color: $text-secondary;
+              border-radius: 18px;
+              padding: 3px 22px;
+              background: $white-color;
+              border: none;
+              cursor: pointer;
+            }
+          }
+        }
+        .admin_detail-contact {
+          .form-control {
+            padding-left: 48px;
+            margin-bottom: 0px;
+          }
+          .form-control[name="officeId"] {
+            padding-left: 12px;
+          }
+          .did-floating-label {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
           }
         }
       }

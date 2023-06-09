@@ -43,7 +43,7 @@ export default function Topbar(props) {
 
   return (
     <>
-      {window.innerWidth > 922 || props.isNavbar ? (
+      {props.isNavbar ? (
         <nav className="navbar">
           {props.type ? (
             <button

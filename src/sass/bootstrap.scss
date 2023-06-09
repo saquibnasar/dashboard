@@ -217,6 +217,9 @@
   .d-lg-none {
     display: none !important;
   }
+  .d-lg-block {
+    display: block !important;
+  }
 }
 @include media768 {
   .col-md-12 {
@@ -235,8 +238,18 @@
   .mx-auto {
     margin-inline: auto;
   }
-  .d-md-none {
+  .d-sm-none {
     display: none !important;
+  }
+
+  .gap-sm-2 {
+    gap: 8px;
+  }
+  .f-sm-column {
+    flex-direction: column;
+  }
+  .align-sm-items-start {
+    align-items: start !important;
   }
 }
 

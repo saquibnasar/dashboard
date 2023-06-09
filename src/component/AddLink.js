@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-
+import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
 export default function AddLink(props) {
   const [formData, setFormData] = useState({
     linkData: "",
@@ -90,7 +90,28 @@ export default function AddLink(props) {
           </div>
         </div>
       </div>
-      <div className="addlink_phone">
+      <div className="signup_phone text-center overflow-hidden">
+        <p>
+          Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
+        </p>
+        <div className="signup_phone-container">
+          <div className="signup_phone-left">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div className="signup_phone-right">
+            <span></span>
+          </div>
+          <iframe
+            title="phone"
+            width="428"
+            height="887"
+            src="https://flax.ai/business/a"
+          />
+        </div>
+      </div>
+      {/* <div className="addlink_phone">
         <div className="addlink_phone-frame">
           <div className="addlink_phone-frame_user">
             <FontAwesomeIcon icon={faUser} />
@@ -124,7 +145,7 @@ export default function AddLink(props) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 }

@@ -473,3 +473,44 @@
     }
   }
 }
+.createCard.about {
+  .setting {
+    background: $secondary;
+    .admin {
+      padding-left: 70px;
+      padding-right: 70px;
+      padding-top: 24px;
+      .signup_navbar-back {
+        align-items: center;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        gap: 13px;
+        color: $text;
+        font-family: Roboto, sans-serif;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 21px;
+        margin-bottom: 24px;
+      }
+      .btn-primary {
+        font-family: "Outfit";
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 18px;
+        color: #4a4a4a;
+        background: #fff;
+        border: none;
+        border-radius: 80px;
+        padding: 14px 60px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn-primary:hover {
+        background: $primary;
+        color: $white-color;
+      }
+    }
+  }
+}

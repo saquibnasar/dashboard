@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import SIdebar from "./SIdebar";
 import Topbar from "./Topbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,14 +13,16 @@ import About from "./About";
 import FlaxCode from "./FlaxCode";
 export default function HomePage(props) {
   const { homepageId } = useParams();
-
+  const [isLinks, setIslinks] = useState(false);
+  const [isClick, setIsClick] = useState(false);
   const addLin = () => {
-    const addcard = document.querySelector(".addcard");
-    if (addcard.classList.contains("d-none")) {
-      addcard.classList.remove("d-none");
-    } else {
-      addcard.classList.add("d-none");
-    }
+    setIslinks(!isLinks);
+    // const addcard = document.querySelector(".addcard");
+    // if (addcard.classList.contains("d-none")) {
+    //   addcard.classList.remove("d-none");
+    // } else {
+    //   addcard.classList.add("d-none");
+    // }
   };
 
   return (
@@ -100,7 +102,7 @@ export default function HomePage(props) {
                   {/* <LInks /> */}
                 </div>
               ) : homepageId === "about" ? (
-                <About />
+                <About addLink={addLin} />
               ) : homepageId === "flaxcode" ? (
                 <FlaxCode />
               ) : (
@@ -128,8 +130,7 @@ export default function HomePage(props) {
                 </div>
               </div>
             </div>
-
-            <AddCard removeLink={addLin} />
+            {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
           </div>
         </div>
       </div>

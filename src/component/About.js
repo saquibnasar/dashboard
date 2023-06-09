@@ -4,7 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
-export default function About() {
+export default function About(props) {
   const [startDate, setStartDate] = useState(new Date());
   const [formData, setFormData] = useState({
     username: "",
@@ -20,6 +20,7 @@ export default function About() {
       };
     });
   };
+  console.log(props.addlink);
   return (
     <>
       <div className="setting">
@@ -27,7 +28,7 @@ export default function About() {
           <div className="admin_detail">
             <div className="addImage">
               <h3>Upload Profile image </h3>
-              <div className="d-flex justify-content-between align-items-center mt-3">
+              <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
                 <span>
                   <FontAwesomeIcon icon={faUser} />
                 </span>
@@ -75,41 +76,48 @@ export default function About() {
             </div>
             <div className="admin_detail-social">
               <h3>Choose/add Social handles </h3>
-              <div className="">
+              <div className="admin_detail-social-grid">
                 <button className="btn-primary">FB</button>
                 <button className="btn-primary">Insta</button>
                 <button className="btn-primary">YT</button>
-                <button className="btn-primary">Add +</button>
+                <button className="btn-primary">FB</button>
+                <button className="btn-primary">Insta</button>
+                <button className="btn-primary">YT</button>
+                <button className="btn-primary">FB</button>
+                <button className="btn-primary">Insta</button>
+                <button className="btn-primary">YT</button>
+                <button className="btn-primary">FB</button>
+                <button className="btn-primary">Insta</button>
+                <button className="btn-primary">YT</button>
+                <button className="btn-primary" onClick={props.addLink}>
+                  Add +
+                </button>
               </div>
             </div>
             <div className="admin_detail-contact">
               <h3>Contact details </h3>
 
-              <div className="">
+              <div className="mb-3">
                 <input
                   type="text"
                   className="form-control"
                   id="Name"
                   placeholder="office email id"
                   required
-                  name="username"
-                  onChange={handleChange}
-                  value={formData.username}
+                  name="officeId"
                 />
               </div>
-              <div className="">
+              <div className="p-relative mb-3">
                 <input
                   type="text"
                   className="form-control"
                   id="designation"
                   placeholder="enter whatsApp number"
                   name="designation"
-                  onChange={handleChange}
-                  value={formData.designation}
                 />
                 <label class="did-floating-label">+91</label>
               </div>
-              <div className="">
+              <div className="p-relative mb-3">
                 <input
                   type="text"
                   className="form-control"
@@ -117,8 +125,6 @@ export default function About() {
                   placeholder="enter Mobile number"
                   name="company"
                   required
-                  onChange={handleChange}
-                  value={formData.company}
                 />
                 <label class="did-floating-label">+91</label>
               </div>

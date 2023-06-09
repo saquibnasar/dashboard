@@ -21,8 +21,120 @@ export default function CreateCard() {
 
   return (
     <>
-      <div className="createCard">
-        <div className="signup_form-container">
+      <div className="createCard about">
+        <div className="setting">
+          <div className="admin">
+            <div className="admin_detail">
+              <Link to="/" className="signup_navbar-back">
+                <FontAwesomeIcon icon={faArrowLeft} />
+                Back
+              </Link>
+              <div className="addImage">
+                <h3>Upload Profile image </h3>
+                <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
+                  <span>
+                    <FontAwesomeIcon icon={faUser} />
+                  </span>
+                  <button className="btn-primary">Upload image</button>
+                </div>
+              </div>
+              <div className="admin_detail-member">
+                <h3>company detail </h3>
+
+                <div className="">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="Name"
+                    placeholder="Name"
+                    required
+                    name="username"
+                    onChange={handleChange}
+                    value={formData.username}
+                  />
+                </div>
+                <div className="">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="designation"
+                    placeholder="Designation"
+                    name="designation"
+                    onChange={handleChange}
+                    value={formData.designation}
+                  />
+                </div>
+                <div className="">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="company"
+                    placeholder="Employee id"
+                    name="company"
+                    required
+                    onChange={handleChange}
+                    value={formData.company}
+                  />
+                </div>
+              </div>
+              <div className="admin_detail-social">
+                <h3>Choose/add Social handles </h3>
+                <div className="admin_detail-social-grid">
+                  <button className="btn-primary">FB</button>
+                  <button className="btn-primary">Insta</button>
+                  <button className="btn-primary">YT</button>
+                  <button className="btn-primary">FB</button>
+                  <button className="btn-primary">Insta</button>
+                  <button className="btn-primary">YT</button>
+                  <button className="btn-primary">FB</button>
+                  <button className="btn-primary">Insta</button>
+                  <button className="btn-primary">YT</button>
+                  <button className="btn-primary">FB</button>
+                  <button className="btn-primary">Insta</button>
+                  <button className="btn-primary">YT</button>
+                  <button className="btn-primary">Add +</button>
+                </div>
+              </div>
+              <div className="admin_detail-contact">
+                <h3>Contact details </h3>
+
+                <div className="mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="Name"
+                    placeholder="office email id"
+                    required
+                    name="officeId"
+                  />
+                </div>
+                <div className="p-relative mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="designation"
+                    placeholder="enter whatsApp number"
+                    name="designation"
+                  />
+                  <label class="did-floating-label">+91</label>
+                </div>
+                <div className="p-relative mb-3">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="company"
+                    placeholder="enter Mobile number"
+                    name="company"
+                    required
+                  />
+                  <label class="did-floating-label">+91</label>
+                </div>
+              </div>
+              <button className="btn-primary">Save</button>
+            </div>
+          </div>
+        </div>
+        {/* <div className="signup_form-container">
           <div className="signup_navbar d-flex justify-content-between">
             <Link to="/" className="signup_navbar-back">
               <FontAwesomeIcon icon={faArrowLeft} />
@@ -92,7 +204,7 @@ export default function CreateCard() {
               </button>
             </form>
           </div>
-        </div>
+        </div> */}
         <div className="signup_phone text-center">
           <p>Live Profile Preview</p>
           <div className="signup_phone-container">
