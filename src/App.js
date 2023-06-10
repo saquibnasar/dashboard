@@ -7,6 +7,7 @@ import Setting from "./component/Setting";
 import CreateCard from "./component/CreateCard";
 import HomePage from "./component/HomePage";
 import { useState } from "react";
+import Signin from "./component/Signin";
 
 function App() {
   const [isNavbar, setIsNavbar] = useState(true);
@@ -22,8 +23,12 @@ function App() {
           element={<Home navbarToggle={navbarToggle} isNavbar={isNavbar} />}
         />
         <Route path="/createCard" element={<CreateCard />} />
-        <Route path="/devices" element={<Devices />} />
+        <Route
+          path="/devices"
+          element={<Devices navbarToggle={navbarToggle} isNavbar={isNavbar} />}
+        />
         <Route path="/sign-up" element={<Signup />} />
+        <Route path="/signin" element={<Signin />} />
         <Route
           path="/homepage/:homepageId"
           element={<HomePage navbarToggle={navbarToggle} isNavbar={isNavbar} />}

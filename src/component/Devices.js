@@ -1,12 +1,14 @@
 import React from "react";
 import SIdebar from "./SIdebar";
 import { Link } from "react-router-dom";
-export default function Devices() {
+import Topbar from "./Topbar";
+export default function Devices(props) {
   return (
     <div className="devices h-100vh d-flex">
-      <SIdebar />
+      <SIdebar navbarToggle={props.navbarToggle} />
       <div className="devices_content d-flex flex-direction-column w-100">
-        <h1>Devices</h1>
+        {/* <h1>Devices</h1> */}
+        <Topbar type="setting" isNavbar={props.isNavbar} text="Diveces" />
         <div className="devices_content_container">
           <div className="devices_content_left">
             <img
@@ -14,12 +16,8 @@ export default function Devices() {
               alt=""
               className="img-fluid"
             />
-            <h2>Get Flax Card</h2>
-            <p>
-              Don’t have Flax Card
-              <br />
-              Purchase them here.
-            </p>
+            <h2>Order Flax Card</h2>
+            <p>Running out Card Buy them here.</p>
             <a
               href="https://caard.mini.store/"
               target="blank"

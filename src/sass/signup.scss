@@ -3,14 +3,14 @@
 @import "./mediaqueries.scss";
 
 .signup {
-  background: #f0f0f0;
+  background: $bg-primary;
   display: flex;
   overflow-x: auto;
   width: 100%;
   overflow-y: hidden;
 
   .signup_form-container {
-    background: #1d203c;
+    background: $secondary;
     padding-top: 40px;
     width: 50%;
     overflow: auto;
@@ -28,6 +28,9 @@
     }
     .signup_navbar {
       padding: 0 50px;
+      @include media430 {
+        padding: 0 24px;
+      }
       .signup_navbar-back {
         display: flex;
         gap: 13px;
@@ -79,7 +82,7 @@
           font-weight: 600;
           font-size: 13px;
           line-height: 16px;
-          color: #fff;
+          color: $text;
           display: flex;
           gap: 8px;
           margin-top: 48px;
@@ -87,7 +90,7 @@
           span {
             width: 100%;
             height: 1px;
-            background: #e0e0e0;
+            background: $text;
           }
         }
         .form_btns {
@@ -96,19 +99,20 @@
           gap: 16px;
           margin-top: 24px;
           .btn-primary {
-            border: 3px solid #e0e0e0;
+            // border: 3px solid #e0e0e0;
             border-radius: 100px;
-            background: transparent;
+            background: $white-color;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 8px;
             margin-top: 0;
             transition: 0.3s;
+            color: $text;
           }
           .btn-primary:hover {
-            background: #fffaff;
-            color: #333;
+            background: $primary;
+            color: $white-color;
           }
         }
         h3 {
@@ -117,7 +121,7 @@
           font-weight: 500;
           font-size: 18px;
           line-height: 22px;
-          color: $white-color;
+          color: $text;
           margin-top: 30px;
           text-align: center;
           a {
@@ -126,7 +130,7 @@
             font-weight: 500;
             font-size: 18px;
             line-height: 22px;
-            color: #29aef8;
+            color: $primary;
           }
         }
         p {
@@ -135,7 +139,7 @@
           font-weight: 400;
           font-size: 18px;
           line-height: 26px;
-          color: #979797;
+          color: $text-secondary;
           margin-top: 60px;
           margin-bottom: 39px;
           a {
@@ -144,7 +148,7 @@
             font-weight: 400;
             font-size: 18px;
             line-height: 26px;
-            color: #979797;
+            color: $text;
             text-decoration: underline;
           }
         }
@@ -152,10 +156,16 @@
     }
   }
   .signup_promotion {
-    min-width: 60%;
-    padding-bottom: 100px;
-    margin-top: 48px;
-    padding: 0 48px;
+    min-width: 50%;
+    // padding-bottom: 100px;
+    // margin-top: 48px;
+    // padding: 0 48px;
+    @include media768 {
+      display: none;
+    }
+    img {
+      height: 100%;
+    }
     h1 {
       font-family: "Outfit";
       font-style: normal;

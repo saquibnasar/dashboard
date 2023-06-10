@@ -54,7 +54,7 @@ export default function Topbar(props) {
               <span className="setting-toggler-icon">
                 <FontAwesomeIcon icon={faArrowLeft} />
               </span>
-              Settings
+              {props.text}
             </button>
           ) : (
             <Link to="/createCard" className="navbar-brand" type="button">

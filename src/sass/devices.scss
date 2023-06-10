@@ -20,7 +20,7 @@
       border-radius: 32px;
       display: flex;
       justify-content: space-between;
-      padding: 70px 100px;
+      padding: 48px 100px;
       margin: 34px 48px;
       height: 100%;
       @include media1200 {
@@ -80,19 +80,24 @@
           font-size: 18px;
           // color: #252525;
           // background: #ffffff;
-          color: $white-color;
-          background: $primary;
+          color: $text;
+          background: $bg-primary;
           border-radius: 80px;
           padding: 18px 20px;
           margin-top: 48px;
           cursor: pointer;
           border: none;
+          transition: 0.3s;
           @include media576 {
             font-size: 16px;
 
             padding: 13px 16px;
             margin-top: 20px;
           }
+        }
+        .devices-primary:hover {
+          background: $primary;
+          color: $white-color;
         }
       }
       .devices_content_left {

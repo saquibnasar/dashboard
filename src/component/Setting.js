@@ -28,7 +28,7 @@ export default function Setting(props) {
       <div className="d-flex h-100vh">
         <SIdebar navbarToggle={props.navbarToggle} />
         <div className="d-flex flex-direction-column w-100">
-          <Topbar type="setting" isNavbar={props.isNavbar} />
+          <Topbar type="setting" isNavbar={props.isNavbar} text="Settings" />
           <div className="setting mt-4">
             <nav className="sidebar">
               <div className="sidebar-collapse">

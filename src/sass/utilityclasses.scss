@@ -3,9 +3,12 @@
 @import "./mediaqueries.scss";
 .form {
   padding: 0 48px;
-  margin-top: 150px;
+  margin-top: 60px;
   @include media576 {
     padding: 0 48px;
+  }
+  @include media430 {
+    padding: 0 24px;
   }
   .form_logo {
     display: flex;
@@ -19,7 +22,7 @@
       line-height: 43px;
       display: flex;
       align-items: center;
-      color: $primary-color;
+      color: $text;
     }
     h2 {
       font-family: "Outfit";
@@ -29,7 +32,7 @@
       line-height: 20px;
       display: flex;
       align-items: center;
-      color: $primary-color;
+      color: $text-secondary;
     }
   }
   form {
@@ -86,19 +89,19 @@
       font-weight: 400;
       font-size: 16px;
       text-align: center;
-      color: #fffaff;
+      color: $text;
       cursor: pointer;
       width: 100%;
       border: none;
       margin-top: 24px;
-      background: #6c3dd3;
+      background: $white-color;
       border-radius: 100px;
       transition: all 0.3s ease-in-out;
       display: block;
     }
     .btn-primary:hover {
-      background: #fffaff;
-      color: #6c3dd3;
+      background: $primary;
+      color: $white-color;
     }
     .instagram_input {
       width: 100%;
@@ -279,7 +282,7 @@
         outline: none;
         background: $white-color;
         ~ .did-floating-label {
-          color: #78c4cb;
+          color: $primary;
           top: 1px;
           font-size: 0.75rem;
           background: transparent;

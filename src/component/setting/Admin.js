@@ -60,10 +60,10 @@ export default function Admin() {
           </div>
           <div className="d-flex justify-content-between">
             <button type="button" className="btn btn-primary">
-              Update
+              Cancel
             </button>
             <button type="button" className="btn btn-primary">
-              Cancel
+              Update
             </button>
           </div>
         </div>

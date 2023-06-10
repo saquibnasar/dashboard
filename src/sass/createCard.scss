@@ -1,6 +1,8 @@
 @import "./custom.scss";
 // @import "./utilityclasses.scss";
 @import "./font.scss";
+@import "./mediaqueries.scss";
+
 .createCard {
   height: 100vh;
   background: #f0f0f0;
@@ -426,6 +428,9 @@
   .signup_phone {
     min-width: 50%;
     // padding-bottom: 100px;
+    @include media768 {
+      display: none;
+    }
     P {
       font-family: $primary-font;
       font-weight: 600;

@@ -30,7 +30,12 @@ export default function HomePage(props) {
       <div className={`d-flex homePage ${homepageId}`}>
         <SIdebar navbarToggle={props.navbarToggle} />
         <div className="d-flex flex-direction-column w-100">
-          <Topbar type="setting" title="" isNavbar={props.isNavbar} />
+          <Topbar
+            type="setting"
+            title=""
+            isNavbar={props.isNavbar}
+            text="Home"
+          />
           <div className="homePage_container mt-4">
             <nav className="sidebar">
               <div className="sidebar-collapse">
