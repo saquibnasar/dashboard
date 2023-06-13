@@ -1,0 +1,31 @@
+.footer {
+  margin-top: 20px;
+  h3,
+  h5 {
+    font-weight: 400;
+    font-size: 17px;
+    line-height: 21px;
+    color: #373737;
+    margin-bottom: 8px;
+    a {
+      font-weight: 400;
+      font-size: 17px;
+      line-height: 21px;
+      color: #373737;
+      margin-bottom: 8px;
+      color: #0065e6;
+    }
+  }
+  h5 {
+    font-size: 16px;
+    color: #373737;
+    span {
+      font-weight: 700;
+    }
+    p {
+      font-size: 14px;
+      color: #373737;
+      display: inline;
+    }
+  }
+}

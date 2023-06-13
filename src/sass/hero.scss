@@ -1,0 +1,117 @@
+@import "./custom.scss";
+@import "./font.scss";
+@import "./mediaqueries.scss";
+.hero {
+  padding: 24px 0;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  .btn,
+  p,
+  a {
+    font-family: "Outfit";
+    color: #373737;
+  }
+  .btn-dot {
+    background: #ffffff;
+    border-radius: 40px;
+    border: none;
+    padding: 1rem;
+    font-size: 3.5rem;
+    width: 44px;
+    justify-content: center;
+    display: flex;
+    height: 44px;
+    align-items: center;
+    cursor: pointer;
+    margin-left: auto;
+  }
+  .header_content {
+    background: linear-gradient(
+      211.88deg,
+      rgba(2, 128, 190, 0.2) 2.27%,
+      rgba(255, 255, 255, 0.2) 48.06%,
+      rgba(255, 255, 255, 0.2) 98.45%
+    );
+    border: 1px solid #ffffff;
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 20px 0;
+
+    h1 {
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 33px;
+    }
+    h2 {
+      font-weight: 500;
+      font-size: 16px;
+      margin-bottom: 8px;
+    }
+    h3 {
+      font-weight: 400;
+      font-size: 16px;
+    }
+    .btn {
+      background: $white-color;
+      color: #373737;
+      border-radius: 10px;
+      font-weight: 400;
+      font-size: 16px;
+      border: none;
+      padding: 16px 20px;
+      margin-top: 32px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background: #0065e6;
+      color: $white-color;
+    }
+
+    img {
+      border-radius: 50%;
+      width: 22%;
+    }
+  }
+  .social_media {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+
+    .social_media-link {
+      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid #ffffff;
+      border-radius: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 16px;
+      svg {
+        color: #373737;
+        font-size: 1.5rem;
+      }
+      span {
+        width: 60px;
+        height: 60px;
+        background: #ffffff;
+        border-radius: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        svg {
+          font-size: 2.5rem;
+          color: rgb(185, 50, 144);
+        }
+      }
+      p {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 20px;
+        color: #373737;
+      }
+    }
+  }
+}

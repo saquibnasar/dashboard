@@ -17,10 +17,6 @@ export default function Admin() {
               placeholder="email id"
             />
           </div>
-          {/* <div className="mb-3">
-    <label htmlFor="exampleFormControlInput1" className="form-label">Forget Password</label>
-  <input type="email" className="form-control" id="exampleFormControlInput1" placeholder="Password"/>
-   </div> */}
         </div>
         <div className="admin_authentication">
           <div className="d-flex justify-content-between align-items-center mb-4 mb-lg-3">

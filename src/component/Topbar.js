@@ -22,24 +22,26 @@ export default function Topbar(props) {
   const [isFlaxLink, setIsFlaxLink] = useState(false);
   const navigate = useNavigate();
 
-  window.addEventListener("click", function (e) {
-    if (
-      document.querySelector(".navbar-btn") &&
-      document.querySelector(".navbar-btn").contains(e.target)
-    ) {
-      setIsFlaxLink(!isFlaxLink);
-    } else if (
-      document.querySelector(".flax_link") &&
-      !document.querySelector(".flax_link").contains(e.target)
-    ) {
-      if (
-        document.querySelector(".flax_link") &&
-        !document.querySelector(".flax_link").classList.contains("d-none")
-      ) {
-        setIsFlaxLink(false);
-      }
-    }
-  });
+  // window.addEventListener("click", function (e) {
+  //   if (
+  //     document.querySelector(".navbar-btn") &&
+  //     document.querySelector(".navbar-btn").contains(e.target)
+  //   ) {
+  //   } else if (
+  //     document.querySelector(".flax_link") &&
+  //     !document.querySelector(".flax_link").contains(e.target)
+  //   ) {
+  //     if (
+  //       document.querySelector(".flax_link") &&
+  //       !document.querySelector(".flax_link").classList.contains("d-none")
+  //     ) {
+  //       setIsFlaxLink(false);
+  //     }
+  //   }
+  // });
+  const FlaxLink = () => {
+    setIsFlaxLink(!isFlaxLink);
+  };
 
   return (
     <>
@@ -168,7 +170,7 @@ export default function Topbar(props) {
               </form>
             )}
             <div className="p-relative">
-              <button className="navbar-btn">
+              <button className="navbar-btn" onClick={FlaxLink}>
                 <svg
                   width="26"
                   height="26"
