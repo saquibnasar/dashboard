@@ -96,7 +96,7 @@
     }
     .homePage_container-bottom {
       display: grid;
-      grid-template-columns: auto 280px;
+      grid-template-columns: auto 360px;
       margin-top: 36px;
 
       @include media768 {
@@ -138,8 +138,9 @@
           box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
           padding: 0px;
           margin: auto;
-          width: 222px;
-          height: 450px;
+          width: 311px;
+          height: 59%;
+          overflow: hidden;
           position: relative;
           @include media768 {
             width: 308px;
@@ -201,7 +202,7 @@
           iframe {
             border: none;
             border-radius: 15px;
-            transform: scale(0.5) translateX(-48%) translateY(-49%)
+            transform: scale(0.75) translateX(-17%) translateY(-17%)
               translate3d(0px, 0px, 0px);
             @include media768 {
               transform: scale(0.7) translateX(-20%) translateY(-21%)

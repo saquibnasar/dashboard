@@ -2,7 +2,8 @@
 @import "./font.scss";
 @import "./mediaqueries.scss";
 .hero {
-  padding: 24px 0;
+  // padding: 24px 0;
+  padding-bottom: 24px;
   h1,
   h2,
   h3,
@@ -27,6 +28,36 @@
     align-items: center;
     cursor: pointer;
     margin-left: auto;
+    position: absolute;
+    top: 24px;
+    right: 24px;
+  }
+
+  .share_link {
+    position: fixed;
+    inset: 0px;
+    z-index: 10011;
+    background-color: rgba(10, 11, 13, 0.6);
+    align-items: flex-end;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding: 0px;
+    display: flex;
+    font-family: inter;
+    width: 100%;
+    height: 100%;
+    .share_link-container {
+      flex-direction: column;
+      -webkit-box-align: stretch;
+      align-items: stretch;
+      background: white;
+      border-radius: 16px 16px 0px 0px;
+      width: 384px;
+      padding: 24px 8px;
+      position: relative;
+      height: 523px;
+      
+    }
   }
   .header_content {
     background: linear-gradient(
@@ -39,7 +70,7 @@
     backdrop-filter: blur(5px);
     border-radius: 20px;
     padding: 20px 0;
-
+    margin-top: -80px;
     h1 {
       font-weight: 600;
       font-size: 26px;
@@ -112,6 +143,64 @@
         line-height: 20px;
         color: #373737;
       }
+    }
+  }
+  ._username__featuredLink__MeYB7 {
+    background: linear-gradient(
+      211.88deg,
+      rgba(2, 128, 190, 0.2) 2.27%,
+      rgba(255, 255, 255, 0.2) 48.06%,
+      rgba(255, 255, 255, 0.2) 98.45%
+    );
+    border: 0.9725px solid #ffffff;
+    backdrop-filter: blur(4.8625px);
+    /* Note: backdrop-filter has minimal browser support */
+
+    border-radius: 19.45px;
+    padding: 24px 16px;
+    margin-top: 20px;
+    h3 {
+      font-family: "Outfit";
+      font-style: normal;
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 23px;
+      color: #000000;
+      margin-bottom: 12px;
+    }
+    .BaseEmbeddedLink_baseEmbeddedLinkContainer__SlSm5 {
+      --container-padding: 1.5rem;
+      background-color: var(--black);
+      border-radius: var(--link-border-radius);
+      display: flex;
+      flex-direction: column;
+      transition: all 0.5s cubic-bezier(0.74, -0.18, 0.3, 0.48),
+        background-color 1.5s ease-in-out;
+      padding: var(--container-padding);
+      position: relative;
+      max-width: unset;
+      margin: 0;
+      width: 100%;
+      padding-top: calc(56.7% - var(--container-padding));
+      z-index: 0;
+    }
+    .EmbeddedYouTube_embeddedVideoIframe__BnmH8,
+    .EmbeddedYouTube_embeddedVideoThumbnail__X8kI_,
+    .EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      border-radius: 8px;
+      border-bottom-left-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+    iframe {
+      border-radius: 19.45px;
+    }
+    .react-player__preview {
+      border-radius: 10px;
     }
   }
 }

@@ -11,6 +11,7 @@ import LInks from "./LInks";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import About from "./About";
 import FlaxCode from "./FlaxCode";
+import UserProfile from "./UserProfile/UserProfile";
 export default function HomePage(props) {
   const { homepageId } = useParams();
   const [isLinks, setIslinks] = useState(false);
@@ -118,7 +119,7 @@ export default function HomePage(props) {
                   Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
                 </p>
                 <div className="signup_phone-container">
-                  <div className="signup_phone-left">
+                  {/* <div className="signup_phone-left">
                     <span></span>
                     <span></span>
                     <span></span>
@@ -131,7 +132,10 @@ export default function HomePage(props) {
                     width="428"
                     height="887"
                     src="https://flax.ai/business/a"
-                  />
+                  /> */}
+                  {/* transform: scale(0.55) translateX(-41%) translatey(-41%);
+    width: 567px; */}
+                  <UserProfile />
                 </div>
               </div>
             </div>
