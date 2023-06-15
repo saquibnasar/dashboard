@@ -6,6 +6,8 @@ import ReactPlayer from "react-player/youtube";
 export default function UserProfile() {
   const { userProfileId } = useParams();
   const [data, setData] = useState();
+  const [isCopy, setIsCopy] = useState("Copy");
+  const [isShareClicked, setIsShareClicked] = useState(false);
   useEffect(() => {
     fetch(
       `https://7drkndiu7g.execute-api.ap-south-1.amazonaws.com/v1/previewprofile/${userProfileId}`
@@ -13,56 +15,43 @@ export default function UserProfile() {
       .then((res) => res.json())
       .then((data) => {
         setData(data);
-        console.log(data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [1]);
-
+  window.addEventListener("click", function (e) {
+    if (
+      document.getElementById("share_link") &&
+      document.getElementById("share_link").contains(e.target)
+    ) {
+      if (!document.getElementById("share_link-container").contains(e.target)) {
+        setIsShareClicked(false);
+      }
+    }
+  });
   return (
     <>
       {data ? (
         <section className="userProile hero main-container p-relative">
-          <div className="logo-only">
-            <img className="img-fluid w-100" src="/bguserProfile.png" alt="" />
-          </div>
-          <button className="btn-dot">
-            <svg width="16" height="16" viewBox="0 0 16 16">
-              <path
-                fill="black"
-                stroke="black"
-                d="M12.6661 7.33348C12.2979 7.33348 11.9994 7.63195 11.9994 8.00014C11.9994 8.36833 12.2979 8.66681 12.6661 8.66681C13.0343 8.66681 13.3328 8.36833 13.3328 8.00014C13.3328 7.63195 13.0343 7.33348 12.6661 7.33348Z"
-              ></path>
-              <path
-                fill="black"
-                stroke="black"
-                d="M8.00057 7.33348C7.63238 7.33348 7.3339 7.63195 7.3339 8.00014C7.3339 8.36833 7.63238 8.66681 8.00057 8.66681C8.36876 8.66681 8.66724 8.36833 8.66724 8.00014C8.66724 7.63195 8.36876 7.33348 8.00057 7.33348Z"
-              ></path>
-              <path
-                fill="black"
-                stroke="black"
-                d="M3.33333 7.33348C2.96514 7.33348 2.66667 7.63195 2.66667 8.00014C2.66667 8.36833 2.96514 8.66681 3.33333 8.66681C3.70152 8.66681 4 8.36833 4 8.00014C4 7.63195 3.70152 7.33348 3.33333 7.33348Z"
-              ></path>
-            </svg>
-          </button>
+          {isShareClicked ? (
+            <div className="share_link" id="share_link">
+              <div className="share_link-container" id="share_link-container">
+                <div className="share_link-close">
+                  <p className="sc-hKgILt gRrZhT">Share this flax</p>
 
-          <div data-testid="ModalChildrenWrapper" class="share_link">
-            <div class="share_link-container">
-              <div class="">
-                <div class="">
-                  <p class="sc-hKgILt gRrZhT">Share this Linktree</p>
-                </div>
-                <div class="sc-bdfBwQ iWJNRb">
-                  <button class="sc-pFZIQ sc-eLgOdN fRlsIx ejJoEn">
-                    <span class="sr-only">Close</span>
+                  <button
+                    className="share_link-close-btn"
+                    onClick={() => setIsShareClicked(false)}
+                  >
+                    {/* <span className="sr-only">Close</span> */}
                     <svg
                       width="16"
                       height="16"
                       viewBox="0 0 16 16"
                       data-testid="CloseButton"
-                      enable-background="new 0 0 24 24"
-                      class="sc-gKsewC iPWGYb"
+                      enableBackground="new 0 0 24 24"
+                      className="sc-gKsewC iPWGYb"
                     >
                       <path
                         d="M13.3536 3.35357L13.7072 3.00001L13.0001 2.29291L12.6465 2.64646L13.3536 3.35357ZM2.64652 12.6465L2.29297 13L3.00008 13.7071L3.35363 13.3536L2.64652 12.6465ZM3.35363 2.64646L3.00008 2.29291L2.29297 3.00001L2.64652 3.35357L3.35363 2.64646ZM12.6465 13.3536L13.0001 13.7071L13.7072 13L13.3536 12.6465L12.6465 13.3536ZM12.6465 2.64646L2.64652 12.6465L3.35363 13.3536L13.3536 3.35357L12.6465 2.64646ZM2.64652 3.35357L12.6465 13.3536L13.3536 12.6465L3.35363 2.64646L2.64652 3.35357Z"
@@ -71,27 +60,15 @@ export default function UserProfile() {
                     </svg>
                   </button>
                 </div>
-              </div>
-              <div class="sc-bdfBwQ hStJuE">
-                <p class="sc-hKgILt ibLhvA"></p>
-              </div>
-              <div class="sc-bdfBwQ XXzWu">
-                <div
-                  data-testid="ShareModal-ShareList"
-                  class="sc-bdfBwQ sc-bTvRPi jAmcnV cbDGod"
-                >
-                  <a
-                    target="_blank"
-                    data-testid="ShareModal-ShareLink"
-                    class="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
-                    href="https://www.facebook.com/sharer.php?u=https://linktr.ee/hbo?utm_source=linktree_profile_share&amp;ltsid=aa9b2afa-c835-474f-ace7-04de71c29ac5"
-                  >
-                    <div class="sc-bdfBwQ sc-gsTCUz gSiqCA bhdLno">
+
+                <div className="share_link-links">
+                  <a target="_blank" className="" href="/">
+                    <div className="d-flex align-items-center gap-3">
                       <svg
                         viewBox="0 0 24 24"
                         data-testid="ShareIcon-facebook"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC fzJjte"
+                        enableBackground="new 0 0 24 24"
+                        className="sc-gKsewC fzJjte"
                       >
                         <rect
                           width="24"
@@ -104,39 +81,37 @@ export default function UserProfile() {
                           fill="white"
                         ></path>
                       </svg>
-                      <div class="sc-bdfBwQ sc-gsTCUz dknfFV bhdLno">
-                        <p class="sc-hKgILt gRrZhT">Share on Facebook</p>
-                      </div>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC iPWGYb"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
-                          fill="black"
-                        ></path>
-                      </svg>
+                      <p className="sc-hKgILt gRrZhT">Share on Facebook</p>
                     </div>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      enableBackground="new 0 0 24 24"
+                      className="sc-gKsewC iPWGYb"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
+                        fill="black"
+                      ></path>
+                    </svg>
                   </a>
                   <a
                     target="_blank"
                     data-testid="ShareModal-ShareLink"
-                    class="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
+                    className="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
                     href="https://www.linkedin.com/sharing/share-offsite/?url=https://linktr.ee/hbo?utm_source=linktree_profile_share&amp;ltsid=aa9b2afa-c835-474f-ace7-04de71c29ac5"
                   >
-                    <div class="sc-bdfBwQ sc-gsTCUz gSiqCA bhdLno">
+                    <div className="d-flex align-items-center gap-3">
                       <svg
                         viewBox="0 0 24 24"
                         data-testid="ShareIcon-linkedin"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC fzJjte"
+                        enableBackground="new 0 0 24 24"
+                        className="sc-gKsewC fzJjte"
                       >
-                        <g clip-path="url(#clip0_657_585)">
+                        <g clipPath="url(#clip0_657_585)">
                           <rect
                             y="0.000488281"
                             width="24"
@@ -158,39 +133,37 @@ export default function UserProfile() {
                           </clipPath>
                         </defs>
                       </svg>
-                      <div class="sc-bdfBwQ sc-gsTCUz dknfFV bhdLno">
-                        <p class="sc-hKgILt gRrZhT">Share on LinkedIn</p>
-                      </div>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC iPWGYb"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
-                          fill="black"
-                        ></path>
-                      </svg>
+                      <p className="sc-hKgILt gRrZhT">Share on LinkedIn</p>
                     </div>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      enableBackground="new 0 0 24 24"
+                      className="sc-gKsewC iPWGYb"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
+                        fill="black"
+                      ></path>
+                    </svg>
                   </a>
                   <a
                     target="_blank"
                     data-testid="ShareModal-ShareLink"
-                    class="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
+                    className="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
                     href="https://twitter.com/intent/tweet?text=Check out this Linktree! - https://linktr.ee/hbo?utm_source=linktree_profile_share&amp;ltsid=aa9b2afa-c835-474f-ace7-04de71c29ac5"
                   >
-                    <div class="sc-bdfBwQ sc-gsTCUz gSiqCA bhdLno">
+                    <div className="d-flex align-items-center gap-3">
                       <svg
                         viewBox="0 0 24 24"
                         data-testid="ShareIcon-twitter"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC fzJjte"
+                        enableBackground="new 0 0 24 24"
+                        className="sc-gKsewC fzJjte"
                       >
-                        <g clip-path="url(#clip0_657_1097)">
+                        <g clipPath="url(#clip0_657_1097)">
                           <rect
                             y="0.000854492"
                             width="24"
@@ -212,39 +185,38 @@ export default function UserProfile() {
                           </clipPath>
                         </defs>
                       </svg>
-                      <div class="sc-bdfBwQ sc-gsTCUz dknfFV bhdLno">
-                        <p class="sc-hKgILt gRrZhT">Share on Twitter</p>
-                      </div>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC iPWGYb"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
-                          fill="black"
-                        ></path>
-                      </svg>
+
+                      <p className="sc-hKgILt gRrZhT">Share on Twitter</p>
                     </div>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      enableBackground="new 0 0 24 24"
+                      className="sc-gKsewC iPWGYb"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
+                        fill="black"
+                      ></path>
+                    </svg>
                   </a>
                   <a
                     target="_blank"
                     data-testid="ShareModal-ShareLink"
-                    class="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
+                    className="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
                     href="https://wa.me/?text=Check out this Linktree! - https://linktr.ee/hbo?utm_source=linktree_profile_share&amp;ltsid=aa9b2afa-c835-474f-ace7-04de71c29ac5"
                   >
-                    <div class="sc-bdfBwQ sc-gsTCUz gSiqCA bhdLno">
+                    <div className="d-flex align-items-center gap-3">
                       <svg
                         viewBox="0 0 24 24"
                         data-testid="ShareIcon-whatsapp"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC fzJjte"
+                        enableBackground="new 0 0 24 24"
+                        className="sc-gKsewC fzJjte"
                       >
-                        <g clip-path="url(#clip0_657_572)">
+                        <g clipPath="url(#clip0_657_572)">
                           <rect
                             y="0.0012207"
                             width="24"
@@ -253,8 +225,8 @@ export default function UserProfile() {
                             fill="#00E676"
                           ></rect>
                           <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
+                            fillRule="evenodd"
+                            clipRule="evenodd"
                             d="M16.201 7.74608C15.0805 6.61991 13.5866 6.00122 11.9957 6.00122C8.71989 6.00122 6.05132 8.66984 6.04847 11.9457C6.04847 12.9949 6.32217 14.0156 6.84105 14.9194L6 18.0014L9.15324 17.1746C10.0228 17.6479 11.0007 17.8988 11.9957 17.8988H11.9986C15.2744 17.8988 17.943 15.2302 17.9458 11.9514C17.943 10.3634 17.3243 8.86941 16.201 7.74608ZM11.9957 16.8924C11.1062 16.8924 10.2366 16.6529 9.47826 16.2024L9.29865 16.0941L7.42837 16.5844L7.9273 14.7598L7.81041 14.5716C7.31433 13.7847 7.05488 12.8752 7.05488 11.9429C7.05488 9.22295 9.27299 7.0048 11.9986 7.0048C13.3186 7.0048 14.5588 7.52085 15.4939 8.45315C16.4262 9.38831 16.9394 10.6285 16.9394 11.9486C16.9366 14.6771 14.7185 16.8924 11.9957 16.8924ZM14.7071 13.1917C14.5588 13.1175 13.8289 12.7583 13.6921 12.707C13.5552 12.6585 13.4555 12.6328 13.3585 12.7811C13.2587 12.9294 12.9736 13.2658 12.8881 13.3627C12.8026 13.4625 12.7142 13.4739 12.5659 13.3998C12.4177 13.3257 11.9387 13.1688 11.3713 12.6614C10.9294 12.2679 10.6329 11.7804 10.5445 11.6321C10.459 11.4839 10.536 11.404 10.6101 11.3299C10.6757 11.2643 10.7584 11.156 10.8325 11.0704C10.9066 10.9849 10.9323 10.9222 10.9808 10.8224C11.0292 10.7226 11.0064 10.6371 10.9694 10.563C10.9323 10.4888 10.6358 9.7561 10.5103 9.45959C10.3906 9.16878 10.268 9.20869 10.1768 9.20584C10.0912 9.20014 9.99145 9.20014 9.89166 9.20014C9.79187 9.20014 9.63222 9.2372 9.49537 9.38546C9.35852 9.53371 8.97648 9.89295 8.97648 10.6257C8.97648 11.3584 9.50962 12.0626 9.58375 12.1624C9.65788 12.2622 10.6301 13.7619 12.1212 14.4062C12.4747 14.5602 12.7512 14.6514 12.9679 14.7198C13.3243 14.8339 13.6465 14.8168 13.9031 14.7797C14.1882 14.7369 14.7812 14.4205 14.9066 14.0726C15.0292 13.7248 15.0292 13.4283 14.9922 13.3656C14.9551 13.3028 14.8553 13.2658 14.7071 13.1917Z"
                             fill="white"
                           ></path>
@@ -268,39 +240,38 @@ export default function UserProfile() {
                           </clipPath>
                         </defs>
                       </svg>
-                      <div class="sc-bdfBwQ sc-gsTCUz dknfFV bhdLno">
-                        <p class="sc-hKgILt gRrZhT">Share via WhatsApp</p>
-                      </div>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC iPWGYb"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
-                          fill="black"
-                        ></path>
-                      </svg>
+
+                      <p className="sc-hKgILt gRrZhT">Share via WhatsApp</p>
                     </div>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      enableBackground="new 0 0 24 24"
+                      className="sc-gKsewC iPWGYb"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
+                        fill="black"
+                      ></path>
+                    </svg>
                   </a>
                   <a
                     target="_blank"
                     data-testid="ShareModal-ShareLink"
-                    class="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
+                    className="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
                     href="https://www.messenger.com/new"
                   >
-                    <div class="sc-bdfBwQ sc-gsTCUz gSiqCA bhdLno">
+                    <div className="d-flex align-items-center gap-3">
                       <svg
                         viewBox="0 0 24 24"
                         data-testid="ShareIcon-messenger"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC fzJjte"
+                        enableBackground="new 0 0 24 24"
+                        className="sc-gKsewC fzJjte"
                       >
-                        <g clip-path="url(#clip0_657_559)">
+                        <g clipPath="url(#clip0_657_559)">
                           <rect
                             y="0.00170898"
                             width="24"
@@ -309,14 +280,14 @@ export default function UserProfile() {
                             fill="#F1F1F1"
                           ></rect>
                           <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
+                            fillRule="evenodd"
+                            clipRule="evenodd"
                             d="M12 6.00171C8.62002 6.00171 6 8.4776 6 11.8218C6 13.5711 6.71688 15.0826 7.88434 16.1267C7.98234 16.2144 8.0415 16.3373 8.04552 16.4688L8.0782 17.5361C8.08864 17.8765 8.44029 18.0981 8.75181 17.9605L9.94273 17.4348C10.0437 17.3903 10.1568 17.382 10.2632 17.4113C10.8104 17.5618 11.3929 17.6419 12 17.6419C15.38 17.6419 18 15.166 18 11.8218C18 8.4776 15.38 6.00171 12 6.00171Z"
                             fill="url(#paint0_radial_657_559)"
                           ></path>
                           <path
-                            fill-rule="evenodd"
-                            clip-rule="evenodd"
+                            fillRule="evenodd"
+                            clipRule="evenodd"
                             d="M8.39691 13.5238L10.1594 10.7275C10.4398 10.2827 11.0401 10.1719 11.4608 10.4874L12.8626 11.5388C12.9912 11.6353 13.1682 11.6347 13.2962 11.5375L15.1895 10.1007C15.4421 9.90896 15.772 10.2114 15.6029 10.4797L13.8404 13.276C13.56 13.7208 12.9596 13.8316 12.539 13.5161L11.1372 12.4647C11.0086 12.3682 10.8316 12.3688 10.7035 12.466L8.81031 13.9028C8.55762 14.0945 8.22777 13.7921 8.39691 13.5238Z"
                             fill="white"
                           ></path>
@@ -330,10 +301,10 @@ export default function UserProfile() {
                             gradientUnits="userSpaceOnUse"
                             gradientTransform="translate(8.3097 17.9377) scale(13.0752 13.0754)"
                           >
-                            <stop stop-color="#0099FF"></stop>
-                            <stop offset="0.609754" stop-color="#A033FF"></stop>
-                            <stop offset="0.934823" stop-color="#FF5280"></stop>
-                            <stop offset="1" stop-color="#FF7061"></stop>
+                            <stop stopColor="#0099FF"></stop>
+                            <stop offset="0.609754" stopColor="#A033FF"></stop>
+                            <stop offset="0.934823" stopColor="#FF5280"></stop>
+                            <stop offset="1" stopColor="#FF7061"></stop>
                           </radialGradient>
                           <clipPath id="clip0_657_559">
                             <path
@@ -343,37 +314,36 @@ export default function UserProfile() {
                           </clipPath>
                         </defs>
                       </svg>
-                      <div class="sc-bdfBwQ sc-gsTCUz dknfFV bhdLno">
-                        <p class="sc-hKgILt gRrZhT">Share via Messenger</p>
-                      </div>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC iPWGYb"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
-                          fill="black"
-                        ></path>
-                      </svg>
+
+                      <p className="sc-hKgILt gRrZhT">Share via Messenger</p>
                     </div>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      enableBackground="new 0 0 24 24"
+                      className="sc-gKsewC iPWGYb"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
+                        fill="black"
+                      ></path>
+                    </svg>
                   </a>
                   <a
                     target="_blank"
                     data-testid="ShareModal-ShareLink"
-                    class="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
+                    className="sc-pFZIQ sc-kIeTtH fWbLmv akIsE"
                     href="mailto:?subject= Check out this Linktree! &amp;body= Check out this Linktree! - https://linktr.ee/hbo?utm_source=linktree_profile_share&amp;ltsid=aa9b2afa-c835-474f-ace7-04de71c29ac5"
                   >
-                    <div class="sc-bdfBwQ sc-gsTCUz gSiqCA bhdLno">
+                    <div className="d-flex align-items-center gap-3">
                       <svg
                         viewBox="0 0 48 48"
                         data-testid="ShareIcon-email"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC fzJjte"
+                        enableBackground="new 0 0 24 24"
+                        className="sc-gKsewC fzJjte"
                       >
                         <rect
                           y="0.000488281"
@@ -387,69 +357,89 @@ export default function UserProfile() {
                           fill="white"
                         ></path>
                         <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
+                          fillRule="evenodd"
+                          clipRule="evenodd"
                           d="M35 29.3181C34.9978 31.349 33.3519 32.9949 31.321 32.9971H17.679C15.6481 32.9949 14.0022 31.349 14 29.3181V19.6761C14.0022 17.6451 15.6481 15.9993 17.679 15.9971H31.321C33.3519 15.9993 34.9978 17.6451 35 19.6761V29.3181ZM17.679 16.9971C16.2001 16.9987 15.0017 18.1972 15 19.6761V29.3181C15.0017 30.797 16.2001 31.9954 17.679 31.9971H31.321C32.7999 31.9954 33.9983 30.797 34 29.3181V19.6761C33.9983 18.1972 32.7999 16.9987 31.321 16.9971H17.679Z"
                           fill="white"
                         ></path>
                       </svg>
-                      <div class="sc-bdfBwQ sc-gsTCUz dknfFV bhdLno">
-                        <p class="sc-hKgILt gRrZhT">Share via Email</p>
-                      </div>
-                      <svg
-                        width="16"
-                        height="16"
-                        viewBox="0 0 16 16"
-                        enable-background="new 0 0 24 24"
-                        class="sc-gKsewC iPWGYb"
-                      >
-                        <path
-                          fill-rule="evenodd"
-                          clip-rule="evenodd"
-                          d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
-                          fill="black"
-                        ></path>
-                      </svg>
+
+                      <p className="sc-hKgILt gRrZhT">Share via Email</p>
                     </div>
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      enableBackground="new 0 0 24 24"
+                      className="sc-gKsewC iPWGYb"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M4.70714 1.29297L5.06069 1.64652L11.0607 7.64652V8.35363L5.06069 14.3536L4.70714 14.7072L4.00003 14.0001L4.35358 13.6465L10 8.00008L4.35358 2.35363L4.00003 2.00008L4.70714 1.29297Z"
+                        fill="black"
+                      ></path>
+                    </svg>
                   </a>
                 </div>
-              </div>
-              <div class="sc-bdfBwQ sc-gsTCUz jzOSdo bhdLno">
-                <button
-                  data-testid="UrlClipboardCopy"
-                  width="92%"
-                  height="60px"
-                  class="sc-pFZIQ sc-dFJsGO bdICzV liTBVH share-on-socials__copy-to-clipboard-button"
-                >
-                  <div class="sc-bdfBwQ sc-gsTCUz bAZRHk bhdLno">
-                    <div
-                      data-testid="UrlPreview"
-                      class="sc-bdfBwQ sc-gsTCUz gfalPI bhdLno"
-                    >
-                      <div class="sc-bdfBwQ dySNLi">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 25"
-                          height="25"
-                        >
-                          <path
-                            d="M13.5108 5.85343L17.5158 1.73642L19.8404 4.11701L15.6393 8.12199H21.5488V11.4268H15.6113L19.8404 15.5345L17.5158 17.8684L11.7744 12.099L6.03299 17.8684L3.70842 15.5438L7.93745 11.4361H2V8.12199H7.90944L3.70842 4.11701L6.03299 1.73642L10.038 5.85343V0H13.5108V5.85343ZM10.038 16.16H13.5108V24.0019H10.038V16.16Z"
-                            fill="#43E660"
-                          ></path>
-                        </svg>
-                      </div>
-                      <div class="sc-bdfBwQ sc-gsTCUz EnttX bhdLno">
-                        <p class="sc-hKgILt kHfQJy">linktr.ee/</p>
-                        <p class="sc-hKgILt kHfQJy">hbo</p>
-                      </div>
+
+                <div className="px-12">
+                  <button
+                    className="btn-copy mt-4"
+                    onClick={() => {
+                      navigator.clipboard.writeText("http://localhost:3000/a");
+                      setIsCopy("Copied!");
+                      setTimeout(() => {
+                        setIsCopy("Copy");
+                      }, 900);
+                    }}
+                  >
+                    <div className="d-flex align-items-center gap-3">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 25"
+                        height="25"
+                      >
+                        <path
+                          d="M13.5108 5.85343L17.5158 1.73642L19.8404 4.11701L15.6393 8.12199H21.5488V11.4268H15.6113L19.8404 15.5345L17.5158 17.8684L11.7744 12.099L6.03299 17.8684L3.70842 15.5438L7.93745 11.4361H2V8.12199H7.90944L3.70842 4.11701L6.03299 1.73642L10.038 5.85343V0H13.5108V5.85343ZM10.038 16.16H13.5108V24.0019H10.038V16.16Z"
+                          fill="#43E660"
+                        ></path>
+                      </svg>
+                      <p className="">flax.ai/a</p>
                     </div>
-                    <div class="sc-bdfBwQ sc-gsTCUz sc-bsipQr fEQoVx bhdLno fbzSf">
-                      <p class="sc-hKgILt kHfQJy">Copy</p>
-                    </div>
-                  </div>
-                </button>
+                    <p className={isCopy === "Copied!" ? "Copied" : ""}>
+                      {isCopy}
+                    </p>
+                  </button>
+                </div>
               </div>
             </div>
+          ) : (
+            ""
+          )}
+
+          <button className="btn-dot" onClick={() => setIsShareClicked(true)}>
+            <svg width="16" height="16" viewBox="0 0 16 16">
+              <path
+                fill="black"
+                stroke="black"
+                d="M12.6661 7.33348C12.2979 7.33348 11.9994 7.63195 11.9994 8.00014C11.9994 8.36833 12.2979 8.66681 12.6661 8.66681C13.0343 8.66681 13.3328 8.36833 13.3328 8.00014C13.3328 7.63195 13.0343 7.33348 12.6661 7.33348Z"
+              ></path>
+              <path
+                fill="black"
+                stroke="black"
+                d="M8.00057 7.33348C7.63238 7.33348 7.3339 7.63195 7.3339 8.00014C7.3339 8.36833 7.63238 8.66681 8.00057 8.66681C8.36876 8.66681 8.66724 8.36833 8.66724 8.00014C8.66724 7.63195 8.36876 7.33348 8.00057 7.33348Z"
+              ></path>
+              <path
+                fill="black"
+                stroke="black"
+                d="M3.33333 7.33348C2.96514 7.33348 2.66667 7.63195 2.66667 8.00014C2.66667 8.36833 2.96514 8.66681 3.33333 8.66681C3.70152 8.66681 4 8.36833 4 8.00014C4 7.63195 3.70152 7.33348 3.33333 7.33348Z"
+              ></path>
+            </svg>
+          </button>
+
+          <div className="logo-only">
+            <img className="img-fluid w-100" src="/bguserProfile.png" alt="" />
           </div>
           <div className="container">
             <div className="header_content text-center">
@@ -461,7 +451,6 @@ export default function UserProfile() {
               <h3>Employee ID - 007</h3>
               <button className="btn">Save My Contact </button>
             </div>
-
             <SocialLink />
             <div className="_username__featuredLink__MeYB7">
               <h3>
@@ -479,19 +468,6 @@ export default function UserProfile() {
                         playing={true}
                         className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu reactYoutube"
                         height="100%"
-                        // onClickPreview={() => {
-                        //   if (theme === "neotronic") {
-                        //     const youtubeText_display = document.querySelector(
-                        //       ".youtube-text_display"
-                        //     );
-                        //     const youtubeBtn_display = document.querySelector(
-                        //       ".youtube-btn_display"
-                        //     );
-
-                        //     youtubeText_display.classList.add("d-none");
-                        //     youtubeBtn_display.classList.add("d-none");
-                        //   }
-                        // }}
                         controls
                       />
                     </div>
