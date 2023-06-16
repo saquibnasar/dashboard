@@ -303,7 +303,7 @@
       z-index: 1;
       transition: 0.4s;
       @include media992 {
-        right: 5%;
+        right: -95%;
         top: 2000%;
       }
       a {
@@ -502,7 +502,8 @@
     .flax_link.flaxlink {
       right: 5%;
       @include media992 {
-        top: 121%;
+        top: 11%;
+        right: -95%;
       }
     }
 
