@@ -39,7 +39,7 @@
             background: $white-color;
             border: none;
             border-radius: 80px;
-            padding: 14px 60px;
+            padding: 14px 26px;
             // margin-top: 48px;
             cursor: pointer;
             transition: 0.3s;
@@ -73,6 +73,9 @@
             gap: 12px;
             display: flex;
             flex-wrap: wrap;
+            @include media430 {
+              flex-direction: column;
+            }
             button {
               font-family: "Outfit";
               font-style: normal;
@@ -141,6 +144,23 @@
             }
           }
         }
+      }
+      .btn-save {
+        font-family: "Outfit";
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 18px;
+        color: #4a4a4a;
+        background: #fff;
+        border: none;
+        border-radius: 80px;
+        padding: 14px 60px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn-save:hover {
+        background: $primary;
+        color: $white-color;
       }
     }
   }

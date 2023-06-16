@@ -96,7 +96,7 @@
     }
     .homePage_container-bottom {
       display: grid;
-      grid-template-columns: auto 360px;
+      grid-template-columns: auto 280px;
       margin-top: 36px;
 
       @include media768 {
@@ -106,7 +106,11 @@
         padding-bottom: 60px;
         border-left: 3px solid #fff;
         padding: 0 24px;
-        P {
+        @include media768 {
+          border-top: 3px solid #fff;
+          border-left: none;
+        }
+        .btn-preview {
           font-family: "Inter";
           font-style: normal;
           font-weight: 400;
@@ -123,11 +127,12 @@
           padding: 8px 20px;
           box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
           transition: 0.3s;
+          border: none;
           svg {
             margin-left: 4px;
           }
         }
-        p:hover {
+        .btn-preview:hover {
           background: $primary;
           color: $white-color;
           box-shadow: none;
@@ -138,137 +143,83 @@
           box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
           padding: 0px;
           margin: auto;
-          width: 311px;
-          height: 59%;
-          overflow: hidden;
+          width: 232px;
+          height: 530px;
+          overflow-x: hidden;
           position: relative;
+          overflow-y: scroll;
           @include media768 {
-            width: 308px;
+            width: 312px;
             height: 628px;
           }
           @include media576 {
-            width: 222px;
-            height: 450px;
+            width: 273px;
+            height: 628px;
           }
-          @include media400 {
+          @include media430 {
             width: 203px;
-            height: 420px;
+            height: 556px;
           }
-          .signup_phone-left {
+          .userProile {
+            width: 567px;
+            transform: scale(0.41) translate(-72%, -72%); /* overflow: scroll; */ /* height: 50%; */ /* height: 1537px; */
+            overflow: hidden;
             position: absolute;
-            top: 21%;
-            left: -3px;
-            display: flex;
-            flex-direction: column;
-
-            span:nth-child(1) {
-              width: 3px;
-              height: 30px;
-              background: #333333;
-              box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
-              border-radius: 1px 0px 0px 1px;
-              display: inline-block;
-            }
-            span:nth-child(2) {
-              width: 3px;
-              height: 62px;
-              background: #333333;
-              box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
-              border-radius: 1px 0px 0px 1px;
-              display: inline-block;
-              margin-top: 24px;
-              margin-bottom: 18px;
-            }
-            span:nth-child(3) {
-              width: 3px;
-              height: 62px;
-              background: #333333;
-              box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
-              display: inline-block;
-            }
-          }
-          .signup_phone-right {
-            position: absolute;
-            top: 30%;
-            right: -3px;
-            span {
-              width: 3px;
-              height: 100px;
-              background: #333333;
-              box-shadow: inset -1px 0px 2px rgba(255, 255, 255, 0.5);
-              display: inline-block;
-            }
-          }
-          iframe {
-            border: none;
-            border-radius: 15px;
-            transform: scale(0.75) translateX(-17%) translateY(-17%)
-              translate3d(0px, 0px, 0px);
             @include media768 {
-              transform: scale(0.7) translateX(-20%) translateY(-21%)
-                translate3d(0px, 0px, 0px);
+              transform: scale(0.55) translate(-41%, -41%);
             }
             @include media576 {
-              transform: scale(0.5) translateX(-48%) translateY(-49%)
-                translate3d(0px, 0px, 0px);
+              transform: scale(0.48) translate(-54%, -54%);
             }
-            @include media400 {
-              transform: scale(0.47) translateX(-55%) translateY(-56%)
-                translate3d(0px, 0px, 0px);
+            @include media430 {
+              transform: scale(0.36) translate(-89%, -89%);
             }
           }
-          iframe::-webkit-scrollbar {
-            display: none;
-            width: 10px;
-          }
-          // background: url(../../public/phone.png);
-          // border-radius: 40px;
-          // width: 302px;
-          // height: 480px;
-          // padding: 24px 0;
-          // margin: auto;
-          .addlink_phone-frame_user {
-            width: 70px;
-            height: 70px;
-            background: #f7f7f7;
-            color: #a3a3a3;
-            font-size: 1.5rem;
-            display: flex;
-            border-radius: 50%;
-            justify-content: center;
-            align-items: center;
-            margin: 0px auto;
-            margin-bottom: 16px;
-          }
+          // .signup_phone-left {
+          //   position: absolute;
+          //   top: 21%;
+          //   left: -3px;
+          //   display: flex;
+          //   flex-direction: column;
 
-          h3 {
-            font-weight: 500;
-            font-size: 22px;
-            line-height: 18px;
-            color: $white-color;
-            margin-top: 10px;
-          }
-          h4 {
-            font-family: $primary-font;
-            font-weight: 400;
-            font-size: 16px;
-            line-height: 18px;
-            color: $white-color;
-            margin-top: 10px;
-          }
-          .signup_phone-boxs {
-            display: flex;
-            flex-direction: column;
-            gap: 9px;
-            margin-top: 12px;
-            .signup_phone-box {
-              background: #2e3239;
-              border-radius: 20px;
-              height: 45px;
-              width: 80%;
-              margin: auto;
-            }
-          }
+          //   span:nth-child(1) {
+          //     width: 3px;
+          //     height: 30px;
+          //     background: #333333;
+          //     box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+          //     border-radius: 1px 0px 0px 1px;
+          //     display: inline-block;
+          //   }
+          //   span:nth-child(2) {
+          //     width: 3px;
+          //     height: 62px;
+          //     background: #333333;
+          //     box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+          //     border-radius: 1px 0px 0px 1px;
+          //     display: inline-block;
+          //     margin-top: 24px;
+          //     margin-bottom: 18px;
+          //   }
+          //   span:nth-child(3) {
+          //     width: 3px;
+          //     height: 62px;
+          //     background: #333333;
+          //     box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+          //     display: inline-block;
+          //   }
+          // }
+          // .signup_phone-right {
+          //   position: absolute;
+          //   top: 30%;
+          //   right: -3px;
+          //   span {
+          //     width: 3px;
+          //     height: 100px;
+          //     background: #333333;
+          //     box-shadow: inset -1px 0px 2px rgba(255, 255, 255, 0.5);
+          //     display: inline-block;
+          //   }
+          // }
         }
       }
 
@@ -389,6 +340,9 @@
         }
       }
     }
+  }
+  .homePage_container:has(.setting) {
+    height: unset;
   }
   .homePage_container::-webkit-scrollbar {
     display: none;

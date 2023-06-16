@@ -162,7 +162,7 @@
     border: 1px solid #ffffff;
     backdrop-filter: blur(5px);
     border-radius: 20px;
-    padding: 20px 0;
+    padding: 20px 20px;
     margin-top: -80px;
     h1 {
       font-weight: 600;
@@ -177,6 +177,23 @@
     h3 {
       font-weight: 400;
       font-size: 16px;
+    }
+    h4 {
+      font-weight: 500;
+      font-size: 22px;
+    }
+    h5 {
+      font-weight: 400;
+      font-size: 16px;
+      margin-top: 6px;
+    }
+    span {
+      background: rgba(58, 58, 58, 0.2);
+      height: 1px;
+      width: 100%;
+      display: block;
+      margin-top: 14px;
+      margin-bottom: 10px;
     }
     .btn {
       background: $white-color;
@@ -304,6 +321,15 @@
 }
 .hero::-webkit-scrollbar {
   display: none;
+}
+.homePage:has(.hero) {
+  .header_content {
+    h2,
+    h3,
+    h5 {
+      font-size: 20px;
+    }
+  }
 }
 body:has(.share_link) {
   height: 100%;

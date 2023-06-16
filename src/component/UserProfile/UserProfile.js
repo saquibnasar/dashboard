@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import SocialLink from "../SocialLink";
 import Footer from "../Footer";
 import ReactPlayer from "react-player/youtube";
-export default function UserProfile() {
+export default function UserProfile(props) {
   const { userProfileId } = useParams();
   const [data, setData] = useState();
   const [isCopy, setIsCopy] = useState("Copy");
@@ -445,10 +445,29 @@ export default function UserProfile() {
             <div className="header_content text-center">
               <img className="img-fluid" src="/qrcode.png" alt="" />
 
-              <h1>Harsh Vardhan</h1>
-
-              <h2>Designation</h2>
-              <h3>Employee ID - 007</h3>
+              <h1>
+                {props.formData && props.formData.username
+                  ? props.formData.username
+                  : "user name"}
+              </h1>
+              <h2>
+                {props.formData && props.formData.designation
+                  ? props.formData.designation
+                  : "Designation"}
+              </h2>
+              <h3>
+                Employee ID -{" "}
+                {props.formData && props.formData.employeeId
+                  ? props.formData.employeeId
+                  : "xxxxxxxxx"}
+              </h3>
+              <span></span>
+              <h4 className="">About ComXXXX</h4>
+              <h5>
+                {props.formData && props.formData.employeeBio
+                  ? props.formData.employeeBio
+                  : "user bio"}
+              </h5>
               <button className="btn">Save My Contact </button>
             </div>
             <SocialLink />

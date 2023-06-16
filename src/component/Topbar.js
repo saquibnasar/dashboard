@@ -19,7 +19,7 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function Topbar(props) {
-  const [isFlaxLink, setIsFlaxLink] = useState(false);
+  const [isFlaxLink, setIsFlaxLink] = useState("isflaxlink");
   const navigate = useNavigate();
 
   // window.addEventListener("click", function (e) {
@@ -40,7 +40,13 @@ export default function Topbar(props) {
   //   }
   // });
   const FlaxLink = () => {
-    setIsFlaxLink(!isFlaxLink);
+    setIsFlaxLink(
+      isFlaxLink === "isflaxlink"
+        ? "flaxlink"
+        : isFlaxLink === "flaxlink"
+        ? "isflaxlink"
+        : "flaxlink"
+    );
   };
 
   return (
@@ -184,7 +190,101 @@ export default function Topbar(props) {
                   />
                 </svg>
               </button>
-              {isFlaxLink ? (
+
+              <div className={`flax_link ${isFlaxLink}`}>
+                <a
+                  href="https://apps.apple.com/in/app/caard-digital-business-card/id1626948504"
+                  target="blank"
+                >
+                  <FontAwesomeIcon icon={faApple} />
+                </a>
+                <a
+                  href="https://play.google.com/store/apps/details?id=com.caard.caard_frontend_final"
+                  target="blank"
+                >
+                  <img
+                    className="img-fluid"
+                    src="/play-store-logo-33888.png"
+                    alt=""
+                  />
+                </a>
+                <a href="https://caard.mini.store/" target="blank">
+                  <FontAwesomeIcon icon={faShoppingCart} />
+                </a>
+                <a href="https://www.instagram.com/getflaxapp/" target="blank">
+                  <FontAwesomeIcon icon={faInstagram} />
+                </a>
+                <a href="https://twitter.com/Flaxai" target="blank">
+                  <FontAwesomeIcon icon={faTwitter} />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/flax-ai/"
+                  target="blank"
+                >
+                  <FontAwesomeIcon icon={faLinkedinIn} />
+                </a>
+                <a href="mailto:support@flax.ai" target="blank">
+                  <FontAwesomeIcon icon={faEnvelope} />
+                </a>
+                <a href="https://wa.me/+918171698717" target="blank">
+                  <FontAwesomeIcon icon={faWhatsapp} />
+                </a>
+                <a href="tel:+918171698717" target="blank">
+                  <FontAwesomeIcon icon={faPhone} />
+                </a>
+              </div>
+
+              {/* {isFlaxLink ? (
+                <div className="flax_link">
+                  <a
+                    href="https://apps.apple.com/in/app/caard-digital-business-card/id1626948504"
+                    target="blank"
+                  >
+                    <FontAwesomeIcon icon={faApple} />
+                  </a>
+                  <a
+                    href="https://play.google.com/store/apps/details?id=com.caard.caard_frontend_final"
+                    target="blank"
+                  >
+                    <img
+                      className="img-fluid"
+                      src="/play-store-logo-33888.png"
+                      alt=""
+                    />
+                  </a>
+                  <a href="https://caard.mini.store/" target="blank">
+                    <FontAwesomeIcon icon={faShoppingCart} />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/getflaxapp/"
+                    target="blank"
+                  >
+                    <FontAwesomeIcon icon={faInstagram} />
+                  </a>
+                  <a href="https://twitter.com/Flaxai" target="blank">
+                    <FontAwesomeIcon icon={faTwitter} />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/flax-ai/"
+                    target="blank"
+                  >
+                    <FontAwesomeIcon icon={faLinkedinIn} />
+                  </a>
+                  <a href="mailto:support@flax.ai" target="blank">
+                    <FontAwesomeIcon icon={faEnvelope} />
+                  </a>
+                  <a href="https://wa.me/+918171698717" target="blank">
+                    <FontAwesomeIcon icon={faWhatsapp} />
+                  </a>
+                  <a href="tel:+918171698717" target="blank">
+                    <FontAwesomeIcon icon={faPhone} />
+                  </a>
+                </div>
+              ) : (
+                ""
+              )} */}
+
+              {/* {isFlaxLink ? (
                 <div className="flax_link">
                   <a
                     href="https://apps.apple.com/in/app/caard-digital-business-card/id1626948504"
@@ -237,7 +337,7 @@ export default function Topbar(props) {
                 </div>
               ) : (
                 ""
-              )}
+              )} */}
             </div>
           </div>
         </nav>

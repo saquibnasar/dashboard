@@ -291,16 +291,20 @@
       box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
         0 2px 6px 2px rgba(60, 64, 67, 0.15);
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 1rem;
-      height: 230px;
-      padding: 1.5rem;
+      // height: 230px;
+      padding: 10px;
       position: absolute;
-      right: -0.5rem;
+      right: -117%;
       top: 109%;
-      width: 349px;
+      // width: 349px;
       z-index: 1;
-      transition: 0.3s;
+      transition: 0.4s;
+      @include media992 {
+        right: 5%;
+        top: 2000%;
+      }
       a {
         color: $text;
         display: flex;
@@ -311,12 +315,230 @@
         gap: 0.3rem;
         justify-content: center;
         text-align: center;
-        width: 89px;
+        // width: 89px;
+        background: #b1262b;
+        padding: 14px 18px;
+        border-radius: 10px;
+        cursor: pointer;
         svg {
-          color: $text;
+          // color: $text;
+          // font-size: 1.5rem;
+          color: #f1a8a0;
+          font-size: 1.25rem;
+        }
+      }
+      a:nth-child(2) {
+        color: $text;
+        display: flex;
+        flex-direction: column;
+        // font-family: Open Sans;
+        font-size: 16px;
+        font-weight: 400;
+        gap: 0.3rem;
+        justify-content: center;
+        text-align: center;
+        // width: 89px;
+        background: #fdfdfd;
+        padding: 14px 18px;
+        border-radius: 10px;
+        img {
+          width: 24px;
+        }
+
+        svg {
+          // color: $text;
+          // font-size: 1.5rem;
+          color: #f1a8a0;
+          font-size: 1.25rem;
+        }
+      }
+      a:nth-child(4) {
+        color: $text;
+        display: flex;
+        flex-direction: column;
+        // font-family: Open Sans;
+        font-size: 16px;
+        font-weight: 400;
+        gap: 0.3rem;
+        justify-content: center;
+        text-align: center;
+        // width: 89px;
+        background: $white-color;
+        padding: 14px 18px;
+        border-radius: 10px;
+        svg {
+          color: rgb(185, 50, 144);
           font-size: 1.5rem;
         }
       }
+      a:nth-child(3) {
+        color: $text;
+        display: flex;
+        flex-direction: column;
+        // font-family: Open Sans;
+        font-size: 16px;
+        font-weight: 400;
+        gap: 0.3rem;
+        justify-content: center;
+        text-align: center;
+        // width: 89px;
+        background: #1d1d1d;
+        padding: 14px 18px;
+        border-radius: 10px;
+        svg {
+          // color: $text;
+          // font-size: 1.5rem;
+          color: #ffffff;
+          font-size: 1.25rem;
+        }
+      }
+      a:nth-child(5) {
+        color: $text;
+        display: flex;
+        flex-direction: column;
+        // font-family: Open Sans;
+        font-size: 16px;
+        font-weight: 400;
+        gap: 0.3rem;
+        justify-content: center;
+        text-align: center;
+        // width: 89px;
+        background: #05aaf0;
+        padding: 14px 18px;
+        border-radius: 10px;
+        svg {
+          // color: $text;
+          // font-size: 1.5rem;
+          color: $white-color;
+          font-size: 1.25rem;
+        }
+      }
+      a:nth-child(6) {
+        color: $text;
+        display: flex;
+        flex-direction: column;
+        // font-family: Open Sans;
+        font-size: 16px;
+        font-weight: 400;
+        gap: 0.3rem;
+        justify-content: center;
+        text-align: center;
+        // width: 89px;
+        background: #0b66c2;
+        padding: 14px 18px;
+        border-radius: 10px;
+        svg {
+          // color: $text;
+          // font-size: 1.5rem;
+          color: $white-color;
+          font-size: 1.25rem;
+        }
+      }
+      a:nth-child(8) {
+        color: $text;
+        display: flex;
+        flex-direction: column;
+        // font-family: Open Sans;
+        font-size: 16px;
+        font-weight: 400;
+        gap: 0.3rem;
+        justify-content: center;
+        text-align: center;
+        // width: 89px;
+        background: #098d2f;
+        padding: 14px 18px;
+        border-radius: 10px;
+        svg {
+          // color: $text;
+          // font-size: 1.5rem;
+          color: $white-color;
+          font-size: 1.25rem;
+        }
+      }
+      a:nth-child(9) {
+        color: $text;
+        display: flex;
+        flex-direction: column;
+        // font-family: Open Sans;
+        font-size: 16px;
+        font-weight: 400;
+        gap: 0.3rem;
+        justify-content: center;
+        text-align: center;
+        // width: 89px;
+        background: #ff802c;
+        padding: 14px 18px;
+        border-radius: 10px;
+        svg {
+          // color: $text;
+          // font-size: 1.5rem;
+          color: $white-color;
+          font-size: 1.25rem;
+        }
+      }
+      a:nth-child(7) {
+        color: $text;
+        display: flex;
+        flex-direction: column;
+        // font-family: Open Sans;
+        font-size: 16px;
+        font-weight: 400;
+        gap: 0.3rem;
+        justify-content: center;
+        text-align: center;
+        // width: 89px;
+        background: #f5f5f5;
+        padding: 14px 18px;
+        border-radius: 10px;
+        svg {
+          // color: $text;
+          // font-size: 1.5rem;
+          color: red;
+          font-size: 1.25rem;
+        }
+      }
     }
+    .flax_link.flaxlink {
+      right: 5%;
+      @include media992 {
+        top: 121%;
+      }
+    }
+
+    // .flax_link {
+    //   align-items: center;
+    //   background: $secondary;
+    //   border: 1px solid rgba(0, 0, 0, 0.2);
+    //   border-radius: 8px;
+    //   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
+    //     0 2px 6px 2px rgba(60, 64, 67, 0.15);
+    //   display: flex;
+    //   flex-wrap: wrap;
+    //   gap: 1rem;
+    //   height: 230px;
+    //   padding: 1.5rem;
+    //   position: absolute;
+    //   right: -0.5rem;
+    //   top: 109%;
+    //   width: 349px;
+    //   z-index: 1;
+    //   transition: 0.3s;
+    //   a {
+    //     color: $text;
+    //     display: flex;
+    //     flex-direction: column;
+    //     // font-family: Open Sans;
+    //     font-size: 16px;
+    //     font-weight: 400;
+    //     gap: 0.3rem;
+    //     justify-content: center;
+    //     text-align: center;
+    //     width: 89px;
+    //     svg {
+    //       color: $text;
+    //       font-size: 1.5rem;
+    //     }
+    //   }
+    // }
   }
 }

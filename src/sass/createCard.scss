@@ -4,9 +4,12 @@
 @import "./mediaqueries.scss";
 
 .createCard {
-  height: 100vh;
+  // height: 100vh;
   background: #f0f0f0;
   display: flex;
+  @include media768 {
+    flex-direction: column;
+  }
   .signup_form-container {
     background: #1d203c;
     padding-top: 40px;
@@ -425,55 +428,73 @@
       }
     }
   }
+
   .signup_phone {
     min-width: 50%;
-    // padding-bottom: 100px;
     @include media768 {
-      display: none;
+      border-top: 3px solid #fff;
+      border-left: none;
     }
-    P {
-      font-family: $primary-font;
-      font-weight: 600;
-      font-size: 24px;
+    .btn-preview {
+      font-family: "Inter";
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
       line-height: 18px;
-      color: #587685;
-      margin: 38px 0;
+      color: $white-color;
+      border-radius: 80px;
+      display: inline-block;
+      cursor: pointer;
+      margin-top: 24px;
+      margin-bottom: 20px;
+      background: $white-color;
+      color: $text;
+      padding: 8px 20px;
+      box-shadow: 0px 3px 1px rgba(0, 0, 0, 0.2);
+      transition: 0.3s;
+      border: none;
+      svg {
+        margin-left: 4px;
+      }
+    }
+    .btn-preview:hover {
+      background: $primary;
+      color: $white-color;
+      box-shadow: none;
     }
     .signup_phone-container {
-      width: 320px;
-      padding-bottom: 24px;
+      background: #1f252f;
+      border-radius: 15px;
+      box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
+      padding: 0px;
       margin: auto;
-      height: unset;
-      .addlink_phone-frame_user {
-        width: 90px;
-        height: 90px;
-        font-size: 2rem;
+      width: 424px;
+      height: 720px;
+      position: relative;
+      overflow: scroll;
+      @include media992 {
+        width: 311px;
+        height: 700px;
+      }
+      @include media768 {
+        width: 312px;
+        height: 628px;
       }
 
-      h3 {
-        font-family: $primary-font;
-        margin-top: 16px;
-      }
-
-      // h4{
-      //   font-family: $primary-font;
-      //   font-style: normal;
-      //   font-weight: 600;
-      //   font-size: 17px;
-      //   line-height: 18px;
-      //   color: #121212;
-      //   margin-top: 13px;
-      // }
-      .signup_phone-boxs {
-        gap: 12px;
-        margin-top: 36px;
-        .signup_phone-box {
-          background: rgba(217, 217, 217, 0.2);
-          border-radius: 20px;
-          height: 45px;
-          width: 80%;
-          margin: auto;
+      .userProile {
+        width: 567px;
+        transform: scale(0.76) translate(-17%, -16%);
+        overflow: hidden;
+        position: absolute;
+        @include media992 {
+          transform: scale(0.55) translate(-41%, -41%);
         }
+        // @include media576 {
+        //   transform: scale(0.48) translate(-54%, -54%);
+        // }
+        // @include media430 {
+        //   transform: scale(0.36) translate(-89%, -89%);
+        // }
       }
     }
   }
@@ -482,9 +503,7 @@
   .setting {
     background: $secondary;
     .admin {
-      padding-left: 70px;
-      padding-right: 70px;
-      padding-top: 24px;
+      padding: 24px 70px;
       .signup_navbar-back {
         align-items: center;
         background: transparent;

@@ -3,11 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import UserProfile from "./UserProfile/UserProfile";
+import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
 export default function CreateCard() {
   const [formData, setFormData] = useState({
     username: "",
-    company: "",
     designation: "",
+    employeeId: "",
+    employeeBio: "",
   });
 
   const handleChange = (event) => {
@@ -68,12 +71,24 @@ export default function CreateCard() {
                   <input
                     type="text"
                     className="form-control"
-                    id="company"
+                    id="employeeId"
                     placeholder="Employee id"
-                    name="company"
+                    name="employeeId"
                     required
                     onChange={handleChange}
-                    value={formData.company}
+                    value={formData.employeeId}
+                  />
+                </div>
+                <div className="">
+                  <input
+                    type="text"
+                    className="form-control"
+                    id="employeeBio"
+                    placeholder="Employee bio"
+                    name="employeeBio"
+                    required
+                    onChange={handleChange}
+                    value={formData.employeeBio}
                   />
                 </div>
               </div>
@@ -205,7 +220,7 @@ export default function CreateCard() {
             </form>
           </div>
         </div> */}
-        <div className="signup_phone text-center">
+        {/* <div className="signup_phone text-center">
           <p>Live Profile Preview</p>
           <div className="signup_phone-container">
             <div className="signup_phone-left">
@@ -231,6 +246,14 @@ export default function CreateCard() {
               <div className="signup_phone-box"></div>
               <div className="signup_phone-box"></div>
             </div>
+          </div>
+        </div> */}
+        <div className="signup_phone text-center">
+          <button className="btn btn-preview">
+            Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
+          </button>
+          <div className="signup_phone-container">
+            <UserProfile formData={formData} />
           </div>
         </div>
         {/* <div className="signup_phone text-center">

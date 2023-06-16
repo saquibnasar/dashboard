@@ -6,21 +6,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function About(props) {
   const [startDate, setStartDate] = useState(new Date());
-  const [formData, setFormData] = useState({
-    username: "",
-    company: "",
-    designation: "",
-  });
 
-  const handleChange = (event) => {
-    setFormData((prevformData) => {
-      return {
-        ...prevformData,
-        [event.target.name]: event.target.value,
-      };
-    });
-  };
-  console.log(props.addlink);
   return (
     <>
       <div className="setting">
@@ -46,8 +32,8 @@ export default function About(props) {
                   placeholder="Name"
                   required
                   name="username"
-                  onChange={handleChange}
-                  value={formData.username}
+                  onChange={props.handleChange}
+                  value={props.formData.username}
                 />
               </div>
               <div className="">
@@ -57,20 +43,32 @@ export default function About(props) {
                   id="designation"
                   placeholder="Designation"
                   name="designation"
-                  onChange={handleChange}
-                  value={formData.designation}
+                  onChange={props.handleChange}
+                  value={props.formData.designation}
                 />
               </div>
               <div className="">
                 <input
                   type="text"
                   className="form-control"
-                  id="company"
+                  id="employeeId"
                   placeholder="Employee id"
-                  name="company"
+                  name="employeeId"
                   required
-                  onChange={handleChange}
-                  value={formData.company}
+                  onChange={props.handleChange}
+                  value={props.formData.employeeId}
+                />
+              </div>
+              <div className="">
+                <input
+                  type="text"
+                  className="form-control"
+                  id="employeeBio"
+                  placeholder="Employee bio"
+                  name="employeeBio"
+                  required
+                  onChange={props.handleChange}
+                  value={props.formData.employeeBio}
                 />
               </div>
             </div>
@@ -128,6 +126,7 @@ export default function About(props) {
                 />
                 <label class="did-floating-label">+91</label>
               </div>
+              <button className="btn-save">Save</button>
             </div>
           </div>
           {/* <div className="admin_authentication">

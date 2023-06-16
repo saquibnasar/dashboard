@@ -16,14 +16,25 @@ export default function HomePage(props) {
   const { homepageId } = useParams();
   const [isLinks, setIslinks] = useState(false);
   const [isClick, setIsClick] = useState(false);
+
+  const [formData, setFormData] = useState({
+    username: "",
+    designation: "",
+    employeeId: "",
+    employeeBio: "",
+  });
+
+  const handleChange = (event) => {
+    setFormData((prevformData) => {
+      return {
+        ...prevformData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  };
+
   const addLin = () => {
     setIslinks(!isLinks);
-    // const addcard = document.querySelector(".addcard");
-    // if (addcard.classList.contains("d-none")) {
-    //   addcard.classList.remove("d-none");
-    // } else {
-    //   addcard.classList.add("d-none");
-    // }
   };
 
   return (
@@ -108,34 +119,22 @@ export default function HomePage(props) {
                   {/* <LInks /> */}
                 </div>
               ) : homepageId === "about" ? (
-                <About addLink={addLin} />
+                <About
+                  addLink={addLin}
+                  handleChange={handleChange}
+                  formData={formData}
+                />
               ) : homepageId === "flaxcode" ? (
                 <FlaxCode />
               ) : (
                 ""
               )}
               <div className="signup_phone text-center overflow-hidden">
-                <p>
+                <button className="btn btn-preview">
                   Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
-                </p>
+                </button>
                 <div className="signup_phone-container">
-                  {/* <div className="signup_phone-left">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div className="signup_phone-right">
-                    <span></span>
-                  </div>
-                  <iframe
-                    title="phone"
-                    width="428"
-                    height="887"
-                    src="https://flax.ai/business/a"
-                  /> */}
-                  {/* transform: scale(0.55) translateX(-41%) translatey(-41%);
-    width: 567px; */}
-                  <UserProfile />
+                  <UserProfile formData={formData} />
                 </div>
               </div>
             </div>
