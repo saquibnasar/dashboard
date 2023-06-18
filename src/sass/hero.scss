@@ -135,7 +135,9 @@
         background: transparent;
         cursor: pointer;
         transition: 0.1s;
-
+        img {
+          width: 25px;
+        }
         p {
           font-weight: 400;
         }

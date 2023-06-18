@@ -12,6 +12,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import About from "./About";
 import FlaxCode from "./FlaxCode";
 import UserProfile from "./UserProfile/UserProfile";
+import { Link } from "react-router-dom";
 export default function HomePage(props) {
   const { homepageId } = useParams();
   const [isLinks, setIslinks] = useState(false);
@@ -130,9 +131,9 @@ export default function HomePage(props) {
                 ""
               )}
               <div className="signup_phone text-center overflow-hidden">
-                <button className="btn btn-preview">
+                <Link to="/a" className="btn btn-preview">
                   Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
-                </button>
+                </Link>
                 <div className="signup_phone-container">
                   <UserProfile formData={formData} />
                 </div>

@@ -101,6 +101,42 @@
         }
       }
       .devices_content_left {
+        .card {
+          background: linear-gradient(
+            137.06deg,
+            #00f3f9 -3.68%,
+            #0a34cd 27.97%,
+            #000000 66.99%
+          );
+          border-radius: 36px;
+          width: 460px;
+          height: 280px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          flex-direction: column;
+
+          h3 {
+            font-family: "Roboto";
+            font-weight: 400;
+            font-size: 24px;
+            color: $white-color;
+          }
+          h4 {
+            font-family: "Roboto";
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 40px;
+            color: #ffffff;
+            // margin-top: auto;
+            // margin-bottom: 24px;
+          }
+          svg {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+          }
+        }
         .devices-primary {
           padding: 18px 40px;
           @include media576 {
@@ -110,6 +146,100 @@
       }
       .devices_content_border {
         border: 1px solid #ffffff;
+      }
+
+      .devices_content_right {
+        margin-top: 167px;
+        img.card {
+          position: absolute; /* margin-top: 17%; */
+          top: 0%;
+          left: 41.2%;
+          transform: scale(0.3);
+        }
+        .signup_phone-container {
+          background: #1f252f;
+          border-radius: 15px;
+          box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
+          padding: 0px;
+          margin: auto;
+          width: 232px;
+          height: 530px;
+          overflow-x: hidden;
+          position: relative;
+          overflow-y: scroll;
+          @include media768 {
+            width: 312px;
+            height: 628px;
+          }
+          @include media576 {
+            width: 273px;
+            height: 628px;
+          }
+          @include media430 {
+            width: 203px;
+            height: 556px;
+          }
+          .userProile {
+            width: 567px;
+            transform: scale(0.41) translate(-72%, -72%); /* overflow: scroll; */ /* height: 50%; */ /* height: 1537px; */
+            overflow: hidden;
+            position: absolute;
+            @include media768 {
+              transform: scale(0.55) translate(-41%, -41%);
+            }
+            @include media576 {
+              transform: scale(0.48) translate(-54%, -54%);
+            }
+            @include media430 {
+              transform: scale(0.36) translate(-89%, -89%);
+            }
+          }
+          // .signup_phone-left {
+          //   position: absolute;
+          //   top: 21%;
+          //   left: -3px;
+          //   display: flex;
+          //   flex-direction: column;
+
+          //   span:nth-child(1) {
+          //     width: 3px;
+          //     height: 30px;
+          //     background: #333333;
+          //     box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+          //     border-radius: 1px 0px 0px 1px;
+          //     display: inline-block;
+          //   }
+          //   span:nth-child(2) {
+          //     width: 3px;
+          //     height: 62px;
+          //     background: #333333;
+          //     box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+          //     border-radius: 1px 0px 0px 1px;
+          //     display: inline-block;
+          //     margin-top: 24px;
+          //     margin-bottom: 18px;
+          //   }
+          //   span:nth-child(3) {
+          //     width: 3px;
+          //     height: 62px;
+          //     background: #333333;
+          //     box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+          //     display: inline-block;
+          //   }
+          // }
+          // .signup_phone-right {
+          //   position: absolute;
+          //   top: 30%;
+          //   right: -3px;
+          //   span {
+          //     width: 3px;
+          //     height: 100px;
+          //     background: #333333;
+          //     box-shadow: inset -1px 0px 2px rgba(255, 255, 255, 0.5);
+          //     display: inline-block;
+          //   }
+          // }
+        }
       }
     }
     .devices_content_container::-webkit-scrollbar {
