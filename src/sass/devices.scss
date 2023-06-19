@@ -15,36 +15,29 @@
   }
   .devices_content {
     .devices_content_container {
-      // background: #52459e;
-      // background: $secondary;
-      // border-radius: 32px;
-      // display: flex;
-      // justify-content: space-between;
-      // padding: 48px 48px;
-      // margin: 34px 48px;
-      // height: 100%;
-      grid-template-columns: auto 1px 423px;
+      grid-template-columns: auto 1px 400px;
       background: #52459e;
       background: #e9e4ed;
       border-radius: 32px;
       display: grid;
       justify-content: space-between;
       padding: 48px 48px;
-      margin: 34px 48px;
+      margin: 34px 24px;
       height: 100%;
+
       @include media1200 {
+        padding: 48px 100px;
         margin: 31px 48px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        overflow-y: scroll;
       }
       @include media992 {
         padding: 70px 48px;
         margin: 31px 24px;
       }
-      @include media768 {
-        padding: 48px 100px;
-        flex-direction: column;
-        gap: 20px;
-        overflow-y: scroll;
-      }
+
       @include media576 {
         padding: 24px 16px;
         margin: 24px 16px;
@@ -110,50 +103,135 @@
         }
       }
       .devices_content_left {
-        .card {
-          background: linear-gradient(
-            137.06deg,
-            #00f3f9 -3.68%,
-            #0a34cd 27.97%,
-            #000000 66.99%
-          );
-          border-radius: 36px;
-          width: 460px;
-          height: 280px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          flex-direction: column;
+        .cards {
+          transition: 0.3s;
+          padding-right: 111px;
+          @include media1200 {
+            padding-right: 106px;
+          }
+          .card,
+          .card_second {
+            border-radius: 16px;
+            width: 450px;
+            height: 225px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: 0.3s;
+          }
 
-          h3 {
-            font-family: "Roboto";
-            font-weight: 400;
-            font-size: 24px;
-            color: $white-color;
+          .card {
+            background: linear-gradient(
+              137.06deg,
+              #00f3f9 -3.68%,
+              #0a34cd 27.97%,
+              #000000 66.99%
+            );
+            z-index: 1;
+            flex-direction: column;
+            @include media1200 {
+              margin-left: 24%;
+            }
+            @include media992 {
+              margin-left: 0%;
+            }
+            h4,
+            h3 {
+              font-family: "Roboto";
+              color: $white-color;
+            }
+            h3 {
+              font-weight: 500;
+              font-size: 24px;
+            }
+            h4 {
+              font-weight: 400;
+              font-size: 16px;
+              position: absolute;
+              bottom: 16px;
+            }
+            svg {
+              position: absolute;
+              top: 40px;
+              right: 40px;
+            }
+            .logo {
+              position: absolute;
+              top: 24px;
+              left: 24px;
+              img {
+                width: 60px;
+                border-radius: 50%;
+              }
+            }
           }
-          h4 {
-            font-family: "Roboto";
-            font-weight: 500;
-            font-size: 20px;
-            line-height: 40px;
-            color: #ffffff;
-            // margin-top: auto;
-            // margin-bottom: 24px;
-            position: absolute;
-            bottom: 16px;
+
+          .card_second {
+            background: linear-gradient(
+              244.12deg,
+              #00f3f9 -7.19%,
+              #0a34cd 42.96%,
+              #000000 86.43%
+            );
+            gap: 32px;
+            margin-top: -130px;
+            z-index: 0;
+            margin-left: 24%;
+            @include media1200 {
+              margin-left: 43%;
+            }
+            @include media992 {
+              margin-left: 21%;
+            }
+            h4,
+            h5 {
+              font-family: "Roboto";
+              font-weight: 500;
+              color: $white-color;
+            }
+            h3 {
+              font-family: "Roboto";
+              font-weight: 400;
+              font-size: 22px;
+            }
+            h4 {
+              font-size: 16px;
+              color: $white-color;
+            }
+            h5 {
+              font-weight: 400;
+              font-size: 14px;
+              margin-top: 6px;
+              margin-bottom: 20px;
+            }
+
+            .qrcode {
+              background: #fff;
+              padding: 8px;
+              border-radius: 8px;
+            }
           }
-          svg {
-            position: absolute;
-            top: 40px;
-            right: 40px;
+        }
+        .cards:hover {
+          .card_second {
+            // position: unset;
+            z-index: 1;
+            transition: 0.3s;
+            // margin-top: 0px;
+            margin-left: 0%;
+            @include media1200 {
+              margin-left: 11%;
+            }
           }
-          .logo {
-            position: absolute;
-            top: 24px;
-            left: 24px;
-            img {
-              width: 60px;
-              border-radius: 50%;
+          .card {
+            z-index: 0;
+            // margin-top: -130px;
+            transition: 0.3s;
+            // margin-top: 130px;
+            z-index: 0;
+            margin-left: 24%;
+            @include media1200 {
+              margin-left: 30%;
             }
           }
         }
@@ -169,7 +247,10 @@
       }
 
       .devices_content_right {
-        margin-top: 167px;
+        margin-top: 220px;
+        @include media1200 {
+          margin-top: 140px;
+        }
         img.card {
           position: absolute; /* margin-top: 17%; */
           top: 0%;
@@ -262,21 +343,26 @@
         }
         .card {
           background: linear-gradient(
-            137.06deg,
-            #00f3f9 -3.68%,
-            #0a34cd 27.97%,
-            #000000 66.99%
+            244.12deg,
+            #00f3f9 -7.19%,
+            #0a34cd 42.96%,
+            #000000 86.43%
           );
-          border-radius: 36px;
-          width: 460px;
-          height: 280px;
+          border-radius: 16px;
+          width: 450px;
+          height: 225px;
           display: flex;
           justify-content: center;
           align-items: center;
           gap: 32px;
           position: absolute;
-          left: -5%;
-          top: -25%;
+          right: -9%;
+          top: -12%;
+          @include media1200 {
+            left: 50%;
+            top: -16%;
+            transform: translateX(-50%);
+          }
           h3 {
             font-family: "Roboto";
             font-weight: 400;
@@ -300,9 +386,10 @@
             margin-bottom: 20px;
           }
 
-          svg {
+          .qrcode {
             background: #fff;
             padding: 8px;
+            border-radius: 8px;
           }
         }
       }
