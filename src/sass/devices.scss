@@ -15,12 +15,21 @@
   }
   .devices_content {
     .devices_content_container {
+      // background: #52459e;
+      // background: $secondary;
+      // border-radius: 32px;
+      // display: flex;
+      // justify-content: space-between;
+      // padding: 48px 48px;
+      // margin: 34px 48px;
+      // height: 100%;
+      grid-template-columns: auto 1px 423px;
       background: #52459e;
-      background: $secondary;
+      background: #e9e4ed;
       border-radius: 32px;
-      display: flex;
+      display: grid;
       justify-content: space-between;
-      padding: 48px 100px;
+      padding: 48px 48px;
       margin: 34px 48px;
       height: 100%;
       @include media1200 {
@@ -264,38 +273,36 @@
           display: flex;
           justify-content: center;
           align-items: center;
-          flex-direction: column;
-
+          gap: 32px;
+          position: absolute;
+          left: -5%;
+          top: -25%;
           h3 {
             font-family: "Roboto";
             font-weight: 400;
-            font-size: 24px;
+            font-size: 22px;
             color: $white-color;
           }
           h4 {
             font-family: "Roboto";
             font-weight: 500;
-            font-size: 20px;
-            line-height: 40px;
-            color: #ffffff;
-            // margin-top: auto;
-            // margin-bottom: 24px;
-            position: absolute;
-            bottom: 16px;
+            font-size: 16px;
+            line-height: 16px;
+            color: $white-color;
           }
+          h5 {
+            font-family: "Roboto";
+            font-weight: 500;
+            font-size: 14px;
+            line-height: 14px;
+            color: $white-color;
+            margin-top: 6px;
+            margin-bottom: 20px;
+          }
+
           svg {
-            position: absolute;
-            top: 40px;
-            right: 40px;
-          }
-          .logo {
-            position: absolute;
-            top: 24px;
-            left: 24px;
-            img {
-              width: 60px;
-              border-radius: 50%;
-            }
+            background: #fff;
+            padding: 8px;
           }
         }
       }
