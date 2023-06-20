@@ -37,11 +37,11 @@
         padding: 70px 48px;
         margin: 31px 24px;
       }
-
-      @include media576 {
+      @include media768 {
         padding: 24px 16px;
         margin: 24px 16px;
       }
+
       .devices_content_left,
       .devices_content_right {
         text-align: center;
@@ -106,8 +106,13 @@
         .cards {
           transition: 0.3s;
           padding-right: 111px;
+          margin-bottom: -150px;
           @include media1200 {
             padding-right: 106px;
+          }
+          @include media768 {
+            padding-right: 0;
+            margin-bottom: -140px;
           }
           .card,
           .card_second {
@@ -118,6 +123,10 @@
             justify-content: center;
             align-items: center;
             transition: 0.3s;
+            margin: auto;
+            @include media768 {
+              width: 432px;
+            }
           }
 
           .card {
@@ -129,11 +138,12 @@
             );
             z-index: 1;
             flex-direction: column;
+            margin: auto;
             @include media1200 {
-              margin-left: 24%;
+              // margin-left: 24%;
             }
             @include media992 {
-              margin-left: 0%;
+              // margin-left: 0%;
             }
             h4,
             h3 {
@@ -174,14 +184,10 @@
               #000000 86.43%
             );
             gap: 32px;
-            margin-top: -130px;
             z-index: 0;
-            margin-left: 24%;
-            @include media1200 {
-              margin-left: 43%;
-            }
-            @include media992 {
-              margin-left: 21%;
+            transform: translate(20%, -70%);
+            @include media768 {
+              transform: translate(3%, -70%);
             }
             h4,
             h5 {
@@ -214,24 +220,19 @@
         }
         .cards:hover {
           .card_second {
-            // position: unset;
             z-index: 1;
             transition: 0.3s;
-            // margin-top: 0px;
-            margin-left: 0%;
-            @include media1200 {
-              margin-left: 11%;
-            }
+            transform: translate(0%, -225px);
+            // @include media1200 {
+            //   margin-left: 11%;
+            // }
           }
           .card {
-            z-index: 0;
-            // margin-top: -130px;
             transition: 0.3s;
-            // margin-top: 130px;
             z-index: 0;
-            margin-left: 24%;
-            @include media1200 {
-              margin-left: 30%;
+            transform: translate(20%, 30%);
+            @include media768 {
+              transform: translate(3%, 30%);
             }
           }
         }
