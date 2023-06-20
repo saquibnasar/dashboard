@@ -254,10 +254,10 @@ export default function TeamCard(props) {
                       Edit
                       <FontAwesomeIcon icon={faPencil} />
                     </button>
-                    <button className="ShareCard">
+                    <Link to="/a" className="ShareCard">
                       Share
                       <FontAwesomeIcon icon={faShareSquare} />
-                    </button>
+                    </Link>
                   </div>
                 </Link>
               );

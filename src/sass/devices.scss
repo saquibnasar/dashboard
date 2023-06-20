@@ -45,7 +45,7 @@
       .devices_content_left,
       .devices_content_right {
         text-align: center;
-        margin-block: auto;
+        // margin-block: auto;
         h2 {
           font-family: "Inter";
           font-weight: 600;
@@ -114,6 +114,12 @@
             padding-right: 0;
             margin-bottom: -140px;
           }
+          @include media576 {
+            margin-bottom: -110px;
+          }
+          @include media500 {
+            margin-bottom: -90px;
+          }
           .card,
           .card_second {
             border-radius: 16px;
@@ -127,6 +133,18 @@
             @include media768 {
               width: 432px;
             }
+            @include media576 {
+              width: 356px;
+              height: 178px;
+            }
+            @include media500 {
+              width: 284px;
+              height: 142px;
+            }
+            @include media430 {
+              width: 230px;
+              height: 115px;
+            }
           }
 
           .card {
@@ -139,12 +157,6 @@
             z-index: 1;
             flex-direction: column;
             margin: auto;
-            @include media1200 {
-              // margin-left: 24%;
-            }
-            @include media992 {
-              // margin-left: 0%;
-            }
             h4,
             h3 {
               font-family: "Roboto";
@@ -153,25 +165,72 @@
             h3 {
               font-weight: 500;
               font-size: 24px;
+              @include media576 {
+                font-size: 20px;
+              }
+              @include media500 {
+                font-size: 18px;
+              }
+              @include media430 {
+                font-size: 14px;
+              }
             }
             h4 {
               font-weight: 400;
               font-size: 16px;
               position: absolute;
               bottom: 16px;
+              @include media576 {
+                font-size: 14px;
+              }
+              @include media500 {
+                font-size: 10px;
+              }
             }
             svg {
               position: absolute;
               top: 40px;
               right: 40px;
+              @include media576 {
+                top: 24px;
+                right: 24px;
+              }
+              @include media500 {
+                width: 15px;
+              }
+              @include media500 {
+                top: 16px;
+                right: 16px;
+              }
             }
             .logo {
               position: absolute;
               top: 24px;
               left: 24px;
+              @include media576 {
+                top: 20px;
+                left: 20px;
+              }
+              @include media500 {
+                top: 16px;
+                left: 16px;
+              }
+              @include media500 {
+                top: 12px;
+                left: 12px;
+              }
               img {
                 width: 60px;
                 border-radius: 50%;
+                @include media576 {
+                  width: 45px;
+                }
+                @include media500 {
+                  width: 40px;
+                }
+                @include media500 {
+                  width: 30px;
+                }
               }
             }
           }
@@ -194,27 +253,65 @@
               font-family: "Roboto";
               font-weight: 500;
               color: $white-color;
+              text-align: start;
             }
             h3 {
               font-family: "Roboto";
               font-weight: 400;
               font-size: 22px;
+              text-align: start;
+              @include media576 {
+                font-size: 18px;
+              }
+              @include media500 {
+                font-size: 16px;
+              }
+              @include media430 {
+                font-size: 14px;
+              }
             }
             h4 {
               font-size: 16px;
               color: $white-color;
+              @include media576 {
+                font-size: 14px;
+              }
+              @include media500 {
+                font-size: 13px;
+              }
+              @include media430 {
+                font-size: 10px;
+              }
             }
             h5 {
               font-weight: 400;
               font-size: 14px;
               margin-top: 6px;
               margin-bottom: 20px;
+              @include media576 {
+                font-size: 12px;
+                margin-top: 3px;
+                margin-bottom: 14px;
+              }
+              @include media430 {
+                font-size: 8px;
+              }
             }
 
             .qrcode {
               background: #fff;
               padding: 8px;
               border-radius: 8px;
+              @include media576 {
+                width: 90px;
+                padding: 4px;
+              }
+              @include media500 {
+                width: 70px;
+              }
+              @include media430 {
+                width: 60px;
+              }
             }
           }
         }
@@ -223,9 +320,15 @@
             z-index: 1;
             transition: 0.3s;
             transform: translate(0%, -225px);
-            // @include media1200 {
-            //   margin-left: 11%;
-            // }
+            @include media576 {
+              transform: translate(0%, -178px);
+            }
+            @include media500 {
+              transform: translate(0%, -142px);
+            }
+            @include media430 {
+              transform: translate(0%, -115px);
+            }
           }
           .card {
             transition: 0.3s;
@@ -248,9 +351,12 @@
       }
 
       .devices_content_right {
-        margin-top: 220px;
-        @include media1200 {
-          margin-top: 140px;
+        margin-top: -112.5px;
+        @include media576 {
+          margin-top: -70px;
+        }
+        @include media430 {
+          margin-top: -50px;
         }
         img.card {
           position: absolute; /* margin-top: 17%; */
@@ -356,41 +462,91 @@
           justify-content: center;
           align-items: center;
           gap: 32px;
-          position: absolute;
-          right: -9%;
-          top: -12%;
+          transform: translate(-4%, 50%);
+
           @include media1200 {
-            left: 50%;
-            top: -16%;
-            transform: translateX(-50%);
+            transform: translateY(50%);
+            margin: auto;
+          }
+          @include media768 {
+            width: 432px;
+          }
+          @include media576 {
+            width: 356px;
+            height: 178px;
+          }
+          @include media500 {
+            width: 284px;
+            height: 142px;
+          }
+          @include media430 {
+            width: 230px;
+            height: 115px;
+          }
+          h4,
+          h5 {
+            font-family: "Roboto";
+            font-weight: 500;
+            color: $white-color;
+            text-align: start;
           }
           h3 {
             font-family: "Roboto";
             font-weight: 400;
             font-size: 22px;
-            color: $white-color;
+            text-align: start;
+            @include media576 {
+              font-size: 18px;
+            }
+            @include media500 {
+              font-size: 16px;
+            }
+            @include media430 {
+              font-size: 14px;
+            }
           }
           h4 {
-            font-family: "Roboto";
-            font-weight: 500;
             font-size: 16px;
-            line-height: 16px;
             color: $white-color;
+            @include media576 {
+              font-size: 14px;
+            }
+            @include media500 {
+              font-size: 13px;
+            }
+            @include media430 {
+              font-size: 10px;
+            }
           }
           h5 {
-            font-family: "Roboto";
-            font-weight: 500;
+            font-weight: 400;
             font-size: 14px;
-            line-height: 14px;
-            color: $white-color;
             margin-top: 6px;
             margin-bottom: 20px;
+            @include media576 {
+              font-size: 12px;
+              margin-top: 3px;
+              margin-bottom: 14px;
+            }
+            @include media430 {
+              font-size: 8px;
+            }
           }
 
           .qrcode {
             background: #fff;
             padding: 8px;
             border-radius: 8px;
+            @include media576 {
+              width: 90px;
+              padding: 4px;
+            }
+            @include media500 {
+              width: 70px;
+            }
+            @include media430 {
+              width: 60px;
+            }
           }
         }
       }

@@ -51,6 +51,10 @@
       .flaxCode-bottom {
         border-left: 3px solid #fff;
         padding: 0 24px;
+        @include media768 {
+          border-top: 3px solid #fff;
+          border-left: unset;
+        }
         h3 {
           font-size: 18px;
           margin-top: 48px;

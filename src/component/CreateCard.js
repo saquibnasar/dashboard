@@ -249,9 +249,7 @@ export default function CreateCard() {
           </div>
         </div> */}
         <div className="signup_phone text-center">
-          <button className="btn btn-preview">
-            Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
-          </button>
+          <button className="btn btn-preview">Live Preview</button>
           <div className="signup_phone-container">
             <UserProfile formData={formData} />
           </div>

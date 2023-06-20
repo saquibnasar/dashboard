@@ -94,7 +94,7 @@ export default function Devices(props) {
             </p>
             <a
               href="https://caard.mini.store/"
-              target="blank"
+              target="_blank"
               className="devices-primary d-inline-block"
             >
               Activate Card

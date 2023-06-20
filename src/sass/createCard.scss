@@ -444,7 +444,7 @@
       color: $white-color;
       border-radius: 80px;
       display: inline-block;
-      cursor: pointer;
+      // cursor: pointer;
       margin-top: 24px;
       margin-bottom: 20px;
       background: $white-color;
@@ -457,11 +457,11 @@
         margin-left: 4px;
       }
     }
-    .btn-preview:hover {
-      background: $primary;
-      color: $white-color;
-      box-shadow: none;
-    }
+    // .btn-preview:hover {
+    //   background: $primary;
+    //   color: $white-color;
+    //   box-shadow: none;
+    // }
     .signup_phone-container {
       background: #1f252f;
       border-radius: 15px;
