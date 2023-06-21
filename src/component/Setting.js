@@ -10,24 +10,30 @@ import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useParams } from "react-router-dom";
+import { useState } from "react";
+import AddCard from "./AddCard";
+import AddLink from "./AddLink";
 
 export default function Setting(props) {
   const { settingId } = useParams();
-
+  const [isClick, setIsClick] = useState(false);
   // const [imgUpload, setImgUpload] = useState("");
   // const handleChange = (event) => {
   //   setImgUpload(event.target.value);
   // };
+  const [isLinks, setIslinks] = useState(false);
 
   window.addEventListener("change", (e) => {
     console.log(window.innerWidth);
   });
-
+  const addLin = () => {
+    setIslinks(!isLinks);
+  };
   return (
     <>
       <div className="d-flex h-100vh">
         <SIdebar navbarToggle={props.navbarToggle} />
-        <div className="d-flex flex-direction-column w-100">
+        <div className="d-flex flex-direction-column w-100 overflow-hidden">
           <Topbar type="setting" isNavbar={props.isNavbar} text="Settings" />
           <div className="setting mt-4">
             <nav className="sidebar">
@@ -127,7 +133,9 @@ export default function Setting(props) {
                       type="text"
                       placeholder="Disclaimer "
                     />
-                    <button type="button">Company social media links</button>
+                    <button type="button" onClick={addLin}>
+                      Company social media links
+                    </button>
                   </div>
                   <button type="submit">Update</button>
                 </form>
@@ -142,6 +150,8 @@ export default function Setting(props) {
               <Admin />
             )}
           </div>
+          {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
+          {/* {isClick ? <AddLink data={linkData} sendData={sendData} /> : ""} */}
         </div>
       </div>
     </>

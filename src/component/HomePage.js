@@ -42,7 +42,7 @@ export default function HomePage(props) {
     <>
       <div className={`d-flex homePage ${homepageId}`}>
         <SIdebar navbarToggle={props.navbarToggle} />
-        <div className="d-flex flex-direction-column w-100">
+        <div className="d-flex flex-direction-column w-100 overflow-hidden">
           <Topbar
             type="setting"
             title=""

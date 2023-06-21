@@ -4,6 +4,7 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
+import UserProfile from "./UserProfile/UserProfile";
 export default function AddLink(props) {
   const [formData, setFormData] = useState({
     linkData: "",
@@ -90,7 +91,13 @@ export default function AddLink(props) {
           </div>
         </div>
       </div>
-      <div className="signup_phone text-center overflow-hidden">
+      <div className="signup_phone text-center">
+        <button className="btn btn-preview">Live Preview</button>
+        <div className="signup_phone-container">
+          <UserProfile formData={formData} />
+        </div>
+      </div>
+      {/* <div className="signup_phone text-center overflow-hidden">
         <p>
           Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
         </p>
@@ -110,7 +117,7 @@ export default function AddLink(props) {
             src="https://flax.ai/business/a"
           />
         </div>
-      </div>
+      </div> */}
       {/* <div className="addlink_phone">
         <div className="addlink_phone-frame">
           <div className="addlink_phone-frame_user">
