@@ -498,12 +498,33 @@
       }
     }
   }
+  .addcard {
+    width: 50%;
+    @include media768 {
+      width: 100%;
+    }
+    .addcard_container {
+      padding: 32px 24px;
+      .addcard_links {
+        grid-template-columns: auto;
+      }
+      .addlink {
+        flex-direction: column;
+        .signup_phone {
+          border-top: 3px solid #fff;
+          border-left: none;
+          width: 100%;
+          margin-top: 50px;
+        }
+      }
+    }
+  }
 }
 .createCard.about {
   .setting {
     background: $secondary;
     .admin {
-      padding: 24px 70px;
+      padding: 24px 32px;
       .signup_navbar-back {
         align-items: center;
         background: transparent;

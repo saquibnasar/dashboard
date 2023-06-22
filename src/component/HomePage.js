@@ -37,12 +37,27 @@ export default function HomePage(props) {
   const addLin = () => {
     setIslinks(!isLinks);
   };
+  const [image, setImage] = useState({
+    logoimage: "",
+    bannerImage: "",
+    raw: "",
+  });
+  const imagehandleChange = (e) => {
+    if (e.target.files.length) {
+      setImage((prevformData) => {
+        return {
+          ...prevformData,
+          [e.target.name]: URL.createObjectURL(e.target.files[0]),
+        };
+      });
+    }
+  };
 
   return (
     <>
       <div className={`d-flex homePage ${homepageId}`}>
         <SIdebar navbarToggle={props.navbarToggle} />
-        <div className="d-flex flex-direction-column w-100 overflow-hidden">
+        <div className="d-flex flex-direction-column w-100 ">
           <Topbar
             type="setting"
             title=""
@@ -97,7 +112,9 @@ export default function HomePage(props) {
                 </ul>
               </div>
             </nav>
-            <div className="homePage_container-bottom">
+            <div
+              className={`homePage_container-bottom ${isLinks ? "d-none" : ""}`}
+            >
               {homepageId === "content" ? (
                 <div className="links">
                   <div className="link_container">
@@ -124,6 +141,8 @@ export default function HomePage(props) {
                   addLink={addLin}
                   handleChange={handleChange}
                   formData={formData}
+                  imageData={image}
+                  imagehandleChange={imagehandleChange}
                 />
               ) : homepageId === "flaxcode" ? (
                 <FlaxCode />
@@ -135,7 +154,11 @@ export default function HomePage(props) {
                   Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
                 </Link>
                 <div className="signup_phone-container">
-                  <UserProfile formData={formData} />
+                  <UserProfile
+                    formData={formData}
+                    logo={image.logoimage}
+                    bannerImage={image.bannerImage}
+                  />
                 </div>
               </div>
             </div>

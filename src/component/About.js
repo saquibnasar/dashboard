@@ -3,7 +3,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 export default function About(props) {
   const [startDate, setStartDate] = useState(new Date());
 
@@ -15,12 +15,34 @@ export default function About(props) {
             <div className="addImage">
               <h3>Upload Profile image </h3>
               <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
-                <span>
-                  <FontAwesomeIcon icon={faUser} />
-                </span>
-                <button className="btn-primary">Upload image</button>
+                <div className="upload-img">
+                  {props.imageData.logoimage ? (
+                    <img
+                      src={props.imageData.logoimage}
+                      alt=""
+                      className="img-fluid"
+                    />
+                  ) : (
+                    <>
+                      <FontAwesomeIcon icon={faUser} />
+                    </>
+                  )}
+
+                  <input
+                    type="file"
+                    id="upload-button"
+                    // style={{ display: "none" }}
+                    className="d-none"
+                    onChange={props.imagehandleChange}
+                    name="logoimage"
+                  />
+                </div>
+                <label className="btn-primary" htmlFor="upload-button">
+                  Upload image
+                </label>
               </div>
             </div>
+
             <div className="admin_detail-member">
               <h3>company detail </h3>
 
@@ -69,6 +91,37 @@ export default function About(props) {
                   required
                   onChange={props.handleChange}
                   value={props.formData.employeeBio}
+                />
+              </div>
+            </div>
+            <div className="addImage">
+              <h3>Upload banner image </h3>
+              <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
+                <label htmlFor="uploadBanner" className="uploadBanner">
+                  {props.imageData.bannerImage ? (
+                    <img
+                      src={props.imageData.bannerImage}
+                      alt=""
+                      className="img-fluid"
+                    />
+                  ) : (
+                    <>
+                      <div className="d-flex gap-2 align-items-center">
+                        <FontAwesomeIcon icon={faPlus} />
+                        <h4>Upload images</h4>
+                      </div>
+                      <p>item with images see 60% more visits from customers</p>
+                    </>
+                  )}
+                </label>
+
+                <input
+                  type="file"
+                  id="uploadBanner"
+                  // style={{ display: "none" }}
+                  className="d-none"
+                  name="bannerImage"
+                  onChange={props.imagehandleChange}
                 />
               </div>
             </div>

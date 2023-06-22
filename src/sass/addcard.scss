@@ -12,8 +12,8 @@
   height: 100%;
   z-index: 1;
   .addcard_container {
-    padding-inline: 48px;
-    padding-top: 32px;
+    padding: 32px 48px;
+
     @include media500 {
       padding-inline: 24px;
     }
@@ -173,138 +173,169 @@
       // }
     }
     .addlink {
-      .addlink-back {
-        font-family: "Inter";
-        font-style: normal;
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 18px;
-        color: #858282;
-        display: inline-block;
-        margin-bottom: 32px;
-        cursor: pointer;
-        svg {
-          font-size: 22px;
-          margin-right: 10px;
-        }
+      @include media992 {
+        flex-direction: column;
       }
-      .addlink_content {
-        .addlink_content-top {
-          display: flex;
-          align-items: center;
-          gap: 24px;
-          .addlink_content-top-icon {
-            background: #3ae432;
-            width: 60px;
-            height: 60px;
-            border-radius: 16px;
-            font-size: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: $white-color;
-          }
-          h1 {
-            margin-bottom: 0px;
-          }
+      .addlink-container {
+        @include media992 {
+          width: 100%;
         }
-        .form {
-          padding: 0 0px;
-          margin-top: 0px;
-          .form-text {
-            font-size: 20px;
-          }
-          .submit {
-            justify-content: end;
-            gap: 24px;
-            .btn.btn-primary {
-              background: $primary;
-              color: #fff;
-              padding: 16px 48px;
-              width: unset;
-            }
-            .btn.btn-primary:nth-child(1) {
-              background: $white-color;
-              color: #252525;
-            }
-            .btn.btn-primary:hover {
-              background: $primary;
-              color: $white-color;
-            }
-          }
-        }
-      }
-      .addlink_phone {
-        .addlink_phone-frame {
-          background: url(../../public/phone.png);
-          width: 302px;
-          height: 480px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          padding-top: 32px;
-          gap: 8px;
-          h3,
-          h4,
-          h5 {
-            font-family: "Inter";
-            font-weight: 500;
+        .addlink-back {
+          font-family: "Inter";
+          font-style: normal;
+          font-weight: 400;
+          font-size: 18px;
+          line-height: 18px;
+          color: #858282;
+          display: inline-block;
+          margin-bottom: 32px;
+          cursor: pointer;
+          svg {
             font-size: 22px;
-            line-height: 18px;
-            color: #ffffff;
+            margin-right: 10px;
           }
-
-          h5 {
-            font-weight: 400;
-            font-size: 16px;
-          }
-          .addlink_phone-frame_user {
-            width: 70px;
-            height: 70px;
-            background: #f7f7f7;
-            color: #a3a3a3;
-            font-size: 1.5rem;
+        }
+        .addlink_content {
+          .addlink_content-top {
             display: flex;
-            border-radius: 50%;
-            justify-content: center;
             align-items: center;
-          }
-          .signup_phone-box {
-            width: 90%;
-            padding: 7px 7px;
-            margin-top: 3px;
-            justify-content: center;
-            display: flex;
-            flex-direction: column;
-            font-family: "Outfit";
-            font-style: normal;
-            font-weight: 500;
-            font-size: 11px;
-            line-height: 18px;
-            color: #ffffff;
-            background: #2e3239;
-            border-radius: 7.5px;
-            span {
-              font-family: "Inter";
-              font-style: normal;
-              font-weight: 500;
-              font-size: 13.5px;
-              line-height: 18px;
+            gap: 24px;
+            @include media430 {
+              flex-direction: column;
+              align-items: start;
+            }
+            .addlink_content-top-icon {
+              background: #3ae432;
+              width: 60px;
+              height: 60px;
+              border-radius: 16px;
+              font-size: 28px;
               display: flex;
               align-items: center;
-              color: #1f8aff;
+              justify-content: center;
+              color: $white-color;
+            }
+            h1 {
+              margin-bottom: 0px;
+              @include media576 {
+                font-size: 20px;
+              }
+            }
+          }
+          .form {
+            padding: 0 0px;
+            margin-top: 0px;
+            .form-text {
+              font-size: 20px;
+            }
+            .submit {
+              justify-content: end;
+              gap: 24px;
+              @include media430 {
+                gap: 16px;
+              }
+              .btn.btn-primary {
+                background: $primary;
+                color: #fff;
+                padding: 16px 48px;
+                width: unset;
+                @include media576 {
+                  padding: 16px 37px;
+                }
+                @include media500 {
+                  padding: 13px 30px;
+                }
+                @include media430 {
+                  padding: 13px 19px;
+                }
+              }
+              .btn.btn-primary:nth-child(1) {
+                background: $white-color;
+                color: #252525;
+              }
+              .btn.btn-primary:hover {
+                background: $primary;
+                color: $white-color;
+              }
+            }
+          }
+        }
+        .addlink_phone {
+          .addlink_phone-frame {
+            background: url(../../public/phone.png);
+            width: 302px;
+            height: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 32px;
+            gap: 8px;
+            h3,
+            h4,
+            h5 {
+              font-family: "Inter";
+              font-weight: 500;
+              font-size: 22px;
+              line-height: 18px;
+              color: #ffffff;
+            }
+
+            h5 {
+              font-weight: 400;
+              font-size: 16px;
+            }
+            .addlink_phone-frame_user {
+              width: 70px;
+              height: 70px;
+              background: #f7f7f7;
+              color: #a3a3a3;
+              font-size: 1.5rem;
+              display: flex;
+              border-radius: 50%;
+              justify-content: center;
+              align-items: center;
+            }
+            .signup_phone-box {
+              width: 90%;
+              padding: 7px 7px;
+              margin-top: 3px;
+              justify-content: center;
+              display: flex;
+              flex-direction: column;
+              font-family: "Outfit";
+              font-style: normal;
+              font-weight: 500;
+              font-size: 11px;
+              line-height: 18px;
+              color: #ffffff;
+              background: #2e3239;
+              border-radius: 7.5px;
+              span {
+                font-family: "Inter";
+                font-style: normal;
+                font-weight: 500;
+                font-size: 13.5px;
+                line-height: 18px;
+                display: flex;
+                align-items: center;
+                color: #1f8aff;
+              }
             }
           }
         }
       }
-
       .signup_phone {
         padding-bottom: 60px;
         border-left: 3px solid #fff;
         padding: 0 24px;
-        @include media768 {
+        @include media992 {
           border-top: 3px solid #fff;
           border-left: none;
+          width: 100%;
+          margin-top: 50px;
+        }
+        @include media500 {
+          padding: 0;
         }
         .btn-preview {
           font-family: "Inter";
@@ -419,5 +450,10 @@
         }
       }
     }
+  }
+}
+.setting {
+  .addcard {
+    overflow: scroll;
   }
 }

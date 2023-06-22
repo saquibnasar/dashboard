@@ -17,25 +17,42 @@ import AddLink from "./AddLink";
 export default function Setting(props) {
   const { settingId } = useParams();
   const [isClick, setIsClick] = useState(false);
-  // const [imgUpload, setImgUpload] = useState("");
-  // const handleChange = (event) => {
-  //   setImgUpload(event.target.value);
-  // };
   const [isLinks, setIslinks] = useState(false);
-
-  window.addEventListener("change", (e) => {
-    console.log(window.innerWidth);
-  });
+  const [image, setImage] = useState({ preview: "", raw: "" });
   const addLin = () => {
     setIslinks(!isLinks);
   };
+
+  const handleChange = (e) => {
+    if (e.target.files.length) {
+      setImage({
+        preview: URL.createObjectURL(e.target.files[0]),
+        raw: e.target.files[0],
+      });
+    }
+  };
+
+  // const handleUpload = async (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("image", image.raw);
+
+  //   await fetch("YOUR_URL", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //     body: formData,
+  //   });
+  // };
+
   return (
     <>
       <div className="d-flex h-100vh">
         <SIdebar navbarToggle={props.navbarToggle} />
         <div className="d-flex flex-direction-column w-100 overflow-hidden">
           <Topbar type="setting" isNavbar={props.isNavbar} text="Settings" />
-          <div className="setting mt-4">
+          <div className="setting mt-4 p-relative">
             <nav className="sidebar">
               <div className="sidebar-collapse">
                 <ul className="sidebar-nav">
@@ -99,18 +116,33 @@ export default function Setting(props) {
                 <form>
                   <div className="Company_logo">
                     <h3>Company logo</h3>
-                    {/* <input
-                      type="file"
-                      value={imgUpload}
-                      onChange={handleChange}
-                    />
-                    <img src={imgUpload} alt="" /> */}
-                    <div className="logo">
-                      <span>
-                        <FontAwesomeIcon icon={faPlus} />
-                      </span>
+
+                    <div className="upload-img">
+                      <label className="logo" htmlFor="upload-button">
+                        {image.preview ? (
+                          <img
+                            src={image.preview}
+                            alt="dummy"
+                            className="img-fluid"
+                          />
+                        ) : (
+                          <>
+                            <span>
+                              <FontAwesomeIcon icon={faPlus} />
+                            </span>
+                          </>
+                        )}
+                      </label>
+                      <input
+                        type="file"
+                        id="upload-button"
+                        // style={{ display: "none" }}
+                        className="d-none"
+                        onChange={handleChange}
+                      />
                     </div>
                   </div>
+
                   <div className="Company_name">
                     {/* <h3>Company name</h3> */}
                     <input
@@ -149,8 +181,9 @@ export default function Setting(props) {
             ) : (
               <Admin />
             )}
+            {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
           </div>
-          {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
+
           {/* {isClick ? <AddLink data={linkData} sendData={sendData} /> : ""} */}
         </div>
       </div>

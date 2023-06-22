@@ -440,11 +440,19 @@ export default function UserProfile(props) {
           </button>
 
           <div className="logo-only">
-            <img className="img-fluid w-100" src="/bguserProfile.png" alt="" />
+            <img
+              className="img-fluid w-100"
+              src={props.bannerImage ? props.bannerImage : "/bguserProfile.png"}
+              alt=""
+            />
           </div>
           <div className="container">
             <div className="header_content text-center">
-              <img className="img-fluid" src="/qrcode.png" alt="" />
+              <img
+                className="img-fluid"
+                src={props.logo ? props.logo : "/qrcode.png"}
+                alt=""
+              />
 
               <h1>
                 {props.formData && props.formData.username
@@ -454,7 +462,8 @@ export default function UserProfile(props) {
               <h2>
                 {props.formData && props.formData.designation
                   ? props.formData.designation
-                  : "Designation"}
+                  : "Designation"}{" "}
+                at company
               </h2>
               <h3>
                 Employee ID -{" "}

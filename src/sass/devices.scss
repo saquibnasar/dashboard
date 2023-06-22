@@ -555,4 +555,28 @@
       display: none;
     }
   }
+  .navbar {
+    @include media992 {
+      height: 189%;
+      @include media576 {
+        height: 169%;
+      }
+      @include media500 {
+        height: 157%;
+      }
+      @include media430 {
+        height: 141%;
+      }
+      .navbar-links {
+        height: 672px;
+        overflow: hidden;
+        width: 80%;
+
+        .flax_link.flaxlink {
+          right: 0;
+          top: 0;
+        }
+      }
+    }
+  }
 }

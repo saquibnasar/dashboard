@@ -341,9 +341,9 @@
       }
     }
   }
-  .homePage_container:has(.setting) {
-    height: unset;
-  }
+  // .homePage_container:has(.setting) {
+  //   height: unset;
+  // }
   .homePage_container::-webkit-scrollbar {
     display: none;
   }

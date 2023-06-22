@@ -75,7 +75,7 @@ export default function Topbar(props) {
 
           <div className="navbar-collapse">
             {props.type ? (
-              <button className="SettingProfile">
+              <Link to="/createCard" className="SettingProfile">
                 <div className="SettingProfile_user">
                   <span>
                     <FontAwesomeIcon icon={faUser} />
@@ -83,7 +83,7 @@ export default function Topbar(props) {
                   NewProfile
                 </div>
                 <FontAwesomeIcon icon={faAngleDown} />
-              </button>
+              </Link>
             ) : (
               // <button className="form-check">
               //   <input
@@ -160,10 +160,10 @@ export default function Topbar(props) {
             )}
 
             {props.type ? (
-              <button className="SettingProfile">
+              <Link to="/createCard" className="SettingProfile">
                 <div className="SettingProfile_user">Share Your Profile</div>
                 <FontAwesomeIcon icon={faShare} />
-              </button>
+              </Link>
             ) : (
               <form className="d-flex">
                 <input
@@ -175,7 +175,7 @@ export default function Topbar(props) {
                 <FontAwesomeIcon icon={faSearch} />
               </form>
             )}
-            <div className="p-relative">
+            <div className="navbar-links">
               <button className="navbar-btn" onClick={FlaxLink}>
                 <svg
                   width="26"
