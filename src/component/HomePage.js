@@ -117,7 +117,7 @@ export default function HomePage(props) {
             >
               {homepageId === "content" ? (
                 <div className="links">
-                  <div className="link_container">
+                  {/* <div className="link_container">
                     <div>
                       <h2>This profile doesn’t have any linked content</h2>
                       <h3>
@@ -133,8 +133,8 @@ export default function HomePage(props) {
                     </div>
 
                     <img src="/bglink.png" alt="" className="img-fluid" />
-                  </div>
-                  {/* <LInks /> */}
+                  </div> */}
+                  <LInks addLin={addLin} />
                 </div>
               ) : homepageId === "about" ? (
                 <About

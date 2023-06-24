@@ -9,11 +9,11 @@ import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-export default function LInks() {
+export default function LInks(props) {
   return (
     <>
       <dv className="linkPage">
-        <button className="btn-link">
+        <button className="btn-link" onClick={props.addLin}>
           <FontAwesomeIcon icon={faPlus} />
           Add info
         </button>

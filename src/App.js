@@ -11,11 +11,16 @@ import Signin from "./component/Signin";
 import UserProfile from "./component/UserProfile/UserProfile";
 
 function App() {
-  const [isNavbar, setIsNavbar] = useState(true);
+  const [isNavbar, setIsNavbar] = useState(false);
 
   const navbarToggle = () => {
     setIsNavbar(!isNavbar);
   };
+
+  // if (window.innerWidth < 992) {
+  //   setIsNavbar(!isNavbar);
+  //   navbarToggle();
+  // }
   return (
     <BrowserRouter>
       <Routes>

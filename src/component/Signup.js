@@ -91,7 +91,7 @@ export default function Signup() {
               <button type="submit" className="btn btn-primary">
                 Continue
               </button>
-              <div className="form_or">
+              {/* <div className="form_or">
                 <span></span>
                 OR
                 <span></span>
@@ -215,7 +215,7 @@ export default function Signup() {
                   </svg>
                   Continue with Google
                 </button>
-              </div>
+              </div> */}
               <h3>
                 Already use Flax? <Link to="/signin"> Login</Link>
               </h3>

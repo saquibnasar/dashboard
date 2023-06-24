@@ -9,7 +9,9 @@
   @include media576 {
     padding: 24px 16px;
   }
-  .teamCard_btn {
+
+  .teamCard_btn,
+  .add_btn {
     background: #1d203c;
     border-radius: 32px;
     background: #1d203c;
@@ -19,9 +21,21 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 13px;
+    gap: 24px;
     border: none;
     cursor: pointer;
+    transition: 0.3s;
+    span {
+      display: flex;
+      border-radius: 50%;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.5rem;
+      background: #d9d9d9;
+    }
+  }
+
+  .teamCard_btn {
     h3 {
       font-family: "Inter";
       font-style: normal;
@@ -47,13 +61,7 @@
     span {
       width: 60px;
       height: 60px;
-      background: #d9d9d9;
       color: #a3a3a3;
-      font-size: 1.5rem;
-      display: flex;
-      border-radius: 50%;
-      justify-content: center;
-      align-items: center;
     }
     .editCard,
     .ShareCard {
@@ -83,19 +91,10 @@
       }
     }
   }
+  .teamCard_btn:hover {
+    transform: scale(1.02);
+  }
   .add_btn {
-    background: #1d203c;
-    border-radius: 32px;
-    background: #1d203c;
-    border-radius: 32px;
-    height: 250px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 24px;
-    border: none;
-    cursor: pointer;
     @include media400 {
       gap: 12px;
     }
@@ -113,14 +112,11 @@
     span {
       width: 40px;
       height: 40px;
-      background: #d9d9d9;
       color: #252525;
-      font-size: 1.1rem;
-      display: flex;
-      border-radius: 50%;
-      justify-content: center;
-      align-items: center;
     }
+  }
+  .add_btn:hover {
+    transform: scale(1.02);
   }
 }
 .teamCard.teamCard_list {

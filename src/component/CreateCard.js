@@ -59,6 +59,39 @@ export default function CreateCard() {
                 Back
               </Link>
               <div className="addImage">
+                <h3>Upload banner image </h3>
+                <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
+                  <label htmlFor="uploadBanner" className="uploadBanner">
+                    {image.bannerImage ? (
+                      <img
+                        src={image.bannerImage}
+                        alt=""
+                        className="img-fluid"
+                      />
+                    ) : (
+                      <>
+                        <div className="d-flex gap-2 align-items-center">
+                          <FontAwesomeIcon icon={faPlus} />
+                          <h4>Upload images</h4>
+                        </div>
+                        <p>
+                          item with images see 60% more visits from customers
+                        </p>
+                      </>
+                    )}
+                  </label>
+
+                  <input
+                    type="file"
+                    id="uploadBanner"
+                    // style={{ display: "none" }}
+                    className="d-none"
+                    name="bannerImage"
+                    onChange={imagehandleChange}
+                  />
+                </div>
+              </div>
+              <div className="addImage">
                 <h3>Upload Profile image </h3>
                 <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
                   <div className="upload-img">
@@ -136,39 +169,7 @@ export default function CreateCard() {
                   />
                 </div>
               </div>
-              <div className="addImage">
-                <h3>Upload banner image </h3>
-                <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
-                  <label htmlFor="uploadBanner" className="uploadBanner">
-                    {image.bannerImage ? (
-                      <img
-                        src={image.bannerImage}
-                        alt=""
-                        className="img-fluid"
-                      />
-                    ) : (
-                      <>
-                        <div className="d-flex gap-2 align-items-center">
-                          <FontAwesomeIcon icon={faPlus} />
-                          <h4>Upload images</h4>
-                        </div>
-                        <p>
-                          item with images see 60% more visits from customers
-                        </p>
-                      </>
-                    )}
-                  </label>
 
-                  <input
-                    type="file"
-                    id="uploadBanner"
-                    // style={{ display: "none" }}
-                    className="d-none"
-                    name="bannerImage"
-                    onChange={imagehandleChange}
-                  />
-                </div>
-              </div>
               <div className="admin_detail-social">
                 <h3>Choose/add Social handles </h3>
                 <div className="admin_detail-social-grid">

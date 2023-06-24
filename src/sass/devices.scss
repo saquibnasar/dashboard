@@ -105,45 +105,47 @@
       .devices_content_left {
         .cards {
           transition: 0.3s;
-          padding-right: 111px;
-          margin-bottom: -150px;
-          @include media1200 {
-            padding-right: 106px;
-          }
+          // padding-right: 111px;
+          margin-bottom: -215px;
+          // @include media1200 {
+          //   padding-right: 106px;
+          // }
           @include media768 {
-            padding-right: 0;
-            margin-bottom: -140px;
+            // padding-right: 0;
+            margin-bottom: -212px;
           }
           @include media576 {
-            margin-bottom: -110px;
+            margin-bottom: -165px;
           }
           @include media500 {
-            margin-bottom: -90px;
+            margin-bottom: -100px;
           }
           .card,
           .card_second {
             border-radius: 16px;
-            width: 450px;
-            height: 225px;
+            width: 425px;
+            height: 268px;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: 0.3s;
             margin: auto;
+
             @include media768 {
-              width: 432px;
+              width: 400px;
+              height: 252px;
             }
             @include media576 {
               width: 356px;
-              height: 178px;
+              height: 224px;
             }
             @include media500 {
               width: 284px;
-              height: 142px;
+              height: 179px;
             }
             @include media430 {
               width: 230px;
-              height: 115px;
+              height: 145px;
             }
           }
 
@@ -157,6 +159,7 @@
             z-index: 1;
             flex-direction: column;
             margin: auto;
+
             h4,
             h3 {
               font-family: "Roboto";
@@ -222,6 +225,9 @@
               img {
                 width: 60px;
                 border-radius: 50%;
+                @include media768 {
+                  width: 32px;
+                }
                 @include media576 {
                   width: 45px;
                 }
@@ -244,9 +250,9 @@
             );
             gap: 32px;
             z-index: 0;
-            transform: translate(20%, -70%);
+            transform: translate(8%, -88%);
             @include media768 {
-              transform: translate(3%, -70%);
+              transform: translate(3%, -88%);
             }
             h4,
             h5 {
@@ -302,6 +308,9 @@
               background: #fff;
               padding: 8px;
               border-radius: 8px;
+              @include media768 {
+                width: 110px;
+              }
               @include media576 {
                 width: 90px;
                 padding: 4px;
@@ -319,23 +328,26 @@
           .card_second {
             z-index: 1;
             transition: 0.3s;
-            transform: translate(0%, -225px);
+            transform: translate(0%, -268px);
+            @include media768 {
+              transform: translate(0%, -252px);
+            }
             @include media576 {
-              transform: translate(0%, -178px);
+              transform: translate(0%, -224px);
             }
             @include media500 {
-              transform: translate(0%, -142px);
+              transform: translate(0%, -179px);
             }
             @include media430 {
-              transform: translate(0%, -115px);
+              transform: translate(0%, -145px);
             }
           }
           .card {
             transition: 0.3s;
             z-index: 0;
-            transform: translate(20%, 30%);
+            transform: translate(8%, 8%);
             @include media768 {
-              transform: translate(3%, 30%);
+              transform: translate(3%, 8%);
             }
           }
         }
@@ -456,32 +468,30 @@
             #000000 86.43%
           );
           border-radius: 16px;
-          width: 450px;
-          height: 225px;
+          width: 425px;
+          height: 268px;
           display: flex;
           justify-content: center;
           align-items: center;
           gap: 32px;
-          transform: translate(-4%, 50%);
+          transform: translateY(50%);
+          margin: auto;
 
-          @include media1200 {
-            transform: translateY(50%);
-            margin: auto;
-          }
           @include media768 {
-            width: 432px;
+            width: 400px;
+            height: 252px;
           }
           @include media576 {
             width: 356px;
-            height: 178px;
+            height: 224px;
           }
           @include media500 {
             width: 284px;
-            height: 142px;
+            height: 179px;
           }
           @include media430 {
             width: 230px;
-            height: 115px;
+            height: 145px;
           }
           h4,
           h5 {
