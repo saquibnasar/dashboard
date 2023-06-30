@@ -119,7 +119,7 @@ export default function CreateCard() {
               </div>
 
               <div className="admin_detail-member">
-                <h3>company detail </h3>
+                <h3>Enter user detail </h3>
 
                 <div className="">
                   <input

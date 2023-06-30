@@ -376,89 +376,107 @@
           left: 41.2%;
           transform: scale(0.3);
         }
-        .signup_phone-container {
-          background: #1f252f;
-          border-radius: 15px;
-          box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
-          padding: 0px;
+        .signup_phone {
+          width: 242px;
+          // height: 530px;
           margin: auto;
-          width: 232px;
-          height: 530px;
-          overflow-x: hidden;
-          position: relative;
-          overflow-y: scroll;
           @include media768 {
-            width: 312px;
-            height: 628px;
+            width: 321px;
           }
           @include media576 {
-            width: 273px;
-            height: 628px;
+            width: 283px;
+            // height: 628px;
           }
           @include media430 {
-            width: 203px;
-            height: 556px;
+            width: 213px;
+            // height: 556px;
           }
-          .userProile {
-            width: 567px;
-            transform: scale(0.41) translate(-72%, -72%); /* overflow: scroll; */ /* height: 50%; */ /* height: 1537px; */
-            overflow: hidden;
-            position: absolute;
+          .signup_phone-container {
+            background: #1f252f;
+            border-radius: 15px;
+            box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
+            padding: 0px;
+            margin: auto;
+            width: 242px;
+            height: 530px;
+            overflow-x: hidden;
+            position: relative;
+            overflow-y: scroll;
+            padding: 7px 5px;
             @include media768 {
-              transform: scale(0.55) translate(-41%, -41%);
+              width: 321px;
+              height: 628px;
             }
             @include media576 {
-              transform: scale(0.48) translate(-54%, -54%);
+              width: 283px;
+              height: 628px;
             }
             @include media430 {
-              transform: scale(0.36) translate(-89%, -89%);
+              width: 213px;
+              height: 556px;
+            }
+            .userProile {
+              width: 567px;
+              transform: scale(0.41) translate(-72%, -72%); /* overflow: scroll; */ /* height: 50%; */ /* height: 1537px; */
+              overflow: hidden;
+              position: absolute;
+              border-radius: 15px;
+              @include media768 {
+                transform: scale(0.55) translate(-41%, -41%);
+              }
+              @include media576 {
+                transform: scale(0.48) translate(-54%, -54%);
+              }
+              @include media430 {
+                transform: scale(0.36) translate(-89%, -89%);
+              }
             }
           }
-          // .signup_phone-left {
-          //   position: absolute;
-          //   top: 21%;
-          //   left: -3px;
-          //   display: flex;
-          //   flex-direction: column;
+          .signup_phone-left {
+            position: absolute;
+            top: 37%;
+            left: -1px;
+            display: flex;
+            flex-direction: column;
 
-          //   span:nth-child(1) {
-          //     width: 3px;
-          //     height: 30px;
-          //     background: #333333;
-          //     box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
-          //     border-radius: 1px 0px 0px 1px;
-          //     display: inline-block;
-          //   }
-          //   span:nth-child(2) {
-          //     width: 3px;
-          //     height: 62px;
-          //     background: #333333;
-          //     box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
-          //     border-radius: 1px 0px 0px 1px;
-          //     display: inline-block;
-          //     margin-top: 24px;
-          //     margin-bottom: 18px;
-          //   }
-          //   span:nth-child(3) {
-          //     width: 3px;
-          //     height: 62px;
-          //     background: #333333;
-          //     box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
-          //     display: inline-block;
-          //   }
-          // }
-          // .signup_phone-right {
-          //   position: absolute;
-          //   top: 30%;
-          //   right: -3px;
-          //   span {
-          //     width: 3px;
-          //     height: 100px;
-          //     background: #333333;
-          //     box-shadow: inset -1px 0px 2px rgba(255, 255, 255, 0.5);
-          //     display: inline-block;
-          //   }
-          // }
+            span:nth-child(1) {
+              width: 3px;
+              height: 40px;
+              background: #333333;
+              box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+              border-radius: 1px 0px 0px 1px;
+              display: inline-block;
+              margin-top: 24px;
+              margin-bottom: 18px;
+            }
+            span:nth-child(2) {
+              width: 3px;
+              height: 40px;
+              background: #333333;
+              box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+              border-radius: 1px 0px 0px 1px;
+              display: inline-block;
+            }
+            span:nth-child(3) {
+              width: 3px;
+              height: 62px;
+              background: #333333;
+              box-shadow: inset 1px 0px 2px rgba(255, 255, 255, 0.5);
+              display: inline-block;
+            }
+          }
+          .signup_phone-right {
+            position: absolute;
+            top: 41%;
+            right: -2px;
+            span {
+              width: 3px;
+              height: 40px;
+              background: #333333;
+              box-shadow: inset -1px 0px 2px rgba(255, 255, 255, 0.5);
+              display: inline-block;
+            }
+          }
         }
         .card {
           background: linear-gradient(

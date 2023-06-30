@@ -78,11 +78,18 @@ export default function Devices(props) {
 
               <img className="img-fluid qrcode" src="/diveceqr.png" alt="" />
             </div>
-            <div className="">
-              <div className="signup_phone text-center overflow-hidden">
-                <div className="signup_phone-container">
-                  <UserProfile />
-                </div>
+
+            <div className="signup_phone text-center p-relative">
+              <div className="signup_phone-left">
+                <span></span>
+                <span></span>
+                {/* <span></span> */}
+              </div>
+              <div className="signup_phone-right">
+                <span></span>
+              </div>
+              <div className="signup_phone-container">
+                <UserProfile />
               </div>
             </div>
 
