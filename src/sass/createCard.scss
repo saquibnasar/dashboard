@@ -430,7 +430,7 @@
   }
 
   .signup_phone {
-    min-width: 50%;
+    min-width: 40%;
     @include media768 {
       border-top: 3px solid #fff;
       border-left: none;
@@ -466,12 +466,13 @@
       background: #1f252f;
       border-radius: 15px;
       box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
-      padding: 0px;
-      margin: auto;
-      width: 424px;
       height: 720px;
-      position: relative;
+      margin: auto;
       overflow: scroll;
+      padding: 0;
+      position: relative;
+      width: 296px;
+
       @include media992 {
         width: 311px;
         height: 700px;
@@ -483,7 +484,7 @@
 
       .userProile {
         width: 567px;
-        transform: scale(0.76) translate(-17%, -16%);
+        transform: scale(0.52) translate(-46%, -46%);
         overflow: hidden;
         position: absolute;
         @include media992 {
