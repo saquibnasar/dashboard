@@ -13,6 +13,181 @@ export default function About(props) {
         <div className="admin">
           <div className="admin_detail">
             <div className="addImage">
+              <h3>Upload banner image </h3>
+              {/* <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
+                <label htmlFor="uploadBanner" className="uploadBanner">
+                  {props.imageData.bannerImage ? (
+                    <img
+                      src={props.imageData.bannerImage}
+                      alt=""
+                      className="img-fluid"
+                    />
+                  ) : (
+                    <>
+                      <div className="d-flex gap-2 align-items-center">
+                        <FontAwesomeIcon icon={faPlus} />
+                        <h4>Upload images</h4>
+                      </div>
+                      <p>item with images see 60% more visits from customers</p>
+                    </>
+                  )}
+                </label>
+
+                <input
+                  type="file"
+                  id="uploadBanner"
+                  // style={{ display: "none" }}
+                  className="d-none"
+                  name="bannerImage"
+                  onChange={props.imagehandleChange}
+                />
+              </div> */}
+              <div class="row">
+                <div class="col">
+                  <div class="tabs">
+                    <div class="tab">
+                      <input type="checkbox" id="rd1" name="rd" />
+                      <label class="tab-label" for="rd1">
+                        Upload images
+                        <FontAwesomeIcon icon={faPlus} />
+                      </label>
+                      <div class="tab-content">
+                        <label htmlFor="uploadBanner1" className="imgUploader">
+                          {props.imageData.bannerImage1 ? (
+                            <img
+                              src={props.imageData.bannerImage1}
+                              alt=""
+                              className="img-fluid"
+                            />
+                          ) : (
+                            <>
+                              item with images see 60% more visits from
+                              customers
+                            </>
+                          )}
+                        </label>
+                        <input
+                          type="file"
+                          id="uploadBanner1"
+                          // style={{ display: "none" }}
+                          className="d-none"
+                          name="bannerImage1"
+                          value=""
+                          onChange={props.imagehandleChange}
+                        />
+
+                        <button
+                          className="btn-primary mt-3"
+                          onClick={() => {
+                            props.setImage((prevformData) => {
+                              return {
+                                ...prevformData,
+                                bannerImage1: "",
+                              };
+                            });
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    <div class="tab">
+                      <input type="checkbox" id="rd2" name="rd" />
+                      <label class="tab-label" for="rd2">
+                        Upload images
+                        <FontAwesomeIcon icon={faPlus} />
+                      </label>
+                      <div class="tab-content">
+                        <label htmlFor="uploadBanner2" className="imgUploader">
+                          {props.imageData.bannerImage2 ? (
+                            <img
+                              src={props.imageData.bannerImage2}
+                              alt=""
+                              className="img-fluid"
+                            />
+                          ) : (
+                            <>
+                              item with images see 60% more visits from
+                              customers
+                            </>
+                          )}
+                        </label>
+                        <input
+                          type="file"
+                          id="uploadBanner2"
+                          // style={{ display: "none" }}
+                          className="d-none"
+                          name="bannerImage2"
+                          value=""
+                          onChange={props.imagehandleChange}
+                        />
+
+                        <button
+                          className="btn-primary mt-3"
+                          onClick={() => {
+                            props.setImage((prevformData) => {
+                              return {
+                                ...prevformData,
+                                bannerImage2: "",
+                              };
+                            });
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                    <div class="tab">
+                      <input type="checkbox" id="rd3" name="rd" />
+                      <label class="tab-label" for="rd3">
+                        Upload images
+                        <FontAwesomeIcon icon={faPlus} />
+                      </label>
+                      <div class="tab-content">
+                        <label htmlFor="uploadBanner3" className="imgUploader">
+                          {props.imageData.bannerImage3 ? (
+                            <img
+                              src={props.imageData.bannerImage3}
+                              alt=""
+                              className="img-fluid"
+                            />
+                          ) : (
+                            <>
+                              item with images see 60% more visits from
+                              customers
+                            </>
+                          )}
+                        </label>
+                        <input
+                          type="file"
+                          id="uploadBanner3"
+                          // style={{ display: "none" }}
+                          className="d-none"
+                          name="bannerImage3"
+                          value=""
+                          onChange={props.imagehandleChange}
+                        />
+
+                        <button
+                          className="btn-primary mt-3"
+                          onClick={() => {
+                            props.setImage((prevformData) => {
+                              return {
+                                ...prevformData,
+                                bannerImage3: "",
+                              };
+                            });
+                          }}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="addImage">
               <h3>Upload Profile image </h3>
               <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
                 <div className="upload-img">
@@ -44,7 +219,7 @@ export default function About(props) {
             </div>
 
             <div className="admin_detail-member">
-              <h3>company detail </h3>
+              <h3>Enter user detail </h3>
 
               <div className="">
                 <input
@@ -94,37 +269,7 @@ export default function About(props) {
                 />
               </div>
             </div>
-            <div className="addImage">
-              <h3>Upload banner image </h3>
-              <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
-                <label htmlFor="uploadBanner" className="uploadBanner">
-                  {props.imageData.bannerImage ? (
-                    <img
-                      src={props.imageData.bannerImage}
-                      alt=""
-                      className="img-fluid"
-                    />
-                  ) : (
-                    <>
-                      <div className="d-flex gap-2 align-items-center">
-                        <FontAwesomeIcon icon={faPlus} />
-                        <h4>Upload images</h4>
-                      </div>
-                      <p>item with images see 60% more visits from customers</p>
-                    </>
-                  )}
-                </label>
 
-                <input
-                  type="file"
-                  id="uploadBanner"
-                  // style={{ display: "none" }}
-                  className="d-none"
-                  name="bannerImage"
-                  onChange={props.imagehandleChange}
-                />
-              </div>
-            </div>
             <div className="admin_detail-social">
               <h3>Choose/add Social handles </h3>
               <div className="admin_detail-social-grid">

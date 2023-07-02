@@ -1,0 +1,14 @@
+.swiper {
+  .slick-arrow.slick-next,
+  .slick-arrow.slick-prev,
+  .slick-dots {
+    display: none !important;
+  }
+  .swiper-wrapper {
+    .swiper-slide {
+      img {
+        height: 300px;
+      }
+    }
+  }
+}

@@ -149,7 +149,7 @@
         border-top-right-radius: 22px;
       }
       .sidebar-collapse {
-        border-right: 3px solid #fff;
+        // border-right: 3px solid #fff;
         height: 100%;
         @include media768 {
           border-right: unset;

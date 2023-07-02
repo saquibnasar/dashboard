@@ -24,7 +24,7 @@
       padding-bottom: 24px;
     }
     .sidebar {
-      border-right: unset;
+      // border-right: unset;
 
       @include media1200 {
         min-width: unset;
@@ -96,8 +96,8 @@
     }
     .homePage_container-bottom {
       display: grid;
-      grid-template-columns: auto 280px;
-      margin-top: 36px;
+      grid-template-columns: auto 332px;
+      // margin-top: 36px;
 
       @include media768 {
         grid-template-columns: unset;
@@ -143,8 +143,8 @@
           box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
           padding: 0px;
           margin: auto;
-          width: 232px;
-          height: 530px;
+          width: 283px;
+          height: 583px;
           overflow-x: hidden;
           position: relative;
           overflow-y: scroll;
@@ -162,7 +162,7 @@
           }
           .userProile {
             width: 567px;
-            transform: scale(0.41) translate(-72%, -72%); /* overflow: scroll; */ /* height: 50%; */ /* height: 1537px; */
+            transform: scale(0.5) translate(-50%, -50%);
             overflow: hidden;
             position: absolute;
             @include media768 {
@@ -225,7 +225,7 @@
 
       .links {
         padding: 14px 24px;
-        padding-top: 0px;
+        padding-top: 33px;
         .link_container {
           background: $bg-primary;
           border-radius: 30px;
@@ -338,6 +338,16 @@
             }
           }
         }
+      }
+      .setting {
+        width: 100%;
+        overflow-y: scroll;
+        position: relative;
+        display: inline-block;
+        height: 84vh;
+      }
+      .setting::-webkit-scrollbar {
+        display: none;
       }
     }
   }

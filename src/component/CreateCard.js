@@ -8,6 +8,7 @@ import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
 import AddCard from "./AddCard";
 import AddLink from "./AddLink";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
 export default function CreateCard() {
   const [isLinks, setIslinks] = useState(false);
@@ -15,7 +16,9 @@ export default function CreateCard() {
   const [linkData, setLinkData] = useState({});
   const [image, setImage] = useState({
     logoimage: "",
-    bannerImage: "",
+    bannerImage1: "",
+    bannerImage2: "",
+    bannerImage3: "",
     raw: "",
   });
 
@@ -60,7 +63,7 @@ export default function CreateCard() {
               </Link>
               <div className="addImage">
                 <h3>Upload banner image </h3>
-                <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
+                {/* <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
                   <label htmlFor="uploadBanner" className="uploadBanner">
                     {image.bannerImage ? (
                       <img
@@ -89,6 +92,159 @@ export default function CreateCard() {
                     name="bannerImage"
                     onChange={imagehandleChange}
                   />
+                </div> */}
+                <div class="row">
+                  <div class="col">
+                    <div class="tabs">
+                      <div class="tab">
+                        <input type="checkbox" id="rd1" name="rd" />
+                        <label class="tab-label" for="rd1">
+                          Upload images
+                          <FontAwesomeIcon icon={faPlus} />
+                        </label>
+                        <div class="tab-content">
+                          <label
+                            htmlFor="uploadBanner1"
+                            className="imgUploader"
+                          >
+                            {image.bannerImage1 ? (
+                              <img
+                                src={image.bannerImage1}
+                                alt=""
+                                className="img-fluid"
+                              />
+                            ) : (
+                              <>
+                                item with images see 60% more visits from
+                                customers
+                              </>
+                            )}
+                          </label>
+                          <input
+                            type="file"
+                            id="uploadBanner1"
+                            // style={{ display: "none" }}
+                            className="d-none"
+                            name="bannerImage1"
+                            value=""
+                            onChange={imagehandleChange}
+                          />
+
+                          <button
+                            className="btn-primary mt-3"
+                            onClick={() => {
+                              setImage((prevformData) => {
+                                return {
+                                  ...prevformData,
+                                  bannerImage1: "",
+                                };
+                              });
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                      <div class="tab">
+                        <input type="checkbox" id="rd2" name="rd" />
+                        <label class="tab-label" for="rd2">
+                          Upload images
+                          <FontAwesomeIcon icon={faPlus} />
+                        </label>
+                        <div class="tab-content">
+                          <label
+                            htmlFor="uploadBanner2"
+                            className="imgUploader"
+                          >
+                            {image.bannerImage2 ? (
+                              <img
+                                src={image.bannerImage2}
+                                alt=""
+                                className="img-fluid"
+                              />
+                            ) : (
+                              <>
+                                item with images see 60% more visits from
+                                customers
+                              </>
+                            )}
+                          </label>
+                          <input
+                            type="file"
+                            id="uploadBanner2"
+                            // style={{ display: "none" }}
+                            className="d-none"
+                            name="bannerImage2"
+                            value=""
+                            onChange={imagehandleChange}
+                          />
+
+                          <button
+                            className="btn-primary mt-3"
+                            onClick={() => {
+                              setImage((prevformData) => {
+                                return {
+                                  ...prevformData,
+                                  bannerImage2: "",
+                                };
+                              });
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                      <div class="tab">
+                        <input type="checkbox" id="rd3" name="rd" />
+                        <label class="tab-label" for="rd3">
+                          Upload images
+                          <FontAwesomeIcon icon={faPlus} />
+                        </label>
+                        <div class="tab-content">
+                          <label
+                            htmlFor="uploadBanner3"
+                            className="imgUploader"
+                          >
+                            {image.bannerImage3 ? (
+                              <img
+                                src={image.bannerImage3}
+                                alt=""
+                                className="img-fluid"
+                              />
+                            ) : (
+                              <>
+                                item with images see 60% more visits from
+                                customers
+                              </>
+                            )}
+                          </label>
+                          <input
+                            type="file"
+                            id="uploadBanner3"
+                            // style={{ display: "none" }}
+                            className="d-none"
+                            name="bannerImage3"
+                            value=""
+                            onChange={imagehandleChange}
+                          />
+
+                          <button
+                            className="btn-primary mt-3"
+                            onClick={() => {
+                              setImage((prevformData) => {
+                                return {
+                                  ...prevformData,
+                                  bannerImage3: "",
+                                };
+                              });
+                            }}
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div className="addImage">
@@ -237,7 +393,7 @@ export default function CreateCard() {
             <UserProfile
               formData={formData}
               logo={image.logoimage}
-              bannerImage={image.bannerImage}
+              images={image}
             />
           </div>
         </div>

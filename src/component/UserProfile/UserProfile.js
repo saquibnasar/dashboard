@@ -3,6 +3,8 @@ import { useParams } from "react-router-dom";
 import SocialLink from "../SocialLink";
 import Footer from "../Footer";
 import ReactPlayer from "react-player/youtube";
+import ImgSlider from "../ImgSlider";
+
 export default function UserProfile(props) {
   const { userProfileId } = useParams();
   const [data, setData] = useState();
@@ -440,14 +442,32 @@ export default function UserProfile(props) {
           </button>
 
           <div className="logo-only">
-            <img
+            {props.images &&
+            (props.images.bannerImage1 ||
+              props.images.bannerImage2 ||
+              props.images.bannerImage3) ? (
+              <ImgSlider sliderImage={props.images} />
+            ) : (
+              ""
+            )}
+
+            {/* <img
               className="img-fluid w-100"
               src={props.bannerImage ? props.bannerImage : "/bguserProfile.png"}
               alt=""
-            />
+            /> */}
           </div>
           <div className="container">
-            <div className="header_content text-center">
+            <div
+              className={
+                props.images &&
+                (props.images.bannerImage1 ||
+                  props.images.bannerImage2 ||
+                  props.images.bannerImage3)
+                  ? "header_content text-center"
+                  : "header_content text-center mt-5"
+              }
+            >
               <img
                 className="img-fluid"
                 src={props.logo ? props.logo : "/qrcode.png"}

@@ -39,7 +39,9 @@ export default function HomePage(props) {
   };
   const [image, setImage] = useState({
     logoimage: "",
-    bannerImage: "",
+    bannerImage1: "",
+    bannerImage2: "",
+    bannerImage3: "",
     raw: "",
   });
   const imagehandleChange = (e) => {
@@ -55,14 +57,14 @@ export default function HomePage(props) {
 
   return (
     <>
-      <div className={`d-flex homePage ${homepageId}`}>
+      <div className={`d-flex homePage ${homepageId} overflow-hidden`}>
         <SIdebar navbarToggle={props.navbarToggle} />
         <div className="d-flex flex-direction-column w-100 ">
           <Topbar
             type="setting"
             title=""
             isNavbar={props.isNavbar}
-            text="Home"
+            text="Wilmette"
           />
           <div className="homePage_container mt-4">
             <nav className="sidebar">
@@ -143,6 +145,7 @@ export default function HomePage(props) {
                   formData={formData}
                   imageData={image}
                   imagehandleChange={imagehandleChange}
+                  setImage={setImage}
                 />
               ) : homepageId === "flaxcode" ? (
                 <FlaxCode />
@@ -157,7 +160,7 @@ export default function HomePage(props) {
                   <UserProfile
                     formData={formData}
                     logo={image.logoimage}
-                    bannerImage={image.bannerImage}
+                    images={image}
                   />
                 </div>
               </div>
