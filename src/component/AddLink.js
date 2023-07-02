@@ -91,7 +91,7 @@ export default function AddLink(props) {
           </div>
         </div>
       </div>
-      <div className="signup_phone text-center">
+      <div className="signup_phone text-center d-md-block">
         <button className="btn btn-preview">Live Preview</button>
         <div className="signup_phone-container">
           <UserProfile formData={formData} />

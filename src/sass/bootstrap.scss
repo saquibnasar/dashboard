@@ -236,6 +236,12 @@
   .mb-lg-3 {
     margin-bottom: 1rem !important;
   }
+  .d-md-block {
+    display: block !important;
+  }
+  .d-md-none {
+    display: none !important;
+  }
 }
 @include media576 {
   .mx-auto {

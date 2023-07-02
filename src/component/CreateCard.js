@@ -53,7 +53,7 @@ export default function CreateCard() {
 
   return (
     <>
-      <div className="createCard about p-relative">
+      <div className="createCard about p-relative h-100vh overflow-hidden">
         <div className="setting">
           <div className="admin">
             <div className="admin_detail">
@@ -387,7 +387,14 @@ export default function CreateCard() {
             </div>
           </div>
         </div>
-        <div className="signup_phone text-center">
+
+        <div
+          className={
+            isLinks
+              ? "d-md-none signup_phone text-center"
+              : "signup_phone text-center"
+          }
+        >
           <button className="btn btn-preview">Live Preview</button>
           <div className="signup_phone-container">
             <UserProfile
@@ -397,6 +404,7 @@ export default function CreateCard() {
             />
           </div>
         </div>
+
         {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
         {/* {isClick ? <AddLink data={linkData} sendData={sendData} /> : ""} */}
       </div>
