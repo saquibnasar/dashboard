@@ -10,7 +10,7 @@ import AddLink from "./AddLink";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
-export default function CreateCard() {
+export default function CreateCard(props) {
   const [isLinks, setIslinks] = useState(false);
   const [isClick, setIsClick] = useState(false);
   const [linkData, setLinkData] = useState({});
@@ -93,16 +93,16 @@ export default function CreateCard() {
                     onChange={imagehandleChange}
                   />
                 </div> */}
-                <div class="row">
-                  <div class="col">
-                    <div class="tabs">
-                      <div class="tab">
+                <div className="row">
+                  <div className="col">
+                    <div className="tabs">
+                      <div className="tab">
                         <input type="checkbox" id="rd1" name="rd" />
-                        <label class="tab-label" for="rd1">
+                        <label className="tab-label" htmlFor="rd1">
                           Upload images
                           <FontAwesomeIcon icon={faPlus} />
                         </label>
-                        <div class="tab-content">
+                        <div className="tab-content">
                           <label
                             htmlFor="uploadBanner1"
                             className="imgUploader"
@@ -145,13 +145,13 @@ export default function CreateCard() {
                           </button>
                         </div>
                       </div>
-                      <div class="tab">
+                      <div className="tab">
                         <input type="checkbox" id="rd2" name="rd" />
-                        <label class="tab-label" for="rd2">
+                        <label className="tab-label" htmlFor="rd2">
                           Upload images
                           <FontAwesomeIcon icon={faPlus} />
                         </label>
-                        <div class="tab-content">
+                        <div className="tab-content">
                           <label
                             htmlFor="uploadBanner2"
                             className="imgUploader"
@@ -194,13 +194,13 @@ export default function CreateCard() {
                           </button>
                         </div>
                       </div>
-                      <div class="tab">
+                      <div className="tab">
                         <input type="checkbox" id="rd3" name="rd" />
-                        <label class="tab-label" for="rd3">
+                        <label className="tab-label" htmlFor="rd3">
                           Upload images
                           <FontAwesomeIcon icon={faPlus} />
                         </label>
-                        <div class="tab-content">
+                        <div className="tab-content">
                           <label
                             htmlFor="uploadBanner3"
                             className="imgUploader"
@@ -329,10 +329,17 @@ export default function CreateCard() {
               <div className="admin_detail-social">
                 <h3>Choose/add Social handles </h3>
                 <div className="admin_detail-social-grid">
-                  <button className="btn-primary" onClick={addLin}>
+                  {props.linkData.map((links, id) => {
+                    return (
+                      <button key={id} className="btn-primary" onClick={addLin}>
+                        {links.linkType === "whatsapp" ? "WA" : ""}
+                      </button>
+                    );
+                  })}
+                  {/* <button className="btn-primary" onClick={addLin}>
                     FB
-                  </button>
-                  <button className="btn-primary">Insta</button>
+                  </button> */}
+                  {/* <button className="btn-primary">Insta</button>
                   <button className="btn-primary">YT</button>
                   <button className="btn-primary">FB</button>
                   <button className="btn-primary">Insta</button>
@@ -342,7 +349,7 @@ export default function CreateCard() {
                   <button className="btn-primary">YT</button>
                   <button className="btn-primary">FB</button>
                   <button className="btn-primary">Insta</button>
-                  <button className="btn-primary">YT</button>
+                  <button className="btn-primary">YT</button> */}
                   <button className="btn-primary" onClick={addLin}>
                     Add +
                   </button>
@@ -369,7 +376,7 @@ export default function CreateCard() {
                     placeholder="enter whatsApp number"
                     name="designation"
                   />
-                  <label class="did-floating-label">+91</label>
+                  <label className="did-floating-label">+91</label>
                 </div>
                 <div className="p-relative mb-3">
                   <input
@@ -380,7 +387,7 @@ export default function CreateCard() {
                     name="company"
                     required
                   />
-                  <label class="did-floating-label">+91</label>
+                  <label className="did-floating-label">+91</label>
                 </div>
               </div>
               <button className="btn-primary">Save</button>

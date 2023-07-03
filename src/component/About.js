@@ -42,16 +42,16 @@ export default function About(props) {
                   onChange={props.imagehandleChange}
                 />
               </div> */}
-              <div class="row">
-                <div class="col">
-                  <div class="tabs">
-                    <div class="tab">
+              <div className="row">
+                <div className="col">
+                  <div className="tabs">
+                    <div className="tab">
                       <input type="checkbox" id="rd1" name="rd" />
-                      <label class="tab-label" for="rd1">
+                      <label className="tab-label" htmlFor="rd1">
                         Upload images
                         <FontAwesomeIcon icon={faPlus} />
                       </label>
-                      <div class="tab-content">
+                      <div className="tab-content">
                         <label htmlFor="uploadBanner1" className="imgUploader">
                           {props.imageData.bannerImage1 ? (
                             <img
@@ -91,13 +91,13 @@ export default function About(props) {
                         </button>
                       </div>
                     </div>
-                    <div class="tab">
+                    <div className="tab">
                       <input type="checkbox" id="rd2" name="rd" />
-                      <label class="tab-label" for="rd2">
+                      <label className="tab-label" htmlFor="rd2">
                         Upload images
                         <FontAwesomeIcon icon={faPlus} />
                       </label>
-                      <div class="tab-content">
+                      <div className="tab-content">
                         <label htmlFor="uploadBanner2" className="imgUploader">
                           {props.imageData.bannerImage2 ? (
                             <img
@@ -137,13 +137,13 @@ export default function About(props) {
                         </button>
                       </div>
                     </div>
-                    <div class="tab">
+                    <div className="tab">
                       <input type="checkbox" id="rd3" name="rd" />
-                      <label class="tab-label" for="rd3">
+                      <label className="tab-label" htmlFor="rd3">
                         Upload images
                         <FontAwesomeIcon icon={faPlus} />
                       </label>
-                      <div class="tab-content">
+                      <div className="tab-content">
                         <label htmlFor="uploadBanner3" className="imgUploader">
                           {props.imageData.bannerImage3 ? (
                             <img
@@ -311,7 +311,7 @@ export default function About(props) {
                   placeholder="enter whatsApp number"
                   name="designation"
                 />
-                <label class="did-floating-label">+91</label>
+                <label className="did-floating-label">+91</label>
               </div>
               <div className="p-relative mb-3">
                 <input
@@ -322,16 +322,15 @@ export default function About(props) {
                   name="company"
                   required
                 />
-                <label class="did-floating-label">+91</label>
+                <label className="did-floating-label">+91</label>
               </div>
               <button className="btn-save">Save</button>
             </div>
           </div>
-          {/* <div className="admin_authentication">
+          <div className="admin_authentication">
             <div className="schedule">
               <h2>Schedule user validity</h2>
               <div className="form-check form-switch">
-                
                 <div className="tg-list-item">
                   <input className="tgl tgl-flat" id="cb4" type="checkbox" />
                   <label className="tgl-btn" htmlFor="cb4"></label>
@@ -356,7 +355,7 @@ export default function About(props) {
                 minDate={new Date()}
               />
             </div>
-          </div> */}
+          </div>
         </div>
       </div>
     </>

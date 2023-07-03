@@ -21,6 +21,13 @@ function App() {
   //   setIsNavbar(!isNavbar);
   //   navbarToggle();
   // }
+  const [linkData, setLinkData] = useState([
+    {
+      linkData: "9999999999",
+      linkTitle: "whatsapp",
+      linkType: "whatsapp",
+    },
+  ]);
   return (
     <BrowserRouter>
       <Routes>
@@ -28,7 +35,10 @@ function App() {
           path="/"
           element={<Home navbarToggle={navbarToggle} isNavbar={isNavbar} />}
         />
-        <Route path="/createCard" element={<CreateCard />} />
+        <Route
+          path="/createCard"
+          element={<CreateCard linkData={linkData} />}
+        />
         <Route
           path="/devices"
           element={<Devices navbarToggle={navbarToggle} isNavbar={isNavbar} />}
