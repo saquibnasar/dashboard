@@ -17,21 +17,38 @@
       .admin_detail {
         .addImage {
           margin-bottom: 22px;
-
-          .upload-img {
-            width: 60px;
-            height: 60px;
-            background: #fff;
-            color: #a3a3a3;
-            font-size: 1.4rem;
-            display: flex;
-            border-radius: 50%;
-            justify-content: center;
-            align-items: center;
-            border-radius: 60px;
-            img {
-              height: 100%;
+          .uploadImg-container {
+            display: inline-block;
+            .upload-img {
+              width: 100px;
+              height: 100px;
+              background: #fff;
+              color: #a3a3a3;
+              font-size: 2.2rem;
+              display: flex;
               border-radius: 50%;
+              justify-content: center;
+              align-items: center;
+              border-radius: 60px;
+              img {
+                height: 100%;
+                border-radius: 50%;
+              }
+            }
+            .uploadImg-btn {
+              position: absolute;
+              z-index: 2;
+              top: 56.5px;
+              right: -12px;
+              width: 45px;
+              height: 45px;
+              border-radius: 50%;
+              border: 2px solid rgb(255 255 255);
+              background-color: rgb(233 228 237);
+              color: $text;
+              display: flex;
+              align-items: center;
+              justify-content: center;
             }
           }
           .uploadBanner {
@@ -63,6 +80,34 @@
             img {
               height: 100%;
               width: 100%;
+            }
+          }
+          .uploadList {
+            background: #fff;
+            width: 250px;
+            position: absolute;
+            top: 100px;
+            left: 69px;
+            z-index: 5;
+            transition: all 0.5s;
+            transform: translateX(-102px) translateY(-40px) translateZ(0px)
+              scale(0);
+            .uploadList-item {
+              cursor: pointer;
+              user-select: none;
+              color: $text;
+              display: flex;
+              align-items: center;
+              padding: 8px 18px 8px 18px;
+              min-height: 44px;
+              font-size: 17px;
+              line-height: 26px;
+              // border-bottom: 1px solid #a3a3a3;
+              justify-content: space-between;
+            }
+            .uploadList-item:hover {
+              background-color: $primary;
+              color: $white-color;
             }
           }
           .btn-primary {
@@ -224,6 +269,21 @@
                   width: 100%;
                   border-radius: 15px;
                 }
+              }
+              .uploadImg-btn {
+                position: absolute;
+                z-index: 2;
+                bottom: 51.5px;
+                right: 10px;
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                border: 2px solid rgb(255, 255, 255);
+                background-color: rgb(233, 228, 237);
+                color: #4a4a4a;
+                display: flex;
+                align-items: center;
+                justify-content: center;
               }
               .btn-primary {
                 padding: 11px 33px !important;

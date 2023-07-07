@@ -10,21 +10,25 @@ import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useParams } from "react-router-dom";
-import { useState } from "react";
 import AddCard from "./AddCard";
-import AddLink from "./AddLink";
+// import AddLink from "./AddLink";
 
+import React, { useState, useCallback } from "react";
+import Cropper from "react-easy-crop";
+import getCroppedImg from "./imgUploader/cropImage";
 export default function Setting(props) {
   const { settingId } = useParams();
   const [isClick, setIsClick] = useState(false);
   const [isLinks, setIslinks] = useState(false);
   const [image, setImage] = useState({ preview: "", raw: "" });
+  const [testimage, setTestimage] = useState({ preview: "", raw: "" });
   const addLin = () => {
     setIslinks(!isLinks);
   };
 
   const handleChange = (e) => {
-    if (e.target.files.length) {
+    // console.log();
+    if (!e.target.files[0].length) {
       setImage({
         preview: URL.createObjectURL(e.target.files[0]),
         raw: e.target.files[0],
@@ -32,19 +36,55 @@ export default function Setting(props) {
     }
   };
 
-  const handleUpload = async (e) => {
-    e.preventDefault();
-    const formData = new FormData();
-    formData.append("image", image.raw);
+  // const handleUpload = async (e) => {
+  //   e.preventDefault();
+  //   const formData = new FormData();
+  //   formData.append("image", image.raw);
 
-    await fetch("YOUR_URL", {
-      method: "POST",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      body: formData,
-    });
-  };
+  //   await fetch("YOUR_URL", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "multipart/form-data",
+  //     },
+  //     body: formData,
+  //   });
+  // };
+
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [rotation, setRotation] = useState(0);
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null);
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const showCroppedImage = useCallback(async () => {
+    try {
+      const croppedImage = await getCroppedImg(
+        image.preview,
+        croppedAreaPixels,
+        rotation
+      );
+
+      setTestimage({
+        preview: croppedImage,
+      });
+      setImage({
+        preview: "",
+        raw: "",
+      });
+      // console.log("donee", { croppedImage });
+      setCroppedImage(croppedImage);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [croppedAreaPixels, rotation]);
+
+  const onClose = useCallback(() => {
+    setCroppedImage(null);
+  }, []);
 
   return (
     <>
@@ -112,66 +152,125 @@ export default function Setting(props) {
               </div>
             </nav>
             {settingId === "team" ? (
-              <div className="team_setting">
-                <form>
-                  <div className="Company_logo">
-                    <h3>Company logo</h3>
-
-                    <div className="upload-img">
-                      <label className="logo" htmlFor="upload-button">
-                        {image.preview ? (
-                          <img
-                            src={image.preview}
-                            alt="dummy"
-                            className="img-fluid"
+              <>
+                {image.preview ? (
+                  <>
+                    <div className="crops-module">
+                      <div className="crops">
+                        <div className="crops-controls">
+                          <button
+                            className="z-1 btn"
+                            type="button"
+                            onClick={() => {
+                              setImage({
+                                preview: "",
+                              });
+                            }}
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            className="z-1 btn"
+                            type="button"
+                            onClick={showCroppedImage}
+                          >
+                            Save
+                          </button>
+                        </div>
+                        <div className="crop-container">
+                          <Cropper
+                            image={image.preview}
+                            crop={crop}
+                            zoom={zoom}
+                            aspect={1}
+                            onCropChange={setCrop}
+                            onCropComplete={onCropComplete}
+                            onZoomChange={setZoom}
+                            // showGrid={false}
                           />
-                        ) : (
-                          <>
-                            <span>
-                              <FontAwesomeIcon icon={faPlus} />
-                            </span>
-                          </>
-                        )}
-                      </label>
-                      <input
-                        type="file"
-                        id="upload-button"
-                        // style={{ display: "none" }}
-                        className="d-none"
-                        onChange={handleChange}
-                      />
+                        </div>
+                        <div className="crop-edit">
+                          <input
+                            type="range"
+                            value={zoom}
+                            min={1}
+                            max={3}
+                            step={0.1}
+                            aria-labelledby="Zoom"
+                            onChange={(e) => {
+                              setZoom(e.target.value);
+                            }}
+                            className="zoom-range"
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
+                  </>
+                ) : (
+                  ""
+                )}
+                <div className="team_setting">
+                  <form>
+                    <div className="Company_logo">
+                      <h3>Company logo</h3>
+                      <div className="upload-img">
+                        <label className="logo" htmlFor="upload-button">
+                          {testimage.preview ? (
+                            <img
+                              src={testimage.preview}
+                              alt="dummy"
+                              className="img-fluid"
+                            />
+                          ) : (
+                            <>
+                              <span>
+                                <FontAwesomeIcon icon={faPlus} />
+                              </span>
+                            </>
+                          )}
+                        </label>
+                        <input
+                          type="file"
+                          id="upload-button"
+                          // style={{ display: "none" }}
+                          accept="image/*"
+                          className="d-none"
+                          value=""
+                          onChange={handleChange}
+                        />
+                      </div>
+                    </div>
 
-                  <div className="Company_name">
-                    {/* <h3>Company name</h3> */}
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Company name"
-                    />
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Website"
-                    />
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Copyright"
-                    />
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Disclaimer "
-                    />
-                    <button type="button" onClick={addLin}>
-                      Company social media links
-                    </button>
-                  </div>
-                  <button type="submit">Update</button>
-                </form>
-              </div>
+                    <div className="Company_name">
+                      {/* <h3>Company name</h3> */}
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Company name"
+                      />
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Website"
+                      />
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Copyright"
+                      />
+                      <input
+                        className="form-control"
+                        type="text"
+                        placeholder="Disclaimer "
+                      />
+                      <button type="button" onClick={addLin}>
+                        Company social media links
+                      </button>
+                    </div>
+                    <button type="submit">Update</button>
+                  </form>
+                </div>
+              </>
             ) : settingId === "subscription" ? (
               <Subscription />
             ) : settingId === "support" ? (

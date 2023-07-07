@@ -26,7 +26,7 @@
 
   .sidebar {
     width: unset;
-    border-right: unset;
+    // border-right: unset;
     @include media1200 {
       min-width: unset;
       max-width: unset;

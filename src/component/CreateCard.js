@@ -1,19 +1,39 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
+import Cropper from "react-easy-crop";
+import getCroppedImg from "./imgUploader/cropImage";
+import UserProfile from "./UserProfile/UserProfile";
+import AddCard from "./AddCard";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
-import UserProfile from "./UserProfile/UserProfile";
-import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
-import AddCard from "./AddCard";
-import AddLink from "./AddLink";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faMinus } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function CreateCard(props) {
   const [isLinks, setIslinks] = useState(false);
   const [isClick, setIsClick] = useState(false);
   const [linkData, setLinkData] = useState({});
+  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [rotation, setRotation] = useState(0);
+  const [zoom, setZoom] = useState(1);
+  const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
+  const [croppedImage, setCroppedImage] = useState(null);
+  const [isNavbar, setIsNavbar] = useState(false);
+  const [editImage, setEditImage] = useState("");
+
+  const [secondImage, setSecondImage] = useState({
+    logoimage: "",
+    bannerImage1: "",
+    bannerImage2: "",
+    bannerImage3: "",
+    raw: "",
+  });
+
   const [image, setImage] = useState({
     logoimage: "",
     bannerImage1: "",
@@ -37,9 +57,11 @@ export default function CreateCard(props) {
       };
     });
   };
+
   const addLin = () => {
     setIslinks(!isLinks);
   };
+
   const imagehandleChange = (e) => {
     if (e.target.files.length) {
       setImage((prevformData) => {
@@ -51,6 +73,60 @@ export default function CreateCard(props) {
     }
   };
 
+  const navbarToggle = () => {
+    setIsNavbar(!isNavbar);
+  };
+
+  const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+    setCroppedAreaPixels(croppedAreaPixels);
+  }, []);
+
+  const showCroppedImage = useCallback(async () => {
+    try {
+      const croppedImage = await getCroppedImg(
+        image.logoimage,
+        croppedAreaPixels,
+        rotation
+      );
+
+      setSecondImage({
+        logoimage: croppedImage,
+      });
+
+      setSecondImage((prevformData) => {
+        return {
+          ...prevformData,
+          logoimage: croppedImage,
+        };
+      });
+
+      console.log(image.logoimage);
+      setEditImage(image.logoimage);
+      setImage((prevformData) => {
+        return {
+          ...prevformData,
+          logoimage: "",
+        };
+      });
+      setCroppedImage(croppedImage);
+    } catch (e) {
+      console.error(e);
+    }
+  }, [croppedAreaPixels, rotation]);
+
+  window.addEventListener("click", function (e) {
+    const uploadList = document.querySelector(".uploadList");
+
+    if (
+      document.querySelector(".uploadImg-container") &&
+      !document.querySelector(".uploadImg-container").contains(e.target)
+    ) {
+      if (uploadList.style.transform === "unset") {
+        uploadList.style.transform =
+          "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
+      }
+    }
+  });
   return (
     <>
       <div className="createCard about p-relative h-100vh overflow-hidden">
@@ -63,36 +139,6 @@ export default function CreateCard(props) {
               </Link>
               <div className="addImage">
                 <h3>Upload banner image </h3>
-                {/* <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
-                  <label htmlFor="uploadBanner" className="uploadBanner">
-                    {image.bannerImage ? (
-                      <img
-                        src={image.bannerImage}
-                        alt=""
-                        className="img-fluid"
-                      />
-                    ) : (
-                      <>
-                        <div className="d-flex gap-2 align-items-center">
-                          <FontAwesomeIcon icon={faPlus} />
-                          <h4>Upload images</h4>
-                        </div>
-                        <p>
-                          item with images see 60% more visits from customers
-                        </p>
-                      </>
-                    )}
-                  </label>
-
-                  <input
-                    type="file"
-                    id="uploadBanner"
-                    // style={{ display: "none" }}
-                    className="d-none"
-                    name="bannerImage"
-                    onChange={imagehandleChange}
-                  />
-                </div> */}
                 <div className="row">
                   <div className="col">
                     <div className="tabs">
@@ -102,7 +148,7 @@ export default function CreateCard(props) {
                           Upload images
                           <FontAwesomeIcon icon={faPlus} />
                         </label>
-                        <div className="tab-content">
+                        <div className="tab-content p-relative">
                           <label
                             htmlFor="uploadBanner1"
                             className="imgUploader"
@@ -120,6 +166,59 @@ export default function CreateCard(props) {
                               </>
                             )}
                           </label>
+                          <div class="uploadImg-btn">
+                            <FontAwesomeIcon icon={faCamera} />
+                          </div>
+                          <div class="uploadList">
+                            <label
+                              className="uploadList-item"
+                              htmlFor="upload-photo"
+                            >
+                              Take photo
+                              <FontAwesomeIcon icon={faCamera} />
+                            </label>
+                            <label
+                              className="uploadList-item"
+                              htmlFor="upload-button"
+                            >
+                              Upload image
+                              <FontAwesomeIcon icon={faCloudArrowUp} />
+                            </label>
+                            {secondImage.logoimage ? (
+                              <>
+                                <div
+                                  className="uploadList-item"
+                                  onClick={() => {
+                                    setImage((prevformData) => {
+                                      return {
+                                        ...prevformData,
+                                        logoimage: editImage,
+                                      };
+                                    });
+                                  }}
+                                >
+                                  Edit
+                                  <FontAwesomeIcon icon={faPen} />
+                                </div>
+                                <div
+                                  className="uploadList-item"
+                                  onClick={() => {
+                                    setSecondImage((prevformData) => {
+                                      return {
+                                        ...prevformData,
+                                        logoimage: "",
+                                      };
+                                    });
+                                  }}
+                                >
+                                  Clear
+                                  <FontAwesomeIcon icon={faXmark} />
+                                </div>
+                              </>
+                            ) : (
+                              ""
+                            )}
+                          </div>
                           <input
                             type="file"
                             id="uploadBanner1"
@@ -151,7 +250,7 @@ export default function CreateCard(props) {
                           Upload images
                           <FontAwesomeIcon icon={faPlus} />
                         </label>
-                        <div className="tab-content">
+                        <div className="tab-content p-relative">
                           <label
                             htmlFor="uploadBanner2"
                             className="imgUploader"
@@ -169,6 +268,59 @@ export default function CreateCard(props) {
                               </>
                             )}
                           </label>
+                          <div class="uploadImg-btn">
+                            <FontAwesomeIcon icon={faCamera} />
+                          </div>
+                          <div class="uploadList">
+                            <label
+                              className="uploadList-item"
+                              htmlFor="upload-photo"
+                            >
+                              Take photo
+                              <FontAwesomeIcon icon={faCamera} />
+                            </label>
+                            <label
+                              className="uploadList-item"
+                              htmlFor="upload-button"
+                            >
+                              Upload image
+                              <FontAwesomeIcon icon={faCloudArrowUp} />
+                            </label>
+                            {secondImage.logoimage ? (
+                              <>
+                                <div
+                                  className="uploadList-item"
+                                  onClick={() => {
+                                    setImage((prevformData) => {
+                                      return {
+                                        ...prevformData,
+                                        logoimage: editImage,
+                                      };
+                                    });
+                                  }}
+                                >
+                                  Edit
+                                  <FontAwesomeIcon icon={faPen} />
+                                </div>
+                                <div
+                                  className="uploadList-item"
+                                  onClick={() => {
+                                    setSecondImage((prevformData) => {
+                                      return {
+                                        ...prevformData,
+                                        logoimage: "",
+                                      };
+                                    });
+                                  }}
+                                >
+                                  Clear
+                                  <FontAwesomeIcon icon={faXmark} />
+                                </div>
+                              </>
+                            ) : (
+                              ""
+                            )}
+                          </div>
                           <input
                             type="file"
                             id="uploadBanner2"
@@ -200,7 +352,7 @@ export default function CreateCard(props) {
                           Upload images
                           <FontAwesomeIcon icon={faPlus} />
                         </label>
-                        <div className="tab-content">
+                        <div className="tab-content p-relative">
                           <label
                             htmlFor="uploadBanner3"
                             className="imgUploader"
@@ -218,6 +370,59 @@ export default function CreateCard(props) {
                               </>
                             )}
                           </label>
+                          <div class="uploadImg-btn">
+                            <FontAwesomeIcon icon={faCamera} />
+                          </div>
+                          <div class="uploadList">
+                            <label
+                              className="uploadList-item"
+                              htmlFor="upload-photo"
+                            >
+                              Take photo
+                              <FontAwesomeIcon icon={faCamera} />
+                            </label>
+                            <label
+                              className="uploadList-item"
+                              htmlFor="upload-button"
+                            >
+                              Upload image
+                              <FontAwesomeIcon icon={faCloudArrowUp} />
+                            </label>
+                            {secondImage.logoimage ? (
+                              <>
+                                <div
+                                  className="uploadList-item"
+                                  onClick={() => {
+                                    setImage((prevformData) => {
+                                      return {
+                                        ...prevformData,
+                                        logoimage: editImage,
+                                      };
+                                    });
+                                  }}
+                                >
+                                  Edit
+                                  <FontAwesomeIcon icon={faPen} />
+                                </div>
+                                <div
+                                  className="uploadList-item"
+                                  onClick={() => {
+                                    setSecondImage((prevformData) => {
+                                      return {
+                                        ...prevformData,
+                                        logoimage: "",
+                                      };
+                                    });
+                                  }}
+                                >
+                                  Clear
+                                  <FontAwesomeIcon icon={faXmark} />
+                                </div>
+                              </>
+                            ) : (
+                              ""
+                            )}
+                          </div>
                           <input
                             type="file"
                             id="uploadBanner3"
@@ -247,12 +452,85 @@ export default function CreateCard(props) {
                   </div>
                 </div>
               </div>
-              <div className="addImage">
+              <div className="addImage p-relative">
                 <h3>Upload Profile image </h3>
-                <div className="d-flex justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column">
+                {image.logoimage ? (
+                  <>
+                    <div className="crops-module">
+                      <div className="crops">
+                        <div className="crops-controls">
+                          <button
+                            className="z-1 btn"
+                            type="button"
+                            onClick={() => {
+                              setImage({
+                                preview: "",
+                              });
+                            }}
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            className="z-1 btn"
+                            type="button"
+                            onClick={showCroppedImage}
+                          >
+                            Save
+                          </button>
+                        </div>
+                        <div className="crop-container">
+                          <Cropper
+                            image={image.logoimage}
+                            crop={crop}
+                            zoom={zoom}
+                            aspect={1}
+                            onCropChange={setCrop}
+                            onCropComplete={onCropComplete}
+                            onZoomChange={setZoom}
+                            cropShape="round"
+                            showGrid={false}
+                          />
+                        </div>
+                        <div className="crop-edit">
+                          <input
+                            type="range"
+                            value={zoom}
+                            min={1}
+                            max={3}
+                            step={0.1}
+                            aria-labelledby="Zoom"
+                            onChange={(e) => {
+                              setZoom(e.target.value);
+                            }}
+                            className="zoom-range"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
+                <div
+                  className="uploadImg-container justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column p-relative"
+                  onClick={() => {
+                    const uploadList = document.querySelector(".uploadList");
+                    if (uploadList.style.transform === "unset") {
+                      uploadList.style.transform =
+                        "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
+                    } else {
+                      uploadList.style.transform = "unset";
+                    }
+                    navbarToggle();
+                  }}
+                >
                   <div className="upload-img">
-                    {image.logoimage ? (
-                      <img src={image.logoimage} alt="" className="img-fluid" />
+                    {secondImage.logoimage ? (
+                      <img
+                        src={secondImage.logoimage}
+                        alt=""
+                        className="img-fluid"
+                      />
                     ) : (
                       <>
                         <FontAwesomeIcon icon={faUser} />
@@ -262,15 +540,68 @@ export default function CreateCard(props) {
                     <input
                       type="file"
                       id="upload-button"
-                      // style={{ display: "none" }}
                       className="d-none"
                       onChange={imagehandleChange}
                       name="logoimage"
+                      value=""
+                    />
+                    <input
+                      type="file"
+                      id="upload-photo"
+                      className="d-none"
+                      onChange={imagehandleChange}
+                      name="logoimage"
+                      capture
+                      value=""
                     />
                   </div>
-                  <label className="btn-primary" htmlFor="upload-button">
-                    Upload image
+                  <div class="uploadImg-btn">
+                    <FontAwesomeIcon icon={faCamera} />
+                  </div>
+                </div>
+                <div class="uploadList">
+                  <label className="uploadList-item" htmlFor="upload-photo">
+                    Take photo
+                    <FontAwesomeIcon icon={faCamera} />
                   </label>
+                  <label className="uploadList-item" htmlFor="upload-button">
+                    Upload image
+                    <FontAwesomeIcon icon={faCloudArrowUp} />
+                  </label>
+                  {secondImage.logoimage ? (
+                    <>
+                      <div
+                        className="uploadList-item"
+                        onClick={() => {
+                          setImage((prevformData) => {
+                            return {
+                              ...prevformData,
+                              logoimage: editImage,
+                            };
+                          });
+                        }}
+                      >
+                        Edit
+                        <FontAwesomeIcon icon={faPen} />
+                      </div>
+                      <div
+                        className="uploadList-item"
+                        onClick={() => {
+                          setSecondImage((prevformData) => {
+                            return {
+                              ...prevformData,
+                              logoimage: "",
+                            };
+                          });
+                        }}
+                      >
+                        Clear
+                        <FontAwesomeIcon icon={faXmark} />
+                      </div>
+                    </>
+                  ) : (
+                    ""
+                  )}
                 </div>
               </div>
 

@@ -199,6 +199,9 @@
 .bg-white {
   background: $white-color;
 }
+.z-1 {
+  z-index: 1;
+}
 
 @include media1200 {
   .d-xl-block {

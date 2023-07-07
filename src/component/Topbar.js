@@ -159,7 +159,9 @@ export default function Topbar(props) {
               ""
             )}
 
-            {props.type ? (
+            {props.type === "setting" ? (
+              ""
+            ) : props.type === "user" ? (
               <Link to="/createCard" className="SettingProfile">
                 <div className="SettingProfile_user">Share Your Profile</div>
                 <FontAwesomeIcon icon={faShare} />
@@ -175,6 +177,7 @@ export default function Topbar(props) {
                 <FontAwesomeIcon icon={faSearch} />
               </form>
             )}
+
             <div className="navbar-links">
               <button className="navbar-btn" onClick={FlaxLink}>
                 <svg
@@ -380,7 +383,9 @@ export default function Topbar(props) {
             ""
           )}
 
-          {props.type ? (
+          {props.type === "setting" ? (
+            ""
+          ) : props.type === "user" ? (
             <Link to="/createCard" className="SettingProfile">
               <div className="SettingProfile_user">Share Your Profile</div>
               <FontAwesomeIcon icon={faShare} />

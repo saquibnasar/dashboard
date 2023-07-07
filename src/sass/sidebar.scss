@@ -6,7 +6,8 @@
   min-width: 240px;
   padding-bottom: 28px;
   border-right: 3px solid $white-color;
-
+  display: flex;
+  flex-direction: column;
   @include media1200 {
     min-width: 90px;
     max-width: 90px;
@@ -48,37 +49,6 @@
   .sidebar-collapse {
     margin-top: 48px;
     padding-inline: 13px;
-    .btn.btn-primary {
-      font-size: 20px;
-      p {
-        font-family: "Roboto";
-        font-style: normal;
-        font-weight: 700;
-        font-size: 20px;
-        line-height: 18px;
-      }
-
-      background: #fff;
-      border-radius: 20px;
-      color: #848484;
-      padding: 18px 0;
-      width: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin-top: 32px;
-      cursor: pointer;
-      border: none;
-      margin-bottom: 31px;
-      @include media1200 {
-        margin-top: 70px;
-      }
-      @include media400 {
-        padding: 13px;
-        width: unset;
-        border-radius: 16px;
-      }
-    }
 
     .sidebar-nav {
       display: flex;
@@ -130,6 +100,40 @@
           color: $primary;
         }
       }
+    }
+  }
+  .btn.btn-primary {
+    font-size: 20px;
+    width: 80%;
+    margin-inline: auto;
+    margin-top: auto;
+    p {
+      font-family: "Roboto";
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20px;
+      line-height: 18px;
+    }
+
+    background: #fff;
+    border-radius: 20px;
+    color: #848484;
+    padding: 18px 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 32px;
+    cursor: pointer;
+    border: none;
+    margin-bottom: 31px;
+    @include media1200 {
+      margin-top: 70px;
+    }
+    @include media400 {
+      padding: 13px;
+      width: unset;
+      border-radius: 16px;
     }
   }
 }
@@ -210,7 +214,7 @@
       border-top-right-radius: 22px;
     }
     .sidebar-collapse {
-      border-right: 3px solid #fff;
+      // border-right: 3px solid #fff;
       height: 100%;
       @include media768 {
         border-right: unset;

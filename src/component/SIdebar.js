@@ -6,7 +6,7 @@ import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { faWrench } from "@fortawesome/free-solid-svg-icons";
+import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, Link } from "react-router-dom";
 export default function SIdebar(props) {
   return (
@@ -86,6 +86,12 @@ export default function SIdebar(props) {
               <p className="d-xl-none">Settings</p>
             </NavLink>
           </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" aria-current="page" to="/jfsdk">
+              <FontAwesomeIcon icon={faRightFromBracket} />
+              <p className="d-xl-none">Logout</p>
+            </NavLink>
+          </li>
         </ul>
 
         {/* <button className="btn btn-primary">
@@ -94,15 +100,15 @@ export default function SIdebar(props) {
           </span>
           <p className="d-xl-none">Upgrade Now </p>
         </button> */}
-        <button
-          className="btn btn-primary navbarToggle d-lg-block d-none"
-          onClick={props.navbarToggle}
-        >
-          <span className="">
-            <FontAwesomeIcon icon={faBars} />
-          </span>
-        </button>
       </div>
+      <button
+        className="btn btn-primary navbarToggle d-lg-block d-none"
+        onClick={props.navbarToggle}
+      >
+        <span className="">
+          <FontAwesomeIcon icon={faBars} />
+        </span>
+      </button>
     </nav>
   );
 }

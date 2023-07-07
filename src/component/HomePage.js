@@ -61,7 +61,7 @@ export default function HomePage(props) {
         <SIdebar navbarToggle={props.navbarToggle} />
         <div className="d-flex flex-direction-column w-100 ">
           <Topbar
-            type="setting"
+            type="user"
             title=""
             isNavbar={props.isNavbar}
             text="Wilmette"
