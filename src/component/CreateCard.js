@@ -13,18 +13,31 @@ import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+// import PhoneInput from "react-native-phone-number-input";
 
 export default function CreateCard(props) {
   const [isLinks, setIslinks] = useState(false);
   const [isClick, setIsClick] = useState(false);
   const [linkData, setLinkData] = useState({});
-  const [crop, setCrop] = useState({ x: 0, y: 0 });
+  const [crop, setCrop] = useState({
+    x: 0,
+    y: 0,
+  });
+
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
   const [isNavbar, setIsNavbar] = useState(false);
-  const [editImage, setEditImage] = useState("");
+  const [editImage, setEditImage] = useState({
+    logoimage: "",
+    bannerImage1: "",
+    bannerImage2: "",
+    bannerImage3: "",
+    raw: "",
+  });
 
   const [secondImage, setSecondImage] = useState({
     logoimage: "",
@@ -42,18 +55,21 @@ export default function CreateCard(props) {
     raw: "",
   });
 
-  const [formData, setFormData] = useState({
-    username: "",
-    designation: "",
-    employeeId: "",
-    employeeBio: "",
+  const [uploadList, setUploadList] = useState({
+    transform: "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
+    transformEnd: "translateX(-50%)",
+    uploadListcontainer: ".bannerImage1",
+    uploadList: ".uploadBanner1",
   });
 
   const handleChange = (event) => {
     setFormData((prevformData) => {
       return {
         ...prevformData,
-        [event.target.name]: event.target.value,
+        userInfo: {
+          ...prevformData.userInfo,
+          [event.target.name]: event.target.value,
+        },
       };
     });
   };
@@ -81,52 +97,98 @@ export default function CreateCard(props) {
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
-  const showCroppedImage = useCallback(async () => {
-    try {
-      const croppedImage = await getCroppedImg(
-        image.logoimage,
-        croppedAreaPixels,
-        rotation
-      );
+  const showCroppedImage = useCallback(
+    async (e) => {
+      try {
+        const croppedImage = await getCroppedImg(
+          image.logoimage ||
+            image.bannerImage1 ||
+            image.bannerImage2 ||
+            image.bannerImage3,
+          croppedAreaPixels,
+          rotation
+        );
+        // console.log(rotation);
 
-      setSecondImage({
-        logoimage: croppedImage,
-      });
+        if (image.logoimage) {
+          setSecondImage((prevformData) => {
+            return {
+              ...prevformData,
+              logoimage: croppedImage,
+            };
+          });
+        } else if (image.bannerImage1) {
+          setSecondImage((prevformData) => {
+            return {
+              ...prevformData,
+              bannerImage1: croppedImage,
+            };
+          });
+        } else if (image.bannerImage2) {
+          setSecondImage((prevformData) => {
+            return {
+              ...prevformData,
+              bannerImage2: croppedImage,
+            };
+          });
+        } else if (image.bannerImage3) {
+          setSecondImage((prevformData) => {
+            return {
+              ...prevformData,
+              bannerImage3: croppedImage,
+            };
+          });
+        }
 
-      setSecondImage((prevformData) => {
-        return {
-          ...prevformData,
-          logoimage: croppedImage,
-        };
-      });
+        setEditImage({
+          logoimage: image.logoimage,
+          bannerImage1: image.bannerImage1,
+          bannerImage2: image.bannerImage2,
+          bannerImage3: image.bannerImage3,
+        });
 
-      console.log(image.logoimage);
-      setEditImage(image.logoimage);
-      setImage((prevformData) => {
-        return {
-          ...prevformData,
-          logoimage: "",
-        };
-      });
-      setCroppedImage(croppedImage);
-    } catch (e) {
-      console.error(e);
-    }
-  }, [croppedAreaPixels, rotation]);
+        setImage((prevformData) => {
+          return {
+            ...prevformData,
+            logoimage: "",
+            bannerImage1: "",
+            bannerImage2: "",
+            bannerImage3: "",
+          };
+        });
+
+        setRotation(0);
+
+        setCroppedImage(croppedImage);
+      } catch (e) {
+        console.error(e);
+      }
+    },
+    [croppedAreaPixels, rotation]
+  );
 
   window.addEventListener("click", function (e) {
-    const uploadList = document.querySelector(".uploadList");
+    let uploadListcontainer = document.querySelector(
+      uploadList.uploadListcontainer
+    );
+    let uploadListelemet = document.querySelector(uploadList.uploadList);
 
-    if (
-      document.querySelector(".uploadImg-container") &&
-      !document.querySelector(".uploadImg-container").contains(e.target)
-    ) {
-      if (uploadList.style.transform === "unset") {
-        uploadList.style.transform =
-          "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
+    if (uploadListcontainer && !uploadListcontainer.contains(e.target)) {
+      if (uploadListelemet.style.transform === uploadList.transformEnd) {
+        uploadListelemet.style.transform = uploadList.transform;
       }
     }
   });
+
+  const [formData, setFormData] = useState({
+    userInfo: {},
+    userLink: [],
+  });
+
+  const textHander = () => {
+    console.log(formData);
+  };
+
   return (
     <>
       <div className="createCard about p-relative h-100vh overflow-hidden">
@@ -139,6 +201,89 @@ export default function CreateCard(props) {
               </Link>
               <div className="addImage">
                 <h3>Upload banner image </h3>
+                {image.bannerImage1 ||
+                image.bannerImage2 ||
+                image.bannerImage3 ? (
+                  <>
+                    <div className="crops-module">
+                      <div className="crops">
+                        <div className="crops-controls">
+                          <button
+                            className="z-1 btn"
+                            type="button"
+                            onClick={() => {
+                              setImage({
+                                preview: "",
+                              });
+                            }}
+                          >
+                            Cancel
+                          </button>
+                          <button
+                            className="z-1 btn"
+                            type="button"
+                            onClick={showCroppedImage}
+                          >
+                            Save
+                          </button>
+                        </div>
+                        <div className="crop-container">
+                          <Cropper
+                            image={
+                              image.bannerImage1 ||
+                              image.bannerImage2 ||
+                              image.bannerImage3
+                            }
+                            crop={crop}
+                            zoom={zoom}
+                            rotation={rotation}
+                            aspect={2 / 1}
+                            onCropChange={setCrop}
+                            onCropComplete={onCropComplete}
+                            onZoomChange={setZoom}
+                            cropSize={{ width: 500, height: 240 }}
+                            // showGrid={false}
+                          />
+                        </div>
+                        <div className="crop-edit">
+                          <input
+                            type="range"
+                            value={zoom}
+                            min={1}
+                            max={3}
+                            step={0.1}
+                            aria-labelledby="Zoom"
+                            onChange={(e) => {
+                              setZoom(e.target.value);
+                            }}
+                            className="zoom-range"
+                          />
+                        </div>
+                        <div class="crop_rotate">
+                          <div
+                            class="crop_rotate-left"
+                            // htmlFor="crop_rotate-left"
+                            onClick={() =>
+                              setRotation((prevformData) => prevformData + 90)
+                            }
+                          >
+                            <FontAwesomeIcon icon={faRotateLeft} />
+                          </div>
+                          <div
+                            class="crop_rotate-right"
+                            onClick={() =>
+                              setRotation((prevformData) => prevformData - 90)
+                            }
+                          >
+                            <FontAwesomeIcon icon={faRotateRight} />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
                 <div className="row">
                   <div className="col">
                     <div className="tabs">
@@ -149,42 +294,67 @@ export default function CreateCard(props) {
                           <FontAwesomeIcon icon={faPlus} />
                         </label>
                         <div className="tab-content p-relative">
-                          <label
-                            htmlFor="uploadBanner1"
-                            className="imgUploader"
+                          <div
+                            className="cursor_pointer bannerImage1"
+                            onClick={() => {
+                              setUploadList((prevformData) => {
+                                return {
+                                  ...prevformData,
+                                  transform:
+                                    "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
+                                  transformEnd: "translateX(-50%)",
+                                  uploadListcontainer: ".bannerImage1",
+                                  uploadList: ".uploadBanner1",
+                                };
+                              });
+                              const uploadBanner1 =
+                                document.querySelector(".uploadBanner1");
+                              if (
+                                uploadBanner1.style.transform ===
+                                "translateX(-50%)"
+                              ) {
+                                uploadBanner1.style.transform =
+                                  "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
+                              } else {
+                                uploadBanner1.style.transform =
+                                  "translateX(-50%)";
+                              }
+                            }}
                           >
-                            {image.bannerImage1 ? (
-                              <img
-                                src={image.bannerImage1}
-                                alt=""
-                                className="img-fluid"
-                              />
-                            ) : (
-                              <>
-                                item with images see 60% more visits from
-                                customers
-                              </>
-                            )}
-                          </label>
-                          <div class="uploadImg-btn">
-                            <FontAwesomeIcon icon={faCamera} />
+                            <div className="imgUploader">
+                              {secondImage.bannerImage1 ? (
+                                <img
+                                  src={secondImage.bannerImage1}
+                                  alt=""
+                                  className="img-fluid"
+                                />
+                              ) : (
+                                <>
+                                  item with images see 60% more visits from
+                                  customers
+                                </>
+                              )}
+                            </div>
+                            <div className="uploadImg-btn">
+                              <FontAwesomeIcon icon={faCamera} />
+                            </div>
                           </div>
-                          <div class="uploadList">
+                          <div className="uploadList uploadBanner1">
                             <label
                               className="uploadList-item"
-                              htmlFor="upload-photo"
+                              htmlFor="uploadBanner1-photo"
                             >
                               Take photo
                               <FontAwesomeIcon icon={faCamera} />
                             </label>
                             <label
                               className="uploadList-item"
-                              htmlFor="upload-button"
+                              htmlFor="uploadBanner1-image"
                             >
                               Upload image
                               <FontAwesomeIcon icon={faCloudArrowUp} />
                             </label>
-                            {secondImage.logoimage ? (
+                            {secondImage.bannerImage1 ? (
                               <>
                                 <div
                                   className="uploadList-item"
@@ -192,7 +362,7 @@ export default function CreateCard(props) {
                                     setImage((prevformData) => {
                                       return {
                                         ...prevformData,
-                                        logoimage: editImage,
+                                        bannerImage1: editImage.bannerImage1,
                                       };
                                     });
                                   }}
@@ -206,7 +376,7 @@ export default function CreateCard(props) {
                                     setSecondImage((prevformData) => {
                                       return {
                                         ...prevformData,
-                                        logoimage: "",
+                                        bannerImage1: "",
                                       };
                                     });
                                   }}
@@ -221,27 +391,23 @@ export default function CreateCard(props) {
                           </div>
                           <input
                             type="file"
-                            id="uploadBanner1"
-                            // style={{ display: "none" }}
+                            id="uploadBanner1-photo"
                             className="d-none"
                             name="bannerImage1"
                             value=""
                             onChange={imagehandleChange}
+                            capture
+                            accept="image/*"
                           />
-
-                          <button
-                            className="btn-primary mt-3"
-                            onClick={() => {
-                              setImage((prevformData) => {
-                                return {
-                                  ...prevformData,
-                                  bannerImage1: "",
-                                };
-                              });
-                            }}
-                          >
-                            Delete
-                          </button>
+                          <input
+                            type="file"
+                            id="uploadBanner1-image"
+                            className="d-none"
+                            name="bannerImage1"
+                            value=""
+                            onChange={imagehandleChange}
+                            accept="image/*"
+                          />
                         </div>
                       </div>
                       <div className="tab">
@@ -251,42 +417,67 @@ export default function CreateCard(props) {
                           <FontAwesomeIcon icon={faPlus} />
                         </label>
                         <div className="tab-content p-relative">
-                          <label
-                            htmlFor="uploadBanner2"
-                            className="imgUploader"
+                          <div
+                            className="cursor_pointer bannerImage2"
+                            onClick={() => {
+                              setUploadList((prevformData) => {
+                                return {
+                                  ...prevformData,
+                                  transform:
+                                    "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
+                                  transformEnd: "translateX(-50%)",
+                                  uploadListcontainer: ".bannerImage2",
+                                  uploadList: ".uploadBanner2",
+                                };
+                              });
+                              const uploadBanner2 =
+                                document.querySelector(".uploadBanner2");
+                              if (
+                                uploadBanner2.style.transform ===
+                                "translateX(-50%)"
+                              ) {
+                                uploadBanner2.style.transform =
+                                  "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
+                              } else {
+                                uploadBanner2.style.transform =
+                                  "translateX(-50%)";
+                              }
+                            }}
                           >
-                            {image.bannerImage2 ? (
-                              <img
-                                src={image.bannerImage2}
-                                alt=""
-                                className="img-fluid"
-                              />
-                            ) : (
-                              <>
-                                item with images see 60% more visits from
-                                customers
-                              </>
-                            )}
-                          </label>
-                          <div class="uploadImg-btn">
-                            <FontAwesomeIcon icon={faCamera} />
+                            <div className="imgUploader">
+                              {secondImage.bannerImage2 ? (
+                                <img
+                                  src={secondImage.bannerImage2}
+                                  alt=""
+                                  className="img-fluid"
+                                />
+                              ) : (
+                                <>
+                                  item with images see 60% more visits from
+                                  customers
+                                </>
+                              )}
+                            </div>
+                            <div className="uploadImg-btn">
+                              <FontAwesomeIcon icon={faCamera} />
+                            </div>
                           </div>
-                          <div class="uploadList">
+                          <div className="uploadList uploadBanner2">
                             <label
                               className="uploadList-item"
-                              htmlFor="upload-photo"
+                              htmlFor="uploadBanner2-photo"
                             >
                               Take photo
                               <FontAwesomeIcon icon={faCamera} />
                             </label>
                             <label
                               className="uploadList-item"
-                              htmlFor="upload-button"
+                              htmlFor="uploadBanner2-image"
                             >
                               Upload image
                               <FontAwesomeIcon icon={faCloudArrowUp} />
                             </label>
-                            {secondImage.logoimage ? (
+                            {secondImage.bannerImage2 ? (
                               <>
                                 <div
                                   className="uploadList-item"
@@ -294,7 +485,7 @@ export default function CreateCard(props) {
                                     setImage((prevformData) => {
                                       return {
                                         ...prevformData,
-                                        logoimage: editImage,
+                                        bannerImage2: editImage.bannerImage2,
                                       };
                                     });
                                   }}
@@ -308,7 +499,7 @@ export default function CreateCard(props) {
                                     setSecondImage((prevformData) => {
                                       return {
                                         ...prevformData,
-                                        logoimage: "",
+                                        bannerImage2: "",
                                       };
                                     });
                                   }}
@@ -323,27 +514,23 @@ export default function CreateCard(props) {
                           </div>
                           <input
                             type="file"
-                            id="uploadBanner2"
-                            // style={{ display: "none" }}
+                            id="uploadBanner2-photo"
                             className="d-none"
                             name="bannerImage2"
                             value=""
                             onChange={imagehandleChange}
+                            capture
+                            accept="image/*"
                           />
-
-                          <button
-                            className="btn-primary mt-3"
-                            onClick={() => {
-                              setImage((prevformData) => {
-                                return {
-                                  ...prevformData,
-                                  bannerImage2: "",
-                                };
-                              });
-                            }}
-                          >
-                            Delete
-                          </button>
+                          <input
+                            type="file"
+                            id="uploadBanner2-image"
+                            className="d-none"
+                            name="bannerImage2"
+                            value=""
+                            onChange={imagehandleChange}
+                            accept="image/*"
+                          />
                         </div>
                       </div>
                       <div className="tab">
@@ -353,42 +540,67 @@ export default function CreateCard(props) {
                           <FontAwesomeIcon icon={faPlus} />
                         </label>
                         <div className="tab-content p-relative">
-                          <label
-                            htmlFor="uploadBanner3"
-                            className="imgUploader"
+                          <div
+                            className="cursor_pointer bannerImage3"
+                            onClick={() => {
+                              setUploadList((prevformData) => {
+                                return {
+                                  ...prevformData,
+                                  transform:
+                                    "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
+                                  transformEnd: "translateX(-50%)",
+                                  uploadListcontainer: ".bannerImage3",
+                                  uploadList: ".uploadBanner3",
+                                };
+                              });
+                              const uploadBanner3 =
+                                document.querySelector(".uploadBanner3");
+                              if (
+                                uploadBanner3.style.transform ===
+                                "translateX(-50%)"
+                              ) {
+                                uploadBanner3.style.transform =
+                                  "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
+                              } else {
+                                uploadBanner3.style.transform =
+                                  "translateX(-50%)";
+                              }
+                            }}
                           >
-                            {image.bannerImage3 ? (
-                              <img
-                                src={image.bannerImage3}
-                                alt=""
-                                className="img-fluid"
-                              />
-                            ) : (
-                              <>
-                                item with images see 60% more visits from
-                                customers
-                              </>
-                            )}
-                          </label>
-                          <div class="uploadImg-btn">
-                            <FontAwesomeIcon icon={faCamera} />
+                            <div className="imgUploader">
+                              {secondImage.bannerImage3 ? (
+                                <img
+                                  src={secondImage.bannerImage3}
+                                  alt=""
+                                  className="img-fluid"
+                                />
+                              ) : (
+                                <>
+                                  item with images see 60% more visits from
+                                  customers
+                                </>
+                              )}
+                            </div>
+                            <div className="uploadImg-btn">
+                              <FontAwesomeIcon icon={faCamera} />
+                            </div>
                           </div>
-                          <div class="uploadList">
+                          <div className="uploadList uploadBanner3">
                             <label
                               className="uploadList-item"
-                              htmlFor="upload-photo"
+                              htmlFor="uploadBanner3-photo"
                             >
                               Take photo
                               <FontAwesomeIcon icon={faCamera} />
                             </label>
                             <label
                               className="uploadList-item"
-                              htmlFor="upload-button"
+                              htmlFor="uploadBanner3-image"
                             >
                               Upload image
                               <FontAwesomeIcon icon={faCloudArrowUp} />
                             </label>
-                            {secondImage.logoimage ? (
+                            {secondImage.bannerImage3 ? (
                               <>
                                 <div
                                   className="uploadList-item"
@@ -396,7 +608,7 @@ export default function CreateCard(props) {
                                     setImage((prevformData) => {
                                       return {
                                         ...prevformData,
-                                        logoimage: editImage,
+                                        bannerImage3: editImage.bannerImage3,
                                       };
                                     });
                                   }}
@@ -410,7 +622,7 @@ export default function CreateCard(props) {
                                     setSecondImage((prevformData) => {
                                       return {
                                         ...prevformData,
-                                        logoimage: "",
+                                        bannerImage3: "",
                                       };
                                     });
                                   }}
@@ -425,27 +637,23 @@ export default function CreateCard(props) {
                           </div>
                           <input
                             type="file"
-                            id="uploadBanner3"
-                            // style={{ display: "none" }}
+                            id="uploadBanner3-photo"
                             className="d-none"
                             name="bannerImage3"
                             value=""
                             onChange={imagehandleChange}
+                            capture
+                            accept="image/*"
                           />
-
-                          <button
-                            className="btn-primary mt-3"
-                            onClick={() => {
-                              setImage((prevformData) => {
-                                return {
-                                  ...prevformData,
-                                  bannerImage3: "",
-                                };
-                              });
-                            }}
-                          >
-                            Delete
-                          </button>
+                          <input
+                            type="file"
+                            id="uploadBanner3-image"
+                            className="d-none"
+                            name="bannerImage3"
+                            value=""
+                            onChange={imagehandleChange}
+                            accept="image/*"
+                          />
                         </div>
                       </div>
                     </div>
@@ -489,6 +697,8 @@ export default function CreateCard(props) {
                             onZoomChange={setZoom}
                             cropShape="round"
                             showGrid={false}
+                            rotation={rotation.logoimage}
+                            // cropSize={{ width: 110, height: 110 }}
                           />
                         </div>
                         <div className="crop-edit">
@@ -505,6 +715,24 @@ export default function CreateCard(props) {
                             className="zoom-range"
                           />
                         </div>
+                        <div class="crop_rotate">
+                          <div
+                            class="crop_rotate-left"
+                            onClick={() =>
+                              setRotation((prevformData) => prevformData - 90)
+                            }
+                          >
+                            <FontAwesomeIcon icon={faRotateLeft} />
+                          </div>
+                          <div
+                            class="crop_rotate-right"
+                            onClick={() =>
+                              setRotation((prevformData) => prevformData - 90)
+                            }
+                          >
+                            <FontAwesomeIcon icon={faRotateRight} />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -514,15 +742,25 @@ export default function CreateCard(props) {
                 <div
                   className="uploadImg-container justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column p-relative"
                   onClick={() => {
-                    const uploadList = document.querySelector(".uploadList");
-                    if (uploadList.style.transform === "unset") {
-                      uploadList.style.transform =
+                    setUploadList((prevformData) => {
+                      return {
+                        ...prevformData,
+                        transform:
+                          "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
+                        transformEnd: "unset",
+                        uploadListcontainer: ".uploadImg-container",
+                        uploadList: ".logoimage",
+                      };
+                    });
+                    const logoimage = document.querySelector(".logoimage");
+                    if (logoimage.style.transform === "unset") {
+                      logoimage.style.transform =
                         "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
                     } else {
-                      uploadList.style.transform = "unset";
+                      logoimage.style.transform = "unset";
                     }
-                    navbarToggle();
                   }}
+                  id="imgfor"
                 >
                   <div className="upload-img">
                     {secondImage.logoimage ? (
@@ -544,6 +782,7 @@ export default function CreateCard(props) {
                       onChange={imagehandleChange}
                       name="logoimage"
                       value=""
+                      accept="image/*"
                     />
                     <input
                       type="file"
@@ -553,13 +792,14 @@ export default function CreateCard(props) {
                       name="logoimage"
                       capture
                       value=""
+                      accept="image/*"
                     />
                   </div>
-                  <div class="uploadImg-btn">
+                  <div className="uploadImg-btn">
                     <FontAwesomeIcon icon={faCamera} />
                   </div>
                 </div>
-                <div class="uploadList">
+                <div className="uploadList logoimage" htmlFor="imgfor">
                   <label className="uploadList-item" htmlFor="upload-photo">
                     Take photo
                     <FontAwesomeIcon icon={faCamera} />
@@ -576,7 +816,7 @@ export default function CreateCard(props) {
                           setImage((prevformData) => {
                             return {
                               ...prevformData,
-                              logoimage: editImage,
+                              logoimage: editImage.logoimage,
                             };
                           });
                         }}
@@ -660,27 +900,23 @@ export default function CreateCard(props) {
               <div className="admin_detail-social">
                 <h3>Choose/add Social handles </h3>
                 <div className="admin_detail-social-grid">
-                  {props.linkData.map((links, id) => {
+                  {formData.userLink.map((links, id) => {
                     return (
                       <button key={id} className="btn-primary" onClick={addLin}>
-                        {links.linkType === "whatsapp" ? "WA" : ""}
+                        {links.linkType === "call" ? "call" : ""}
+                        {links.linkType === "email" ? "email" : ""}
+                        {links.linkType === "website" ? "website" : ""}
+                        {links.linkType === "whatsapp" ? "whatsapp" : ""}
+                        {links.linkType === "linkedin" ? "linkedin" : ""}
+                        {links.linkType === "instagram" ? "instagram" : ""}
+                        {links.linkType === "facebook" ? "facebook" : ""}
+                        {links.linkType === "twitter" ? "twitter" : ""}
+                        {links.linkType === "youtube" ? "youtube" : ""}
+                        {links.linkType === "address" ? "address" : ""}
                       </button>
                     );
                   })}
-                  {/* <button className="btn-primary" onClick={addLin}>
-                    FB
-                  </button> */}
-                  {/* <button className="btn-primary">Insta</button>
-                  <button className="btn-primary">YT</button>
-                  <button className="btn-primary">FB</button>
-                  <button className="btn-primary">Insta</button>
-                  <button className="btn-primary">YT</button>
-                  <button className="btn-primary">FB</button>
-                  <button className="btn-primary">Insta</button>
-                  <button className="btn-primary">YT</button>
-                  <button className="btn-primary">FB</button>
-                  <button className="btn-primary">Insta</button>
-                  <button className="btn-primary">YT</button> */}
+
                   <button className="btn-primary" onClick={addLin}>
                     Add +
                   </button>
@@ -697,6 +933,8 @@ export default function CreateCard(props) {
                     placeholder="office email id"
                     required
                     name="officeId"
+                    onChange={handleChange}
+                    value={formData.officeId}
                   />
                 </div>
                 <div className="p-relative mb-3">
@@ -705,7 +943,9 @@ export default function CreateCard(props) {
                     className="form-control"
                     id="designation"
                     placeholder="enter whatsApp number"
-                    name="designation"
+                    name="whatsappNumber"
+                    onChange={handleChange}
+                    value={formData.whatsappNumber}
                   />
                   <label className="did-floating-label">+91</label>
                 </div>
@@ -715,13 +955,22 @@ export default function CreateCard(props) {
                     className="form-control"
                     id="company"
                     placeholder="enter Mobile number"
-                    name="company"
+                    name="mobileNumber"
                     required
+                    onChange={handleChange}
+                    value={formData.mobileNumber}
                   />
+
                   <label className="did-floating-label">+91</label>
                 </div>
               </div>
-              <button className="btn-primary">Save</button>
+              <button
+                type="formData"
+                className="btn-primary"
+                onClick={textHander}
+              >
+                Save
+              </button>
             </div>
           </div>
         </div>
@@ -737,13 +986,21 @@ export default function CreateCard(props) {
           <div className="signup_phone-container">
             <UserProfile
               formData={formData}
-              logo={image.logoimage}
-              images={image}
+              logo={secondImage.logoimage}
+              images={secondImage}
             />
           </div>
         </div>
 
-        {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
+        {isLinks ? (
+          <AddCard
+            removeLink={addLin}
+            isClick={isClick}
+            setFormData={setFormData}
+          />
+        ) : (
+          ""
+        )}
         {/* {isClick ? <AddLink data={linkData} sendData={sendData} /> : ""} */}
       </div>
     </>

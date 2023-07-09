@@ -1,0 +1,23 @@
+### Get all members
+GET http://192.168.1.7:3000/members/all
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNTQ1ZGUyYy0yNDI0LTRjNTAtYTAwOS05YTFhZjFlYTM3Y2YiLCJpYXQiOjE2ODg4NTUzMDQsImV4cCI6MTY4ODg1ODkwNH0.91HM_wF7d8U6NXbrK0e3PsRX97nXq8bQ-uatwJlJ0_M
+Content-Type: application/json
+
+###
+POST http://192.168.1.7:3000/members/addMember
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNTQ1ZGUyYy0yNDI0LTRjNTAtYTAwOS05YTFhZjFlYTM3Y2YiLCJpYXQiOjE2ODg4NTUzMDQsImV4cCI6MTY4ODg1ODkwNH0.91HM_wF7d8U6NXbrK0e3PsRX97nXq8bQ-uatwJlJ0_M
+Content-Type: application/json
+
+{
+  "name": "asim",
+  "designation": "software engineer",
+  "employeeId": "11111",
+  "officeEmailId": "someEmail@flax.com",
+  "links": [
+    {
+      "title": "instagram",
+      "value": "something",
+      "type": "instagram"
+    }
+  ]
+}

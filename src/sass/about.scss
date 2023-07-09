@@ -37,7 +37,7 @@
             }
             .uploadImg-btn {
               position: absolute;
-              z-index: 2;
+              z-index: 1;
               top: 56.5px;
               right: -12px;
               width: 45px;
@@ -83,12 +83,13 @@
             }
           }
           .uploadList {
-            background: #fff;
+            background: $white-color;
             width: 250px;
             position: absolute;
-            top: 100px;
-            left: 69px;
+            top: 1%;
+            left: 50%;
             z-index: 5;
+            // transform: translateX(-50%);
             transition: all 0.5s;
             transform: translateX(-102px) translateY(-40px) translateZ(0px)
               scale(0);
@@ -109,6 +110,12 @@
               background-color: $primary;
               color: $white-color;
             }
+          }
+          .uploadList.logoimage {
+            left: 69px;
+            top: 100px;
+            transform: translateX(-102px) translateY(-40px) translateZ(0)
+              scale(0);
           }
           .btn-primary {
             font-family: "Outfit";
@@ -248,7 +255,7 @@
               transition: all 0.35s;
               // display: none;
               .imgUploader {
-                height: 180px;
+                height: 240px;
                 background: #fff;
                 width: 100%;
                 display: flex;
@@ -258,6 +265,7 @@
                 cursor: pointer;
                 transition: all 0.35s;
                 text-align: center;
+                margin-bottom: -30px;
                 @include media992 {
                   height: 150px;
                 }
@@ -271,19 +279,22 @@
                 }
               }
               .uploadImg-btn {
-                position: absolute;
+                // position: absolute;
+                // bottom: -9px;
+                // left: 50%;
                 z-index: 2;
-                bottom: 51.5px;
-                right: 10px;
-                width: 45px;
-                height: 45px;
+                margin: auto;
+                width: 55px;
+                height: 55px;
                 border-radius: 50%;
-                border: 2px solid rgb(255, 255, 255);
-                background-color: rgb(233, 228, 237);
+                border: 2px solid $white-color;
+                background-color: $secondary;
                 color: #4a4a4a;
                 display: flex;
                 align-items: center;
+                transform: translateX(-50%);
                 justify-content: center;
+                font-size: 1.2rem;
               }
               .btn-primary {
                 padding: 11px 33px !important;
@@ -314,6 +325,7 @@
               padding: 1em;
               display: block;
               transition: all 0.35s;
+              overflow: hidden;
             }
           }
         }
@@ -344,13 +356,13 @@
           .form-check {
             .tg-list-item {
               .tgl-btn {
-                border: 2px solid rgba(255, 255, 255, 0.3);
+                border: 2px solid $white-color;
                 width: 3em;
                 height: 1.5em;
               }
 
               .tgl-flat:checked + .tgl-btn {
-                border: 2px solid #f2f2f2;
+                border: 2px solid $primary;
               }
             }
           }

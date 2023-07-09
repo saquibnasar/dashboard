@@ -38,10 +38,14 @@ export default function AddCard(props) {
                 <div
                   className="addcard_link"
                   onClick={sendData.bind(this, {
-                    headerTitle: "phone",
-                    title: "Phone Number*",
-                    titleInput: "Phone Number*",
+                    headerTitle: "Phone",
                     linkTitleInput: "Call",
+                    title: "Phone Number*",
+                    titleInput: "Enter Phone Number*",
+                    type: "number",
+                    // linkType: "number",
+                    linktype: "call",
+                    icon: faPhone,
                   })}
                 >
                   <div className="addcard_link-item">
@@ -55,7 +59,18 @@ export default function AddCard(props) {
                     <FontAwesomeIcon icon={faPlus} />
                   </div>
                 </div>
-                <div className="addcard_link">
+                <div
+                  className="addcard_link"
+                  onClick={sendData.bind(this, {
+                    headerTitle: "Link Title",
+                    linkTitleInput: "email",
+                    title: "Email",
+                    titleInput: "Enter Email",
+                    type: "email",
+                    linktype: "email",
+                    icon: "/email.png",
+                  })}
+                >
                   <div className="addcard_link-item">
                     <div className="addcard_link-item-icon">
                       <img className="img-fluid" src="/email.png" alt="" />
@@ -67,7 +82,18 @@ export default function AddCard(props) {
                     <FontAwesomeIcon icon={faPlus} />
                   </div>
                 </div>
-                <div className="addcard_link">
+                <div
+                  className="addcard_link"
+                  onClick={sendData.bind(this, {
+                    headerTitle: "Website Title",
+                    linkTitleInput: "Website",
+                    title: "Website*",
+                    titleInput: "Enter Website URL",
+                    type: "text",
+                    linktype: "website",
+                    icon: "/safari.png",
+                  })}
+                >
                   <div className="addcard_link-item">
                     <div className="addcard_link-item-icon">
                       <img className="img-fluid" src="/safari.png" alt="" />
@@ -79,7 +105,19 @@ export default function AddCard(props) {
                     <FontAwesomeIcon icon={faPlus} />
                   </div>
                 </div>
-                <div className="addcard_link">
+
+                <div
+                  className="addcard_link"
+                  onClick={sendData.bind(this, {
+                    headerTitle: "Whatsapp Title",
+                    linkTitleInput: "Whatsapp",
+                    title: "Whatsapp*",
+                    titleInput: "Enter Whatsapp Number",
+                    type: "text",
+                    linktype: "whatsapp",
+                    icon: faWhatsapp,
+                  })}
+                >
                   <div className="addcard_link-item">
                     <div className="addcard_link-item-icon">
                       <FontAwesomeIcon icon={faWhatsapp} />
@@ -91,7 +129,18 @@ export default function AddCard(props) {
                     <FontAwesomeIcon icon={faPlus} />
                   </div>
                 </div>
-                <div className="addcard_link">
+                <div
+                  className="addcard_link"
+                  onClick={sendData.bind(this, {
+                    headerTitle: "Linkedin Title",
+                    linkTitleInput: "Linkedin",
+                    title: "Linkedin*",
+                    titleInput: "Enter Linkedin URl",
+                    type: "text",
+                    linktype: "linkedin",
+                    icon: faLinkedinIn,
+                  })}
+                >
                   <div className="addcard_link-item">
                     <div className="addcard_link-item-icon">
                       <FontAwesomeIcon icon={faLinkedinIn} />
@@ -103,7 +152,18 @@ export default function AddCard(props) {
                     <FontAwesomeIcon icon={faPlus} />
                   </div>
                 </div>
-                <div className="addcard_link">
+                <div
+                  className="addcard_link"
+                  onClick={sendData.bind(this, {
+                    headerTitle: "Instagram Title",
+                    linkTitleInput: "Instagram",
+                    title: "Instagram*",
+                    titleInput: "Enter Instagram URl",
+                    type: "text",
+                    linktype: "instagram",
+                    icon: faInstagram,
+                  })}
+                >
                   <div className="addcard_link-item">
                     <div className="addcard_link-item-icon">
                       <FontAwesomeIcon icon={faInstagram} />
@@ -115,7 +175,18 @@ export default function AddCard(props) {
                     <FontAwesomeIcon icon={faPlus} />
                   </div>
                 </div>
-                <div className="addcard_link">
+                <div
+                  className="addcard_link"
+                  onClick={sendData.bind(this, {
+                    headerTitle: "Facebook Title",
+                    linkTitleInput: "Facebook",
+                    title: "Facebook*",
+                    titleInput: "Enter Facebook URl",
+                    type: "text",
+                    linktype: "facebook",
+                    icon: faFacebookF,
+                  })}
+                >
                   <div className="addcard_link-item">
                     <div className="addcard_link-item-icon">
                       <FontAwesomeIcon icon={faFacebookF} />
@@ -127,7 +198,18 @@ export default function AddCard(props) {
                     <FontAwesomeIcon icon={faPlus} />
                   </div>
                 </div>
-                <div className="addcard_link">
+                <div
+                  className="addcard_link"
+                  onClick={sendData.bind(this, {
+                    headerTitle: "Twitter Title",
+                    linkTitleInput: "Twitter",
+                    title: "Twitter*",
+                    titleInput: "Enter Twitter URl",
+                    type: "text",
+                    linktype: "twitter",
+                    icon: faTwitter,
+                  })}
+                >
                   <div className="addcard_link-item">
                     <div className="addcard_link-item-icon">
                       <FontAwesomeIcon icon={faTwitter} />
@@ -139,7 +221,18 @@ export default function AddCard(props) {
                     <FontAwesomeIcon icon={faPlus} />
                   </div>
                 </div>
-                <div className="addcard_link">
+                <div
+                  className="addcard_link"
+                  onClick={sendData.bind(this, {
+                    headerTitle: "Youtube Title",
+                    linkTitleInput: "Youtube",
+                    title: "Youtube*",
+                    titleInput: "Enter Youtube URl",
+                    type: "text",
+                    linktype: "youtube",
+                    icon: faYoutube,
+                  })}
+                >
                   <div className="addcard_link-item">
                     <div className="addcard_link-item-icon">
                       <FontAwesomeIcon icon={faYoutube} />
@@ -151,7 +244,18 @@ export default function AddCard(props) {
                     <FontAwesomeIcon icon={faPlus} />
                   </div>
                 </div>
-                <div className="addcard_link">
+                <div
+                  className="addcard_link"
+                  onClick={sendData.bind(this, {
+                    headerTitle: "Address Title",
+                    linkTitleInput: "Address",
+                    title: "Address*",
+                    titleInput: "Enter Address",
+                    type: "text",
+                    linktype: "address",
+                    icon: "/googlemap.png",
+                  })}
+                >
                   <div className="addcard_link-item">
                     <div className="addcard_link-item-icon">
                       <img className="img-fluid" src="/googlemap.png" alt="" />
@@ -166,7 +270,11 @@ export default function AddCard(props) {
               </div>
             </div>
           ) : (
-            <AddLink data={linkData} sendData={sendData} />
+            <AddLink
+              data={linkData}
+              sendData={sendData}
+              setFormData={props.setFormData}
+            />
           )}
         </div>
       </div>

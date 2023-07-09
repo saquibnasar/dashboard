@@ -2,8 +2,14 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
-import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+
 import UserProfile from "./UserProfile/UserProfile";
 export default function AddLink(props) {
   const [formData, setFormData] = useState({
@@ -19,6 +25,24 @@ export default function AddLink(props) {
       };
     });
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    props.setFormData((prevformData) => {
+      return {
+        ...prevformData,
+        userLink: [
+          ...prevformData.userLink,
+          {
+            titleInput: formData.linkData,
+            linkTitleInput: formData.linkData,
+            titleInput: formData.linkData,
+            linkType: props.data.linktype,
+          },
+        ],
+      };
+    });
+    props.sendData();
+  };
 
   return (
     <div className="addlink d-flex justify-content-between align-items-center">
@@ -29,16 +53,22 @@ export default function AddLink(props) {
         </div>
         <div className="addlink_content">
           <div className="addlink_content-top">
-            <div className="addlink_content-top-icon">
-              <FontAwesomeIcon icon={faPhone} />
+            <div className={`addlink_content-top-icon ${props.data.linktype}`}>
+              {props.data.linktype === "email" ||
+              props.data.linktype === "address" ||
+              props.data.linktype === "website" ? (
+                <img className="img-fluid" src={props.data.icon} alt="" />
+              ) : (
+                <FontAwesomeIcon icon={props.data.icon} />
+              )}
             </div>
-            <h1>Add {props.data.headerTitle} to card</h1>
+            <h1>Add {props.data.linkTitleInput} to card</h1>
           </div>
           <div className="form">
-            <form action="">
+            <form action="" onSubmit={handleSubmit}>
               <div className="mt-5 email_input">
                 <div id="emailHelp" className="form-text">
-                  Link title
+                  {props.data.headerTitle}
                 </div>
                 <div className="did-floating-label-content input-group">
                   <input
@@ -49,8 +79,9 @@ export default function AddLink(props) {
                     name="linkTitle"
                     value={formData.linkTitle}
                     onChange={handleChange}
+                    id="userText"
                   />
-                  <label className="did-floating-label">
+                  <label className="did-floating-label" forHtml="userText">
                     {props.data.linkTitleInput}
                   </label>
                 </div>
@@ -62,25 +93,23 @@ export default function AddLink(props) {
                 <div className="did-floating-label-content input-group">
                   <input
                     className="did-floating-input"
-                    type="number"
+                    type={props.data.type}
                     placeholder=" "
                     required
                     name="linkData"
                     value={formData.linkData}
                     onChange={handleChange}
+                    id="userData"
                   />
-                  <label className="did-floating-label">
+
+                  <label className="did-floating-label" forHtml="userData">
                     {props.data.titleInput}
                   </label>
                 </div>
               </div>
 
               <div className="submit d-flex">
-                <button
-                  type="submit"
-                  className="btn btn-primary"
-                  onClick={props.sendData}
-                >
+                <button onClick={props.sendData} className="btn btn-primary">
                   Cancel
                 </button>
                 <button type="submit" className="btn btn-primary">
@@ -97,62 +126,6 @@ export default function AddLink(props) {
           <UserProfile formData={formData} />
         </div>
       </div>
-      {/* <div className="signup_phone text-center overflow-hidden">
-        <p>
-          Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
-        </p>
-        <div className="signup_phone-container">
-          <div className="signup_phone-left">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-          <div className="signup_phone-right">
-            <span></span>
-          </div>
-          <iframe
-            title="phone"
-            width="428"
-            height="887"
-            src="https://flax.ai/business/a"
-          />
-        </div>
-      </div> */}
-      {/* <div className="addlink_phone">
-        <div className="addlink_phone-frame">
-          <div className="addlink_phone-frame_user">
-            <FontAwesomeIcon icon={faUser} />
-          </div>
-          <h3>Name</h3>
-          <h5>Company Name</h5>
-          <div className="signup_phone-box">
-            phoneNumber
-            <span>
-              {formData.linkData ? formData.linkData : "+91 80101 01010"}
-            </span>
-          </div>
-          <div className="signup_phone-box">
-            Link title
-            <span>
-              {formData.linkTitle ? formData.linkTitle : "admin@company.tld"}
-            </span>
-          </div>
-          <div className="signup_phone-box d-flex gap-2">
-            <div className="">
-              office website
-              <span>https://company website</span>
-            </div>
-            <div className="">
-              linkedIn
-              <span>https://linkedIn.com/username</span>
-            </div>
-            <div className="">
-              instagram
-              <span>https://instagram.com/username</span>
-            </div>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 }

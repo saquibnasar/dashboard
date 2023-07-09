@@ -28,6 +28,7 @@ function App() {
       linkType: "whatsapp",
     },
   ]);
+  
   return (
     <BrowserRouter>
       <Routes>

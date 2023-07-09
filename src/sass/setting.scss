@@ -206,6 +206,40 @@
         height: 100%;
         border-radius: 16px;
       }
+
+      .uploadList {
+        background: $white-color;
+        width: 250px;
+        position: absolute;
+        top: 1%;
+        left: 50%;
+        z-index: 5;
+        // transform: translateX(-50%);
+        transition: all 0.5s;
+        transform: translateX(-102px) translateY(-40px) translateZ(0px) scale(0);
+        .uploadList-item {
+          cursor: pointer;
+          user-select: none;
+          color: $text;
+          display: flex;
+          align-items: center;
+          padding: 8px 18px 8px 18px;
+          min-height: 44px;
+          font-size: 17px;
+          line-height: 26px;
+          // border-bottom: 1px solid #a3a3a3;
+          justify-content: space-between;
+        }
+        .uploadList-item:hover {
+          background-color: $primary;
+          color: $white-color;
+        }
+      }
+      .uploadList.logoimage {
+        left: 208px;
+        top: 100px;
+        transform: translateX(-102px) translateY(-40px) translateZ(0) scale(0);
+      }
     }
     .Company_name {
       margin-top: 26px;

@@ -9,6 +9,12 @@ import { faUserShield } from "@fortawesome/free-solid-svg-icons";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
+import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useParams } from "react-router-dom";
 import AddCard from "./AddCard";
 // import AddLink from "./AddLink";
@@ -21,7 +27,9 @@ export default function Setting(props) {
   const [isClick, setIsClick] = useState(false);
   const [isLinks, setIslinks] = useState(false);
   const [image, setImage] = useState({ preview: "", raw: "" });
-  const [testimage, setTestimage] = useState({ preview: "", raw: "" });
+  const [secondImage, setSecondImage] = useState({ preview: "", raw: "" });
+  const [editImage, setEditImage] = useState({ preview: "", raw: "" });
+
   const addLin = () => {
     setIslinks(!isLinks);
   };
@@ -68,14 +76,17 @@ export default function Setting(props) {
         rotation
       );
 
-      setTestimage({
+      setSecondImage({
         preview: croppedImage,
       });
       setImage({
         preview: "",
         raw: "",
       });
-      // console.log("donee", { croppedImage });
+      setRotation(0);
+      setEditImage({
+        preview: image.preview,
+      });
       setCroppedImage(croppedImage);
     } catch (e) {
       console.error(e);
@@ -85,6 +96,18 @@ export default function Setting(props) {
   const onClose = useCallback(() => {
     setCroppedImage(null);
   }, []);
+
+  window.addEventListener("click", function (e) {
+    let uploadListcontainer = document.querySelector(".logo");
+    let uploadListelemet = document.querySelector(".logoimage");
+
+    if (uploadListcontainer && !uploadListcontainer.contains(e.target)) {
+      if (uploadListelemet.style.transform === "unset") {
+        uploadListelemet.style.transform =
+          "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
+      }
+    }
+  });
 
   return (
     <>
@@ -186,6 +209,7 @@ export default function Setting(props) {
                             onCropChange={setCrop}
                             onCropComplete={onCropComplete}
                             onZoomChange={setZoom}
+                            rotation={rotation}
                             // showGrid={false}
                           />
                         </div>
@@ -203,6 +227,25 @@ export default function Setting(props) {
                             className="zoom-range"
                           />
                         </div>
+                        <div class="crop_rotate">
+                          <div
+                            class="crop_rotate-left"
+                            // htmlFor="crop_rotate-left"
+                            onClick={() =>
+                              setRotation((prevformData) => prevformData + 90)
+                            }
+                          >
+                            <FontAwesomeIcon icon={faRotateLeft} />
+                          </div>
+                          <div
+                            class="crop_rotate-right"
+                            onClick={() =>
+                              setRotation((prevformData) => prevformData - 90)
+                            }
+                          >
+                            <FontAwesomeIcon icon={faRotateRight} />
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -214,10 +257,33 @@ export default function Setting(props) {
                     <div className="Company_logo">
                       <h3>Company logo</h3>
                       <div className="upload-img">
-                        <label className="logo" htmlFor="upload-button">
-                          {testimage.preview ? (
+                        <label
+                          className="logo"
+                          // htmlFor="upload-button"
+                          onClick={() => {
+                            // setUploadList((prevformData) => {
+                            //   return {
+                            //     ...prevformData,
+                            //     transform:
+                            //       "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
+                            //     transformEnd: "unset",
+                            //     uploadListcontainer: ".uploadImg-container",
+                            //     uploadList: ".logoimage",
+                            //   };
+                            // });
+                            const logoimage =
+                              document.querySelector(".logoimage");
+                            if (logoimage.style.transform === "unset") {
+                              logoimage.style.transform =
+                                "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
+                            } else {
+                              logoimage.style.transform = "unset";
+                            }
+                          }}
+                        >
+                          {secondImage.preview ? (
                             <img
-                              src={testimage.preview}
+                              src={secondImage.preview}
                               alt="dummy"
                               className="img-fluid"
                             />
@@ -229,14 +295,82 @@ export default function Setting(props) {
                             </>
                           )}
                         </label>
-                        <input
+                        <div className="uploadList logoimage" htmlFor="imgfor">
+                          <label
+                            className="uploadList-item"
+                            htmlFor="upload-photo"
+                          >
+                            Take photo
+                            <FontAwesomeIcon icon={faCamera} />
+                          </label>
+                          <label
+                            className="uploadList-item"
+                            htmlFor="upload-button"
+                          >
+                            Upload image
+                            <FontAwesomeIcon icon={faCloudArrowUp} />
+                          </label>
+                          {secondImage.preview ? (
+                            <>
+                              <div
+                                className="uploadList-item"
+                                onClick={() => {
+                                  setImage((prevformData) => {
+                                    return {
+                                      ...prevformData,
+                                      preview: editImage.preview,
+                                    };
+                                  });
+                                }}
+                              >
+                                Edit
+                                <FontAwesomeIcon icon={faPen} />
+                              </div>
+                              <div
+                                className="uploadList-item"
+                                onClick={() => {
+                                  setSecondImage((prevformData) => {
+                                    return {
+                                      ...prevformData,
+                                      preview: "",
+                                    };
+                                  });
+                                }}
+                              >
+                                Clear
+                                <FontAwesomeIcon icon={faXmark} />
+                              </div>
+                            </>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                        {/* <input
                           type="file"
                           id="upload-button"
-                          // style={{ display: "none" }}
                           accept="image/*"
                           className="d-none"
                           value=""
                           onChange={handleChange}
+                        /> */}
+                        <input
+                          type="file"
+                          id="upload-button"
+                          className="d-none"
+                          onChange={handleChange}
+                          name="logoimage"
+                          value=""
+                          accept="image/*"
+                        />
+                        <input
+                          type="file"
+                          id="upload-photo"
+                          className="d-none"
+                          onChange={handleChange}
+                          name="logoimage"
+                          capture
+                          value=""
+                          accept="image/*"
                         />
                       </div>
                     </div>

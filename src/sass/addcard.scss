@@ -209,12 +209,50 @@
               width: 60px;
               height: 60px;
               border-radius: 16px;
-              font-size: 28px;
+              font-size: 45px;
               display: flex;
               align-items: center;
               justify-content: center;
               color: $white-color;
             }
+            .addlink_content-top-icon.email,
+            .addlink_content-top-icon.address,
+            .addlink_content-top-icon.website {
+              background: transparent;
+            }
+            .addlink_content-top-icon.call {
+              font-size: 30px;
+            }
+            .addlink_content-top-icon.whatsapp {
+              background: #128c7e;
+            }
+            .addlink_content-top-icon.linkedin {
+              background: #0a66c2;
+            }
+            .addlink_content-top-icon.instagram {
+              background: linear-gradient(
+                45deg,
+                #f09433 0%,
+                #e6683c 25%,
+                #dc2743 50%,
+                #cc2366 75%,
+                #bc1888 100%
+              );
+            }
+            .addlink_content-top-icon.facebook {
+              background: #1296f4;
+              font-size: 33px;
+            }
+            .addlink_content-top-icon.twitter {
+              background: #1da1f2;
+              font-size: 33px;
+            }
+            .addlink_content-top-icon.youtube {
+              background: #fff;
+              color: #ff0000;
+              font-size: 33px;
+            }
+
             h1 {
               margin-bottom: 0px;
               @include media576 {

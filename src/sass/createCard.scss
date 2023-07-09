@@ -646,18 +646,22 @@
     .admin {
       padding: 24px 32px;
       .signup_navbar-back {
-        align-items: center;
+        // align-items: center;
         background: transparent;
         border: none;
         cursor: pointer;
-        display: flex;
-        gap: 13px;
+        // display: flex;
+        // gap: 13px;
         color: $text;
         font-family: Roboto, sans-serif;
         font-size: 16px;
         font-weight: 400;
         line-height: 21px;
         margin-bottom: 24px;
+        display: inline-block;
+        svg {
+          margin-right: 13px;
+        }
       }
       .btn-primary {
         font-family: "Outfit";
