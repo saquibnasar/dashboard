@@ -40,7 +40,7 @@
       border-radius: 20px;
       padding: 15px 12px;
       align-items: center;
-      cursor: pointer;
+      // cursor: pointer;
       svg {
         color: $text;
         font-size: 1.25rem;
@@ -57,6 +57,65 @@
           font-size: 28px;
           color: $white-color;
         }
+      }
+      .addcard_link-list {
+        padding: 10px 23px;
+        z-index: 10;
+        position: absolute;
+        min-width: 220px;
+        box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.2);
+        border-radius: 12px;
+        background-color: #ffffff;
+        top: 0;
+        right: 0;
+      }
+      .form-check {
+        display: flex;
+        background: transparent;
+        border: none;
+        label {
+          width: 43px;
+          height: 20px;
+          position: relative;
+          display: block;
+          background: $secondary;
+          border-radius: 200px;
+          // box-shadow: inset 0px 5px 5px rgba(0, 0, 0, 0.4),
+          //   inset 0px -5px 5px rgba(255, 255, 255, 0.4);
+          cursor: pointer;
+        }
+        label:after {
+          content: "";
+          width: 50%;
+          height: 100%;
+          position: absolute;
+          top: 0px;
+          background: linear-gradient(180deg, #ffcc89, #d8860b);
+          border-radius: 180px;
+          // background: #d9d9d9;
+          background: $white-color;
+          box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+          left: 0;
+        }
+        input {
+          width: 0;
+          height: 0;
+          visibility: hidden;
+        }
+        input:checked + label {
+          background: $primary;
+        }
+        input:checked + label:after {
+          left: 50%;
+        }
+        label,
+        label:after {
+          transition: 0.5s;
+        }
+      }
+      .addcard_link-edit {
+        margin-left: auto;
+        cursor: pointer;
       }
 
       p {

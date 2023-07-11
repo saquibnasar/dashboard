@@ -237,7 +237,7 @@ export default function About(props) {
                           onCropChange={setCrop}
                           onCropComplete={onCropComplete}
                           onZoomChange={setZoom}
-                          cropSize={{ width: 500, height: 240 }}
+                          // cropSize={{ width: 500, height: 240 }}
                           // showGrid={false}
                         />
                       </div>

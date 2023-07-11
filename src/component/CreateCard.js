@@ -15,10 +15,12 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import AddPlugin from "./Plugin/AddPlugin";
 // import PhoneInput from "react-native-phone-number-input";
 
 export default function CreateCard(props) {
   const [isLinks, setIslinks] = useState(false);
+  const [type, setType] = useState("link");
   const [isClick, setIsClick] = useState(false);
   const [linkData, setLinkData] = useState({});
   const [crop, setCrop] = useState({
@@ -241,7 +243,7 @@ export default function CreateCard(props) {
                             onCropChange={setCrop}
                             onCropComplete={onCropComplete}
                             onZoomChange={setZoom}
-                            cropSize={{ width: 500, height: 240 }}
+                            // cropSize={{ width: 500, height: 240 }}
                             // showGrid={false}
                           />
                         </div>
@@ -896,7 +898,37 @@ export default function CreateCard(props) {
                   />
                 </div>
               </div>
+              <div className="admin_detail-social">
+                <h3> Choose/add Plugin handles </h3>
+                <div className="admin_detail-social-grid">
+                  {formData.userLink.map((links, id) => {
+                    return (
+                      <button key={id} className="btn-primary" onClick={addLin}>
+                        {links.linkType === "call" ? "call" : ""}
+                        {links.linkType === "email" ? "email" : ""}
+                        {links.linkType === "website" ? "website" : ""}
+                        {links.linkType === "whatsapp" ? "whatsapp" : ""}
+                        {links.linkType === "linkedin" ? "linkedin" : ""}
+                        {links.linkType === "instagram" ? "instagram" : ""}
+                        {links.linkType === "facebook" ? "facebook" : ""}
+                        {links.linkType === "twitter" ? "twitter" : ""}
+                        {links.linkType === "youtube" ? "youtube" : ""}
+                        {links.linkType === "address" ? "address" : ""}
+                      </button>
+                    );
+                  })}
 
+                  <button
+                    className="btn-primary"
+                    onClick={() => {
+                      addLin();
+                      setType("plugin");
+                    }}
+                  >
+                    Add +
+                  </button>
+                </div>
+              </div>
               <div className="admin_detail-social">
                 <h3>Choose/add Social handles </h3>
                 <div className="admin_detail-social-grid">
@@ -917,7 +949,13 @@ export default function CreateCard(props) {
                     );
                   })}
 
-                  <button className="btn-primary" onClick={addLin}>
+                  <button
+                    className="btn-primary"
+                    onClick={() => {
+                      setType("card");
+                      addLin();
+                    }}
+                  >
                     Add +
                   </button>
                 </div>
@@ -997,6 +1035,7 @@ export default function CreateCard(props) {
             removeLink={addLin}
             isClick={isClick}
             setFormData={setFormData}
+            type={type}
           />
         ) : (
           ""

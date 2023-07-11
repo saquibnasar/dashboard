@@ -680,6 +680,24 @@
         background: $primary;
         color: $white-color;
       }
+      .admin_detail {
+        .addImage {
+          .tab-content {
+            .imgUploader {
+              height: 200px;
+              @include media992 {
+                height: 175px;
+              }
+              @include media768 {
+                height: 200px;
+              }
+              @include media768 {
+                height: 150px;
+              }
+            }
+          }
+        }
+      }
     }
   }
   .addcard {

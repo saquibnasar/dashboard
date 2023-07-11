@@ -490,6 +490,20 @@
     }
   }
 }
+.addcard.addPlugin {
+  .addcard_container {
+    .addcard_links {
+      .addcard_link.youtube {
+        .addcard_link-item {
+          .addcard_link-item-icon {
+            background: $white-color;
+            color: #ff0000;
+          }
+        }
+      }
+    }
+  }
+}
 .setting {
   .addcard {
     overflow: scroll;

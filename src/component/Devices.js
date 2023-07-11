@@ -3,6 +3,8 @@ import SIdebar from "./SIdebar";
 import { Link } from "react-router-dom";
 import Topbar from "./Topbar";
 import UserProfile from "./UserProfile/UserProfile";
+import Lottie from "lottie-react";
+import animationdata from "./SIdebar.json";
 export default function Devices(props) {
   return (
     <div className="devices d-flex">
@@ -78,12 +80,13 @@ export default function Devices(props) {
 
               <img className="img-fluid qrcode" src="/diveceqr.png" alt="" />
             </div>
+            <Lottie animationData={animationdata} />
 
-            <div className="signup_phone text-center p-relative">
+            {/* <div className="signup_phone text-center p-relative">
               <div className="signup_phone-left">
                 <span></span>
                 <span></span>
-                {/* <span></span> */}
+                <span></span>
               </div>
               <div className="signup_phone-right">
                 <span></span>
@@ -91,7 +94,7 @@ export default function Devices(props) {
               <div className="signup_phone-container">
                 <UserProfile />
               </div>
-            </div>
+            </div> */}
 
             <h2>Activate Flax Card</h2>
             <p>

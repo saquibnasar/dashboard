@@ -81,7 +81,7 @@ export default function AddLink(props) {
                     onChange={handleChange}
                     id="userText"
                   />
-                  <label className="did-floating-label" forHtml="userText">
+                  <label className="did-floating-label" for="userText">
                     {props.data.linkTitleInput}
                   </label>
                 </div>
@@ -102,7 +102,7 @@ export default function AddLink(props) {
                     id="userData"
                   />
 
-                  <label className="did-floating-label" forHtml="userData">
+                  <label className="did-floating-label" for="userData">
                     {props.data.titleInput}
                   </label>
                 </div>
