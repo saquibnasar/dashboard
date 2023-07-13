@@ -10,6 +10,7 @@ import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import AddLink from "./AddLink";
+import AddPlugin from "./Plugin/AddPlugin";
 
 export default function AddCard(props) {
   const [linkData, setLinkData] = useState({});
@@ -67,7 +68,7 @@ export default function AddCard(props) {
                 </div>
               </div>
             ) : (
-              <AddLink
+              <AddPlugin
                 data={linkData}
                 sendData={sendData}
                 setFormData={props.setFormData}
@@ -159,7 +160,6 @@ export default function AddCard(props) {
                       <FontAwesomeIcon icon={faPlus} />
                     </div>
                   </div>
-
                   <div
                     className="addcard_link"
                     onClick={sendData.bind(this, {

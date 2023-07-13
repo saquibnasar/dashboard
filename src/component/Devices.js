@@ -71,7 +71,7 @@ export default function Devices(props) {
           <div className="devices_content_border"></div>
           <div className="devices_content_right p-relative">
             {/* <img src="/card.png" alt="" className="img-fluid card" /> */}
-            <div className="card p-relative">
+            {/* <div className="card p-relative">
               <div className="">
                 <h3>Harsh Vardhan</h3>
                 <h5>Chief Technology Officer</h5>
@@ -79,7 +79,7 @@ export default function Devices(props) {
               </div>
 
               <img className="img-fluid qrcode" src="/diveceqr.png" alt="" />
-            </div>
+            </div> */}
             <Lottie animationData={animationdata} />
 
             {/* <div className="signup_phone text-center p-relative">

@@ -1,78 +1,157 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import AddLink from "../AddLink";
 
+import UserProfile from "../UserProfile/UserProfile";
 export default function AddPlugin(props) {
-  const [linkData, setLinkData] = useState({});
-  const [isClick, setIsClick] = useState(false);
+  const [formData, setFormData] = useState({
+    linkData: "",
+    linkTitle: "",
+  });
+  const [ifClick, setIfClick] = useState(false);
 
-  const sendData = (data) => {
-    setLinkData(data);
-    setIsClick(!isClick);
+  const handleChange = (event) => {
+    setFormData((prevformData) => {
+      return {
+        ...prevformData,
+        [event.target.name]: event.target.value,
+      };
+    });
   };
-  return (
-    <>
-      <div className="addcard addPlugin">
-        <div className="addcard_container">
-          {!isClick ? (
-            <div>
-              <div
-                className="addlink-back"
-                onClick={() => {
-                  props.removeLink(!props.isPlugin);
-                }}
-              >
-                <FontAwesomeIcon icon={faArrowLeft} />
-                Back
-              </div>
-              <h1>Add content to card</h1>
-              <p className="addcard_container-para">
-                Select from our wide variety of links and contact info below
-              </p>
-              <div className="addcard_links">
-                <div
-                  className={`addcard_link youtube`}
-                  onClick={sendData.bind(this, {
-                    headerTitle: "Youtube Title",
-                    linkTitleInput: "Youtube",
-                    title: "Youtube*",
-                    titleInput: "Enter Youtube URl",
-                    type: "text",
-                    linktype: "youtube",
-                    icon: faYoutube,
-                  })}
-                >
-                  <div className="addcard_link-item">
-                    <div className="addcard_link-item-icon">
-                      <FontAwesomeIcon icon={faYoutube} />
-                    </div>
-                    <p>Youtube</p>
-                  </div>
+  const check = (event) => {
+    if (
+      !(event.target.getAttribute("placeholder") === "https://youtu.be/xxxx") &&
+      event.target.value === ""
+    ) {
+      setIfClick(!ifClick);
+    }
+  };
+  window.addEventListener("click", function (e) {
+    let userData = document.getElementById("userData");
+    if (userData && !userData.contains(e.target) && formData.linkData === "") {
+      setIfClick(false);
+    }
+  });
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(e);
+    props.setFormData((prevformData) => {
+      console.log(prevformData);
+      return {
+        ...prevformData,
+        usesPlugin: [
+          ...prevformData.usesPlugin,
+          {
+            linkTitleInput: formData.linkTitle,
+            titleInput: formData.linkData,
+            linkType: props.data.linktype,
+          },
+        ],
+      };
+    });
+    props.sendData();
+  };
 
-                  <div className="addcard_link-add">
-                    <FontAwesomeIcon icon={faPlus} />
-                  </div>
+  return (
+    <div className="addlink d-flex justify-content-between align-items-center">
+      <div className="addlink-container">
+        <div className="addlink-back" onClick={props.sendData}>
+          <FontAwesomeIcon icon={faArrowLeft} />
+          Back
+        </div>
+        <div className="addlink_content">
+          <div className="addlink_content-top">
+            <div className={`addlink_content-top-icon ${props.data.linktype}`}>
+              {props.data.linktype === "email" ||
+              props.data.linktype === "address" ||
+              props.data.linktype === "website" ? (
+                <img className="img-fluid" src={props.data.icon} alt="" />
+              ) : (
+                <FontAwesomeIcon icon={props.data.icon} />
+              )}
+            </div>
+            <h1>Add {props.data.linkTitleInput} to card</h1>
+          </div>
+          <div className="form">
+            <form action="" onSubmit={handleSubmit}>
+              <div className="mt-5 email_input">
+                <div id="emailHelp" className="form-text">
+                  {props.data.headerTitle}
+                </div>
+                <div className="did-floating-label-content input-group">
+                  <input
+                    className="did-floating-input"
+                    type="text"
+                    placeholder=" "
+                    required
+                    name="linkTitle"
+                    value={formData.linkTitle}
+                    onChange={handleChange}
+                    id="userText"
+                  />
+
+                  <label className="did-floating-label" htmlFor="userText">
+                    {props.data.linkTitleInput}
+                  </label>
                 </div>
               </div>
-            </div>
-          ) : (
-            <AddLink
-              data={linkData}
-              sendData={sendData}
-              setFormData={props.setFormData}
-            />
-          )}
+              <div className="mt-4 email_input">
+                <div id="emailHelp" className="form-text">
+                  {props.data.title}
+                </div>
+                <div className="did-floating-label-content input-group">
+                  <input
+                    className="did-floating-input"
+                    type={props.data.type}
+                    placeholder={
+                      ifClick ? `https://${props.data.linktype}/xxxx` : " "
+                    }
+                    required
+                    name="linkData"
+                    value={formData.linkData}
+                    onChange={handleChange}
+                    onClick={check}
+                    id="userData"
+                  />
+
+                  <label
+                    id="did-floating-label"
+                    className="did-floating-label"
+                    htmlFor="userData"
+                  >
+                    {!ifClick
+                      ? `https://${props.data.linktype}/xxxx`
+                      : props.data.titleInput}
+                  </label>
+                </div>
+              </div>
+
+              <div className="submit d-flex">
+                <button onClick={props.sendData} className="btn btn-primary">
+                  Cancel
+                </button>
+                <button type="submit" className="btn btn-primary">
+                  Add link
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
-    </>
+      <div className="signup_phone text-center d-md-block">
+        <button className="btn btn-preview">Live Preview</button>
+        <div className="signup_phone-container">
+          <UserProfile formData={formData} />
+        </div>
+      </div>
+    </div>
   );
 }

@@ -41,6 +41,11 @@
       padding: 15px 12px;
       align-items: center;
       // cursor: pointer;
+      .addcard_link_dot {
+        svg {
+          transform: scale(1.5);
+        }
+      }
       svg {
         color: $text;
         font-size: 1.25rem;
@@ -116,6 +121,14 @@
       .addcard_link-edit {
         margin-left: auto;
         cursor: pointer;
+        display: flex;
+        gap: 8px;
+        .addcard_link-delete {
+          svg {
+            font-size: 1rem;
+            color: $text-secondary;
+          }
+        }
       }
 
       p {

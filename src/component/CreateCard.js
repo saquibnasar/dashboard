@@ -185,6 +185,7 @@ export default function CreateCard(props) {
   const [formData, setFormData] = useState({
     userInfo: {},
     userLink: [],
+    usesPlugin: [],
   });
 
   const textHander = () => {

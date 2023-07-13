@@ -16,6 +16,7 @@ export default function AddLink(props) {
     linkData: "",
     linkTitle: "",
   });
+  const [ifClick, setIfClick] = useState(false);
 
   const handleChange = (event) => {
     setFormData((prevformData) => {
@@ -25,6 +26,20 @@ export default function AddLink(props) {
       };
     });
   };
+  const check = (event) => {
+    if (
+      !(event.target.getAttribute("placeholder") === "https://youtu.be/xxxx") &&
+      event.target.value === ""
+    ) {
+      setIfClick(!ifClick);
+    }
+  };
+  window.addEventListener("click", function (e) {
+    let userData = document.getElementById("userData");
+    if (userData && !userData.contains(e.target) && formData.linkData === "") {
+      setIfClick(false);
+    }
+  });
   const handleSubmit = (e) => {
     e.preventDefault();
     props.setFormData((prevformData) => {
@@ -33,8 +48,7 @@ export default function AddLink(props) {
         userLink: [
           ...prevformData.userLink,
           {
-            titleInput: formData.linkData,
-            linkTitleInput: formData.linkData,
+            linkTitleInput: formData.linkTitle,
             titleInput: formData.linkData,
             linkType: props.data.linktype,
           },
@@ -81,7 +95,8 @@ export default function AddLink(props) {
                     onChange={handleChange}
                     id="userText"
                   />
-                  <label className="did-floating-label" for="userText">
+
+                  <label className="did-floating-label" htmlFor="userText">
                     {props.data.linkTitleInput}
                   </label>
                 </div>
@@ -94,16 +109,25 @@ export default function AddLink(props) {
                   <input
                     className="did-floating-input"
                     type={props.data.type}
-                    placeholder=" "
+                    placeholder={
+                      ifClick ? `https://${props.data.linktype}/xxxx` : " "
+                    }
                     required
                     name="linkData"
                     value={formData.linkData}
                     onChange={handleChange}
+                    onClick={check}
                     id="userData"
                   />
 
-                  <label className="did-floating-label" for="userData">
-                    {props.data.titleInput}
+                  <label
+                    id="did-floating-label"
+                    className="did-floating-label"
+                    htmlFor="userData"
+                  >
+                    {!ifClick
+                      ? `https://${props.data.linktype}/xxxx`
+                      : props.data.titleInput}
                   </label>
                 </div>
               </div>

@@ -4,6 +4,9 @@ import SocialLink from "../SocialLink";
 import Footer from "../Footer";
 import ReactPlayer from "react-player/youtube";
 import ImgSlider from "../ImgSlider";
+import Video from "./Video";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserProfile(props) {
   // const { userProfileId } = useParams();
@@ -467,11 +470,18 @@ export default function UserProfile(props) {
                 : "header_content text-center mt-5"
             }
           >
-            <img
+            {/* <img
               className="img-fluid"
               src={props.logo ? props.logo : "/qrcode.png"}
               alt=""
-            />
+            /> */}
+            {props.logo ? (
+              <img className="img-fluid" src={props.logo} alt="" />
+            ) : (
+              <span className="logo">
+                <FontAwesomeIcon icon={faUser} />
+              </span>
+            )}
 
             <h1>
               {props.formData &&
@@ -508,13 +518,24 @@ export default function UserProfile(props) {
             <button className="btn">Save My Contact </button>
           </div>
 
-          {props.formData && props.formData.userLink ? (
+          {props.formData &&
+          props.formData.userLink &&
+          props.formData.userLink.length ? (
             <SocialLink links={props.formData.userLink} />
           ) : (
             ""
           )}
 
-          <div className="_username__featuredLink__MeYB7">
+          {/* {console.log(typeof props.formData.usesPlugin)} */}
+          {props.formData &&
+          props.formData.usesPlugin &&
+          props.formData.usesPlugin.length ? (
+            <Video data={props.formData.usesPlugin} />
+          ) : (
+            ""
+          )}
+
+          {/* <div className="_username__featuredLink__MeYB7">
             <h3>
               Biggest Reward & Recognition Event (2019) - Investors Clinic
             </h3>
@@ -536,7 +557,7 @@ export default function UserProfile(props) {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
           <Footer />
         </div>
       </section>
