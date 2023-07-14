@@ -1,11 +1,11 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, Component } from "react";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./imgUploader/cropImage";
 import UserProfile from "./UserProfile/UserProfile";
 import AddCard from "./AddCard";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft, faL } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
@@ -16,13 +16,19 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import AddPlugin from "./Plugin/AddPlugin";
-// import PhoneInput from "react-native-phone-number-input";
+import PhoneInput from "react-phone-input-2";
+import "react-phone-input-2/lib/style.css";
 
 export default function CreateCard(props) {
   const [isLinks, setIslinks] = useState(false);
   const [type, setType] = useState("link");
   const [isClick, setIsClick] = useState(false);
-  const [linkData, setLinkData] = useState({});
+  const [phoneNum, setPhoneNum] = useState({
+    whPhone: "1",
+    phone: "1",
+  });
+  // const [whPhone, setWhPhone] = useState();
+
   const [crop, setCrop] = useState({
     x: 0,
     y: 0,
@@ -64,16 +70,58 @@ export default function CreateCard(props) {
     uploadList: ".uploadBanner1",
   });
 
-  const handleChange = (event) => {
-    setFormData((prevformData) => {
-      return {
-        ...prevformData,
-        userInfo: {
-          ...prevformData.userInfo,
-          [event.target.name]: event.target.value,
-        },
-      };
-    });
+  const handleChange = (event, code) => {
+    if (event === "whPhone" || event === "phone") {
+      setPhoneNum((prevData) => {
+        return { ...prevData, [event]: code };
+      });
+    } else if (
+      event.target.name === "whatsappNumber" ||
+      event.target.name === "mobileNumber"
+    ) {
+      if (event.target.name === "mobileNumber") {
+        setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            userInfo: {
+              ...prevformData.userInfo,
+              [event.target.name]: phoneNum.phone + event.target.value,
+            },
+          };
+        });
+      } else {
+        setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            userInfo: {
+              ...prevformData.userInfo,
+              [event.target.name]: phoneNum.whPhone + event.target.value,
+            },
+          };
+        });
+      }
+      if (event.target.value === "") {
+        setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            userInfo: {
+              ...prevformData.userInfo,
+              [event.target.name]: "",
+            },
+          };
+        });
+      }
+    } else {
+      setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          userInfo: {
+            ...prevformData.userInfo,
+            [event.target.name]: event.target.value,
+          },
+        };
+      });
+    }
   };
 
   const addLin = () => {
@@ -91,9 +139,9 @@ export default function CreateCard(props) {
     }
   };
 
-  const navbarToggle = () => {
-    setIsNavbar(!isNavbar);
-  };
+  // const navbarToggle = () => {
+  //   setIsNavbar(!isNavbar);
+  // };
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -110,7 +158,6 @@ export default function CreateCard(props) {
           croppedAreaPixels,
           rotation
         );
-        // console.log(rotation);
 
         if (image.logoimage) {
           setSecondImage((prevformData) => {
@@ -900,9 +947,40 @@ export default function CreateCard(props) {
                 </div>
               </div>
               <div className="admin_detail-social">
-                <h3> Choose/add Plugin handles </h3>
+                <h3>Choose/add Social handles </h3>
                 <div className="admin_detail-social-grid">
                   {formData.userLink.map((links, id) => {
+                    return (
+                      <button key={id} className="btn-primary" onClick={addLin}>
+                        {links.linkType === "call" ? "call" : ""}
+                        {links.linkType === "email" ? "email" : ""}
+                        {links.linkType === "website" ? "website" : ""}
+                        {links.linkType === "whatsapp" ? "whatsapp" : ""}
+                        {links.linkType === "linkedin" ? "linkedin" : ""}
+                        {links.linkType === "instagram" ? "instagram" : ""}
+                        {links.linkType === "facebook" ? "facebook" : ""}
+                        {links.linkType === "twitter" ? "twitter" : ""}
+                        {links.linkType === "youtube" ? "youtube" : ""}
+                        {links.linkType === "address" ? "address" : ""}
+                      </button>
+                    );
+                  })}
+
+                  <button
+                    className="btn-primary"
+                    onClick={() => {
+                      addLin();
+                      setType("card");
+                    }}
+                  >
+                    Add +
+                  </button>
+                </div>
+              </div>
+              <div className="admin_detail-social">
+                <h3> Choose/add Plugin handles </h3>
+                <div className="admin_detail-social-grid">
+                  {formData.usesPlugin.map((links, id) => {
                     return (
                       <button key={id} className="btn-primary" onClick={addLin}>
                         {links.linkType === "call" ? "call" : ""}
@@ -930,37 +1008,7 @@ export default function CreateCard(props) {
                   </button>
                 </div>
               </div>
-              <div className="admin_detail-social">
-                <h3>Choose/add Social handles </h3>
-                <div className="admin_detail-social-grid">
-                  {formData.userLink.map((links, id) => {
-                    return (
-                      <button key={id} className="btn-primary" onClick={addLin}>
-                        {links.linkType === "call" ? "call" : ""}
-                        {links.linkType === "email" ? "email" : ""}
-                        {links.linkType === "website" ? "website" : ""}
-                        {links.linkType === "whatsapp" ? "whatsapp" : ""}
-                        {links.linkType === "linkedin" ? "linkedin" : ""}
-                        {links.linkType === "instagram" ? "instagram" : ""}
-                        {links.linkType === "facebook" ? "facebook" : ""}
-                        {links.linkType === "twitter" ? "twitter" : ""}
-                        {links.linkType === "youtube" ? "youtube" : ""}
-                        {links.linkType === "address" ? "address" : ""}
-                      </button>
-                    );
-                  })}
 
-                  <button
-                    className="btn-primary"
-                    onClick={() => {
-                      setType("card");
-                      addLin();
-                    }}
-                  >
-                    Add +
-                  </button>
-                </div>
-              </div>
               <div className="admin_detail-contact">
                 <h3>Contact details </h3>
 
@@ -976,22 +1024,77 @@ export default function CreateCard(props) {
                     value={formData.officeId}
                   />
                 </div>
-                <div className="p-relative mb-3">
+                <div className="p-relative mb-3 countriesCode">
                   <input
-                    type="text"
-                    className="form-control"
+                    type="number"
+                    className={
+                      phoneNum.whPhone &&
+                      phoneNum.whPhone.split("").length === 2
+                        ? "countriesCode-input form-control formControl-2"
+                        : phoneNum.whPhone &&
+                          phoneNum.whPhone.split("").length === 3
+                        ? "countriesCode-input form-control formControl-3"
+                        : phoneNum.whPhone &&
+                          phoneNum.whPhone.split("").length === 4
+                        ? "countriesCode-input form-control formControl-4"
+                        : "countriesCode-input form-control formControl-1"
+                    }
                     id="designation"
                     placeholder="enter whatsApp number"
                     name="whatsappNumber"
                     onChange={handleChange}
                     value={formData.whatsappNumber}
                   />
-                  <label className="did-floating-label">+91</label>
+                  {/* <label className="did-floating-label">+91</label> */}
+                  <label
+                    className="did-floating-label z-1"
+                    // htmlFor="number"
+                    aria-haspopup="listbox"
+                  >
+                    <PhoneInput
+                      country={"us"}
+                      value={phoneNum.whPhone}
+                      onChange={handleChange.bind(this, "whPhone")}
+                      enableSearch={true}
+                      disableSearchIcon={true}
+                      // disableCountryCode={true}
+                      countryCodeEditable={false}
+                      inputProps={{
+                        name: "phone",
+                        required: true,
+                        autoFocus: true,
+                        id: "number",
+                        placeholder: "1",
+                        className:
+                          phoneNum.whPhone &&
+                          phoneNum.whPhone.split("").length === 2
+                            ? "form-control CodeForm-control CodeForm-2"
+                            : phoneNum.whPhone &&
+                              phoneNum.whPhone.split("").length === 3
+                            ? "form-control CodeForm-control CodeForm-3"
+                            : phoneNum.whPhone &&
+                              phoneNum.whPhone.split("").length === 4
+                            ? "form-control CodeForm-control CodeForm-4"
+                            : "form-control CodeForm-control",
+                      }}
+                    />
+                  </label>
                 </div>
-                <div className="p-relative mb-3">
+                <div className="p-relative mb-3 countriesCode z">
                   <input
-                    type="text"
-                    className="form-control"
+                    type="number"
+                    // className="form-control "
+                    className={
+                      phoneNum.phone && phoneNum.phone.split("").length === 2
+                        ? "countriesCode-input form-control  formControl-2"
+                        : phoneNum.phone &&
+                          phoneNum.phone.split("").length === 3
+                        ? "countriesCode-input form-control formControl-3"
+                        : phoneNum.phone &&
+                          phoneNum.phone.split("").length === 4
+                        ? "countriesCode-input form-control formControl-4"
+                        : "countriesCode-input form-control formControl-1"
+                    }
                     id="company"
                     placeholder="enter Mobile number"
                     name="mobileNumber"
@@ -1000,7 +1103,39 @@ export default function CreateCard(props) {
                     value={formData.mobileNumber}
                   />
 
-                  <label className="did-floating-label">+91</label>
+                  <label
+                    className="did-floating-label countriesCode"
+                    // htmlFor="number"
+                    aria-haspopup="listbox"
+                  >
+                    <PhoneInput
+                      country={"us"}
+                      value={phoneNum.phone}
+                      onChange={handleChange.bind(this, "phone")}
+                      enableSearch={true}
+                      disableSearchIcon={true}
+                      // disableCountryCode={true}
+                      countryCodeEditable={false}
+                      inputProps={{
+                        name: "phone",
+                        required: true,
+                        autoFocus: true,
+                        id: "number",
+                        placeholder: "1",
+                        className:
+                          phoneNum.phone &&
+                          phoneNum.phone.split("").length === 2
+                            ? "form-control CodeForm-control CodeForm-2"
+                            : phoneNum.phone &&
+                              phoneNum.phone.split("").length === 3
+                            ? "form-control CodeForm-control CodeForm-3"
+                            : phoneNum.phone &&
+                              phoneNum.phone.split("").length === 4
+                            ? "form-control CodeForm-control CodeForm-4"
+                            : "form-control CodeForm-control",
+                      }}
+                    />
+                  </label>
                 </div>
               </div>
               <button

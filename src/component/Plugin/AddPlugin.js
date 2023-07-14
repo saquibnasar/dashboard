@@ -31,12 +31,12 @@ export default function AddPlugin(props) {
       !(event.target.getAttribute("placeholder") === "https://youtu.be/xxxx") &&
       event.target.value === ""
     ) {
-      setIfClick(!ifClick);
+      setIfClick(true);
     }
   };
   window.addEventListener("click", function (e) {
     let userData = document.getElementById("userData");
-    if (userData && !userData.contains(e.target) && formData.linkData === "") {
+    if (userData && !userData.contains(e.target) && userData.value === "") {
       setIfClick(false);
     }
   });

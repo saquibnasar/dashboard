@@ -526,7 +526,6 @@ export default function UserProfile(props) {
             ""
           )}
 
-          {/* {console.log(typeof props.formData.usesPlugin)} */}
           {props.formData &&
           props.formData.usesPlugin &&
           props.formData.usesPlugin.length ? (
