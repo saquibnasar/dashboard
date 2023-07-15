@@ -166,11 +166,29 @@ export default function CreateCard(props) {
               logoimage: croppedImage,
             };
           });
+          setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              userImages: {
+                ...prevformData.userImages,
+                userProfile: croppedImage,
+              },
+            };
+          });
         } else if (image.bannerImage1) {
           setSecondImage((prevformData) => {
             return {
               ...prevformData,
               bannerImage1: croppedImage,
+            };
+          });
+          setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              userImages: {
+                ...prevformData.userImages,
+                bannerImage1: croppedImage,
+              },
             };
           });
         } else if (image.bannerImage2) {
@@ -180,11 +198,29 @@ export default function CreateCard(props) {
               bannerImage2: croppedImage,
             };
           });
+          setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              userImages: {
+                ...prevformData.userImages,
+                bannerImage2: croppedImage,
+              },
+            };
+          });
         } else if (image.bannerImage3) {
           setSecondImage((prevformData) => {
             return {
               ...prevformData,
               bannerImage3: croppedImage,
+            };
+          });
+          setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              userImages: {
+                ...prevformData.userImages,
+                bannerImage3: croppedImage,
+              },
             };
           });
         }
@@ -233,6 +269,12 @@ export default function CreateCard(props) {
     userInfo: {},
     userLink: [],
     usesPlugin: [],
+    userImages: {
+      userProfile: secondImage.logoimage,
+      bannerImage1: secondImage.bannerImage1,
+      bannerImage2: secondImage.bannerImage2,
+      bannerImage3: secondImage.bannerImage3,
+    },
   });
 
   const textHander = () => {

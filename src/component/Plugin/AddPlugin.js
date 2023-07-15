@@ -112,7 +112,9 @@ export default function AddPlugin(props) {
                     className="did-floating-input"
                     type={props.data.type}
                     placeholder={
-                      ifClick ? `https://${props.data.linktype}/xxxx` : " "
+                      ifClick
+                        ? `https://www.${props.data.linktype}.com/xxxx`
+                        : " "
                     }
                     required
                     name="linkData"
@@ -128,7 +130,7 @@ export default function AddPlugin(props) {
                     htmlFor="userData"
                   >
                     {!ifClick
-                      ? `https://${props.data.linktype}/xxxx`
+                      ? `https://www.${props.data.linktype}.com/xxxx`
                       : props.data.titleInput}
                   </label>
                 </div>

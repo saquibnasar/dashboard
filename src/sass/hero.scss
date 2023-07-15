@@ -260,8 +260,8 @@
         justify-content: center;
         align-items: center;
         svg {
-          font-size: 2.5rem;
           color: rgb(185, 50, 144);
+          font-size: 2.5rem;
         }
       }
       p {
@@ -271,6 +271,71 @@
         color: #373737;
       }
     }
+
+    .social_media-link.call {
+      span {
+        background: #3ae432;
+        svg {
+          color: $white-color;
+        }
+      }
+    }
+    .social_media-link.whatsapp {
+      span {
+        background: #128c7e;
+        svg {
+          color: $white-color;
+        }
+      }
+    }
+    .social_media-link.linkedin {
+      span {
+        background: #0a66c2;
+        svg {
+          color: $white-color;
+        }
+      }
+    }
+    .social_media-link.instagram {
+      span {
+        background: linear-gradient(
+          45deg,
+          #f09433 0%,
+          #e6683c 25%,
+          #dc2743 50%,
+          #cc2366 75%,
+          #bc1888 100%
+        );
+        svg {
+          color: $white-color;
+        }
+      }
+    }
+    .social_media-link.facebook {
+      span {
+        background: #1296f4;
+        svg {
+          color: $white-color;
+        }
+      }
+    }
+    .social_media-link.twitter {
+      span {
+        background: #1da1f2;
+        svg {
+          color: $white-color;
+        }
+      }
+    }
+    .social_media-link.youtube {
+      span {
+        background: $white-color;
+        svg {
+          color: #ff0000;
+        }
+      }
+    }
+
     .social_media-link:hover {
       // box-shadow: rgba(0, 0, 0, 0.24) 0px 4px 12px 0px;
       transform: scale(1.01);

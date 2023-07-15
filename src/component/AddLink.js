@@ -135,7 +135,7 @@ export default function AddLink(props) {
                           ifClick
                             ? props.data.type
                               ? ""
-                              : `https://${props.data.linktype}/xxxx`
+                              : `https://www.${props.data.linktype}.com/xxxx`
                             : " "
                         }
                         required
@@ -184,7 +184,13 @@ export default function AddLink(props) {
                         className="did-floating-input"
                         type={props.data.type}
                         placeholder={
-                          ifClick
+                          props.data.linkType === "addresss"
+                            ? ifClick
+                              ? props.data.type
+                                ? ""
+                                : `Business address*`
+                              : " "
+                            : ifClick
                             ? props.data.type
                               ? ""
                               : `https://${props.data.linktype}/xxxx`
@@ -202,8 +208,12 @@ export default function AddLink(props) {
                         className="did-floating-label"
                         htmlFor="userData"
                       >
-                        {!ifClick
-                          ? `https://${props.data.linktype}/xxxx`
+                        {props.data.linktype === "address"
+                          ? !ifClick
+                            ? `Business address*`
+                            : props.data.titleInput
+                          : !ifClick
+                          ? `https://www.${props.data.linktype}.com/xxxx`
                           : props.data.titleInput}
                       </label>
                     </>
