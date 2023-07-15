@@ -26,7 +26,7 @@ export default function Setting(props) {
   const { settingId } = useParams();
   const [isClick, setIsClick] = useState(false);
   const [isLinks, setIslinks] = useState(false);
-  const [image, setImage] = useState({ preview: "", raw: "" });
+  const [image, setImage] = useState({ preview: "", raw: "", secondImage: "" });
   const [secondImage, setSecondImage] = useState({ preview: "", raw: "" });
   const [editImage, setEditImage] = useState({ preview: "", raw: "" });
 
@@ -35,34 +35,20 @@ export default function Setting(props) {
   };
 
   const handleChange = (e) => {
-    // console.log();
     if (!e.target.files[0].length) {
-      setImage({
-        preview: URL.createObjectURL(e.target.files[0]),
-        raw: e.target.files[0],
+      setImage((prevformData) => {
+        return {
+          ...prevformData,
+          preview: URL.createObjectURL(e.target.files[0]),
+        };
       });
     }
   };
-
-  // const handleUpload = async (e) => {
-  //   e.preventDefault();
-  //   const formData = new FormData();
-  //   formData.append("image", image.raw);
-
-  //   await fetch("YOUR_URL", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "multipart/form-data",
-  //     },
-  //     body: formData,
-  //   });
-  // };
 
   const [crop, setCrop] = useState({ x: 0, y: 0 });
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [croppedImage, setCroppedImage] = useState(null);
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -70,32 +56,40 @@ export default function Setting(props) {
 
   const showCroppedImage = useCallback(async () => {
     try {
+      console.log(image.preview);
       const croppedImage = await getCroppedImg(
         image.preview,
         croppedAreaPixels,
         rotation
       );
+      console.log(croppedImage);
 
-      setSecondImage({
-        preview: croppedImage,
+      setImage((prevformData) => {
+        return {
+          ...prevformData,
+          secondImage: croppedImage,
+        };
       });
-      setImage({
-        preview: "",
-        raw: "",
+
+      setImage((prevformData) => {
+        return {
+          ...prevformData,
+          raw: prevformData.preview,
+        };
       });
+
+      setImage((prevformData) => {
+        return {
+          ...prevformData,
+          preview: "",
+        };
+      });
+
       setRotation(0);
-      setEditImage({
-        preview: image.preview,
-      });
-      setCroppedImage(croppedImage);
     } catch (e) {
       console.error(e);
     }
   }, [croppedAreaPixels, rotation]);
-
-  const onClose = useCallback(() => {
-    setCroppedImage(null);
-  }, []);
 
   window.addEventListener("click", function (e) {
     let uploadListcontainer = document.querySelector(".logo");
@@ -227,9 +221,9 @@ export default function Setting(props) {
                             className="zoom-range"
                           />
                         </div>
-                        <div class="crop_rotate">
+                        <div className="crop_rotate">
                           <div
-                            class="crop_rotate-left"
+                            className="crop_rotate-left"
                             // htmlFor="crop_rotate-left"
                             onClick={() =>
                               setRotation((prevformData) => prevformData + 90)
@@ -238,7 +232,7 @@ export default function Setting(props) {
                             <FontAwesomeIcon icon={faRotateLeft} />
                           </div>
                           <div
-                            class="crop_rotate-right"
+                            className="crop_rotate-right"
                             onClick={() =>
                               setRotation((prevformData) => prevformData - 90)
                             }
@@ -259,18 +253,7 @@ export default function Setting(props) {
                       <div className="upload-img">
                         <label
                           className="logo"
-                          // htmlFor="upload-button"
                           onClick={() => {
-                            // setUploadList((prevformData) => {
-                            //   return {
-                            //     ...prevformData,
-                            //     transform:
-                            //       "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
-                            //     transformEnd: "unset",
-                            //     uploadListcontainer: ".uploadImg-container",
-                            //     uploadList: ".logoimage",
-                            //   };
-                            // });
                             const logoimage =
                               document.querySelector(".logoimage");
                             if (logoimage.style.transform === "unset") {
@@ -281,9 +264,9 @@ export default function Setting(props) {
                             }
                           }}
                         >
-                          {secondImage.preview ? (
+                          {image.secondImage ? (
                             <img
-                              src={secondImage.preview}
+                              src={image.secondImage}
                               alt="dummy"
                               className="img-fluid"
                             />
@@ -310,7 +293,7 @@ export default function Setting(props) {
                             Upload image
                             <FontAwesomeIcon icon={faCloudArrowUp} />
                           </label>
-                          {secondImage.preview ? (
+                          {image.secondImage ? (
                             <>
                               <div
                                 className="uploadList-item"
@@ -318,7 +301,7 @@ export default function Setting(props) {
                                   setImage((prevformData) => {
                                     return {
                                       ...prevformData,
-                                      preview: editImage.preview,
+                                      preview: image.raw,
                                     };
                                   });
                                 }}

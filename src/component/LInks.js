@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { faGripVertical } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
@@ -77,19 +76,19 @@ export default function LInks(props) {
             </div>
             {/* <div className="addcard_link-list">
               <div
-                class="MuiPaper-root jss191 MuiPaper-elevation1 MuiPaper-rounded"
+                className="MuiPaper-root jss191 MuiPaper-elevation1 MuiPaper-rounded"
                 tabindex="1"
                 data-testid="content-container"
               >
-                <div data-eventname="edit" class="jss278" data-testid="content">
+                <div data-eventname="edit" className="jss278" data-testid="content">
                   <FontAwesomeIcon icon={faPen} />
                   <div>
-                    <span class="jss279">Edit lead</span>
+                    <span className="jss279">Edit lead</span>
                   </div>
                 </div>
                 <div
                   data-eventname="exportToCrm"
-                  class="jss278 stop"
+                  className="jss278 stop"
                   data-testid="content"
                 >
                   <svg
@@ -136,12 +135,12 @@ export default function LInks(props) {
                     </defs>
                   </svg>
                   <div>
-                    <span class="jss279 stop">Export to CRM</span>
+                    <span className="jss279 stop">Export to CRM</span>
                   </div>
                 </div>
                 <div
                   data-eventname="saveLead"
-                  class="jss278 stop"
+                  className="jss278 stop"
                   data-testid="content"
                 >
                   <svg
@@ -167,12 +166,12 @@ export default function LInks(props) {
                     ></path>
                   </svg>
                   <div>
-                    <span class="jss279 stop">Save as contact</span>
+                    <span className="jss279 stop">Save as contact</span>
                   </div>
                 </div>
                 <div
                   data-eventname="sendEmail"
-                  class="jss278 stop"
+                  className="jss278 stop"
                   data-testid="content"
                 >
                   <svg
@@ -198,12 +197,12 @@ export default function LInks(props) {
                     ></path>
                   </svg>
                   <div>
-                    <span class="jss279 stop">Send email</span>
+                    <span className="jss279 stop">Send email</span>
                   </div>
                 </div>
                 <div
                   data-eventname="addTag"
-                  class="jss278 stop"
+                  className="jss278 stop"
                   data-testid="content"
                 >
                   <svg
@@ -229,12 +228,12 @@ export default function LInks(props) {
                     ></path>
                   </svg>
                   <div>
-                    <span class="jss279 stop">Add tag</span>
+                    <span className="jss279 stop">Add tag</span>
                   </div>
                 </div>
                 <div
                   data-eventname="reassign"
-                  class="jss278 stop jss205"
+                  className="jss278 stop jss205"
                   data-testid="content"
                 >
                   <svg
@@ -274,12 +273,12 @@ export default function LInks(props) {
                     ></path>
                   </svg>
                   <div>
-                    <span class="jss279 stop">Reassign</span>
+                    <span className="jss279 stop">Reassign</span>
                   </div>
                 </div>
                 <div
                   data-eventname="share"
-                  class="jss278 stop jss204"
+                  className="jss278 stop jss204"
                   data-testid="content"
                 >
                   <svg
@@ -326,12 +325,12 @@ export default function LInks(props) {
                     ></path>
                   </svg>
                   <div>
-                    <span class="jss279 stop">Share</span>
+                    <span className="jss279 stop">Share</span>
                   </div>
                 </div>
                 <div
                   data-eventname="remove"
-                  class="jss278 stop"
+                  className="jss278 stop"
                   data-testid="content"
                 >
                   <svg
@@ -378,7 +377,7 @@ export default function LInks(props) {
                     ></path>
                   </svg>
                   <div>
-                    <span class="jss279 jss280 stop">Remove</span>
+                    <span className="jss279 jss280 stop">Remove</span>
                   </div>
                 </div>
               </div>

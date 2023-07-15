@@ -18,6 +18,7 @@ import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import AddPlugin from "./Plugin/AddPlugin";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import Image from "./userDetail/Image";
 
 export default function CreateCard(props) {
   const [isLinks, setIslinks] = useState(false);
@@ -44,7 +45,6 @@ export default function CreateCard(props) {
     bannerImage1: "",
     bannerImage2: "",
     bannerImage3: "",
-    raw: "",
   });
 
   const [secondImage, setSecondImage] = useState({
@@ -52,7 +52,6 @@ export default function CreateCard(props) {
     bannerImage1: "",
     bannerImage2: "",
     bannerImage3: "",
-    raw: "",
   });
 
   const [image, setImage] = useState({
@@ -60,7 +59,6 @@ export default function CreateCard(props) {
     bannerImage1: "",
     bannerImage2: "",
     bannerImage3: "",
-    raw: "",
   });
 
   const [uploadList, setUploadList] = useState({
@@ -138,10 +136,6 @@ export default function CreateCard(props) {
       });
     }
   };
-
-  // const navbarToggle = () => {
-  //   setIsNavbar(!isNavbar);
-  // };
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
     setCroppedAreaPixels(croppedAreaPixels);
@@ -221,6 +215,13 @@ export default function CreateCard(props) {
                 ...prevformData.userImages,
                 bannerImage3: croppedImage,
               },
+            };
+          });
+
+          setEditImage((prevformData) => {
+            return {
+              ...prevformData,
+              bannerImage3: croppedImage,
             };
           });
         }
@@ -333,8 +334,6 @@ export default function CreateCard(props) {
                             onCropChange={setCrop}
                             onCropComplete={onCropComplete}
                             onZoomChange={setZoom}
-                            // cropSize={{ width: 500, height: 240 }}
-                            // showGrid={false}
                           />
                         </div>
                         <div className="crop-edit">
@@ -351,9 +350,9 @@ export default function CreateCard(props) {
                             className="zoom-range"
                           />
                         </div>
-                        <div class="crop_rotate">
+                        <div className="crop_rotate">
                           <div
-                            class="crop_rotate-left"
+                            className="crop_rotate-left"
                             // htmlFor="crop_rotate-left"
                             onClick={() =>
                               setRotation((prevformData) => prevformData + 90)
@@ -362,7 +361,7 @@ export default function CreateCard(props) {
                             <FontAwesomeIcon icon={faRotateLeft} />
                           </div>
                           <div
-                            class="crop_rotate-right"
+                            className="crop_rotate-right"
                             onClick={() =>
                               setRotation((prevformData) => prevformData - 90)
                             }
@@ -376,382 +375,42 @@ export default function CreateCard(props) {
                 ) : (
                   ""
                 )}
+
                 <div className="row">
                   <div className="col">
                     <div className="tabs">
-                      <div className="tab">
-                        <input type="checkbox" id="rd1" name="rd" />
-                        <label className="tab-label" htmlFor="rd1">
-                          Upload images
-                          <FontAwesomeIcon icon={faPlus} />
-                        </label>
-                        <div className="tab-content p-relative">
-                          <div
-                            className="cursor_pointer bannerImage1"
-                            onClick={() => {
-                              setUploadList((prevformData) => {
-                                return {
-                                  ...prevformData,
-                                  transform:
-                                    "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
-                                  transformEnd: "translateX(-50%)",
-                                  uploadListcontainer: ".bannerImage1",
-                                  uploadList: ".uploadBanner1",
-                                };
-                              });
-                              const uploadBanner1 =
-                                document.querySelector(".uploadBanner1");
-                              if (
-                                uploadBanner1.style.transform ===
-                                "translateX(-50%)"
-                              ) {
-                                uploadBanner1.style.transform =
-                                  "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
-                              } else {
-                                uploadBanner1.style.transform =
-                                  "translateX(-50%)";
-                              }
-                            }}
-                          >
-                            <div className="imgUploader">
-                              {secondImage.bannerImage1 ? (
-                                <img
-                                  src={secondImage.bannerImage1}
-                                  alt=""
-                                  className="img-fluid"
-                                />
-                              ) : (
-                                <>
-                                  item with images see 60% more visits from
-                                  customers
-                                </>
-                              )}
-                            </div>
-                            <div className="uploadImg-btn">
-                              <FontAwesomeIcon icon={faCamera} />
-                            </div>
-                          </div>
-                          <div className="uploadList uploadBanner1">
-                            <label
-                              className="uploadList-item"
-                              htmlFor="uploadBanner1-photo"
-                            >
-                              Take photo
-                              <FontAwesomeIcon icon={faCamera} />
-                            </label>
-                            <label
-                              className="uploadList-item"
-                              htmlFor="uploadBanner1-image"
-                            >
-                              Upload image
-                              <FontAwesomeIcon icon={faCloudArrowUp} />
-                            </label>
-                            {secondImage.bannerImage1 ? (
-                              <>
-                                <div
-                                  className="uploadList-item"
-                                  onClick={() => {
-                                    setImage((prevformData) => {
-                                      return {
-                                        ...prevformData,
-                                        bannerImage1: editImage.bannerImage1,
-                                      };
-                                    });
-                                  }}
-                                >
-                                  Edit
-                                  <FontAwesomeIcon icon={faPen} />
-                                </div>
-                                <div
-                                  className="uploadList-item"
-                                  onClick={() => {
-                                    setSecondImage((prevformData) => {
-                                      return {
-                                        ...prevformData,
-                                        bannerImage1: "",
-                                      };
-                                    });
-                                  }}
-                                >
-                                  Clear
-                                  <FontAwesomeIcon icon={faXmark} />
-                                </div>
-                              </>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                          <input
-                            type="file"
-                            id="uploadBanner1-photo"
-                            className="d-none"
-                            name="bannerImage1"
-                            value=""
-                            onChange={imagehandleChange}
-                            capture
-                            accept="image/*"
-                          />
-                          <input
-                            type="file"
-                            id="uploadBanner1-image"
-                            className="d-none"
-                            name="bannerImage1"
-                            value=""
-                            onChange={imagehandleChange}
-                            accept="image/*"
-                          />
-                        </div>
-                      </div>
-                      <div className="tab">
-                        <input type="checkbox" id="rd2" name="rd" />
-                        <label className="tab-label" htmlFor="rd2">
-                          Upload images
-                          <FontAwesomeIcon icon={faPlus} />
-                        </label>
-                        <div className="tab-content p-relative">
-                          <div
-                            className="cursor_pointer bannerImage2"
-                            onClick={() => {
-                              setUploadList((prevformData) => {
-                                return {
-                                  ...prevformData,
-                                  transform:
-                                    "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
-                                  transformEnd: "translateX(-50%)",
-                                  uploadListcontainer: ".bannerImage2",
-                                  uploadList: ".uploadBanner2",
-                                };
-                              });
-                              const uploadBanner2 =
-                                document.querySelector(".uploadBanner2");
-                              if (
-                                uploadBanner2.style.transform ===
-                                "translateX(-50%)"
-                              ) {
-                                uploadBanner2.style.transform =
-                                  "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
-                              } else {
-                                uploadBanner2.style.transform =
-                                  "translateX(-50%)";
-                              }
-                            }}
-                          >
-                            <div className="imgUploader">
-                              {secondImage.bannerImage2 ? (
-                                <img
-                                  src={secondImage.bannerImage2}
-                                  alt=""
-                                  className="img-fluid"
-                                />
-                              ) : (
-                                <>
-                                  item with images see 60% more visits from
-                                  customers
-                                </>
-                              )}
-                            </div>
-                            <div className="uploadImg-btn">
-                              <FontAwesomeIcon icon={faCamera} />
-                            </div>
-                          </div>
-                          <div className="uploadList uploadBanner2">
-                            <label
-                              className="uploadList-item"
-                              htmlFor="uploadBanner2-photo"
-                            >
-                              Take photo
-                              <FontAwesomeIcon icon={faCamera} />
-                            </label>
-                            <label
-                              className="uploadList-item"
-                              htmlFor="uploadBanner2-image"
-                            >
-                              Upload image
-                              <FontAwesomeIcon icon={faCloudArrowUp} />
-                            </label>
-                            {secondImage.bannerImage2 ? (
-                              <>
-                                <div
-                                  className="uploadList-item"
-                                  onClick={() => {
-                                    setImage((prevformData) => {
-                                      return {
-                                        ...prevformData,
-                                        bannerImage2: editImage.bannerImage2,
-                                      };
-                                    });
-                                  }}
-                                >
-                                  Edit
-                                  <FontAwesomeIcon icon={faPen} />
-                                </div>
-                                <div
-                                  className="uploadList-item"
-                                  onClick={() => {
-                                    setSecondImage((prevformData) => {
-                                      return {
-                                        ...prevformData,
-                                        bannerImage2: "",
-                                      };
-                                    });
-                                  }}
-                                >
-                                  Clear
-                                  <FontAwesomeIcon icon={faXmark} />
-                                </div>
-                              </>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                          <input
-                            type="file"
-                            id="uploadBanner2-photo"
-                            className="d-none"
-                            name="bannerImage2"
-                            value=""
-                            onChange={imagehandleChange}
-                            capture
-                            accept="image/*"
-                          />
-                          <input
-                            type="file"
-                            id="uploadBanner2-image"
-                            className="d-none"
-                            name="bannerImage2"
-                            value=""
-                            onChange={imagehandleChange}
-                            accept="image/*"
-                          />
-                        </div>
-                      </div>
-                      <div className="tab">
-                        <input type="checkbox" id="rd3" name="rd" />
-                        <label className="tab-label" htmlFor="rd3">
-                          Upload images
-                          <FontAwesomeIcon icon={faPlus} />
-                        </label>
-                        <div className="tab-content p-relative">
-                          <div
-                            className="cursor_pointer bannerImage3"
-                            onClick={() => {
-                              setUploadList((prevformData) => {
-                                return {
-                                  ...prevformData,
-                                  transform:
-                                    "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
-                                  transformEnd: "translateX(-50%)",
-                                  uploadListcontainer: ".bannerImage3",
-                                  uploadList: ".uploadBanner3",
-                                };
-                              });
-                              const uploadBanner3 =
-                                document.querySelector(".uploadBanner3");
-                              if (
-                                uploadBanner3.style.transform ===
-                                "translateX(-50%)"
-                              ) {
-                                uploadBanner3.style.transform =
-                                  "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
-                              } else {
-                                uploadBanner3.style.transform =
-                                  "translateX(-50%)";
-                              }
-                            }}
-                          >
-                            <div className="imgUploader">
-                              {secondImage.bannerImage3 ? (
-                                <img
-                                  src={secondImage.bannerImage3}
-                                  alt=""
-                                  className="img-fluid"
-                                />
-                              ) : (
-                                <>
-                                  item with images see 60% more visits from
-                                  customers
-                                </>
-                              )}
-                            </div>
-                            <div className="uploadImg-btn">
-                              <FontAwesomeIcon icon={faCamera} />
-                            </div>
-                          </div>
-                          <div className="uploadList uploadBanner3">
-                            <label
-                              className="uploadList-item"
-                              htmlFor="uploadBanner3-photo"
-                            >
-                              Take photo
-                              <FontAwesomeIcon icon={faCamera} />
-                            </label>
-                            <label
-                              className="uploadList-item"
-                              htmlFor="uploadBanner3-image"
-                            >
-                              Upload image
-                              <FontAwesomeIcon icon={faCloudArrowUp} />
-                            </label>
-                            {secondImage.bannerImage3 ? (
-                              <>
-                                <div
-                                  className="uploadList-item"
-                                  onClick={() => {
-                                    setImage((prevformData) => {
-                                      return {
-                                        ...prevformData,
-                                        bannerImage3: editImage.bannerImage3,
-                                      };
-                                    });
-                                  }}
-                                >
-                                  Edit
-                                  <FontAwesomeIcon icon={faPen} />
-                                </div>
-                                <div
-                                  className="uploadList-item"
-                                  onClick={() => {
-                                    setSecondImage((prevformData) => {
-                                      return {
-                                        ...prevformData,
-                                        bannerImage3: "",
-                                      };
-                                    });
-                                  }}
-                                >
-                                  Clear
-                                  <FontAwesomeIcon icon={faXmark} />
-                                </div>
-                              </>
-                            ) : (
-                              ""
-                            )}
-                          </div>
-                          <input
-                            type="file"
-                            id="uploadBanner3-photo"
-                            className="d-none"
-                            name="bannerImage3"
-                            value=""
-                            onChange={imagehandleChange}
-                            capture
-                            accept="image/*"
-                          />
-                          <input
-                            type="file"
-                            id="uploadBanner3-image"
-                            className="d-none"
-                            name="bannerImage3"
-                            value=""
-                            onChange={imagehandleChange}
-                            accept="image/*"
-                          />
-                        </div>
-                      </div>
+                      <Image
+                        setUploadList={setUploadList}
+                        setSecondImage={setSecondImage}
+                        secondImage={secondImage}
+                        setImage={setImage}
+                        editImage={editImage}
+                        imagehandleChange={imagehandleChange}
+                        imageNum="1"
+                      />
+                      <Image
+                        setUploadList={setUploadList}
+                        setSecondImage={setSecondImage}
+                        secondImage={secondImage}
+                        setImage={setImage}
+                        editImage={editImage}
+                        imagehandleChange={imagehandleChange}
+                        imageNum="2"
+                      />
+                      <Image
+                        setUploadList={setUploadList}
+                        setSecondImage={setSecondImage}
+                        secondImage={secondImage}
+                        setImage={setImage}
+                        editImage={editImage}
+                        imagehandleChange={imagehandleChange}
+                        imageNum="3"
+                      />
                     </div>
                   </div>
                 </div>
               </div>
+
               <div className="addImage p-relative">
                 <h3>Upload Profile image </h3>
                 {image.logoimage ? (
@@ -807,9 +466,9 @@ export default function CreateCard(props) {
                             className="zoom-range"
                           />
                         </div>
-                        <div class="crop_rotate">
+                        <div className="crop_rotate">
                           <div
-                            class="crop_rotate-left"
+                            className="crop_rotate-left"
                             onClick={() =>
                               setRotation((prevformData) => prevformData - 90)
                             }
@@ -817,7 +476,7 @@ export default function CreateCard(props) {
                             <FontAwesomeIcon icon={faRotateLeft} />
                           </div>
                           <div
-                            class="crop_rotate-right"
+                            className="crop_rotate-right"
                             onClick={() =>
                               setRotation((prevformData) => prevformData - 90)
                             }

@@ -255,9 +255,9 @@ export default function About(props) {
                           className="zoom-range"
                         />
                       </div>
-                      <div class="crop_rotate">
+                      <div className="crop_rotate">
                         <div
-                          class="crop_rotate-left"
+                          className="crop_rotate-left"
                           // htmlFor="crop_rotate-left"
                           onClick={() =>
                             setRotation((prevformData) => prevformData + 90)
@@ -266,7 +266,7 @@ export default function About(props) {
                           <FontAwesomeIcon icon={faRotateLeft} />
                         </div>
                         <div
-                          class="crop_rotate-right"
+                          className="crop_rotate-right"
                           onClick={() =>
                             setRotation((prevformData) => prevformData - 90)
                           }
@@ -711,9 +711,9 @@ export default function About(props) {
                           className="zoom-range"
                         />
                       </div>
-                      <div class="crop_rotate">
+                      <div className="crop_rotate">
                         <div
-                          class="crop_rotate-left"
+                          className="crop_rotate-left"
                           onClick={() =>
                             setRotation((prevformData) => prevformData - 90)
                           }
@@ -721,7 +721,7 @@ export default function About(props) {
                           <FontAwesomeIcon icon={faRotateLeft} />
                         </div>
                         <div
-                          class="crop_rotate-right"
+                          className="crop_rotate-right"
                           onClick={() =>
                             setRotation((prevformData) => prevformData - 90)
                           }
