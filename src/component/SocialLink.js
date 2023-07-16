@@ -59,7 +59,6 @@ export default function SocialLink(props) {
               target="blank"
             >
               <div className="d-flex align-items-center gap-2">
-                {/* {console.log(typeof icon)} */}
                 {icon === "/googlemap.png" ||
                 icon === "/safari.png" ||
                 icon === "/email.png" ? (

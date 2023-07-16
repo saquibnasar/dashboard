@@ -56,13 +56,11 @@ export default function Setting(props) {
 
   const showCroppedImage = useCallback(async () => {
     try {
-      console.log(image.preview);
       const croppedImage = await getCroppedImg(
         image.preview,
         croppedAreaPixels,
         rotation
       );
-      console.log(croppedImage);
 
       setImage((prevformData) => {
         return {

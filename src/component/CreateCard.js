@@ -5,7 +5,8 @@ import UserProfile from "./UserProfile/UserProfile";
 import AddCard from "./AddCard";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft, faL } from "@fortawesome/free-solid-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
@@ -19,16 +20,28 @@ import AddPlugin from "./Plugin/AddPlugin";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Image from "./userDetail/Image";
+import AddLink from "./AddLink";
 
 export default function CreateCard(props) {
   const [isLinks, setIslinks] = useState(false);
   const [type, setType] = useState("link");
   const [isClick, setIsClick] = useState(false);
+  const [isLinkClick, setIsLinkClick] = useState(false);
+
   const [phoneNum, setPhoneNum] = useState({
     whPhone: "1",
     phone: "1",
   });
-  // const [whPhone, setWhPhone] = useState();
+
+  const [linkData, setLinkData] = useState({
+    headerTitle: "",
+    linkTitleInput: "",
+    title: "",
+    titleInput: "",
+    type: "",
+    linktype: "",
+    icon: "",
+  });
 
   const [crop, setCrop] = useState({
     x: 0,
@@ -38,8 +51,7 @@ export default function CreateCard(props) {
   const [rotation, setRotation] = useState(0);
   const [zoom, setZoom] = useState(1);
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
-  const [croppedImage, setCroppedImage] = useState(null);
-  const [isNavbar, setIsNavbar] = useState(false);
+
   const [editImage, setEditImage] = useState({
     logoimage: "",
     bannerImage1: "",
@@ -70,6 +82,33 @@ export default function CreateCard(props) {
 
   const handleChange = (event, code) => {
     if (event === "whPhone" || event === "phone") {
+      if (event === "whPhone") {
+        setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            userInfo: {
+              ...prevformData.userInfo,
+              whatsappNumber: {
+                ...prevformData.userInfo.whatsappNumber,
+                countryCode: code,
+              },
+            },
+          };
+        });
+      } else {
+        setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            userInfo: {
+              ...prevformData.userInfo,
+              mobileNumber: {
+                ...prevformData.userInfo.mobileNumber,
+                countryCode: code,
+              },
+            },
+          };
+        });
+      }
       setPhoneNum((prevData) => {
         return { ...prevData, [event]: code };
       });
@@ -83,7 +122,10 @@ export default function CreateCard(props) {
             ...prevformData,
             userInfo: {
               ...prevformData.userInfo,
-              [event.target.name]: phoneNum.phone + event.target.value,
+              [event.target.name]: {
+                ...prevformData.userInfo.mobileNumber,
+                phoneNum: event.target.value,
+              },
             },
           };
         });
@@ -93,7 +135,10 @@ export default function CreateCard(props) {
             ...prevformData,
             userInfo: {
               ...prevformData.userInfo,
-              [event.target.name]: phoneNum.whPhone + event.target.value,
+              [event.target.name]: {
+                ...prevformData.userInfo.whatsappNumber,
+                whatsappNum: event.target.value,
+              },
             },
           };
         });
@@ -124,6 +169,55 @@ export default function CreateCard(props) {
 
   const addLin = () => {
     setIslinks(!isLinks);
+  };
+  const updateLink = (link, id) => {
+    setIsLinkClick(!isLinkClick);
+    console.log(link);
+    setLinkData(() => {
+      if (link && link.linkType && link.linkType === "call") {
+        return {
+          headerTitle: "Phone",
+          linkTitleInput: "Call",
+          title: "Phone Number*",
+          titleInput: "Enter Phone Number*",
+          type: "number",
+          linktype: "call",
+          icon: faPhone,
+          linkData: link.titleInput,
+          linkTitle: link.linkTitleInput,
+          countryCode: link.countryCode,
+          id: id,
+        };
+      }
+      if (link && link.linkType && link.linkType === "email") {
+        return {
+          headerTitle: "Link Title",
+          linkTitleInput: "email",
+          title: "Email",
+          titleInput: "Enter Email",
+          type: "email",
+          linktype: "email",
+          icon: "/email.png",
+          linkData: link.titleInput,
+          linkTitle: link.linkTitleInput,
+          id: id,
+        };
+      }
+      if (link && link.linkType && link.linkType === "website") {
+        return {
+          headerTitle: "Website Title",
+          linkTitleInput: "Website",
+          title: "Website*",
+          titleInput: "Enter Website URL",
+          type: "text",
+          linktype: "website",
+          icon: "/safari.png",
+          linkData: link.titleInput,
+          linkTitle: link.linkTitleInput,
+          id: id,
+        };
+      }
+    });
   };
 
   const imagehandleChange = (e) => {
@@ -244,8 +338,6 @@ export default function CreateCard(props) {
         });
 
         setRotation(0);
-
-        setCroppedImage(croppedImage);
       } catch (e) {
         console.error(e);
       }
@@ -270,6 +362,7 @@ export default function CreateCard(props) {
     userInfo: {},
     userLink: [],
     usesPlugin: [],
+
     userImages: {
       userProfile: secondImage.logoimage,
       bannerImage1: secondImage.bannerImage1,
@@ -652,7 +745,13 @@ export default function CreateCard(props) {
                 <div className="admin_detail-social-grid">
                   {formData.userLink.map((links, id) => {
                     return (
-                      <button key={id} className="btn-primary" onClick={addLin}>
+                      <button
+                        key={id}
+                        className="btn-primary"
+                        onClick={() => {
+                          updateLink(links, id);
+                        }}
+                      >
                         {links.linkType === "call" ? "call" : ""}
                         {links.linkType === "email" ? "email" : ""}
                         {links.linkType === "website" ? "website" : ""}
@@ -684,16 +783,7 @@ export default function CreateCard(props) {
                   {formData.usesPlugin.map((links, id) => {
                     return (
                       <button key={id} className="btn-primary" onClick={addLin}>
-                        {links.linkType === "call" ? "call" : ""}
-                        {links.linkType === "email" ? "email" : ""}
-                        {links.linkType === "website" ? "website" : ""}
-                        {links.linkType === "whatsapp" ? "whatsapp" : ""}
-                        {links.linkType === "linkedin" ? "linkedin" : ""}
-                        {links.linkType === "instagram" ? "instagram" : ""}
-                        {links.linkType === "facebook" ? "facebook" : ""}
-                        {links.linkType === "twitter" ? "twitter" : ""}
                         {links.linkType === "youtube" ? "youtube" : ""}
-                        {links.linkType === "address" ? "address" : ""}
                       </button>
                     );
                   })}
@@ -877,7 +967,20 @@ export default function CreateCard(props) {
         ) : (
           ""
         )}
-        {/* {isClick ? <AddLink data={linkData} sendData={sendData} /> : ""} */}
+        {isLinkClick ? (
+          <div className="addcard">
+            <div className="addcard_container">
+              <AddLink
+                data={linkData}
+                sendData={updateLink}
+                setFormData={setFormData}
+                formData={formData}
+              />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
       </div>
     </>
   );

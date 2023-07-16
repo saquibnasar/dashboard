@@ -110,7 +110,6 @@ export default function About(props) {
           croppedAreaPixels,
           rotation
         );
-        // console.log(rotation);
 
         if (image.logoimage) {
           setSecondImage((prevformData) => {

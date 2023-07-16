@@ -42,9 +42,8 @@ export default function AddPlugin(props) {
   });
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(e);
+
     props.setFormData((prevformData) => {
-      console.log(prevformData);
       return {
         ...prevformData,
         usesPlugin: [

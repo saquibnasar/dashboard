@@ -1,7 +1,6 @@
 import React from "react";
 import ReactPlayer from "react-player/youtube";
 export default function Video(props) {
-  // console.log(typeof props.data);
   return (
     <>
       {props.data.map((value, id) => {

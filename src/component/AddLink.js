@@ -1,23 +1,17 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import UserProfile from "./UserProfile/UserProfile";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 
 export default function AddLink(props) {
   const [formData, setFormData] = useState({
-    linkData: "",
-    linkTitle: "",
+    linkData: props.data.linkData ? props.data.linkData : "",
+    linkTitle: props.data.linkTitle ? props.data.linkTitle : "",
   });
+
   const [ifClick, setIfClick] = useState(false);
   const [phone, setPhone] = useState("+1");
 
@@ -46,35 +40,69 @@ export default function AddLink(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (props.data.linktype === "call") {
+    if (props.data.linkData) {
+      let newArr = [...props.formData.userLink];
+
+      newArr[props.data.id] = {
+        linkTitleInput: formData.linkTitle,
+        titleInput: formData.linkData,
+        countryCode: phone,
+        linkType: props.data.linktype,
+      };
       props.setFormData((prevformData) => {
         return {
           ...prevformData,
-          userLink: [
-            ...prevformData.userLink,
-            {
-              linkTitleInput: formData.linkTitle,
-              titleInput: phone + formData.linkData,
-              linkType: props.data.linktype,
-            },
-          ],
+          userLink: [...newArr],
         };
       });
     } else {
-      props.setFormData((prevformData) => {
-        return {
-          ...prevformData,
-          userLink: [
-            ...prevformData.userLink,
-            {
-              linkTitleInput: formData.linkTitle,
-              titleInput: formData.linkData,
-              linkType: props.data.linktype,
-            },
-          ],
-        };
-      });
+      if (props.data.linktype === "call") {
+        props.setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            userLink: [
+              ...prevformData.userLink,
+              {
+                linkTitleInput: formData.linkTitle,
+                titleInput: formData.linkData,
+                countryCode: phone,
+                linkType: props.data.linktype,
+                id: prevformData.userLink.length,
+              },
+            ],
+          };
+        });
+      } else {
+        props.setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            userLink: [
+              ...prevformData.userLink,
+              {
+                linkTitleInput: formData.linkTitle,
+                titleInput: formData.linkData,
+                linkType: props.data.linktype,
+              },
+            ],
+          };
+        });
+      }
     }
+    props.sendData();
+  };
+  console.log(props.data.countryCode);
+  const deleteElement = () => {
+    props.setFormData((prevformData) => {
+      let fds = prevformData.userLink.splice(
+        prevformData.userLink.findIndex((e) => e.id === props.id),
+        1
+      );
+
+      return {
+        ...prevformData,
+        userLink: [...prevformData.userLink],
+      };
+    });
     props.sendData();
   };
 
@@ -156,7 +184,11 @@ export default function AddLink(props) {
                       <div className="did-floating countriesCode">
                         <PhoneInput
                           country={"us"}
-                          // value={phone}
+                          value={
+                            props.data.countryCode
+                              ? `${props.data.countryCode}`
+                              : phone
+                          }
                           onChange={(val) => setPhone(val)}
                           enableSearch={true}
                           disableSearchIcon={true}
@@ -220,15 +252,39 @@ export default function AddLink(props) {
                   )}
                 </div>
               </div>
+              {props.data.linkData ? (
+                <div className="d-flex justify-content-between align-items-center mt-4">
+                  <button
+                    type="button"
+                    className="btn btn-delete"
+                    onClick={deleteElement}
+                  >
+                    <FontAwesomeIcon icon={faTrashCan} />
+                    Remove
+                  </button>
 
-              <div className="submit d-flex">
-                <button onClick={props.sendData} className="btn btn-primary">
-                  Cancel
-                </button>
-                <button type="submit" className="btn btn-primary">
-                  Add link
-                </button>
-              </div>
+                  <div className="submit d-flex">
+                    <button
+                      onClick={props.sendData}
+                      className="btn btn-primary"
+                    >
+                      Cancel
+                    </button>
+                    <button type="submit" className="btn btn-primary">
+                      Update
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="submit d-flex mt-4">
+                  <button onClick={props.sendData} className="btn btn-primary">
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn btn-primary">
+                    Add link
+                  </button>
+                </div>
+              )}
             </form>
           </div>
         </div>

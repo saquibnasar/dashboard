@@ -98,7 +98,6 @@ export default function AddCard(props) {
                       title: "Phone Number*",
                       titleInput: "Enter Phone Number*",
                       type: "number",
-                      // linkType: "number",
                       linktype: "call",
                       icon: faPhone,
                     })}
