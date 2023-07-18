@@ -1,24 +1,29 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
-import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
-import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
-import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
-import { faTwitter } from "@fortawesome/free-brands-svg-icons";
-import { faYoutube } from "@fortawesome/free-brands-svg-icons";
-import { faInstagram } from "@fortawesome/free-brands-svg-icons";
-
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import UserProfile from "../UserProfile/UserProfile";
 export default function AddPlugin(props) {
   const [formData, setFormData] = useState({
-    linkData: "",
-    linkTitle: "",
+    value: props.data.linkData ? props.data.linkData : "",
+    title: props.data.linkTitle ? props.data.linkTitle : "",
   });
   const [ifClick, setIfClick] = useState(false);
 
   const handleChange = (event) => {
+    fetch(`https://youtube.com/oembed?url=${event.target.value}&format=json`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFormData((preData) => {
+          return {
+            ...preData,
+            title: data.title,
+          };
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
     setFormData((prevformData) => {
       return {
         ...prevformData,
@@ -46,14 +51,25 @@ export default function AddPlugin(props) {
     props.setFormData((prevformData) => {
       return {
         ...prevformData,
-        usesPlugin: [
-          ...prevformData.usesPlugin,
+        userPlugin: [
+          ...prevformData.userPlugin,
           {
-            linkTitleInput: formData.linkTitle,
-            titleInput: formData.linkData,
-            linkType: props.data.linktype,
+            title: formData.title,
+            value: formData.value,
+            type: props.data.type,
           },
         ],
+      };
+    });
+    props.sendData();
+  };
+  const deleteElement = () => {
+    props.setFormData((prevformData) => {
+      prevformData.userPlugin.splice(props.data.id, 1);
+
+      return {
+        ...prevformData,
+        userPlugin: [...prevformData.userPlugin],
       };
     });
     props.sendData();
@@ -68,10 +84,10 @@ export default function AddPlugin(props) {
         </div>
         <div className="addlink_content">
           <div className="addlink_content-top">
-            <div className={`addlink_content-top-icon ${props.data.linktype}`}>
-              {props.data.linktype === "email" ||
-              props.data.linktype === "address" ||
-              props.data.linktype === "website" ? (
+            <div className={`addlink_content-top-icon ${props.data.type}`}>
+              {props.data.type === "email" ||
+              props.data.type === "address" ||
+              props.data.type === "website" ? (
                 <img className="img-fluid" src={props.data.icon} alt="" />
               ) : (
                 <FontAwesomeIcon icon={props.data.icon} />
@@ -91,8 +107,8 @@ export default function AddPlugin(props) {
                     type="text"
                     placeholder=" "
                     required
-                    name="linkTitle"
-                    value={formData.linkTitle}
+                    name="title"
+                    value={formData.title}
                     onChange={handleChange}
                     id="userText"
                   />
@@ -109,15 +125,13 @@ export default function AddPlugin(props) {
                 <div className="did-floating-label-content input-group">
                   <input
                     className="did-floating-input"
-                    type={props.data.type}
+                    type={props.data.linktype}
                     placeholder={
-                      ifClick
-                        ? `https://www.${props.data.linktype}.com/xxxx`
-                        : " "
+                      ifClick ? `https://www.${props.data.type}.com/xxxx` : " "
                     }
                     required
-                    name="linkData"
-                    value={formData.linkData}
+                    name="value"
+                    value={formData.value}
                     onChange={handleChange}
                     onClick={check}
                     id="userData"
@@ -129,20 +143,45 @@ export default function AddPlugin(props) {
                     htmlFor="userData"
                   >
                     {!ifClick
-                      ? `https://www.${props.data.linktype}.com/xxxx`
+                      ? `https://www.${props.data.type}.com/xxxx`
                       : props.data.titleInput}
                   </label>
                 </div>
               </div>
 
-              <div className="submit d-flex">
-                <button onClick={props.sendData} className="btn btn-primary">
-                  Cancel
-                </button>
-                <button type="submit" className="btn btn-primary">
-                  Add link
-                </button>
-              </div>
+              {props.data.linkData ? (
+                <div className="d-flex justify-content-between align-items-center mt-4">
+                  <button
+                    type="button"
+                    className="btn btn-delete"
+                    onClick={deleteElement}
+                  >
+                    <FontAwesomeIcon icon={faTrashCan} />
+                    Remove
+                  </button>
+
+                  <div className="submit d-flex">
+                    <button
+                      onClick={props.sendData}
+                      className="btn btn-primary"
+                    >
+                      Cancel
+                    </button>
+                    <button type="submit" className="btn btn-primary">
+                      Update
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="submit d-flex mt-4">
+                  <button onClick={props.sendData} className="btn btn-primary">
+                    Cancel
+                  </button>
+                  <button type="submit" className="btn btn-primary">
+                    Add link
+                  </button>
+                </div>
+              )}
             </form>
           </div>
         </div>

@@ -527,9 +527,9 @@ export default function UserProfile(props) {
           )}
 
           {props.formData &&
-          props.formData.usesPlugin &&
-          props.formData.usesPlugin.length ? (
-            <Video data={props.formData.usesPlugin} />
+          props.formData.userPlugin &&
+          props.formData.userPlugin.length ? (
+            <Video data={props.formData.userPlugin} />
           ) : (
             ""
           )}
@@ -557,7 +557,7 @@ export default function UserProfile(props) {
               </div>
             </div>
           </div> */}
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </section>
       {/* {data ? (

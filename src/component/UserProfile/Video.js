@@ -6,7 +6,7 @@ export default function Video(props) {
       {props.data.map((value, id) => {
         return (
           <div key={id} className="_username__featuredLink__MeYB7 text-start">
-            <h3>{value.linkTitleInput}</h3>
+            <h3>{value.title}</h3>
             <div className="BaseEmbeddedLink_baseEmbeddedLinkWrapper__SlpfZ">
               <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
                 <div className="BaseEmbeddedLink_baseEmbeddedLinkContainer__SlSm5 BaseEmbeddedLink_baseEmbeddedLinkContainerEmbed__py5x8">

@@ -8,8 +8,8 @@ import "react-phone-input-2/lib/style.css";
 
 export default function AddLink(props) {
   const [formData, setFormData] = useState({
-    linkData: props.data.linkData ? props.data.linkData : "",
-    linkTitle: props.data.linkTitle ? props.data.linkTitle : "",
+    value: props.data.linkData ? props.data.linkData : "",
+    title: props.data.linkTitle ? props.data.linkTitle : "",
   });
 
   const [ifClick, setIfClick] = useState(false);
@@ -40,14 +40,15 @@ export default function AddLink(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (props.data.linkData) {
+
+    if (props.data.value) {
       let newArr = [...props.formData.userLink];
 
       newArr[props.data.id] = {
-        linkTitleInput: formData.linkTitle,
-        titleInput: formData.linkData,
+        title: formData.title,
+        value: formData.value,
         countryCode: phone,
-        linkType: props.data.linktype,
+        type: props.data.type,
       };
       props.setFormData((prevformData) => {
         return {
@@ -56,18 +57,17 @@ export default function AddLink(props) {
         };
       });
     } else {
-      if (props.data.linktype === "call") {
+      if (props.data.type === "call") {
         props.setFormData((prevformData) => {
           return {
             ...prevformData,
             userLink: [
               ...prevformData.userLink,
               {
-                linkTitleInput: formData.linkTitle,
-                titleInput: formData.linkData,
+                title: formData.title,
+                value: formData.value,
                 countryCode: phone,
-                linkType: props.data.linktype,
-                id: prevformData.userLink.length,
+                type: props.data.type,
               },
             ],
           };
@@ -79,9 +79,9 @@ export default function AddLink(props) {
             userLink: [
               ...prevformData.userLink,
               {
-                linkTitleInput: formData.linkTitle,
-                titleInput: formData.linkData,
-                linkType: props.data.linktype,
+                title: formData.title,
+                value: formData.value,
+                type: props.data.type,
               },
             ],
           };
@@ -90,14 +90,10 @@ export default function AddLink(props) {
     }
     props.sendData();
   };
-  console.log(props.data.countryCode);
+
   const deleteElement = () => {
     props.setFormData((prevformData) => {
-      let fds = prevformData.userLink.splice(
-        prevformData.userLink.findIndex((e) => e.id === props.id),
-        1
-      );
-
+      prevformData.userLink.splice(props.data.id, 1);
       return {
         ...prevformData,
         userLink: [...prevformData.userLink],
@@ -115,10 +111,10 @@ export default function AddLink(props) {
         </div>
         <div className="addlink_content">
           <div className="addlink_content-top">
-            <div className={`addlink_content-top-icon ${props.data.linktype}`}>
-              {props.data.linktype === "email" ||
-              props.data.linktype === "address" ||
-              props.data.linktype === "website" ? (
+            <div className={`addlink_content-top-icon ${props.data.type}`}>
+              {props.data.type === "email" ||
+              props.data.type === "address" ||
+              props.data.type === "website" ? (
                 <img className="img-fluid" src={props.data.icon} alt="" />
               ) : (
                 <FontAwesomeIcon icon={props.data.icon} />
@@ -138,8 +134,8 @@ export default function AddLink(props) {
                     type="text"
                     placeholder=" "
                     required
-                    name="linkTitle"
-                    value={formData.linkTitle}
+                    name="title"
+                    value={formData.title}
                     onChange={handleChange}
                     id="userText"
                   />
@@ -154,21 +150,21 @@ export default function AddLink(props) {
                   {props.data.title}
                 </div>
                 <div className="did-floating-label-content input-group">
-                  {props.data.linktype === "call" ? (
+                  {props.data.type === "call" ? (
                     <>
                       <input
                         className="did-floating-input countriesCode-input"
-                        type={props.data.type}
+                        type={props.data.linktype}
                         placeholder={
                           ifClick
-                            ? props.data.type
+                            ? props.data.linktype
                               ? ""
-                              : `https://www.${props.data.linktype}.com/xxxx`
+                              : `https://www.${props.data.type}.com/xxxx`
                             : " "
                         }
                         required
-                        name="linkData"
-                        value={formData.linkData}
+                        name="value"
+                        value={formData.value}
                         onChange={handleChange}
                         onClick={check}
                         id="userData"
@@ -214,23 +210,36 @@ export default function AddLink(props) {
                     <>
                       <input
                         className="did-floating-input"
-                        type={props.data.type}
+                        type={props.data.linktype}
                         placeholder={
-                          props.data.linkType === "addresss"
+                          props.data.type === "address"
                             ? ifClick
-                              ? props.data.type
-                                ? ""
-                                : `Business address*`
+                              ? `Business address*`
+                              : " "
+                            : props.data.type === "whatsapp"
+                            ? ifClick
+                              ? `add whatsapp number*`
                               : " "
                             : ifClick
-                            ? props.data.type
-                              ? ""
-                              : `https://${props.data.linktype}/xxxx`
+                            ? `https://www.${props.data.type}.com/xxxx`
                             : " "
                         }
+                        // placeholder={
+                        //   props.data.linkType === "addresss"
+                        //     ? ifClick && props.data.type
+                        //       ? " "
+                        //       : `Business address*`
+                        //     : props.data.linkType === "whatsapp"
+                        //     ? ifClick && props.data.type
+                        //       ? " "
+                        //       : `Business cvv*`
+                        //     : ifClick
+                        //     ? `https://www.${props.data.linktype}.com/xxxx`
+                        //     : " "
+                        // }
                         required
-                        name="linkData"
-                        value={formData.linkData}
+                        name="value"
+                        value={formData.value}
                         onChange={handleChange}
                         onClick={check}
                         id="userData"
@@ -240,12 +249,31 @@ export default function AddLink(props) {
                         className="did-floating-label"
                         htmlFor="userData"
                       >
-                        {props.data.linktype === "address"
+                        {/* {props.data.linkType === "addresss"
+                          ? ifClick
+                            ? props.data.type
+                              ? ""
+                              : `Business address*`
+                            : " "
+                          : props.data.linkType === "whatsapp"
+                          ? ifClick
+                            ? props.data.type
+                              ? ""
+                              : `Business s*`
+                            : " "
+                          : ifClick
+                          ? `https://www.${props.data.linktype}.com/xxxx`
+                          : " "} */}
+                        {props.data.type === "address"
                           ? !ifClick
                             ? `Business address*`
+                            : props.data.type
+                          : props.data.linktype === "whatsapp"
+                          ? !ifClick
+                            ? `add whatsapp number*`
                             : props.data.titleInput
                           : !ifClick
-                          ? `https://www.${props.data.linktype}.com/xxxx`
+                          ? `https://www.${props.data.type}.com/xxxx`
                           : props.data.titleInput}
                       </label>
                     </>

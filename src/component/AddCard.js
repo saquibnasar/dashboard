@@ -49,8 +49,8 @@ export default function AddCard(props) {
                       linkTitleInput: "Youtube",
                       title: "Youtube*",
                       titleInput: "Enter Youtube URl",
-                      type: "text",
-                      linktype: "youtube",
+                      linktype: "text",
+                      type: "youtube",
                       icon: faYoutube,
                     })}
                   >
@@ -97,8 +97,8 @@ export default function AddCard(props) {
                       linkTitleInput: "Call",
                       title: "Phone Number*",
                       titleInput: "Enter Phone Number*",
-                      type: "number",
-                      linktype: "call",
+                      linktype: "number",
+                      type: "call",
                       icon: faPhone,
                     })}
                   >
@@ -120,8 +120,8 @@ export default function AddCard(props) {
                       linkTitleInput: "email",
                       title: "Email",
                       titleInput: "Enter Email",
-                      type: "email",
                       linktype: "email",
+                      type: "email",
                       icon: "/email.png",
                     })}
                   >
@@ -143,8 +143,8 @@ export default function AddCard(props) {
                       linkTitleInput: "Website",
                       title: "Website*",
                       titleInput: "Enter Website URL",
-                      type: "text",
-                      linktype: "website",
+                      linktype: "text",
+                      type: "website",
                       icon: "/safari.png",
                     })}
                   >
@@ -166,8 +166,8 @@ export default function AddCard(props) {
                       linkTitleInput: "Whatsapp",
                       title: "Whatsapp*",
                       titleInput: "Enter Whatsapp Number",
-                      type: "text",
-                      linktype: "whatsapp",
+                      linktype: "number",
+                      type: "whatsapp",
                       icon: faWhatsapp,
                     })}
                   >
@@ -189,8 +189,8 @@ export default function AddCard(props) {
                       linkTitleInput: "Linkedin",
                       title: "Linkedin*",
                       titleInput: "Enter Linkedin URl",
-                      type: "text",
-                      linktype: "linkedin",
+                      linktype: "text",
+                      type: "linkedin",
                       icon: faLinkedinIn,
                     })}
                   >
@@ -212,8 +212,8 @@ export default function AddCard(props) {
                       linkTitleInput: "Instagram",
                       title: "Instagram*",
                       titleInput: "Enter Instagram URl",
-                      type: "text",
-                      linktype: "instagram",
+                      linktype: "text",
+                      type: "instagram",
                       icon: faInstagram,
                     })}
                   >
@@ -235,8 +235,8 @@ export default function AddCard(props) {
                       linkTitleInput: "Facebook",
                       title: "Facebook*",
                       titleInput: "Enter Facebook URl",
-                      type: "text",
-                      linktype: "facebook",
+                      linktype: "text",
+                      type: "facebook",
                       icon: faFacebookF,
                     })}
                   >
@@ -258,8 +258,8 @@ export default function AddCard(props) {
                       linkTitleInput: "Twitter",
                       title: "Twitter*",
                       titleInput: "Enter Twitter URl",
-                      type: "text",
-                      linktype: "twitter",
+                      linktype: "text",
+                      type: "twitter",
                       icon: faTwitter,
                     })}
                   >
@@ -281,8 +281,8 @@ export default function AddCard(props) {
                       linkTitleInput: "Youtube",
                       title: "Youtube*",
                       titleInput: "Enter Youtube URl",
-                      type: "text",
-                      linktype: "youtube",
+                      linktype: "text",
+                      type: "youtube",
                       icon: faYoutube,
                     })}
                   >
@@ -304,8 +304,8 @@ export default function AddCard(props) {
                       linkTitleInput: "Address",
                       title: "Address*",
                       titleInput: "Enter Address",
-                      type: "text",
-                      linktype: "address",
+                      linktype: "text",
+                      type: "address",
                       icon: "/googlemap.png",
                     })}
                   >

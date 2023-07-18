@@ -3,6 +3,7 @@ import Cropper from "react-easy-crop";
 import getCroppedImg from "./imgUploader/cropImage";
 import UserProfile from "./UserProfile/UserProfile";
 import AddCard from "./AddCard";
+import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
@@ -16,6 +17,11 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import AddPlugin from "./Plugin/AddPlugin";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
@@ -27,6 +33,7 @@ export default function CreateCard(props) {
   const [type, setType] = useState("link");
   const [isClick, setIsClick] = useState(false);
   const [isLinkClick, setIsLinkClick] = useState(false);
+  const [isPlugin, setIsPlugin] = useState(false);
 
   const [phoneNum, setPhoneNum] = useState({
     whPhone: "1",
@@ -172,7 +179,7 @@ export default function CreateCard(props) {
   };
   const updateLink = (link, id) => {
     setIsLinkClick(!isLinkClick);
-    console.log(link);
+
     setLinkData(() => {
       if (link && link.linkType && link.linkType === "call") {
         return {
@@ -184,12 +191,11 @@ export default function CreateCard(props) {
           linktype: "call",
           icon: faPhone,
           linkData: link.titleInput,
-          linkTitle: link.linkTitleInput,
+          linkTitle: link.title,
           countryCode: link.countryCode,
           id: id,
         };
-      }
-      if (link && link.linkType && link.linkType === "email") {
+      } else if (link && link.linkType && link.linkType === "email") {
         return {
           headerTitle: "Link Title",
           linkTitleInput: "email",
@@ -199,11 +205,10 @@ export default function CreateCard(props) {
           linktype: "email",
           icon: "/email.png",
           linkData: link.titleInput,
-          linkTitle: link.linkTitleInput,
+          linkTitle: link.title,
           id: id,
         };
-      }
-      if (link && link.linkType && link.linkType === "website") {
+      } else if (link && link.linkType && link.linkType === "website") {
         return {
           headerTitle: "Website Title",
           linkTitleInput: "Website",
@@ -213,13 +218,109 @@ export default function CreateCard(props) {
           linktype: "website",
           icon: "/safari.png",
           linkData: link.titleInput,
-          linkTitle: link.linkTitleInput,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.linkType && link.linkType === "whatsapp") {
+        return {
+          headerTitle: "Whatsapp Title",
+          linkTitleInput: "Whatsapp",
+          title: "Whatsapp*",
+          titleInput: "Enter Whatsapp Number",
+          type: "text",
+          linktype: "whatsapp",
+          icon: faWhatsapp,
+          linkData: link.titleInput,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.linkType && link.linkType === "linkedin") {
+        return {
+          headerTitle: "Linkedin Title",
+          linkTitleInput: "Linkedin",
+          title: "Linkedin*",
+          titleInput: "Enter Linkedin URl",
+          type: "text",
+          linktype: "linkedin",
+          icon: faLinkedinIn,
+          linkData: link.titleInput,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.linkType && link.linkType === "instagram") {
+        return {
+          headerTitle: "Instagram Title",
+          linkTitleInput: "Instagram",
+          title: "Instagram*",
+          titleInput: "Enter Instagram URl",
+          type: "text",
+          linktype: "instagram",
+          icon: faInstagram,
+          linkData: link.titleInput,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.linkType && link.linkType === "facebook") {
+        return {
+          headerTitle: "Facebook Title",
+          linkTitleInput: "Facebook",
+          title: "Facebook*",
+          titleInput: "Enter Facebook URl",
+          type: "text",
+          linktype: "facebook",
+          icon: faFacebookF,
+          linkData: link.titleInput,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.linkType && link.linkType === "address") {
+        return {
+          headerTitle: "Address Title",
+          linkTitleInput: "Address",
+          title: "Address*",
+          titleInput: "Enter Address",
+          type: "text",
+          linktype: "address",
+          icon: "/googlemap.png",
+          linkData: link.titleInput,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.linkType && link.linkType === "youtube") {
+        return {
+          headerTitle: "Youtube Title",
+          linkTitleInput: "Youtube",
+          title: "Youtube*",
+          titleInput: "Enter Youtube URl",
+          type: "text",
+          linktype: "youtube",
+          icon: faYoutube,
+          linkData: link.titleInput,
+          linkTitle: link.title,
           id: id,
         };
       }
     });
   };
-
+  const updatePlugin = (link, id) => {
+    setIsPlugin(!isPlugin);
+    setLinkData(() => {
+      if (link && link.linkType && link.linkType === "youtube") {
+        return {
+          headerTitle: "Youtube Title",
+          linkTitleInput: "Youtube",
+          title: "Youtube*",
+          value: "Enter Youtube URl",
+          linktype: "text",
+          type: "youtube",
+          icon: faYoutube,
+          linkData: link.titleInput,
+          linkTitle: link.title,
+          id: id,
+        };
+      }
+    });
+  };
   const imagehandleChange = (e) => {
     if (e.target.files.length) {
       setImage((prevformData) => {
@@ -361,7 +462,7 @@ export default function CreateCard(props) {
   const [formData, setFormData] = useState({
     userInfo: {},
     userLink: [],
-    usesPlugin: [],
+    userPlugin: [],
 
     userImages: {
       userProfile: secondImage.logoimage,
@@ -371,8 +472,57 @@ export default function CreateCard(props) {
     },
   });
 
-  const textHander = () => {
-    console.log(formData);
+  const textHander = async () => {
+    var bannerImages = [];
+
+    if (formData.userImages.bannerImage1) {
+      bannerImages.push(formData.userImages.bannerImage1);
+    }
+
+    if (formData.userImages.bannerImage2) {
+      bannerImages.push(formData.userImages.bannerImage2);
+    }
+    if (formData.userImages.bannerImage3) {
+      bannerImages.push(formData.userImages.bannerImage3);
+    }
+    if (formData.userInfo.whatsappNumber) {
+      bannerImages.push(formData.userImages.bannerImage3);
+    }
+
+    var requestObj = {
+      name: formData.userInfo.username,
+      name: formData.userInfo.username,
+      designation: formData.userInfo.username,
+      designation: formData.userInfo.designation,
+      employeeId: formData.userInfo.employeeId,
+      employeeBio: formData.userInfo.employeeBio,
+      links: formData.userLink,
+      officeEmailId: formData.userInfo.officeId,
+      whatsAppNumber:
+        formData.userInfo.whatsappNumber.countryCode +
+        formData.userInfo.whatsappNumber.whatsappNum,
+      mobileNumber:
+        formData.userInfo.mobileNumber.countryCode +
+        formData.userInfo.mobileNumber.phoneNum,
+    };
+    // const instance = axios.create({
+    //   baseURL: "http://192.168.1.3:3000/members",
+    // });
+    console.log(requestObj);
+    // var response = await axios.post(
+    //   "http://192.168.1.3:3000/members/addMember",
+    //   requestObj,
+    //   {
+    //     headers: {
+    //       Authorization:
+    //         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNTQ1ZGUyYy0yNDI0LTRjNTAtYTAwOS05YTFhZjFlYTM3Y2YiLCJpYXQiOjE2ODk2MTgxODAsImV4cCI6MTY4OTYyMTc4MH0.19A7aNJVo4DnGnx2wLlJzP_1Yj8lYGhEFPvgQLVmzqk",
+    //     },
+    //   }
+    // );
+
+    // console.log(formData);
+
+    // console.log(response);
   };
 
   return (
@@ -780,9 +930,15 @@ export default function CreateCard(props) {
               <div className="admin_detail-social">
                 <h3> Choose/add Plugin handles </h3>
                 <div className="admin_detail-social-grid">
-                  {formData.usesPlugin.map((links, id) => {
+                  {formData.userPlugin.map((links, id) => {
                     return (
-                      <button key={id} className="btn-primary" onClick={addLin}>
+                      <button
+                        key={id}
+                        className="btn-primary"
+                        onClick={() => {
+                          updatePlugin(links, id);
+                        }}
+                      >
                         {links.linkType === "youtube" ? "youtube" : ""}
                       </button>
                     );
@@ -954,6 +1110,7 @@ export default function CreateCard(props) {
               logo={secondImage.logoimage}
               images={secondImage}
             />
+            {/* <Footer /> */}
           </div>
         </div>
 
@@ -973,6 +1130,20 @@ export default function CreateCard(props) {
               <AddLink
                 data={linkData}
                 sendData={updateLink}
+                setFormData={setFormData}
+                formData={formData}
+              />
+            </div>
+          </div>
+        ) : (
+          ""
+        )}
+        {isPlugin ? (
+          <div className="addcard">
+            <div className="addcard_container">
+              <AddPlugin
+                data={linkData}
+                sendData={updatePlugin}
                 setFormData={setFormData}
                 formData={formData}
               />

@@ -2,8 +2,6 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
@@ -16,38 +14,38 @@ export default function SocialLink(props) {
       <div className="social_media">
         {props.links.map((value, id) => {
           let icon;
-          let link = value.titleInput;
-          if (value.linkType === "call") {
+          let link = value.value;
+          if (value.type === "call") {
             icon = faPhone;
-            link = `tel:${value.titleInput}`;
+            link = `tel:${value.vlaue}`;
           }
-          if (value.linkType === "email") {
+          if (value.type === "email") {
             icon = "/email.png";
-            link = `mailto:${value.titleInput}`;
+            link = `mailto:${value.value}`;
           }
-          if (value.linkType === "website") {
+          if (value.type === "website") {
             icon = "/safari.png";
           }
-          if (value.linkType === "whatsapp") {
+          if (value.type === "whatsapp") {
             icon = faWhatsapp;
-            link = `https://wa.me:${value.titleInput}`;
+            link = `https://wa.me:${value.value}`;
           }
-          if (value.linkType === "linkedin") {
+          if (value.type === "linkedin") {
             icon = faLinkedinIn;
           }
-          if (value.linkType === "instagram") {
+          if (value.type === "instagram") {
             icon = faInstagram;
           }
-          if (value.linkType === "facebook") {
+          if (value.type === "facebook") {
             icon = faFacebookF;
           }
-          if (value.linkType === "twitter") {
+          if (value.type === "twitter") {
             icon = faTwitter;
           }
-          if (value.linkType === "youtube") {
+          if (value.type === "youtube") {
             icon = faYoutube;
           }
-          if (value.linkType === "address") {
+          if (value.type === "address") {
             icon = "/googlemap.png";
           }
 
@@ -55,7 +53,7 @@ export default function SocialLink(props) {
             <a
               key={id}
               href={link}
-              className={`social_media-link ${value.linkType}`}
+              className={`social_media-link ${value.type}`}
               target="blank"
             >
               <div className="d-flex align-items-center gap-2">
@@ -68,7 +66,7 @@ export default function SocialLink(props) {
                     <FontAwesomeIcon icon={icon} />
                   </span>
                 )}
-                <p>{value.linkTitleInput}</p>
+                <p>{value.title}</p>
               </div>
               <FontAwesomeIcon icon={faShareSquare} />
             </a>
