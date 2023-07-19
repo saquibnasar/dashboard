@@ -657,8 +657,9 @@
         font-size: 16px;
         font-weight: 400;
         line-height: 21px;
-        margin-bottom: 24px;
+        margin-bottom: 48px;
         display: inline-block;
+        margin-top: 10px;
         svg {
           margin-right: 13px;
         }
@@ -684,7 +685,7 @@
         .addImage {
           .tab-content {
             .imgUploader {
-              height: 200px;
+              height: 250px;
               @include media992 {
                 height: 175px;
               }

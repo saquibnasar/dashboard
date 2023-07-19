@@ -13,7 +13,7 @@ export default function Video(props) {
                   <div className="BaseEmbeddedLink_baseEmbeddedLinkItem__EDHSQ BaseEmbeddedLink_baseEmbeddedLinkItemVisible__63uQ_">
                     <ReactPlayer
                       // url={`https://www.youtube.com/embed/${url}?showinfo=0&amp;modestbranding=1&modestbranding=3&controls=0&rel=1&contore=1`}
-                      url={value.titleInput}
+                      url={value.value}
                       light={true}
                       width="100%"
                       playing={true}

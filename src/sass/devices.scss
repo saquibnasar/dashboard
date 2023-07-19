@@ -363,12 +363,24 @@
       }
 
       .devices_content_right {
-        margin-top: -112.5px;
-        @include media576 {
-          margin-top: -70px;
-        }
-        @include media430 {
-          margin-top: -50px;
+        // margin-top: -112.5px;
+        // @include media576 {
+        //   margin-top: -70px;
+        // }
+        // @include media430 {
+        //   margin-top: -50px;
+        // }
+        .spline {
+          position: relative;
+          .spline_box {
+            width: 100%;
+            background: #fff;
+            height: 404px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+          }
         }
         img.card {
           position: absolute; /* margin-top: 17%; */

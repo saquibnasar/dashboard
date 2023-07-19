@@ -5,6 +5,8 @@ import Topbar from "./Topbar";
 import UserProfile from "./UserProfile/UserProfile";
 import Lottie from "lottie-react";
 import animationdata from "./SIdebar.json";
+import Spline from "@splinetool/react-spline";
+
 export default function Devices(props) {
   return (
     <div className="devices d-flex">
@@ -80,7 +82,15 @@ export default function Devices(props) {
 
               <img className="img-fluid qrcode" src="/diveceqr.png" alt="" />
             </div> */}
-            <Lottie animationData={animationdata} />
+            {/* <Lottie animationData={animationdata} /> */}
+            {/* <img src="/koliseo-drb-unscreen.gif" alt="" className="img-fluid" /> */}
+            <div className="spline">
+              <Spline
+                scene="https://prod.spline.design/QQplYgbyoeNs6kPk/scene.splinecode"
+                style={{ height: "404px" }}
+              />
+              <div className="spline_box"></div>
+            </div>
 
             {/* <div className="signup_phone text-center p-relative">
               <div className="signup_phone-left">

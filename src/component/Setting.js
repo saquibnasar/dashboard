@@ -94,7 +94,7 @@ export default function Setting(props) {
     let uploadListelemet = document.querySelector(".logoimage");
 
     if (uploadListcontainer && !uploadListcontainer.contains(e.target)) {
-      if (uploadListelemet.style.transform === "unset") {
+      if (uploadListelemet && uploadListelemet.style.transform === "unset") {
         uploadListelemet.style.transform =
           "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
       }

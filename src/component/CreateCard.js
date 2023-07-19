@@ -902,16 +902,16 @@ export default function CreateCard(props) {
                           updateLink(links, id);
                         }}
                       >
-                        {links.linkType === "call" ? "call" : ""}
-                        {links.linkType === "email" ? "email" : ""}
-                        {links.linkType === "website" ? "website" : ""}
-                        {links.linkType === "whatsapp" ? "whatsapp" : ""}
-                        {links.linkType === "linkedin" ? "linkedin" : ""}
-                        {links.linkType === "instagram" ? "instagram" : ""}
-                        {links.linkType === "facebook" ? "facebook" : ""}
-                        {links.linkType === "twitter" ? "twitter" : ""}
-                        {links.linkType === "youtube" ? "youtube" : ""}
-                        {links.linkType === "address" ? "address" : ""}
+                        {links.type === "call" ? "call" : ""}
+                        {links.type === "email" ? "email" : ""}
+                        {links.type === "website" ? "website" : ""}
+                        {links.type === "whatsapp" ? "whatsapp" : ""}
+                        {links.type === "linkedin" ? "linkedin" : ""}
+                        {links.type === "instagram" ? "instagram" : ""}
+                        {links.type === "facebook" ? "facebook" : ""}
+                        {links.type === "twitter" ? "twitter" : ""}
+                        {links.type === "youtube" ? "youtube" : ""}
+                        {links.type === "address" ? "address" : ""}
                       </button>
                     );
                   })}
@@ -939,7 +939,7 @@ export default function CreateCard(props) {
                           updatePlugin(links, id);
                         }}
                       >
-                        {links.linkType === "youtube" ? "youtube" : ""}
+                        {links.type === "youtube" ? "youtube" : ""}
                       </button>
                     );
                   })}
