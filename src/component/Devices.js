@@ -85,11 +85,11 @@ export default function Devices(props) {
             {/* <Lottie animationData={animationdata} /> */}
             {/* <img src="/koliseo-drb-unscreen.gif" alt="" className="img-fluid" /> */}
             <div className="spline">
-              {/* <Spline
-                scene="https://prod.spline.design/QQplYgbyoeNs6kPk/scene.splinecode"
+              <Spline
+                scene="https://prod.spline.design/A6HwqMUDYBw1nV67/scene.splinecode"
                 style={{ height: "404px" }}
-              /> */}
-              <Spline scene="https://prod.spline.design/A6HwqMUDYBw1nV67/scene.splinecode" />
+              />
+
               <div className="spline_box"></div>
             </div>
 
