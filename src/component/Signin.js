@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +7,10 @@ export default function Signin() {
   let togglePassword;
   const [attribute, setAttribute] = useState("password");
   const [font, setFont] = useState(faEye);
+  const [formData, setFormData] = useState({
+    value: "",
+    title: "",
+  });
   setTimeout(() => {
     togglePassword = document.querySelector(".input-password svg");
     togglePassword.addEventListener("click", () => {
@@ -14,6 +18,34 @@ export default function Signin() {
       setFont(font === faEye ? faEyeSlash : faEye);
     });
   }, 1);
+
+  const handleChange = (event) => {
+    setFormData((prevformData) => {
+      return {
+        ...prevformData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  };
+
+  useEffect(() => {
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      body: JSON.stringify({
+        title: "title",
+        body: "body",
+        userId: Math.random().toString(36).slice(2),
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  }, []);
+
   return (
     <>
       <div className="signup">
@@ -66,6 +98,10 @@ export default function Signin() {
                     type="text"
                     placeholder=" "
                     required
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    id="userText"
                   />
                   <label className="did-floating-label">Email</label>
                 </div>
@@ -81,6 +117,10 @@ export default function Signin() {
                     id="id_password"
                     placeholder=" "
                     required
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    id="userText"
                   />
                   <FontAwesomeIcon icon={font} />
                   <label className="did-floating-label">Password</label>

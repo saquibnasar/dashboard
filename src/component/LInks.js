@@ -69,7 +69,7 @@ export default function LInks(props) {
                   id="darkmode-toggle"
                   onChange={handleChange}
                   checked={checked.call}
-                  name="call"
+                  name="phone"
                 />
                 <label htmlFor="darkmode-toggle"></label>
               </button>
@@ -673,7 +673,7 @@ export default function LInks(props) {
                   id="youtube"
                   onChange={handleChange}
                   checked={checked.youtube}
-                  name="call"
+                  name="phone"
                 />
                 <label htmlFor="youtube"></label>
               </button>

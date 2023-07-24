@@ -22,7 +22,7 @@ export default function AddPlugin(props) {
         });
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
       });
     setFormData((prevformData) => {
       return {
@@ -45,22 +45,42 @@ export default function AddPlugin(props) {
       setIfClick(false);
     }
   });
+  const onKeyDownHandlerdfs = (e) => {
+    if (e.keyCode === 13) {
+      handleSubmit(e);
+    }
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (props.data.linkData) {
+      let newArr = [...props.formData.userPlugin];
 
-    props.setFormData((prevformData) => {
-      return {
-        ...prevformData,
-        userPlugin: [
-          ...prevformData.userPlugin,
-          {
-            title: formData.title,
-            value: formData.value,
-            type: props.data.type,
-          },
-        ],
+      newArr[props.data.id] = {
+        title: formData.title,
+        value: formData.value,
+        type: props.data.type,
       };
-    });
+      props.setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          userPlugin: [...newArr],
+        };
+      });
+    } else {
+      props.setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          userPlugin: [
+            ...prevformData.userPlugin,
+            {
+              title: formData.title,
+              value: formData.value,
+              type: props.data.type,
+            },
+          ],
+        };
+      });
+    }
     props.sendData();
   };
   const deleteElement = () => {
@@ -96,7 +116,11 @@ export default function AddPlugin(props) {
             <h1>Add {props.data.linkTitleInput} to card</h1>
           </div>
           <div className="form">
-            <form action="" onSubmit={handleSubmit}>
+            <form
+              action=""
+              onSubmit={handleSubmit}
+              onKeyDown={onKeyDownHandlerdfs}
+            >
               <div className="mt-5 email_input">
                 <div id="emailHelp" className="form-text">
                   {props.data.headerTitle}

@@ -15,9 +15,9 @@ export default function SocialLink(props) {
         {props.links.map((value, id) => {
           let icon;
           let link = value.value;
-          if (value.type === "call") {
+          if (value.type === "phone") {
             icon = faPhone;
-            link = `tel:${value.vlaue}`;
+            link = `tel:${value.countryCode}${value.value}`;
           }
           if (value.type === "email") {
             icon = "/email.png";

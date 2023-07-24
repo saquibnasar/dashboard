@@ -898,7 +898,7 @@ export default function About(props) {
                 {formData.userLink.map((links, id) => {
                   return (
                     <button key={id} className="btn-primary" onClick={addLin}>
-                      {links.linkType === "call" ? "call" : ""}
+                      {links.linkType === "phone" ? "phone" : ""}
                       {links.linkType === "email" ? "email" : ""}
                       {links.linkType === "website" ? "website" : ""}
                       {links.linkType === "whatsapp" ? "whatsapp" : ""}

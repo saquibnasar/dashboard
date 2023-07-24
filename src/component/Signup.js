@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -7,6 +7,11 @@ export default function Signup() {
   let togglePassword;
   const [attribute, setAttribute] = useState("password");
   const [font, setFont] = useState(faEye);
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
   setTimeout(() => {
     togglePassword = document.querySelector(".input-password svg");
     togglePassword.addEventListener("click", () => {
@@ -14,6 +19,34 @@ export default function Signup() {
       setFont(font === faEye ? faEyeSlash : faEye);
     });
   }, 1);
+
+  const handleChange = (event) => {
+    setFormData((prevformData) => {
+      return {
+        ...prevformData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+        userId: Math.random().toString(36).slice(2),
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
+  };
 
   return (
     <>
@@ -56,7 +89,7 @@ export default function Signup() {
                 Get started with the #1 Digital Business Card <br /> Platform
               </h2>
             </div>
-            <form action="/">
+            <form action="/" onSubmit={handleSubmit}>
               <div className="mt-4 email_input">
                 <div id="emailHelp" className="form-text">
                   Email
@@ -67,6 +100,9 @@ export default function Signup() {
                     type="text"
                     placeholder=" "
                     required
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
                   />
                   <label className="did-floating-label">Email</label>
                 </div>
@@ -82,6 +118,9 @@ export default function Signup() {
                     id="id_password"
                     placeholder=" "
                     required
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
                   />
                   <FontAwesomeIcon icon={font} />
                   <label className="did-floating-label">Password</label>

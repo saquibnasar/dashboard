@@ -94,11 +94,11 @@ export default function AddCard(props) {
                     className="addcard_link"
                     onClick={sendData.bind(this, {
                       headerTitle: "Phone",
-                      linkTitleInput: "Call",
+                      linkTitleInput: "Phone",
                       title: "Phone Number*",
                       titleInput: "Enter Phone Number*",
                       linktype: "number",
-                      type: "call",
+                      type: "phone",
                       icon: faPhone,
                     })}
                   >

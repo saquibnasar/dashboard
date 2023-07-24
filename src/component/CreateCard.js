@@ -8,7 +8,7 @@ import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, json } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
@@ -97,7 +97,7 @@ export default function CreateCard(props) {
               ...prevformData.userInfo,
               whatsappNumber: {
                 ...prevformData.userInfo.whatsappNumber,
-                countryCode: code,
+                countryCode: code ? code : 1,
               },
             },
           };
@@ -110,7 +110,7 @@ export default function CreateCard(props) {
               ...prevformData.userInfo,
               mobileNumber: {
                 ...prevformData.userInfo.mobileNumber,
-                countryCode: code,
+                countryCode: code ? code : 1,
               },
             },
           };
@@ -181,121 +181,121 @@ export default function CreateCard(props) {
     setIsLinkClick(!isLinkClick);
 
     setLinkData(() => {
-      if (link && link.linkType && link.linkType === "call") {
+      if (link && link.type && link.type === "phone") {
         return {
           headerTitle: "Phone",
-          linkTitleInput: "Call",
+          linkTitleInput: "phone",
           title: "Phone Number*",
           titleInput: "Enter Phone Number*",
           type: "number",
-          linktype: "call",
+          type: "phone",
           icon: faPhone,
-          linkData: link.titleInput,
+          linkData: link.value,
           linkTitle: link.title,
           countryCode: link.countryCode,
           id: id,
         };
-      } else if (link && link.linkType && link.linkType === "email") {
+      } else if (link && link.type && link.type === "email") {
         return {
           headerTitle: "Link Title",
           linkTitleInput: "email",
           title: "Email",
           titleInput: "Enter Email",
           type: "email",
-          linktype: "email",
+          type: "email",
           icon: "/email.png",
-          linkData: link.titleInput,
+          linkData: link.value,
           linkTitle: link.title,
           id: id,
         };
-      } else if (link && link.linkType && link.linkType === "website") {
+      } else if (link && link.type && link.type === "website") {
         return {
           headerTitle: "Website Title",
           linkTitleInput: "Website",
           title: "Website*",
           titleInput: "Enter Website URL",
           type: "text",
-          linktype: "website",
+          type: "website",
           icon: "/safari.png",
-          linkData: link.titleInput,
+          linkData: link.value,
           linkTitle: link.title,
           id: id,
         };
-      } else if (link && link.linkType && link.linkType === "whatsapp") {
+      } else if (link && link.type && link.type === "whatsapp") {
         return {
           headerTitle: "Whatsapp Title",
           linkTitleInput: "Whatsapp",
           title: "Whatsapp*",
           titleInput: "Enter Whatsapp Number",
           type: "text",
-          linktype: "whatsapp",
+          type: "whatsapp",
           icon: faWhatsapp,
-          linkData: link.titleInput,
+          linkData: link.value,
           linkTitle: link.title,
           id: id,
         };
-      } else if (link && link.linkType && link.linkType === "linkedin") {
+      } else if (link && link.type && link.type === "linkedin") {
         return {
           headerTitle: "Linkedin Title",
           linkTitleInput: "Linkedin",
           title: "Linkedin*",
           titleInput: "Enter Linkedin URl",
           type: "text",
-          linktype: "linkedin",
+          type: "linkedin",
           icon: faLinkedinIn,
-          linkData: link.titleInput,
+          linkData: link.value,
           linkTitle: link.title,
           id: id,
         };
-      } else if (link && link.linkType && link.linkType === "instagram") {
+      } else if (link && link.type && link.type === "instagram") {
         return {
           headerTitle: "Instagram Title",
           linkTitleInput: "Instagram",
           title: "Instagram*",
           titleInput: "Enter Instagram URl",
           type: "text",
-          linktype: "instagram",
+          type: "instagram",
           icon: faInstagram,
-          linkData: link.titleInput,
+          linkData: link.value,
           linkTitle: link.title,
           id: id,
         };
-      } else if (link && link.linkType && link.linkType === "facebook") {
+      } else if (link && link.type && link.type === "facebook") {
         return {
           headerTitle: "Facebook Title",
           linkTitleInput: "Facebook",
           title: "Facebook*",
           titleInput: "Enter Facebook URl",
           type: "text",
-          linktype: "facebook",
+          type: "facebook",
           icon: faFacebookF,
-          linkData: link.titleInput,
+          linkData: link.value,
           linkTitle: link.title,
           id: id,
         };
-      } else if (link && link.linkType && link.linkType === "address") {
+      } else if (link && link.type && link.type === "address") {
         return {
           headerTitle: "Address Title",
           linkTitleInput: "Address",
           title: "Address*",
           titleInput: "Enter Address",
           type: "text",
-          linktype: "address",
+          type: "address",
           icon: "/googlemap.png",
-          linkData: link.titleInput,
+          linkData: link.value,
           linkTitle: link.title,
           id: id,
         };
-      } else if (link && link.linkType && link.linkType === "youtube") {
+      } else if (link && link.type && link.type === "youtube") {
         return {
           headerTitle: "Youtube Title",
           linkTitleInput: "Youtube",
           title: "Youtube*",
           titleInput: "Enter Youtube URl",
           type: "text",
-          linktype: "youtube",
+          type: "youtube",
           icon: faYoutube,
-          linkData: link.titleInput,
+          linkData: link.value,
           linkTitle: link.title,
           id: id,
         };
@@ -303,9 +303,10 @@ export default function CreateCard(props) {
     });
   };
   const updatePlugin = (link, id) => {
+  
     setIsPlugin(!isPlugin);
     setLinkData(() => {
-      if (link && link.linkType && link.linkType === "youtube") {
+      if (link && link.type && link.type === "youtube") {
         return {
           headerTitle: "Youtube Title",
           linkTitleInput: "Youtube",
@@ -314,7 +315,7 @@ export default function CreateCard(props) {
           linktype: "text",
           type: "youtube",
           icon: faYoutube,
-          linkData: link.titleInput,
+          linkData: link.value,
           linkTitle: link.title,
           id: id,
         };
@@ -322,6 +323,49 @@ export default function CreateCard(props) {
     });
   };
   const imagehandleChange = (e) => {
+
+    if (e.target.name === "logoimage") {
+      setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          userImages: {
+            ...prevformData.userImages,
+            userProfile: e.target.files[0],
+          },
+        };
+      });
+    } else if (e.target.name === "bannerImage1") {
+      setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          userImages: {
+            ...prevformData.userImages,
+            bannerImage1: e.target.files[0],
+          },
+        };
+      });
+    } else if (e.target.name === "bannerImage2") {
+      setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          userImages: {
+            ...prevformData.userImages,
+            bannerImage2: e.target.files[0],
+          },
+        };
+      });
+    } else if (e.target.name === "bannerImage3") {
+      setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          userImages: {
+            ...prevformData.userImages,
+            bannerImage3: e.target.files[0],
+          },
+        };
+      });
+    }
+
     if (e.target.files.length) {
       setImage((prevformData) => {
         return {
@@ -333,6 +377,7 @@ export default function CreateCard(props) {
   };
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
+
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
@@ -348,6 +393,8 @@ export default function CreateCard(props) {
           rotation
         );
 
+
+
         if (image.logoimage) {
           setSecondImage((prevformData) => {
             return {
@@ -355,13 +402,14 @@ export default function CreateCard(props) {
               logoimage: croppedImage,
             };
           });
+
           setFormData((prevformData) => {
+            prevformData.userImages.userProfile.croppedAreaPixels =
+              croppedAreaPixels;
+            prevformData.userImages.userProfile.rotation = rotation;
+          
             return {
               ...prevformData,
-              userImages: {
-                ...prevformData.userImages,
-                userProfile: croppedImage,
-              },
             };
           });
         } else if (image.bannerImage1) {
@@ -371,13 +419,14 @@ export default function CreateCard(props) {
               bannerImage1: croppedImage,
             };
           });
+
           setFormData((prevformData) => {
+            prevformData.userImages.bannerImage1.croppedAreaPixels =
+              croppedAreaPixels;
+            prevformData.userImages.bannerImage1.rotation = rotation;
+
             return {
               ...prevformData,
-              userImages: {
-                ...prevformData.userImages,
-                bannerImage1: croppedImage,
-              },
             };
           });
         } else if (image.bannerImage2) {
@@ -388,12 +437,12 @@ export default function CreateCard(props) {
             };
           });
           setFormData((prevformData) => {
+            prevformData.userImages.bannerImage2.croppedAreaPixels =
+              croppedAreaPixels;
+            prevformData.userImages.bannerImage2.rotation = rotation;
+
             return {
               ...prevformData,
-              userImages: {
-                ...prevformData.userImages,
-                bannerImage2: croppedImage,
-              },
             };
           });
         } else if (image.bannerImage3) {
@@ -404,12 +453,11 @@ export default function CreateCard(props) {
             };
           });
           setFormData((prevformData) => {
+            prevformData.userImages.bannerImage3.croppedAreaPixels =
+              croppedAreaPixels;
+            prevformData.userImages.bannerImage3.rotation = rotation;
             return {
               ...prevformData,
-              userImages: {
-                ...prevformData.userImages,
-                bannerImage3: croppedImage,
-              },
             };
           });
 
@@ -465,15 +513,19 @@ export default function CreateCard(props) {
     userPlugin: [],
 
     userImages: {
-      userProfile: secondImage.logoimage,
-      bannerImage1: secondImage.bannerImage1,
-      bannerImage2: secondImage.bannerImage2,
-      bannerImage3: secondImage.bannerImage3,
+      userProfile: "",
+      bannerImage1: "",
+      bannerImage2: "",
+      bannerImage3: "",
     },
   });
 
   const textHander = async () => {
+    var bodyFormData = new FormData();
     var bannerImages = [];
+    let whatsAppNumber = "";
+    let mobileNumber = "";
+
 
     if (formData.userImages.bannerImage1) {
       bannerImages.push(formData.userImages.bannerImage1);
@@ -485,44 +537,78 @@ export default function CreateCard(props) {
     if (formData.userImages.bannerImage3) {
       bannerImages.push(formData.userImages.bannerImage3);
     }
+
     if (formData.userInfo.whatsappNumber) {
-      bannerImages.push(formData.userImages.bannerImage3);
+      let code = formData.userInfo.whatsappNumber.countryCode
+        ? formData.userInfo.whatsappNumber.countryCode
+        : 1;
+      whatsAppNumber = code + formData.userInfo.whatsappNumber.whatsappNum;
     }
+    if (formData.userInfo.whatsappNumber) {
+      let code = formData.userInfo.mobileNumber.countryCode
+        ? formData.userInfo.mobileNumber.countryCode
+        : 1;
+      mobileNumber = code + formData.userInfo.mobileNumber.phoneNum;
+    }
+    console.log(formData.userImages);
+    // console.log(`a[] blobk ${json}`);
 
     var requestObj = {
       name: formData.userInfo.username,
-      name: formData.userInfo.username,
-      designation: formData.userInfo.username,
+      profileImage: formData.userImages.userProfile,
+
+      bannerImages: bannerImages,
       designation: formData.userInfo.designation,
       employeeId: formData.userInfo.employeeId,
       employeeBio: formData.userInfo.employeeBio,
       links: formData.userLink,
       officeEmailId: formData.userInfo.officeId,
-      whatsAppNumber:
-        formData.userInfo.whatsappNumber.countryCode +
-        formData.userInfo.whatsappNumber.whatsappNum,
-      mobileNumber:
-        formData.userInfo.mobileNumber.countryCode +
-        formData.userInfo.mobileNumber.phoneNum,
+      whatsAppNumber: whatsAppNumber,
+      mobileNumber: mobileNumber,
     };
-    // const instance = axios.create({
-    //   baseURL: "http://192.168.1.3:3000/members",
-    // });
-    console.log(requestObj);
-    // var response = await axios.post(
-    //   "http://192.168.1.3:3000/members/addMember",
-    //   requestObj,
-    //   {
-    //     headers: {
-    //       Authorization:
-    //         "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNTQ1ZGUyYy0yNDI0LTRjNTAtYTAwOS05YTFhZjFlYTM3Y2YiLCJpYXQiOjE2ODk2MTgxODAsImV4cCI6MTY4OTYyMTc4MH0.19A7aNJVo4DnGnx2wLlJzP_1Yj8lYGhEFPvgQLVmzqk",
-    //     },
-    //   }
-    // );
 
-    // console.log(formData);
+    for (var i in requestObj) {
+      if (i == "links") {
+        for (let j = 0; j < requestObj[i].length; j++) {
+          console.log(requestObj[i][j]);
+          // {title: 'my phone', value: '+12342342342', type: 'phone'}
 
-    // console.log(response);
+          bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
+          bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
+          bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
+        }
+        // bodyFormData.append(i, requestObj[i]);
+      } else if (i == "bannerImages") {
+        for (let j = 0; j < requestObj[i].length; j++) {
+          bodyFormData.append(i, requestObj[i][j]);
+        }
+      } else {
+        bodyFormData.append(i, requestObj[i]);
+      }
+    }
+
+    for (var pair of bodyFormData.entries()) {
+      console.log(pair[0] + ", " + pair[1]);
+    }
+
+    // console.log(bodyFormData.getAll("links"));
+
+    axios({
+      method: "post",
+      url: "http://192.168.1.7:3000/members/addMember",
+      data: bodyFormData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxNTQ1ZGUyYy0yNDI0LTRjNTAtYTAwOS05YTFhZjFlYTM3Y2YiLCJpYXQiOjE2OTAyMjMxNjgsImV4cCI6MTY5MDIyNjc2OH0.grVlgowWg0oMWAq37otsNRYxgYGKmtcVLOXpHyLiGec",
+      },
+    })
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (response) {
+        console.log(response);
+      });
   };
 
   return (
@@ -902,7 +988,7 @@ export default function CreateCard(props) {
                           updateLink(links, id);
                         }}
                       >
-                        {links.type === "call" ? "call" : ""}
+                        {links.type === "phone" ? "phone" : ""}
                         {links.type === "email" ? "email" : ""}
                         {links.type === "website" ? "website" : ""}
                         {links.type === "whatsapp" ? "whatsapp" : ""}
@@ -931,6 +1017,7 @@ export default function CreateCard(props) {
                 <h3> Choose/add Plugin handles </h3>
                 <div className="admin_detail-social-grid">
                   {formData.userPlugin.map((links, id) => {
+                    console.log("cret", links);
                     return (
                       <button
                         key={id}

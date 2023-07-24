@@ -38,10 +38,16 @@ export default function AddLink(props) {
     }
   });
 
+  const onKeyDownHandlerdfs = (e) => {
+    if (e.keyCode === 13) {
+      handleSubmit(e);
+    }
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (props.data.value) {
+    if (props.data.linkData) {
       let newArr = [...props.formData.userLink];
 
       newArr[props.data.id] = {
@@ -57,7 +63,7 @@ export default function AddLink(props) {
         };
       });
     } else {
-      if (props.data.type === "call") {
+      if (props.data.type === "phone") {
         props.setFormData((prevformData) => {
           return {
             ...prevformData,
@@ -65,8 +71,7 @@ export default function AddLink(props) {
               ...prevformData.userLink,
               {
                 title: formData.title,
-                value: formData.value,
-                countryCode: phone,
+                value: phone + formData.value,
                 type: props.data.type,
               },
             ],
@@ -123,7 +128,11 @@ export default function AddLink(props) {
             <h1>Add {props.data.linkTitleInput} to card</h1>
           </div>
           <div className="form">
-            <form action="" onSubmit={handleSubmit}>
+            <form
+              action=""
+              onSubmit={handleSubmit}
+              onKeyDown={onKeyDownHandlerdfs}
+            >
               <div className="mt-5 email_input">
                 <div id="emailHelp" className="form-text">
                   {props.data.headerTitle}
@@ -150,7 +159,7 @@ export default function AddLink(props) {
                   {props.data.title}
                 </div>
                 <div className="did-floating-label-content input-group">
-                  {props.data.type === "call" ? (
+                  {props.data.type === "phone" ? (
                     <>
                       <input
                         className="did-floating-input countriesCode-input"
