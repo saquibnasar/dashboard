@@ -1,4 +1,6 @@
 import React from "react";
+import Pdfmaker from "./Plugin/Pdfmaker";
+import { PDFDownloadLink, PDFViewer } from "@react-pdf/renderer";
 
 export default function FlaxCode() {
   return (
@@ -11,7 +13,12 @@ export default function FlaxCode() {
           upcoming events. The QR code will automatically <br />
           share the member’s Flax digital business card with others.
         </p>
-        <button className="btn_add">Download</button>
+        {/* <PDFViewer>
+          <Pdfmaker />
+        </PDFViewer> */}
+        <PDFDownloadLink document={<Pdfmaker />} filename="FORM">
+          <button className="btn_add">Download</button>
+        </PDFDownloadLink>
       </div>
       <div className="flaxCode-bottom text-center">
         <h3>User QR Code</h3>

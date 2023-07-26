@@ -7,15 +7,55 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 
 export default function Image(props) {
+  const test = (className, input) => {
+    const test = document.querySelector(".tab-content1");
+    const test2 = document.querySelector(".tab-content2");
+    const test3 = document.querySelector(".tab-content3");
+
+    if (className === ".tab-content1") {
+      test2.classList.remove("tab-contentChecked");
+      test3.classList.remove("tab-contentChecked");
+      if (test.classList.contains("tab-contentChecked")) {
+        test.classList.remove("tab-contentChecked");
+      } else {
+        test.classList.add("tab-contentChecked");
+      }
+      console.log(className);
+    }
+    if (className === ".tab-content2") {
+      test3.classList.remove("tab-contentChecked");
+      test.classList.remove("tab-contentChecked");
+      if (test2.classList.contains("tab-contentChecked")) {
+        test2.classList.remove("tab-contentChecked");
+      } else {
+        test2.classList.add("tab-contentChecked");
+      }
+    }
+    if (className === ".tab-content3") {
+      test2.classList.remove("tab-contentChecked");
+      test.classList.remove("tab-contentChecked");
+      if (test3.classList.contains("tab-contentChecked")) {
+        test3.classList.remove("tab-contentChecked");
+      } else {
+        test3.classList.add("tab-contentChecked");
+      }
+    }
+  };
   return (
     <>
       <div className="tab">
-        <input type="checkbox" id={`rd${props.imageNum}`} name="rd" />
+        <input
+          // type="radio"
+          id={`rd${props.imageNum}`}
+          name="rd"
+          onClick={test.bind(this, `.tab-content${props.imageNum}`)}
+          // onClick={test}
+        />
         <label className="tab-label" htmlFor={`rd${props.imageNum}`}>
           Upload images
           <FontAwesomeIcon icon={faPlus} />
         </label>
-        <div className="tab-content p-relative">
+        <div className={`tab-content p-relative tab-content${props.imageNum}`}>
           <div
             className={`cursor_pointer bannerImage${props.imageNum}`}
             onClick={() => {

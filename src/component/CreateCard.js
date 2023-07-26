@@ -303,7 +303,6 @@ export default function CreateCard(props) {
     });
   };
   const updatePlugin = (link, id) => {
-  
     setIsPlugin(!isPlugin);
     setLinkData(() => {
       if (link && link.type && link.type === "youtube") {
@@ -323,7 +322,6 @@ export default function CreateCard(props) {
     });
   };
   const imagehandleChange = (e) => {
-
     if (e.target.name === "logoimage") {
       setFormData((prevformData) => {
         return {
@@ -377,7 +375,6 @@ export default function CreateCard(props) {
   };
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
-
     setCroppedAreaPixels(croppedAreaPixels);
   }, []);
 
@@ -393,8 +390,6 @@ export default function CreateCard(props) {
           rotation
         );
 
-
-
         if (image.logoimage) {
           setSecondImage((prevformData) => {
             return {
@@ -407,7 +402,7 @@ export default function CreateCard(props) {
             prevformData.userImages.userProfile.croppedAreaPixels =
               croppedAreaPixels;
             prevformData.userImages.userProfile.rotation = rotation;
-          
+
             return {
               ...prevformData,
             };
@@ -520,12 +515,11 @@ export default function CreateCard(props) {
     },
   });
 
-  const textHander = async () => {
+  const handleSubmit = async () => {
     var bodyFormData = new FormData();
     var bannerImages = [];
     let whatsAppNumber = "";
     let mobileNumber = "";
-
 
     if (formData.userImages.bannerImage1) {
       bannerImages.push(formData.userImages.bannerImage1);
@@ -544,7 +538,8 @@ export default function CreateCard(props) {
         : 1;
       whatsAppNumber = code + formData.userInfo.whatsappNumber.whatsappNum;
     }
-    if (formData.userInfo.whatsappNumber) {
+    if (formData.userInfo.mobileNumber) {
+      console.log(formData.userInfo.mobileNumber.countryCode);
       let code = formData.userInfo.mobileNumber.countryCode
         ? formData.userInfo.mobileNumber.countryCode
         : 1;
@@ -613,632 +608,644 @@ export default function CreateCard(props) {
 
   return (
     <>
-      <div className="createCard about p-relative h-100vh overflow-hidden">
-        <div className="setting">
-          <div className="admin">
-            <div className="admin_detail">
-              <Link to="/" className="signup_navbar-back">
-                <FontAwesomeIcon icon={faArrowLeft} />
-                Back
-              </Link>
-              <div className="addImage">
-                <h3>Upload banner image </h3>
-                {image.bannerImage1 ||
-                image.bannerImage2 ||
-                image.bannerImage3 ? (
-                  <>
-                    <div className="crops-module">
-                      <div className="crops">
-                        <div className="crops-controls">
-                          <button
-                            className="z-1 btn"
-                            type="button"
-                            onClick={() => {
-                              setImage({
-                                preview: "",
-                              });
-                            }}
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            className="z-1 btn"
-                            type="button"
-                            onClick={showCroppedImage}
-                          >
-                            Save
-                          </button>
-                        </div>
-                        <div className="crop-container">
-                          <Cropper
-                            image={
-                              image.bannerImage1 ||
-                              image.bannerImage2 ||
-                              image.bannerImage3
-                            }
-                            crop={crop}
-                            zoom={zoom}
-                            rotation={rotation}
-                            aspect={2 / 1}
-                            onCropChange={setCrop}
-                            onCropComplete={onCropComplete}
-                            onZoomChange={setZoom}
-                          />
-                        </div>
-                        <div className="crop-edit">
-                          <input
-                            type="range"
-                            value={zoom}
-                            min={1}
-                            max={3}
-                            step={0.1}
-                            aria-labelledby="Zoom"
-                            onChange={(e) => {
-                              setZoom(e.target.value);
-                            }}
-                            className="zoom-range"
-                          />
-                        </div>
-                        <div className="crop_rotate">
-                          <div
-                            className="crop_rotate-left"
-                            // htmlFor="crop_rotate-left"
-                            onClick={() =>
-                              setRotation((prevformData) => prevformData + 90)
-                            }
-                          >
-                            <FontAwesomeIcon icon={faRotateLeft} />
-                          </div>
-                          <div
-                            className="crop_rotate-right"
-                            onClick={() =>
-                              setRotation((prevformData) => prevformData - 90)
-                            }
-                          >
-                            <FontAwesomeIcon icon={faRotateRight} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  ""
-                )}
-
-                <div className="row">
-                  <div className="col">
-                    <div className="tabs">
-                      <Image
-                        setUploadList={setUploadList}
-                        setSecondImage={setSecondImage}
-                        secondImage={secondImage}
-                        setImage={setImage}
-                        editImage={editImage}
-                        imagehandleChange={imagehandleChange}
-                        imageNum="1"
-                      />
-                      <Image
-                        setUploadList={setUploadList}
-                        setSecondImage={setSecondImage}
-                        secondImage={secondImage}
-                        setImage={setImage}
-                        editImage={editImage}
-                        imagehandleChange={imagehandleChange}
-                        imageNum="2"
-                      />
-                      <Image
-                        setUploadList={setUploadList}
-                        setSecondImage={setSecondImage}
-                        secondImage={secondImage}
-                        setImage={setImage}
-                        editImage={editImage}
-                        imagehandleChange={imagehandleChange}
-                        imageNum="3"
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="addImage p-relative">
-                <h3>Upload Profile image </h3>
-                {image.logoimage ? (
-                  <>
-                    <div className="crops-module">
-                      <div className="crops">
-                        <div className="crops-controls">
-                          <button
-                            className="z-1 btn"
-                            type="button"
-                            onClick={() => {
-                              setImage({
-                                preview: "",
-                              });
-                            }}
-                          >
-                            Cancel
-                          </button>
-                          <button
-                            className="z-1 btn"
-                            type="button"
-                            onClick={showCroppedImage}
-                          >
-                            Save
-                          </button>
-                        </div>
-                        <div className="crop-container">
-                          <Cropper
-                            image={image.logoimage}
-                            crop={crop}
-                            zoom={zoom}
-                            aspect={1}
-                            onCropChange={setCrop}
-                            onCropComplete={onCropComplete}
-                            onZoomChange={setZoom}
-                            cropShape="round"
-                            showGrid={false}
-                            rotation={rotation.logoimage}
-                            // cropSize={{ width: 110, height: 110 }}
-                          />
-                        </div>
-                        <div className="crop-edit">
-                          <input
-                            type="range"
-                            value={zoom}
-                            min={1}
-                            max={3}
-                            step={0.1}
-                            aria-labelledby="Zoom"
-                            onChange={(e) => {
-                              setZoom(e.target.value);
-                            }}
-                            className="zoom-range"
-                          />
-                        </div>
-                        <div className="crop_rotate">
-                          <div
-                            className="crop_rotate-left"
-                            onClick={() =>
-                              setRotation((prevformData) => prevformData - 90)
-                            }
-                          >
-                            <FontAwesomeIcon icon={faRotateLeft} />
-                          </div>
-                          <div
-                            className="crop_rotate-right"
-                            onClick={() =>
-                              setRotation((prevformData) => prevformData - 90)
-                            }
-                          >
-                            <FontAwesomeIcon icon={faRotateRight} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </>
-                ) : (
-                  ""
-                )}
-                <div
-                  className="uploadImg-container justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column p-relative"
-                  onClick={() => {
-                    setUploadList((prevformData) => {
-                      return {
-                        ...prevformData,
-                        transform:
-                          "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
-                        transformEnd: "unset",
-                        uploadListcontainer: ".uploadImg-container",
-                        uploadList: ".logoimage",
-                      };
-                    });
-                    const logoimage = document.querySelector(".logoimage");
-                    if (logoimage.style.transform === "unset") {
-                      logoimage.style.transform =
-                        "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
-                    } else {
-                      logoimage.style.transform = "unset";
-                    }
-                  }}
-                  id="imgfor"
-                >
-                  <div className="upload-img">
-                    {secondImage.logoimage ? (
-                      <img
-                        src={secondImage.logoimage}
-                        alt=""
-                        className="img-fluid"
-                      />
-                    ) : (
+      <div className="h-100vh">
+        <div className="createCard about p-relative h-100">
+          <div className="setting">
+            <div className="admin">
+              <div className="admin_detail">
+                <Link to="/" className="signup_navbar-back">
+                  <FontAwesomeIcon icon={faArrowLeft} />
+                  Back
+                </Link>
+                <form action="" onClick={handleSubmit}>
+                  <div className="addImage">
+                    <h3>Upload banner image </h3>
+                    {image.bannerImage1 ||
+                    image.bannerImage2 ||
+                    image.bannerImage3 ? (
                       <>
-                        <FontAwesomeIcon icon={faUser} />
+                        <div className="crops-module">
+                          <div className="crops">
+                            <div className="crops-controls">
+                              <button
+                                className="z-1 btn"
+                                type="button"
+                                onClick={() => {
+                                  setImage({
+                                    preview: "",
+                                  });
+                                }}
+                              >
+                                Cancel
+                              </button>
+                              <button
+                                className="z-1 btn"
+                                type="button"
+                                onClick={showCroppedImage}
+                              >
+                                Save
+                              </button>
+                            </div>
+                            <div className="crop-container">
+                              <Cropper
+                                image={
+                                  image.bannerImage1 ||
+                                  image.bannerImage2 ||
+                                  image.bannerImage3
+                                }
+                                crop={crop}
+                                zoom={zoom}
+                                rotation={rotation}
+                                aspect={2 / 1}
+                                onCropChange={setCrop}
+                                onCropComplete={onCropComplete}
+                                onZoomChange={setZoom}
+                              />
+                            </div>
+                            <div className="crop-edit">
+                              <input
+                                type="range"
+                                value={zoom}
+                                min={1}
+                                max={3}
+                                step={0.1}
+                                aria-labelledby="Zoom"
+                                onChange={(e) => {
+                                  setZoom(e.target.value);
+                                }}
+                                className="zoom-range"
+                              />
+                            </div>
+                            <div className="crop_rotate">
+                              <div
+                                className="crop_rotate-left"
+                                // htmlFor="crop_rotate-left"
+                                onClick={() =>
+                                  setRotation(
+                                    (prevformData) => prevformData + 90
+                                  )
+                                }
+                              >
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                              </div>
+                              <div
+                                className="crop_rotate-right"
+                                onClick={() =>
+                                  setRotation(
+                                    (prevformData) => prevformData - 90
+                                  )
+                                }
+                              >
+                                <FontAwesomeIcon icon={faRotateRight} />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </>
+                    ) : (
+                      ""
                     )}
 
-                    <input
-                      type="file"
-                      id="upload-button"
-                      className="d-none"
-                      onChange={imagehandleChange}
-                      name="logoimage"
-                      value=""
-                      accept="image/*"
-                    />
-                    <input
-                      type="file"
-                      id="upload-photo"
-                      className="d-none"
-                      onChange={imagehandleChange}
-                      name="logoimage"
-                      capture
-                      value=""
-                      accept="image/*"
-                    />
-                  </div>
-                  <div className="uploadImg-btn">
-                    <FontAwesomeIcon icon={faCamera} />
-                  </div>
-                </div>
-                <div className="uploadList logoimage" htmlFor="imgfor">
-                  <label className="uploadList-item" htmlFor="upload-photo">
-                    Take photo
-                    <FontAwesomeIcon icon={faCamera} />
-                  </label>
-                  <label className="uploadList-item" htmlFor="upload-button">
-                    Upload image
-                    <FontAwesomeIcon icon={faCloudArrowUp} />
-                  </label>
-                  {secondImage.logoimage ? (
-                    <>
-                      <div
-                        className="uploadList-item"
-                        onClick={() => {
-                          setImage((prevformData) => {
-                            return {
-                              ...prevformData,
-                              logoimage: editImage.logoimage,
-                            };
-                          });
-                        }}
-                      >
-                        Edit
-                        <FontAwesomeIcon icon={faPen} />
+                    <div className="row">
+                      <div className="col">
+                        <div className="tabs">
+                          <Image
+                            setUploadList={setUploadList}
+                            setSecondImage={setSecondImage}
+                            secondImage={secondImage}
+                            setImage={setImage}
+                            editImage={editImage}
+                            imagehandleChange={imagehandleChange}
+                            imageNum="1"
+                          />
+                          <Image
+                            setUploadList={setUploadList}
+                            setSecondImage={setSecondImage}
+                            secondImage={secondImage}
+                            setImage={setImage}
+                            editImage={editImage}
+                            imagehandleChange={imagehandleChange}
+                            imageNum="2"
+                          />
+                          <Image
+                            setUploadList={setUploadList}
+                            setSecondImage={setSecondImage}
+                            secondImage={secondImage}
+                            setImage={setImage}
+                            editImage={editImage}
+                            imagehandleChange={imagehandleChange}
+                            imageNum="3"
+                          />
+                        </div>
                       </div>
-                      <div
-                        className="uploadList-item"
-                        onClick={() => {
-                          setSecondImage((prevformData) => {
-                            return {
-                              ...prevformData,
-                              logoimage: "",
-                            };
-                          });
-                        }}
-                      >
-                        Clear
-                        <FontAwesomeIcon icon={faXmark} />
+                    </div>
+                  </div>
+
+                  <div className="addImage p-relative">
+                    <h3>Upload Profile image </h3>
+                    {image.logoimage ? (
+                      <>
+                        <div className="crops-module">
+                          <div className="crops">
+                            <div className="crops-controls">
+                              <button
+                                className="z-1 btn"
+                                type="button"
+                                onClick={() => {
+                                  setImage({
+                                    preview: "",
+                                  });
+                                }}
+                              >
+                                Cancel
+                              </button>
+                              <button
+                                className="z-1 btn"
+                                type="button"
+                                onClick={showCroppedImage}
+                              >
+                                Save
+                              </button>
+                            </div>
+                            <div className="crop-container">
+                              <Cropper
+                                image={image.logoimage}
+                                crop={crop}
+                                zoom={zoom}
+                                aspect={1}
+                                onCropChange={setCrop}
+                                onCropComplete={onCropComplete}
+                                onZoomChange={setZoom}
+                                cropShape="round"
+                                showGrid={false}
+                                rotation={rotation.logoimage}
+                                // cropSize={{ width: 110, height: 110 }}
+                              />
+                            </div>
+                            <div className="crop-edit">
+                              <input
+                                type="range"
+                                value={zoom}
+                                min={1}
+                                max={3}
+                                step={0.1}
+                                aria-labelledby="Zoom"
+                                onChange={(e) => {
+                                  setZoom(e.target.value);
+                                }}
+                                className="zoom-range"
+                              />
+                            </div>
+                            <div className="crop_rotate">
+                              <div
+                                className="crop_rotate-left"
+                                onClick={() =>
+                                  setRotation(
+                                    (prevformData) => prevformData - 90
+                                  )
+                                }
+                              >
+                                <FontAwesomeIcon icon={faRotateLeft} />
+                              </div>
+                              <div
+                                className="crop_rotate-right"
+                                onClick={() =>
+                                  setRotation(
+                                    (prevformData) => prevformData - 90
+                                  )
+                                }
+                              >
+                                <FontAwesomeIcon icon={faRotateRight} />
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </>
+                    ) : (
+                      ""
+                    )}
+                    <div
+                      className="uploadImg-container justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column p-relative"
+                      onClick={() => {
+                        setUploadList((prevformData) => {
+                          return {
+                            ...prevformData,
+                            transform:
+                              "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)",
+                            transformEnd: "unset",
+                            uploadListcontainer: ".uploadImg-container",
+                            uploadList: ".logoimage",
+                          };
+                        });
+                        const logoimage = document.querySelector(".logoimage");
+                        if (logoimage.style.transform === "unset") {
+                          logoimage.style.transform =
+                            "translateX(-102px) translateY(-40px) translateZ(0px) scale(0)";
+                        } else {
+                          logoimage.style.transform = "unset";
+                        }
+                      }}
+                      id="imgfor"
+                    >
+                      <div className="upload-img">
+                        {secondImage.logoimage ? (
+                          <img
+                            src={secondImage.logoimage}
+                            alt=""
+                            className="img-fluid"
+                          />
+                        ) : (
+                          <>
+                            <FontAwesomeIcon icon={faUser} />
+                          </>
+                        )}
+
+                        <input
+                          type="file"
+                          id="upload-button"
+                          className="d-none"
+                          onChange={imagehandleChange}
+                          name="logoimage"
+                          value=""
+                          accept="image/*"
+                        />
+                        <input
+                          type="file"
+                          id="upload-photo"
+                          className="d-none"
+                          onChange={imagehandleChange}
+                          name="logoimage"
+                          capture
+                          value=""
+                          accept="image/*"
+                        />
                       </div>
-                    </>
-                  ) : (
-                    ""
-                  )}
-                </div>
-              </div>
+                      <div className="uploadImg-btn">
+                        <FontAwesomeIcon icon={faCamera} />
+                      </div>
+                    </div>
+                    <div className="uploadList logoimage" htmlFor="imgfor">
+                      <label className="uploadList-item" htmlFor="upload-photo">
+                        Take photo
+                        <FontAwesomeIcon icon={faCamera} />
+                      </label>
+                      <label
+                        className="uploadList-item"
+                        htmlFor="upload-button"
+                      >
+                        Upload image
+                        <FontAwesomeIcon icon={faCloudArrowUp} />
+                      </label>
+                      {secondImage.logoimage ? (
+                        <>
+                          <div
+                            className="uploadList-item"
+                            onClick={() => {
+                              setImage((prevformData) => {
+                                return {
+                                  ...prevformData,
+                                  logoimage: editImage.logoimage,
+                                };
+                              });
+                            }}
+                          >
+                            Edit
+                            <FontAwesomeIcon icon={faPen} />
+                          </div>
+                          <div
+                            className="uploadList-item"
+                            onClick={() => {
+                              setSecondImage((prevformData) => {
+                                return {
+                                  ...prevformData,
+                                  logoimage: "",
+                                };
+                              });
+                            }}
+                          >
+                            Clear
+                            <FontAwesomeIcon icon={faXmark} />
+                          </div>
+                        </>
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  </div>
 
-              <div className="admin_detail-member">
-                <h3>Enter user detail </h3>
+                  <div className="admin_detail-member">
+                    <h3>Enter user detail </h3>
 
-                <div className="">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="Name"
-                    placeholder="Name"
-                    required
-                    name="username"
-                    onChange={handleChange}
-                    value={formData.username}
-                  />
-                </div>
-                <div className="">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="designation"
-                    placeholder="Designation"
-                    name="designation"
-                    onChange={handleChange}
-                    value={formData.designation}
-                  />
-                </div>
-                <div className="">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="employeeId"
-                    placeholder="Employee id"
-                    name="employeeId"
-                    required
-                    onChange={handleChange}
-                    value={formData.employeeId}
-                  />
-                </div>
-                <div className="">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="employeeBio"
-                    placeholder="Employee bio"
-                    name="employeeBio"
-                    required
-                    onChange={handleChange}
-                    value={formData.employeeBio}
-                  />
-                </div>
-              </div>
-              <div className="admin_detail-social">
-                <h3>Choose/add Social handles </h3>
-                <div className="admin_detail-social-grid">
-                  {formData.userLink.map((links, id) => {
-                    return (
+                    <div className="">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="Name"
+                        placeholder="Name"
+                        required
+                        name="username"
+                        onChange={handleChange}
+                        value={formData.username}
+                      />
+                    </div>
+                    <div className="">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="designation"
+                        placeholder="Designation"
+                        name="designation"
+                        onChange={handleChange}
+                        value={formData.designation}
+                      />
+                    </div>
+                    <div className="">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="employeeId"
+                        placeholder="Employee id"
+                        name="employeeId"
+                        required
+                        onChange={handleChange}
+                        value={formData.employeeId}
+                      />
+                    </div>
+                    <div className="">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="employeeBio"
+                        placeholder="Employee bio"
+                        name="employeeBio"
+                        required
+                        onChange={handleChange}
+                        value={formData.employeeBio}
+                      />
+                    </div>
+                  </div>
+                  <div className="admin_detail-social">
+                    <h3>Choose/add Social handles </h3>
+                    <div className="admin_detail-social-grid">
+                      {formData.userLink.map((links, id) => {
+                        return (
+                          <button
+                            key={id}
+                            className="btn-primary"
+                            onClick={() => {
+                              updateLink(links, id);
+                            }}
+                          >
+                            {links.type === "phone" ? "phone" : ""}
+                            {links.type === "email" ? "email" : ""}
+                            {links.type === "website" ? "website" : ""}
+                            {links.type === "whatsapp" ? "whatsapp" : ""}
+                            {links.type === "linkedin" ? "linkedin" : ""}
+                            {links.type === "instagram" ? "instagram" : ""}
+                            {links.type === "facebook" ? "facebook" : ""}
+                            {links.type === "twitter" ? "twitter" : ""}
+                            {links.type === "youtube" ? "youtube" : ""}
+                            {links.type === "address" ? "address" : ""}
+                          </button>
+                        );
+                      })}
+
                       <button
-                        key={id}
                         className="btn-primary"
                         onClick={() => {
-                          updateLink(links, id);
+                          addLin();
+                          setType("card");
                         }}
                       >
-                        {links.type === "phone" ? "phone" : ""}
-                        {links.type === "email" ? "email" : ""}
-                        {links.type === "website" ? "website" : ""}
-                        {links.type === "whatsapp" ? "whatsapp" : ""}
-                        {links.type === "linkedin" ? "linkedin" : ""}
-                        {links.type === "instagram" ? "instagram" : ""}
-                        {links.type === "facebook" ? "facebook" : ""}
-                        {links.type === "twitter" ? "twitter" : ""}
-                        {links.type === "youtube" ? "youtube" : ""}
-                        {links.type === "address" ? "address" : ""}
+                        Add +
                       </button>
-                    );
-                  })}
+                    </div>
+                  </div>
+                  <div className="admin_detail-social">
+                    <h3> Choose/add Plugin handles </h3>
+                    <div className="admin_detail-social-grid">
+                      {formData.userPlugin.map((links, id) => {
+                        console.log("cret", links);
+                        return (
+                          <button
+                            key={id}
+                            className="btn-primary"
+                            onClick={() => {
+                              updatePlugin(links, id);
+                            }}
+                          >
+                            {links.type === "youtube" ? "youtube" : ""}
+                          </button>
+                        );
+                      })}
 
-                  <button
-                    className="btn-primary"
-                    onClick={() => {
-                      addLin();
-                      setType("card");
-                    }}
-                  >
-                    Add +
-                  </button>
-                </div>
-              </div>
-              <div className="admin_detail-social">
-                <h3> Choose/add Plugin handles </h3>
-                <div className="admin_detail-social-grid">
-                  {formData.userPlugin.map((links, id) => {
-                    console.log("cret", links);
-                    return (
                       <button
-                        key={id}
                         className="btn-primary"
                         onClick={() => {
-                          updatePlugin(links, id);
+                          addLin();
+                          setType("plugin");
                         }}
                       >
-                        {links.type === "youtube" ? "youtube" : ""}
+                        Add +
                       </button>
-                    );
-                  })}
+                    </div>
+                  </div>
 
-                  <button
-                    className="btn-primary"
-                    onClick={() => {
-                      addLin();
-                      setType("plugin");
-                    }}
-                  >
-                    Add +
-                  </button>
-                </div>
-              </div>
+                  <div className="admin_detail-contact">
+                    <h3>Contact details </h3>
 
-              <div className="admin_detail-contact">
-                <h3>Contact details </h3>
-
-                <div className="mb-3">
-                  <input
-                    type="text"
-                    className="form-control"
-                    id="Name"
-                    placeholder="office email id"
-                    required
-                    name="officeId"
-                    onChange={handleChange}
-                    value={formData.officeId}
-                  />
-                </div>
-                <div className="p-relative mb-3 countriesCode">
-                  <input
-                    type="number"
-                    className={
-                      phoneNum.whPhone &&
-                      phoneNum.whPhone.split("").length === 2
-                        ? "countriesCode-input form-control formControl-2"
-                        : phoneNum.whPhone &&
-                          phoneNum.whPhone.split("").length === 3
-                        ? "countriesCode-input form-control formControl-3"
-                        : phoneNum.whPhone &&
-                          phoneNum.whPhone.split("").length === 4
-                        ? "countriesCode-input form-control formControl-4"
-                        : "countriesCode-input form-control formControl-1"
-                    }
-                    id="designation"
-                    placeholder="enter whatsApp number"
-                    name="whatsappNumber"
-                    onChange={handleChange}
-                    value={formData.whatsappNumber}
-                  />
-                  {/* <label className="did-floating-label">+91</label> */}
-                  <label
-                    className="did-floating-label z-1"
-                    // htmlFor="number"
-                    aria-haspopup="listbox"
-                  >
-                    <PhoneInput
-                      country={"us"}
-                      value={phoneNum.whPhone}
-                      onChange={handleChange.bind(this, "whPhone")}
-                      enableSearch={true}
-                      disableSearchIcon={true}
-                      // disableCountryCode={true}
-                      countryCodeEditable={false}
-                      inputProps={{
-                        name: "phone",
-                        required: true,
-                        autoFocus: true,
-                        id: "number",
-                        placeholder: "1",
-                        className:
+                    <div className="mb-3">
+                      <input
+                        type="text"
+                        className="form-control"
+                        id="Name"
+                        placeholder="office email id"
+                        required
+                        name="officeId"
+                        onChange={handleChange}
+                        value={formData.officeId}
+                      />
+                    </div>
+                    <div className="p-relative mb-3 countriesCode">
+                      <input
+                        type="number"
+                        className={
                           phoneNum.whPhone &&
                           phoneNum.whPhone.split("").length === 2
-                            ? "form-control CodeForm-control CodeForm-2"
+                            ? "countriesCode-input form-control formControl-2"
                             : phoneNum.whPhone &&
                               phoneNum.whPhone.split("").length === 3
-                            ? "form-control CodeForm-control CodeForm-3"
+                            ? "countriesCode-input form-control formControl-3"
                             : phoneNum.whPhone &&
                               phoneNum.whPhone.split("").length === 4
-                            ? "form-control CodeForm-control CodeForm-4"
-                            : "form-control CodeForm-control",
-                      }}
-                    />
-                  </label>
-                </div>
-                <div className="p-relative mb-3 countriesCode z">
-                  <input
-                    type="number"
-                    // className="form-control "
-                    className={
-                      phoneNum.phone && phoneNum.phone.split("").length === 2
-                        ? "countriesCode-input form-control  formControl-2"
-                        : phoneNum.phone &&
-                          phoneNum.phone.split("").length === 3
-                        ? "countriesCode-input form-control formControl-3"
-                        : phoneNum.phone &&
-                          phoneNum.phone.split("").length === 4
-                        ? "countriesCode-input form-control formControl-4"
-                        : "countriesCode-input form-control formControl-1"
-                    }
-                    id="company"
-                    placeholder="enter Mobile number"
-                    name="mobileNumber"
-                    required
-                    onChange={handleChange}
-                    value={formData.mobileNumber}
-                  />
-
-                  <label
-                    className="did-floating-label countriesCode"
-                    // htmlFor="number"
-                    aria-haspopup="listbox"
-                  >
-                    <PhoneInput
-                      country={"us"}
-                      value={phoneNum.phone}
-                      onChange={handleChange.bind(this, "phone")}
-                      enableSearch={true}
-                      disableSearchIcon={true}
-                      // disableCountryCode={true}
-                      countryCodeEditable={false}
-                      inputProps={{
-                        name: "phone",
-                        required: true,
-                        autoFocus: true,
-                        id: "number",
-                        placeholder: "1",
-                        className:
+                            ? "countriesCode-input form-control formControl-4"
+                            : "countriesCode-input form-control formControl-1"
+                        }
+                        id="designation"
+                        placeholder="enter whatsApp number"
+                        name="whatsappNumber"
+                        onChange={handleChange}
+                        value={formData.whatsappNumber}
+                      />
+                      {/* <label className="did-floating-label">+91</label> */}
+                      <label
+                        className="did-floating-label z-1"
+                        // htmlFor="number"
+                        aria-haspopup="listbox"
+                      >
+                        <PhoneInput
+                          country={"us"}
+                          value={phoneNum.whPhone}
+                          onChange={handleChange.bind(this, "whPhone")}
+                          enableSearch={true}
+                          disableSearchIcon={true}
+                          // disableCountryCode={true}
+                          countryCodeEditable={false}
+                          inputProps={{
+                            name: "phone",
+                            required: true,
+                            autoFocus: true,
+                            id: "number",
+                            placeholder: "1",
+                            className:
+                              phoneNum.whPhone &&
+                              phoneNum.whPhone.split("").length === 2
+                                ? "form-control CodeForm-control CodeForm-2"
+                                : phoneNum.whPhone &&
+                                  phoneNum.whPhone.split("").length === 3
+                                ? "form-control CodeForm-control CodeForm-3"
+                                : phoneNum.whPhone &&
+                                  phoneNum.whPhone.split("").length === 4
+                                ? "form-control CodeForm-control CodeForm-4"
+                                : "form-control CodeForm-control",
+                          }}
+                        />
+                      </label>
+                    </div>
+                    <div className="p-relative mb-3 countriesCode z">
+                      <input
+                        type="number"
+                        // className="form-control "
+                        className={
                           phoneNum.phone &&
                           phoneNum.phone.split("").length === 2
-                            ? "form-control CodeForm-control CodeForm-2"
+                            ? "countriesCode-input form-control  formControl-2"
                             : phoneNum.phone &&
                               phoneNum.phone.split("").length === 3
-                            ? "form-control CodeForm-control CodeForm-3"
+                            ? "countriesCode-input form-control formControl-3"
                             : phoneNum.phone &&
                               phoneNum.phone.split("").length === 4
-                            ? "form-control CodeForm-control CodeForm-4"
-                            : "form-control CodeForm-control",
-                      }}
-                    />
-                  </label>
-                </div>
+                            ? "countriesCode-input form-control formControl-4"
+                            : "countriesCode-input form-control formControl-1"
+                        }
+                        id="company"
+                        placeholder="enter Mobile number"
+                        name="mobileNumber"
+                        required
+                        onChange={handleChange}
+                        value={formData.mobileNumber}
+                      />
+
+                      <label
+                        className="did-floating-label countriesCode"
+                        // htmlFor="number"
+                        aria-haspopup="listbox"
+                      >
+                        <PhoneInput
+                          country={"us"}
+                          value={phoneNum.phone}
+                          onChange={handleChange.bind(this, "phone")}
+                          enableSearch={true}
+                          disableSearchIcon={true}
+                          // disableCountryCode={true}
+                          countryCodeEditable={false}
+                          inputProps={{
+                            name: "phone",
+                            required: true,
+                            autoFocus: true,
+                            id: "number",
+                            placeholder: "1",
+                            className:
+                              phoneNum.phone &&
+                              phoneNum.phone.split("").length === 2
+                                ? "form-control CodeForm-control CodeForm-2"
+                                : phoneNum.phone &&
+                                  phoneNum.phone.split("").length === 3
+                                ? "form-control CodeForm-control CodeForm-3"
+                                : phoneNum.phone &&
+                                  phoneNum.phone.split("").length === 4
+                                ? "form-control CodeForm-control CodeForm-4"
+                                : "form-control CodeForm-control",
+                          }}
+                        />
+                      </label>
+                    </div>
+                  </div>
+                  <button type="submit" className="btn-primary">
+                    Save
+                  </button>
+                </form>
               </div>
-              <button
-                type="formData"
-                className="btn-primary"
-                onClick={textHander}
-              >
-                Save
-              </button>
             </div>
           </div>
-        </div>
 
-        <div
-          className={
-            isLinks
-              ? "d-md-none signup_phone text-center"
-              : "signup_phone text-center"
-          }
-        >
-          <button className="btn btn-preview">Live Preview</button>
-          <div className="signup_phone-container">
-            <UserProfile
-              formData={formData}
-              logo={secondImage.logoimage}
-              images={secondImage}
+          <div
+            className={
+              isLinks
+                ? "d-md-none signup_phone text-center"
+                : "signup_phone text-center"
+            }
+          >
+            <button className="btn btn-preview">Live Preview</button>
+            <div className="signup_phone-container">
+              <UserProfile
+                formData={formData}
+                logo={secondImage.logoimage}
+                images={secondImage}
+              />
+              {/* <Footer /> */}
+            </div>
+          </div>
+
+          {isLinks ? (
+            <AddCard
+              removeLink={addLin}
+              isClick={isClick}
+              setFormData={setFormData}
+              type={type}
             />
-            {/* <Footer /> */}
-          </div>
+          ) : (
+            ""
+          )}
+          {isLinkClick ? (
+            <div className="addcard">
+              <div className="addcard_container">
+                <AddLink
+                  data={linkData}
+                  sendData={updateLink}
+                  setFormData={setFormData}
+                  formData={formData}
+                />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
+          {isPlugin ? (
+            <div className="addcard">
+              <div className="addcard_container">
+                <AddPlugin
+                  data={linkData}
+                  sendData={updatePlugin}
+                  setFormData={setFormData}
+                  formData={formData}
+                />
+              </div>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-
-        {isLinks ? (
-          <AddCard
-            removeLink={addLin}
-            isClick={isClick}
-            setFormData={setFormData}
-            type={type}
-          />
-        ) : (
-          ""
-        )}
-        {isLinkClick ? (
-          <div className="addcard">
-            <div className="addcard_container">
-              <AddLink
-                data={linkData}
-                sendData={updateLink}
-                setFormData={setFormData}
-                formData={formData}
-              />
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
-        {isPlugin ? (
-          <div className="addcard">
-            <div className="addcard_container">
-              <AddPlugin
-                data={linkData}
-                sendData={updatePlugin}
-                setFormData={setFormData}
-                formData={formData}
-              />
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
       </div>
     </>
   );

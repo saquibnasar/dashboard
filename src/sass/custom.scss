@@ -13,7 +13,10 @@ body {
   background: $white-color;
   background: #f5f3f7;
 }
-
+body:has(.createCard.about) {
+  background: $white-color;
+  background: #f0f0f0;
+}
 .container {
   margin: 0 50px;
 }

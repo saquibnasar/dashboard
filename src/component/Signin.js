@@ -120,7 +120,6 @@ export default function Signin() {
                     name="title"
                     value={formData.title}
                     onChange={handleChange}
-                    id="userText"
                   />
                   <FontAwesomeIcon icon={font} />
                   <label className="did-floating-label">Password</label>

@@ -300,6 +300,20 @@
               }
             }
           }
+          .tab-contentChecked {
+            max-height: 100vh;
+            padding: 1em;
+            display: block;
+            transition: all 0.35s;
+            overflow: hidden;
+            + .tab-label {
+              // background: darken($midnight, 10%);
+              svg {
+                transition: 0.3s;
+                transform: rotate(45deg);
+              }
+            }
+          }
 
           .tab-label {
             // background: darken($midnight, 10%);
