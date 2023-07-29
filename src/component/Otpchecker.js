@@ -1,18 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
-import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
-export default function Signup() {
+import React from "react";
+
+export default function Otpchecker() {
   let togglePassword;
   const [attribute, setAttribute] = useState("password");
   const [font, setFont] = useState(faEye);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
-    otp: "",
   });
-  const [isOtp, setIsOtp] = useState(false);
 
   setTimeout(() => {
     togglePassword = document.querySelector(".input-password svg");
@@ -33,28 +28,22 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isOtp) {
-      
-    } else {
-      fetch("https://jsonplaceholder.typicode.com/posts", {
-        method: "POST",
-        body: JSON.stringify({
-          email: formData.email,
-          password: formData.password,
-          userId: Math.random().toString(36).slice(2),
-        }),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-        });
-      setIsOtp(true);
-    }
+    fetch("https://jsonplaceholder.typicode.com/posts", {
+      method: "POST",
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password,
+        userId: Math.random().toString(36).slice(2),
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+      });
   };
-
   return (
     <>
       <div className="signup">
@@ -97,73 +86,46 @@ export default function Signup() {
               </h2>
             </div>
             <form action="/" onSubmit={handleSubmit}>
-              {isOtp ? (
-                <>
-                  <div className="mt-4 email_input">
-                    <div id="emailHelp" className="form-text">
-                      Enter Otp
-                    </div>
-                    <div className="did-floating-label-content input-group input-password">
-                      <input
-                        className="did-floating-input"
-                        type={attribute}
-                        id="id_otp"
-                        placeholder=" "
-                        required
-                        name="otp"
-                        value={formData.otp}
-                        onChange={handleChange}
-                      />
-                      <FontAwesomeIcon icon={font} />
-                      <label className="did-floating-label">OTP</label>
-                    </div>
-                  </div>
-                </>
-              ) : (
-                <>
-                  <div className="mt-4 email_input">
-                    <div id="emailHelp" className="form-text">
-                      Email
-                    </div>
-                    <div className="did-floating-label-content input-group">
-                      <input
-                        className="did-floating-input"
-                        type="text"
-                        placeholder=" "
-                        required
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                      />
-                      <label className="did-floating-label">Email</label>
-                    </div>
-                  </div>
-                  <div className="mt-4 email_input">
-                    <div id="emailHelp" className="form-text">
-                      Password
-                    </div>
-                    <div className="did-floating-label-content input-group input-password">
-                      <input
-                        className="did-floating-input"
-                        type={attribute}
-                        id="id_password"
-                        placeholder=" "
-                        required
-                        name="password"
-                        value={formData.password}
-                        onChange={handleChange}
-                      />
-                      <FontAwesomeIcon icon={font} />
-                      <label className="did-floating-label">Password</label>
-                    </div>
-                  </div>
-                </>
-              )}
+              <div className="mt-4 email_input">
+                <div id="emailHelp" className="form-text">
+                  Email
+                </div>
+                <div className="did-floating-label-content input-group">
+                  <input
+                    className="did-floating-input"
+                    type="text"
+                    placeholder=" "
+                    required
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                  />
+                  <label className="did-floating-label">Email</label>
+                </div>
+              </div>
+              <div className="mt-4 email_input">
+                <div id="emailHelp" className="form-text">
+                  Password
+                </div>
+                <div className="did-floating-label-content input-group input-password">
+                  <input
+                    className="did-floating-input"
+                    type={attribute}
+                    id="id_password"
+                    placeholder=" "
+                    required
+                    name="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                  />
+                  <FontAwesomeIcon icon={font} />
+                  <label className="did-floating-label">Password</label>
+                </div>
+              </div>
 
               <button type="submit" className="btn btn-primary">
                 Continue
               </button>
-
               <h3>
                 Already use Flax? <Link to="/login"> Login</Link>
               </h3>

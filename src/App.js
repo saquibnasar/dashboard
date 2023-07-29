@@ -28,7 +28,7 @@ function App() {
       linkType: "whatsapp",
     },
   ]);
-  
+
   return (
     <BrowserRouter>
       <Routes>
@@ -44,8 +44,8 @@ function App() {
           path="/devices"
           element={<Devices navbarToggle={navbarToggle} isNavbar={isNavbar} />}
         />
-        <Route path="/sign-up" element={<Signup />} />
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Signin />} />
         <Route
           path="/homepage/:homepageId"
           element={<HomePage navbarToggle={navbarToggle} isNavbar={isNavbar} />}

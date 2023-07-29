@@ -1,11 +1,4 @@
-import {
-  Document,
-  Page,
-  Text,
-  Image,
-  View,
-  StyleSheet,
-} from "@react-pdf/renderer";
+import { Document, Page, Text, Image, StyleSheet } from "@react-pdf/renderer";
 
 export default function Pdfmaker() {
   const styles = StyleSheet.create({
@@ -33,19 +26,52 @@ export default function Pdfmaker() {
     title: {
       fontSize: 24,
       textAlign: "center",
-      fontFamily: "AntonFamily",
     },
+    textheader: {
+      marginVertical: "auto",
+      marginHorizontal: "auto",
+      color: "#000",
+      fontSize: 37,
+      fontWeight: 700,
+      marginTop: -10,
+      // fontFamily: "Outfit",
+    },
+    textbottom: {
+      marginVertical: "auto",
+      marginHorizontal: "auto",
+      color: "#000",
+      fontSize: 35,
+      fontWeight: 500,
+    },
+
     text: {
-      margin: 12,
       fontSize: 14,
-      textAlign: "justify",
-      fontFamily: "AntonFamily",
+      marginVertical: "auto",
+      marginHorizontal: "auto",
+      color: "#000",
+      fontSize: 24,
+      fontWeight: 500,
+      marginTop: -10,
     },
     image: {
       marginVertical: 15,
-      marginHorizontal: 100,
+      marginHorizontal: "auto",
       maxWidth: "100%",
-      width: "100px",
+      width: "200px",
+      height: "auto",
+    },
+    imageQr: {
+      marginVertical: 15,
+      marginHorizontal: "auto",
+      maxWidth: "100%",
+      width: "250px",
+      height: "auto",
+    },
+    imageLogo: {
+      marginVertical: 15,
+      marginHorizontal: "auto",
+      maxWidth: "100%",
+      width: "150px",
       height: "auto",
     },
     header: {
@@ -53,7 +79,6 @@ export default function Pdfmaker() {
       marginBottom: 20,
       textAlign: "center",
       color: "grey",
-      fontFamily: "AntonFamily",
     },
     pageNumber: {
       position: "absolute",
@@ -63,34 +88,47 @@ export default function Pdfmaker() {
       right: 0,
       textAlign: "center",
       color: "grey",
-      fontFamily: "AntonFamily",
     },
   });
   return (
     <>
       <Document>
-        <Page size="A4" style={styles.page}>
-          <div style={styles.page}>
-            <Image
-              className="logo"
-              style={styles.image}
-              src={"/deviceslogo.png"}
-            />
-            <div>
-              <Text>Sunny Katyal</Text>
-              <Text>Chief Technical Officer</Text>
-            </div>
-            <View style={styles.section}></View>
-
-            <Image style={styles.image} src={"/qrcode.png"} />
-            <View style={styles.section}>
-              <Text>Scan to save Contact </Text>
-            </View>
-            <View style={styles.section}>
-              <Text>Powered by</Text>
-            </View>
-            <Image style={styles.image} src={"/logofill.svg"} />
+        {/* <div style={styles.page}>
+          <Image
+            className="logo"
+            style={styles.image}
+            src={"/deviceslogo.png"}
+          />
+          <div>
+            <Text>Sunny Katyal</Text>
+            <Text>Chief Technical Officer</Text>
           </div>
+          <View style={styles.section}></View>
+
+          <Image style={styles.image} src={"/qrcode.png"} />
+          <View style={styles.section}>
+            <Text>Scan to save Contact </Text>
+          </View>
+          <View style={styles.section}>
+            <Text>Powered by</Text>
+          </View>
+          <Image style={styles.image} src={"/logofill.svg"} />
+        </div> */}
+        <Page style={styles.body}>
+          <Text style={styles.header}></Text>
+          <Image style={styles.image} src={"/deviceslogo.png"} />
+          <Text style={styles.textheader}>Sunny Katyal</Text>
+          <Text style={styles.text}>Chief Technical Officer</Text>
+          <Image style={styles.imageQr} src={"/qrcode.png"} />
+          <Text style={styles.textbottom}>Scan to save Contact </Text>
+          {/* <Text>Powered by </Text> */}
+          <Image style={styles.imageLogo} src={"/flaxlogo.png"} />
+          {/* <Text
+            style={styles.pageNumber}
+            render={({ pageNumber, totalPages }) =>
+              `${pageNumber} / ${totalPages}`
+            }
+          /> */}
         </Page>
       </Document>
     </>
