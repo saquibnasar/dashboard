@@ -72,15 +72,6 @@ export default function SocialLink(props) {
             </a>
           );
         })}
-        {/* <a href="/" className="social_media-link" target="blank">
-          <div className="d-flex align-items-center gap-2">
-            <span>
-              <FontAwesomeIcon icon={faInstagram} />
-            </span>
-            <p>Instagram</p>
-          </div>
-          <FontAwesomeIcon icon={faShareSquare} />
-        </a> */}
       </div>
     </>
   );
