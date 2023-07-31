@@ -45,7 +45,7 @@ function App() {
           element={<Devices navbarToggle={navbarToggle} isNavbar={isNavbar} />}
         />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Signin />} />
+        <Route path="/signin" element={<Signin />} />
         <Route
           path="/homepage/:homepageId"
           element={<HomePage navbarToggle={navbarToggle} isNavbar={isNavbar} />}
