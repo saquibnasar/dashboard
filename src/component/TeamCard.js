@@ -92,21 +92,23 @@ export default function TeamCard(props) {
                     : item.first_name.toLowerCase().includes(props.search);
                 })
                 .map((value) => {
-                  
                   return (
                     <Link
                       key={value.id}
                       className="teamCard_btn"
-                      to={`/homepage/${value.employeeId}/content`}
+                      to={`/homepage/content/${value.employeeId}`}
                     >
                       <div className="d-flex gap-2">
                         <span className="mx-auto">
-                          {/* <FontAwesomeIcon icon={faUser} /> */}
-                          <img
-                            src={`http://192.168.1.8:3005/${value.profileImage}`}
-                            className="img-fluid"
-                            alt=""
-                          />
+                          {value.profileImage ? (
+                            <img
+                              src={`http://192.168.1.8:3005/${value.profileImage}`}
+                              className="img-fluid"
+                              alt=""
+                            />
+                          ) : (
+                            <FontAwesomeIcon icon={faUser} />
+                          )}
                         </span>
                         <div className="d-flex flex-direction-column gap-2">
                           <h3>{value.name}</h3>

@@ -97,7 +97,7 @@ export default function CreateCard(props) {
               ...prevformData.userInfo,
               whatsappNumber: {
                 ...prevformData.userInfo.whatsappNumber,
-                countryCode: code ? code : 1,
+                countryCode: code ? code : "1",
               },
             },
           };
@@ -110,7 +110,7 @@ export default function CreateCard(props) {
               ...prevformData.userInfo,
               mobileNumber: {
                 ...prevformData.userInfo.mobileNumber,
-                countryCode: code ? code : 1,
+                countryCode: code ? code : "1",
               },
             },
           };
@@ -130,8 +130,11 @@ export default function CreateCard(props) {
             userInfo: {
               ...prevformData.userInfo,
               [event.target.name]: {
-                ...prevformData.userInfo.mobileNumber,
+                // ...prevformData.userInfo.mobileNumber,
                 phoneNum: event.target.value,
+                countryCode: prevformData.userInfo.mobileNumber
+                  ? prevformData.userInfo.mobileNumber.countryCode
+                  : "1",
               },
             },
           };
@@ -143,8 +146,11 @@ export default function CreateCard(props) {
             userInfo: {
               ...prevformData.userInfo,
               [event.target.name]: {
-                ...prevformData.userInfo.whatsappNumber,
+                // ...prevformData.userInfo.whatsappNumber,
                 whatsappNum: event.target.value,
+                countryCode: prevformData.userInfo.whatsappNumber
+                  ? prevformData.userInfo.whatsappNumber.countryCode
+                  : "1",
               },
             },
           };
@@ -192,7 +198,7 @@ export default function CreateCard(props) {
           icon: faPhone,
           linkData: link.value,
           linkTitle: link.title,
-          countryCode: link.countryCode,
+          countryCode: link.countryCode ? link.countryCode : "1",
           id: id,
         };
       } else if (link && link.type && link.type === "email") {
@@ -389,7 +395,6 @@ export default function CreateCard(props) {
           croppedAreaPixels,
           rotation
         );
-        console.log(croppedImage);
 
         if (image.logoimage) {
           setSecondImage((prevformData) => {
@@ -535,19 +540,48 @@ export default function CreateCard(props) {
     }
 
     if (formData.userInfo.whatsappNumber) {
+      // setFormData((prevformData) => {
+      //   return {
+      //     ...prevformData,
+      //     userInfo: {
+      //       ...prevformData.userInfo,
+      //       whatsappNumber: {
+      //         whatsappNum: prevformData.userInfo.whatsappNumber.whatsappNum,
+      //         countryCode: prevformData.userInfo.whatsappNumber.countryCode
+      //           ? prevformData.userInfo.whatsappNumber.countryCode
+      //           : "1",
+      //       },
+      //     },
+      //   };
+      // });
+      console.log(formData.userInfo.whatsappNumber.countryCode);
       let code = formData.userInfo.whatsappNumber.countryCode
         ? formData.userInfo.whatsappNumber.countryCode
         : 1;
-      whatsAppNumber = code + formData.userInfo.whatsappNumber.whatsappNum;
+      whatsAppNumber = formData.userInfo.whatsappNumber;
     }
     if (formData.userInfo.mobileNumber) {
-      console.log(formData.userInfo.mobileNumber.countryCode);
+      // setFormData((prevformData) => {
+      //   return {
+      //     ...prevformData,
+      //     userInfo: {
+      //       ...prevformData.userInfo,
+      //       mobileNumber: {
+      //         phoneNum: prevformData.userInfo.mobileNumber.phoneNum,
+      //         countryCode: prevformData.userInfo.mobileNumber.countryCode
+      //           ? prevformData.userInfo.mobileNumber.countryCode
+      //           : "1",
+      //       },
+      //     },
+      //   };
+      // });
+      // console.log(formData.userInfo.mobileNumber);
       let code = formData.userInfo.mobileNumber.countryCode
         ? formData.userInfo.mobileNumber.countryCode
         : 1;
-      mobileNumber = code + formData.userInfo.mobileNumber.phoneNum;
+      mobileNumber = formData.userInfo.mobileNumber;
     }
-    console.log(formData.userImages.userProfile);
+
     // console.log(`a[] blobk ${json}`);
 
     var requestObj = {
@@ -563,11 +597,10 @@ export default function CreateCard(props) {
       mobileNumber: mobileNumber,
     };
 
+    console.log(requestObj);
     for (var i in requestObj) {
       if (i == "links") {
         for (let j = 0; j < requestObj[i].length; j++) {
-          console.log(requestObj[i][j]);
-
           bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
           bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
           bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
@@ -582,25 +615,24 @@ export default function CreateCard(props) {
     }
 
     for (var pair of bodyFormData.entries()) {
-      console.log(pair[0] + ", " + pair[1]);
     }
 
-    axios({
-      method: "post",
-      url: "http://192.168.1.8:3005/members/addMember",
-      data: bodyFormData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    })
-      .then(function (response) {
-        alert(response.data.message);
-        // window.location.href = "/";
-      })
-      .catch(function (error) {
-        // console.log(response);
-        alert(error.response.data.message);
-      });
+    // axios({
+    //   method: "post",
+    //   url: "http://192.168.1.8:3005/members/addMember",
+    //   data: bodyFormData,
+    //   headers: {
+    //     "Content-Type": "multipart/form-data",
+    //   },
+    // })
+    //   .then(function (response) {
+    //     alert(response.data.message);
+    //     // window.location.href = "/";
+    //   })
+    //   .catch(function (error) {
+    //     // console.log(response);
+    //     alert(error.response.data.message);
+    //   });
   };
 
   return (
@@ -1022,7 +1054,6 @@ export default function CreateCard(props) {
                     <h3> Choose/add Plugin handles </h3>
                     <div className="admin_detail-social-grid">
                       {formData.userPlugin.map((links, id) => {
-                        console.log("cret", links);
                         return (
                           <button
                             key={id}

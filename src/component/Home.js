@@ -21,6 +21,7 @@ export default function Home(props) {
       })
       .catch((error) => {
         console.log(error.response);
+        window.location.href = "/login";
       });
   }, []);
 

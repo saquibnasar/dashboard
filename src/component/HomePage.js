@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SIdebar from "./SIdebar";
 import Topbar from "./Topbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,17 +13,49 @@ import About from "./About";
 import FlaxCode from "./FlaxCode";
 import UserProfile from "./UserProfile/UserProfile";
 import { Link } from "react-router-dom";
+import axios from "axios";
 export default function HomePage(props) {
-  const { homepageId } = useParams();
+  const { homepageId, userId } = useParams();
   const [isLinks, setIslinks] = useState(false);
   const [isClick, setIsClick] = useState(false);
-
+  const [data, setData] = useState();
   const [formData, setFormData] = useState({
-    username: "",
-    designation: "",
-    employeeId: "",
-    employeeBio: "",
+    userInfo: {},
+    userLink: [],
+    userPlugin: [],
+
+    userImages: {
+      userProfile: "",
+      bannerImage1: "",
+      bannerImage2: "",
+      bannerImage3: "",
+    },
   });
+  useEffect(() => {
+    axios
+      .get(`http://192.168.1.8:3005/members/${userId}`)
+      .then((response) => {
+        setData(response.data);
+        setFormData((prevData) => {
+          return {
+            ...prevData,
+            name: response.data.name,
+            designation: response.data.designation,
+            employeeBio: response.data.employeeBio,
+            officeEmailId: response.data.officeEmailId,
+            whatsAppNumber: response.data.whatsAppNumber,
+            mobileNumber: response.data.mobileNumber,
+            userLink: response.data.links,
+            bannerImages: response.data.bannerImages,
+            profileImage: response.data.profileImage,
+            employeeId: response.data.employeeId,
+          };
+        });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }, []);
 
   const handleChange = (event) => {
     setFormData((prevformData) => {
@@ -74,7 +106,7 @@ export default function HomePage(props) {
                     <NavLink
                       className="nav-link"
                       aria-current="page"
-                      to="/homepage/content"
+                      to={`/homepage/content/${userId}`}
                     >
                       <img className="img-fluid" src="/dots.png" alt="" />
                       <p className="d-lg-none">Content</p>
@@ -84,7 +116,7 @@ export default function HomePage(props) {
                     <NavLink
                       className="nav-link"
                       aria-current="page"
-                      to="/homepage/about"
+                      to={`/homepage/about/${userId}`}
                     >
                       <FontAwesomeIcon icon={faUser} />
                       <p className="d-lg-none">About</p>
@@ -94,7 +126,7 @@ export default function HomePage(props) {
                     <NavLink
                       className="nav-link"
                       aria-current="page"
-                      to="/homepage/flaxcode"
+                      to={`/homepage/flaxcode/${userId}`}
                     >
                       <img className="img-fluid" src="/iconqr.png" alt="" />
                       <p className="d-lg-none">FlaxCode</p>
@@ -119,24 +151,27 @@ export default function HomePage(props) {
             >
               {homepageId === "content" ? (
                 <div className="links">
-                  {/* <div className="link_container">
-                    <div>
-                      <h2>This profile doesn’t have any linked content</h2>
-                      <h3>
-                        Add links to contact Information, website,
-                        <br className="d-lg-none" />
-                        Social media handles and more
-                      </h3>
+                  {data && data.links ? (
+                    <LInks addLin={addLin} data={data} />
+                  ) : (
+                    <div className="link_container">
+                      <div>
+                        <h2>This profile doesn’t have any linked content</h2>
+                        <h3>
+                          Add links to contact Information, website,
+                          <br className="d-lg-none" />
+                          Social media handles and more
+                        </h3>
 
-                      <button className="btn_add" onClick={addLin}>
-                        <FontAwesomeIcon icon={faPlus} />
-                        Add Links and contact info
-                      </button>
+                        <button className="btn_add" onClick={addLin}>
+                          <FontAwesomeIcon icon={faPlus} />
+                          Add Links and contact info
+                        </button>
+                      </div>
+
+                      <img src="/bglink.png" alt="" className="img-fluid" />
                     </div>
-
-                    <img src="/bglink.png" alt="" className="img-fluid" />
-                  </div> */}
-                  <LInks addLin={addLin} />
+                  )}
                 </div>
               ) : homepageId === "about" ? (
                 <About
@@ -146,6 +181,8 @@ export default function HomePage(props) {
                   imageData={image}
                   imagehandleChange={imagehandleChange}
                   setImage={setImage}
+                  data={data}
+                  setFormData={setFormData}
                 />
               ) : homepageId === "flaxcode" ? (
                 <FlaxCode />

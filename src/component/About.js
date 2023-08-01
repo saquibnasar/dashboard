@@ -8,7 +8,7 @@ import Cropper from "react-easy-crop";
 import getCroppedImg from "./imgUploader/cropImage";
 import UserProfile from "./UserProfile/UserProfile";
 import AddCard from "./AddCard";
-
+import PhoneInput from "react-phone-input-2";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
@@ -65,13 +65,10 @@ export default function About(props) {
   });
 
   const handleChange = (event) => {
-    setFormData((prevformData) => {
+    props.setFormData((prevformData) => {
       return {
         ...prevformData,
-        userInfo: {
-          ...prevformData.userInfo,
-          [event.target.name]: event.target.value,
-        },
+        [event.target.name]: event.target.value,
       };
     });
   };
@@ -184,11 +181,20 @@ export default function About(props) {
   const [formData, setFormData] = useState({
     userInfo: {},
     userLink: [],
+    userPlugin: [],
+
+    userImages: {
+      userProfile: "",
+      bannerImage1: "",
+      bannerImage2: "",
+      bannerImage3: "",
+    },
   });
 
   const textHander = () => {
     console.log(formData);
   };
+  console.log(props.data);
   return (
     <>
       <div className="setting">
@@ -850,9 +856,9 @@ export default function About(props) {
                   id="Name"
                   placeholder="Name"
                   required
-                  name="username"
+                  name="name"
                   onChange={handleChange}
-                  value={formData.username}
+                  value={props.formData.name}
                 />
               </div>
               <div className="">
@@ -863,7 +869,7 @@ export default function About(props) {
                   placeholder="Designation"
                   name="designation"
                   onChange={handleChange}
-                  value={formData.designation}
+                  value={props.formData.designation}
                 />
               </div>
               <div className="">
@@ -874,8 +880,8 @@ export default function About(props) {
                   placeholder="Employee id"
                   name="employeeId"
                   required
-                  onChange={handleChange}
-                  value={formData.employeeId}
+                  // onChange={handleChange}
+                  value={props.formData.employeeId}
                 />
               </div>
               <div className="">
@@ -887,12 +893,12 @@ export default function About(props) {
                   name="employeeBio"
                   required
                   onChange={handleChange}
-                  value={formData.employeeBio}
+                  value={props.formData.employeeBio}
                 />
               </div>
             </div>
 
-            <div className="admin_detail-social">
+            {/* <div className="admin_detail-social">
               <h3>Choose/add Social handles </h3>
               <div className="admin_detail-social-grid">
                 {formData.userLink.map((links, id) => {
@@ -916,7 +922,73 @@ export default function About(props) {
                   Add +
                 </button>
               </div>
+            </div> */}
+            <div className="admin_detail-social">
+              <h3>Choose/add Social handles </h3>
+              <div className="admin_detail-social-grid">
+                {formData.userLink.map((links, id) => {
+                  return (
+                    <button
+                      key={id}
+                      className="btn-primary"
+                      // onClick={() => {
+                      //   updateLink(links, id);
+                      // }}
+                    >
+                      {links.type === "phone" ? "phone" : ""}
+                      {links.type === "email" ? "email" : ""}
+                      {links.type === "website" ? "website" : ""}
+                      {links.type === "whatsapp" ? "whatsapp" : ""}
+                      {links.type === "linkedin" ? "linkedin" : ""}
+                      {links.type === "instagram" ? "instagram" : ""}
+                      {links.type === "facebook" ? "facebook" : ""}
+                      {links.type === "twitter" ? "twitter" : ""}
+                      {links.type === "youtube" ? "youtube" : ""}
+                      {links.type === "address" ? "address" : ""}
+                    </button>
+                  );
+                })}
+
+                <button
+                  className="btn-primary"
+                  onClick={() => {
+                    addLin();
+                    // setType("card");
+                  }}
+                >
+                  Add +
+                </button>
+              </div>
             </div>
+            <div className="admin_detail-social">
+              <h3> Choose/add Plugin handles </h3>
+              <div className="admin_detail-social-grid">
+                {formData.userPlugin.map((links, id) => {
+                  return (
+                    <button
+                      key={id}
+                      className="btn-primary"
+                      // onClick={() => {
+                      //   updatePlugin(links, id);
+                      // }}
+                    >
+                      {links.type === "youtube" ? "youtube" : ""}
+                    </button>
+                  );
+                })}
+
+                <button
+                  className="btn-primary"
+                  onClick={() => {
+                    addLin();
+                    // setType("plugin");
+                  }}
+                >
+                  Add +
+                </button>
+              </div>
+            </div>
+
             <div className="admin_detail-contact">
               <h3>Contact details </h3>
 
@@ -927,36 +999,124 @@ export default function About(props) {
                   id="Name"
                   placeholder="office email id"
                   required
-                  name="officeId"
+                  name="officeEmailId"
                   onChange={handleChange}
-                  value={formData.officeId}
+                  value={props.formData.officeEmailId}
                 />
               </div>
-              <div className="p-relative mb-3">
+              <div className="p-relative mb-3 countriesCode">
                 <input
-                  type="text"
-                  className="form-control"
+                  type="number"
+                  className={
+                    props.formData.whatsAppNumber &&
+                    props.formData.whatsAppNumber.split("").length === 2
+                      ? "countriesCode-input form-control formControl-2"
+                      : props.formData.whatsAppNumber &&
+                        props.formData.whatsAppNumber.split("").length === 3
+                      ? "countriesCode-input form-control formControl-3"
+                      : props.formData.whatsAppNumber &&
+                        props.formData.whatsAppNumber.split("").length === 4
+                      ? "countriesCode-input form-control formControl-4"
+                      : "countriesCode-input form-control formControl-1"
+                  }
                   id="designation"
                   placeholder="enter whatsApp number"
                   name="whatsappNumber"
                   onChange={handleChange}
-                  value={formData.whatsappNumber}
+                  value={props.formData.whatsAppNumber}
                 />
-                <label className="did-floating-label">+91</label>
+                {/* <label className="did-floating-label">+91</label> */}
+                <label
+                  className="did-floating-label z-1"
+                  // htmlFor="number"
+                  aria-haspopup="listbox"
+                >
+                  <PhoneInput
+                    country={"us"}
+                    value={props.formData.whatsAppNumber}
+                    onChange={handleChange.bind(this, "whPhone")}
+                    enableSearch={true}
+                    disableSearchIcon={true}
+                    // disableCountryCode={true}
+                    countryCodeEditable={false}
+                    inputProps={{
+                      name: "phone",
+                      required: true,
+                      autoFocus: true,
+                      id: "number",
+                      placeholder: "1",
+                      className:
+                        props.formData.whatsAppNumber &&
+                        props.formData.whatsAppNumber.split("").length === 2
+                          ? "form-control CodeForm-control CodeForm-2"
+                          : props.formData.whatsAppNumber &&
+                            props.formData.whatsAppNumber.split("").length === 3
+                          ? "form-control CodeForm-control CodeForm-3"
+                          : props.formData.whatsAppNumber &&
+                            props.formData.whatsAppNumber.split("").length === 4
+                          ? "form-control CodeForm-control CodeForm-4"
+                          : "form-control CodeForm-control",
+                    }}
+                  />
+                </label>
               </div>
-              <div className="p-relative mb-3">
+              <div className="p-relative mb-3 countriesCode z">
                 <input
-                  type="text"
-                  className="form-control"
+                  type="number"
+                  // className="form-control "
+                  className={
+                    props.formData.mobileNumber &&
+                    props.formData.mobileNumber.split("").length === 2
+                      ? "countriesCode-input form-control  formControl-2"
+                      : props.formData.mobileNumber &&
+                        props.formData.mobileNumber.split("").length === 3
+                      ? "countriesCode-input form-control formControl-3"
+                      : props.formData.mobileNumber &&
+                        props.formData.mobileNumber.split("").length === 4
+                      ? "countriesCode-input form-control formControl-4"
+                      : "countriesCode-input form-control formControl-1"
+                  }
                   id="company"
                   placeholder="enter Mobile number"
                   name="mobileNumber"
                   required
                   onChange={handleChange}
-                  value={formData.mobileNumber}
+                  value={props.formData.mobileNumber}
                 />
 
-                <label className="did-floating-label">+91</label>
+                <label
+                  className="did-floating-label countriesCode"
+                  // htmlFor="number"
+                  aria-haspopup="listbox"
+                >
+                  <PhoneInput
+                    country={"us"}
+                    value={props.formData.mobileNumber}
+                    onChange={handleChange.bind(this, "phone")}
+                    enableSearch={true}
+                    disableSearchIcon={true}
+                    // disableCountryCode={true}
+                    countryCodeEditable={false}
+                    inputProps={{
+                      name: "phone",
+                      required: true,
+                      autoFocus: true,
+                      id: "number",
+                      placeholder: "1",
+                      className:
+                        props.formData.mobileNumber &&
+                        props.formData.mobileNumber.split("").length === 2
+                          ? "form-control CodeForm-control CodeForm-2"
+                          : props.formData.mobileNumber &&
+                            props.formData.mobileNumber.split("").length === 3
+                          ? "form-control CodeForm-control CodeForm-3"
+                          : props.formData.mobileNumber &&
+                            props.formData.mobileNumber.split("").length === 4
+                          ? "form-control CodeForm-control CodeForm-4"
+                          : "form-control CodeForm-control",
+                    }}
+                  />
+                </label>
               </div>
             </div>
             <div className="admin_authentication">

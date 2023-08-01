@@ -40,8 +40,9 @@ export default function Signin() {
       .then(function (response) {
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("refreshToken", response.data.refreshToken);
+        window.location.href = "/";
       })
-      .catch(function (error) {
+      .catch( (error) =>{
         alert(error.response.data.message);
       });
   };
@@ -254,13 +255,12 @@ export default function Signin() {
                 </button>
               </div> */}
               <h3>
-                Already use Flax? <Link to="/signin"> Login</Link>
+                Already use Flax? <Link to="/signup"> Signup</Link>
               </h3>
               <p>
                 By continuing, you agree to Flax{" "}
                 <a href="/"> Terms and Conditions </a>
                 and confirm you have read our <a href="/"> Privacy Notice</a>.
-                
               </p>
             </form>
           </div>
