@@ -62,21 +62,27 @@ export default function AddLink(props) {
           userLink: [...newArr],
         };
       });
+      props.sendData();
     } else {
       if (props.data.type === "phone") {
-        props.setFormData((prevformData) => {
-          return {
-            ...prevformData,
-            userLink: [
-              ...prevformData.userLink,
-              {
-                title: formData.title,
-                value: phone + formData.value,
-                type: props.data.type,
-              },
-            ],
-          };
-        });
+        if (10 > formData.value.split("").length < 8) {
+          alert("number cann't be less then 8 cann't be more then 12");
+        } else {
+          props.setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              userLink: [
+                ...prevformData.userLink,
+                {
+                  title: formData.title,
+                  value: phone + formData.value,
+                  type: props.data.type,
+                },
+              ],
+            };
+          });
+          props.sendData();
+        }
       } else {
         props.setFormData((prevformData) => {
           return {
@@ -91,9 +97,9 @@ export default function AddLink(props) {
             ],
           };
         });
+        props.sendData();
       }
     }
-    props.sendData();
   };
 
   const deleteElement = () => {

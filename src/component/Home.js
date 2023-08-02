@@ -17,11 +17,13 @@ export default function Home(props) {
     axios
       .get("http://192.168.1.8:3005/members/all")
       .then((response) => {
+        console.log(response.data);
         setData(response.data);
       })
       .catch((error) => {
-        console.log(error.response);
-        window.location.href = "/login";
+        // if(error.response.status ==401){
+        //   window.location.href = "/login";
+        // }
       });
   }, []);
 

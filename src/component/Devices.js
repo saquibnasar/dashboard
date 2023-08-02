@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import Topbar from "./Topbar";
 import UserProfile from "./UserProfile/UserProfile";
 import Lottie from "lottie-react";
-import animationdata from "./SIdebar.json";
+
 import Spline from "@splinetool/react-spline";
 
 export default function Devices(props) {

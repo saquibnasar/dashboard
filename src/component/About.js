@@ -65,12 +65,12 @@ export default function About(props) {
   });
 
   const handleChange = (event) => {
-    props.setFormData((prevformData) => {
-      return {
-        ...prevformData,
-        [event.target.name]: event.target.value,
-      };
-    });
+    // props.setFormData((prevformData) => {
+    //   return {
+    //     ...prevformData,
+    //     [event.target.name]: event.target.value,
+    //   };
+    // });
   };
 
   const addLin = () => {
@@ -193,8 +193,8 @@ export default function About(props) {
 
   const textHander = () => {
     console.log(formData);
+    console.log(props.date);
   };
-  console.log(props.data);
   return (
     <>
       <div className="setting">
@@ -845,7 +845,6 @@ export default function About(props) {
                 )}
               </div>
             </div>
-
             <div className="admin_detail-member">
               <h3>Enter user detail </h3>
 
@@ -857,7 +856,7 @@ export default function About(props) {
                   placeholder="Name"
                   required
                   name="name"
-                  onChange={handleChange}
+                  onChange={props.handleChange}
                   value={props.formData.name}
                 />
               </div>
@@ -868,7 +867,7 @@ export default function About(props) {
                   id="designation"
                   placeholder="Designation"
                   name="designation"
-                  onChange={handleChange}
+                  onChange={props.handleChange}
                   value={props.formData.designation}
                 />
               </div>
@@ -880,7 +879,7 @@ export default function About(props) {
                   placeholder="Employee id"
                   name="employeeId"
                   required
-                  // onChange={handleChange}
+                  // onChange={props.handleChange}
                   value={props.formData.employeeId}
                 />
               </div>
@@ -892,37 +891,11 @@ export default function About(props) {
                   placeholder="Employee bio"
                   name="employeeBio"
                   required
-                  onChange={handleChange}
+                  onChange={props.handleChange}
                   value={props.formData.employeeBio}
                 />
               </div>
             </div>
-
-            {/* <div className="admin_detail-social">
-              <h3>Choose/add Social handles </h3>
-              <div className="admin_detail-social-grid">
-                {formData.userLink.map((links, id) => {
-                  return (
-                    <button key={id} className="btn-primary" onClick={addLin}>
-                      {links.linkType === "phone" ? "phone" : ""}
-                      {links.linkType === "email" ? "email" : ""}
-                      {links.linkType === "website" ? "website" : ""}
-                      {links.linkType === "whatsapp" ? "whatsapp" : ""}
-                      {links.linkType === "linkedin" ? "linkedin" : ""}
-                      {links.linkType === "instagram" ? "instagram" : ""}
-                      {links.linkType === "facebook" ? "facebook" : ""}
-                      {links.linkType === "twitter" ? "twitter" : ""}
-                      {links.linkType === "youtube" ? "youtube" : ""}
-                      {links.linkType === "address" ? "address" : ""}
-                    </button>
-                  );
-                })}
-
-                <button className="btn-primary" onClick={addLin}>
-                  Add +
-                </button>
-              </div>
-            </div> */}
             <div className="admin_detail-social">
               <h3>Choose/add Social handles </h3>
               <div className="admin_detail-social-grid">
@@ -988,7 +961,6 @@ export default function About(props) {
                 </button>
               </div>
             </div>
-
             <div className="admin_detail-contact">
               <h3>Contact details </h3>
 
@@ -1000,7 +972,7 @@ export default function About(props) {
                   placeholder="office email id"
                   required
                   name="officeEmailId"
-                  onChange={handleChange}
+                  onChange={props.handleChange}
                   value={props.formData.officeEmailId}
                 />
               </div>
@@ -1009,13 +981,15 @@ export default function About(props) {
                   type="number"
                   className={
                     props.formData.whatsAppNumber &&
-                    props.formData.whatsAppNumber.split("").length === 2
+                    props.formData.whatsAppNumber.code.split("").length === 2
                       ? "countriesCode-input form-control formControl-2"
                       : props.formData.whatsAppNumber &&
-                        props.formData.whatsAppNumber.split("").length === 3
+                        props.formData.whatsAppNumber.code.split("").length ===
+                          3
                       ? "countriesCode-input form-control formControl-3"
                       : props.formData.whatsAppNumber &&
-                        props.formData.whatsAppNumber.split("").length === 4
+                        props.formData.whatsAppNumber.code.split("").length ===
+                          4
                       ? "countriesCode-input form-control formControl-4"
                       : "countriesCode-input form-control formControl-1"
                   }
@@ -1023,21 +997,33 @@ export default function About(props) {
                   placeholder="enter whatsApp number"
                   name="whatsappNumber"
                   onChange={handleChange}
-                  value={props.formData.whatsAppNumber}
+                  value={
+                    props.formData.whatsAppNumber &&
+                    props.formData.whatsAppNumber.phoneNumber
+                      ? props.formData.whatsAppNumber.phoneNumber
+                      : ""
+                  }
                 />
-                {/* <label className="did-floating-label">+91</label> */}
+
                 <label
                   className="did-floating-label z-1"
-                  // htmlFor="number"
                   aria-haspopup="listbox"
                 >
                   <PhoneInput
-                    country={"us"}
-                    value={props.formData.whatsAppNumber}
+                    // country={
+                    //   props.formData.whatsAppNumber
+                    //     ? props.formData.whatsAppNumber.code
+                    //     : ""
+                    // }
+                    value={
+                      props.formData.whatsAppNumber
+                        ? `+${props.formData.whatsAppNumber.code}`
+                        : ""
+                    }
+                    enableAreaCodes={true}
                     onChange={handleChange.bind(this, "whPhone")}
                     enableSearch={true}
                     disableSearchIcon={true}
-                    // disableCountryCode={true}
                     countryCodeEditable={false}
                     inputProps={{
                       name: "phone",
@@ -1045,15 +1031,19 @@ export default function About(props) {
                       autoFocus: true,
                       id: "number",
                       placeholder: "1",
+
                       className:
                         props.formData.whatsAppNumber &&
-                        props.formData.whatsAppNumber.split("").length === 2
+                        props.formData.whatsAppNumber.code.split("").length ===
+                          2
                           ? "form-control CodeForm-control CodeForm-2"
                           : props.formData.whatsAppNumber &&
-                            props.formData.whatsAppNumber.split("").length === 3
+                            props.formData.whatsAppNumber.code.split("")
+                              .length === 3
                           ? "form-control CodeForm-control CodeForm-3"
                           : props.formData.whatsAppNumber &&
-                            props.formData.whatsAppNumber.split("").length === 4
+                            props.formData.whatsAppNumber.code.split("")
+                              .length === 4
                           ? "form-control CodeForm-control CodeForm-4"
                           : "form-control CodeForm-control",
                     }}
@@ -1063,16 +1053,18 @@ export default function About(props) {
               <div className="p-relative mb-3 countriesCode z">
                 <input
                   type="number"
-                  // className="form-control "
                   className={
                     props.formData.mobileNumber &&
-                    props.formData.mobileNumber.split("").length === 2
+                    props.formData.mobileNumber.phoneNumber.split("").length ===
+                      2
                       ? "countriesCode-input form-control  formControl-2"
                       : props.formData.mobileNumber &&
-                        props.formData.mobileNumber.split("").length === 3
+                        props.formData.mobileNumber.phoneNumber.split("")
+                          .length === 3
                       ? "countriesCode-input form-control formControl-3"
                       : props.formData.mobileNumber &&
-                        props.formData.mobileNumber.split("").length === 4
+                        props.formData.mobileNumber.phoneNumber.split("")
+                          .length === 4
                       ? "countriesCode-input form-control formControl-4"
                       : "countriesCode-input form-control formControl-1"
                   }
@@ -1086,12 +1078,14 @@ export default function About(props) {
 
                 <label
                   className="did-floating-label countriesCode"
-                  // htmlFor="number"
                   aria-haspopup="listbox"
                 >
                   <PhoneInput
-                    country={"us"}
-                    value={props.formData.mobileNumber}
+                    value={
+                      props.formData.mobileNumber
+                        ? props.formData.mobileNumber.code
+                        : ""
+                    }
                     onChange={handleChange.bind(this, "phone")}
                     enableSearch={true}
                     disableSearchIcon={true}
@@ -1105,13 +1099,15 @@ export default function About(props) {
                       placeholder: "1",
                       className:
                         props.formData.mobileNumber &&
-                        props.formData.mobileNumber.split("").length === 2
+                        props.formData.mobileNumber.code.split("").length === 2
                           ? "form-control CodeForm-control CodeForm-2"
                           : props.formData.mobileNumber &&
-                            props.formData.mobileNumber.split("").length === 3
+                            props.formData.mobileNumber.code.split("")
+                              .length === 3
                           ? "form-control CodeForm-control CodeForm-3"
                           : props.formData.mobileNumber &&
-                            props.formData.mobileNumber.split("").length === 4
+                            props.formData.mobileNumber.code.split("")
+                              .length === 4
                           ? "form-control CodeForm-control CodeForm-4"
                           : "form-control CodeForm-control",
                     }}
@@ -1158,7 +1154,7 @@ export default function About(props) {
           </div>
         </div>
       </div>
-      {isLinks ? (
+      {/* {isLinks ? (
         <AddCard
           removeLink={addLin}
           isClick={isClick}
@@ -1166,7 +1162,7 @@ export default function About(props) {
         />
       ) : (
         ""
-      )}
+      )} */}
     </>
   );
 }

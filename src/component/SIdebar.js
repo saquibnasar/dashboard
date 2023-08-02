@@ -87,10 +87,18 @@ export default function SIdebar(props) {
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" aria-current="page" to="/jfsdk">
+            <div
+              className="nav-link"
+              aria-current="page"
+              onClick={() => {
+                window.localStorage.removeItem("accessToken");
+                window.localStorage.removeItem("refreshToken");
+                window.location.href = '/login';
+              }}
+            >
               <FontAwesomeIcon icon={faRightFromBracket} />
               <p className="d-xl-none">Logout</p>
-            </NavLink>
+            </div>
           </li>
         </ul>
 

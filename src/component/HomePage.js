@@ -19,22 +19,12 @@ export default function HomePage(props) {
   const [isLinks, setIslinks] = useState(false);
   const [isClick, setIsClick] = useState(false);
   const [data, setData] = useState();
-  const [formData, setFormData] = useState({
-    userInfo: {},
-    userLink: [],
-    userPlugin: [],
-
-    userImages: {
-      userProfile: "",
-      bannerImage1: "",
-      bannerImage2: "",
-      bannerImage3: "",
-    },
-  });
+  const [formData, setFormData] = useState({});
   useEffect(() => {
     axios
       .get(`http://192.168.1.8:3005/members/${userId}`)
       .then((response) => {
+        console.log(response.data);
         setData(response.data);
         setFormData((prevData) => {
           return {
@@ -174,16 +164,19 @@ export default function HomePage(props) {
                   )}
                 </div>
               ) : homepageId === "about" ? (
-                <About
-                  addLink={addLin}
-                  handleChange={handleChange}
-                  formData={formData}
-                  imageData={image}
-                  imagehandleChange={imagehandleChange}
-                  setImage={setImage}
-                  data={data}
-                  setFormData={setFormData}
-                />
+                <>
+                  {console.log(formData)}
+                  <About
+                    addLink={addLin}
+                    handleChange={handleChange}
+                    formData={formData}
+                    imageData={image}
+                    imagehandleChange={imagehandleChange}
+                    setImage={setImage}
+                    data={data}
+                    setFormData={setFormData}
+                  />
+                </>
               ) : homepageId === "flaxcode" ? (
                 <FlaxCode />
               ) : (

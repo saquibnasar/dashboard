@@ -540,46 +540,35 @@ export default function CreateCard(props) {
     }
 
     if (formData.userInfo.whatsappNumber) {
-      // setFormData((prevformData) => {
-      //   return {
-      //     ...prevformData,
-      //     userInfo: {
-      //       ...prevformData.userInfo,
-      //       whatsappNumber: {
-      //         whatsappNum: prevformData.userInfo.whatsappNumber.whatsappNum,
-      //         countryCode: prevformData.userInfo.whatsappNumber.countryCode
-      //           ? prevformData.userInfo.whatsappNumber.countryCode
-      //           : "1",
-      //       },
-      //     },
-      //   };
-      // });
       console.log(formData.userInfo.whatsappNumber.countryCode);
       let code = formData.userInfo.whatsappNumber.countryCode
         ? formData.userInfo.whatsappNumber.countryCode
         : 1;
       whatsAppNumber = formData.userInfo.whatsappNumber;
+
+      bodyFormData.append(
+        `whatsAppNumber[phoneNumber]`,
+        formData.userInfo.whatsappNumber.whatsappNum
+      );
+      bodyFormData.append(
+        `whatsAppNumber[code]`,
+        formData.userInfo.whatsappNumber.countryCode
+      );
     }
     if (formData.userInfo.mobileNumber) {
-      // setFormData((prevformData) => {
-      //   return {
-      //     ...prevformData,
-      //     userInfo: {
-      //       ...prevformData.userInfo,
-      //       mobileNumber: {
-      //         phoneNum: prevformData.userInfo.mobileNumber.phoneNum,
-      //         countryCode: prevformData.userInfo.mobileNumber.countryCode
-      //           ? prevformData.userInfo.mobileNumber.countryCode
-      //           : "1",
-      //       },
-      //     },
-      //   };
-      // });
-      // console.log(formData.userInfo.mobileNumber);
       let code = formData.userInfo.mobileNumber.countryCode
         ? formData.userInfo.mobileNumber.countryCode
         : 1;
       mobileNumber = formData.userInfo.mobileNumber;
+
+      bodyFormData.append(
+        `mobileNumber[phoneNumber]`,
+        formData.userInfo.mobileNumber.phoneNum
+      );
+      bodyFormData.append(
+        `mobileNumber[code]`,
+        formData.userInfo.mobileNumber.countryCode
+      );
     }
 
     // console.log(`a[] blobk ${json}`);
@@ -617,22 +606,23 @@ export default function CreateCard(props) {
     for (var pair of bodyFormData.entries()) {
     }
 
-    // axios({
-    //   method: "post",
-    //   url: "http://192.168.1.8:3005/members/addMember",
-    //   data: bodyFormData,
-    //   headers: {
-    //     "Content-Type": "multipart/form-data",
-    //   },
-    // })
-    //   .then(function (response) {
-    //     alert(response.data.message);
-    //     // window.location.href = "/";
-    //   })
-    //   .catch(function (error) {
-    //     // console.log(response);
-    //     alert(error.response.data.message);
-    //   });
+    axios({
+      method: "post",
+      url: "http://192.168.1.8:3005/members/addMember",
+      data: bodyFormData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then(function (response) {
+        alert(response.data.message);
+        console.log(response.data.message);
+        window.location.href = "/";
+      })
+      .catch(function (error) {
+        // console.log(error.response.data.message);
+        alert(error.response.data.message);
+      });
   };
 
   return (
@@ -986,6 +976,7 @@ export default function CreateCard(props) {
                         name="designation"
                         onChange={handleChange}
                         value={formData.designation}
+                        required
                       />
                     </div>
                     <div className="">
@@ -1007,7 +998,6 @@ export default function CreateCard(props) {
                         id="employeeBio"
                         placeholder="Employee bio"
                         name="employeeBio"
-                        required
                         onChange={handleChange}
                         value={formData.employeeBio}
                       />
@@ -1021,6 +1011,7 @@ export default function CreateCard(props) {
                           <button
                             key={id}
                             className="btn-primary"
+                            type="button"
                             onClick={() => {
                               updateLink(links, id);
                             }}
@@ -1041,6 +1032,7 @@ export default function CreateCard(props) {
 
                       <button
                         className="btn-primary"
+                        type="button"
                         onClick={() => {
                           addLin();
                           setType("card");
@@ -1058,6 +1050,7 @@ export default function CreateCard(props) {
                           <button
                             key={id}
                             className="btn-primary"
+                            type="button"
                             onClick={() => {
                               updatePlugin(links, id);
                             }}
@@ -1069,6 +1062,7 @@ export default function CreateCard(props) {
 
                       <button
                         className="btn-primary"
+                        type="button"
                         onClick={() => {
                           addLin();
                           setType("plugin");
@@ -1088,7 +1082,6 @@ export default function CreateCard(props) {
                         className="form-control"
                         id="Name"
                         placeholder="office email id"
-                        required
                         name="officeId"
                         onChange={handleChange}
                         value={formData.officeId}
@@ -1169,7 +1162,6 @@ export default function CreateCard(props) {
                         id="company"
                         placeholder="enter Mobile number"
                         name="mobileNumber"
-                        required
                         onChange={handleChange}
                         value={formData.mobileNumber}
                       />
