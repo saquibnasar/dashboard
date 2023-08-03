@@ -12,7 +12,6 @@ import { Link, json } from "react-router-dom";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
@@ -409,6 +408,13 @@ export default function CreateCard(props) {
               croppedAreaPixels;
             prevformData.userImages.userProfile.rotation = rotation;
 
+            // return {
+            //   ...prevformData,
+            //   userImages: {
+            //     ...prevformData.userImages,
+            //     userProfile: croppedImage,
+            //   },
+            // };
             return {
               ...prevformData,
             };

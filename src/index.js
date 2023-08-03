@@ -24,14 +24,14 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   function (response) {
-    console.log(response.status);
+    // console.log(response.status);
     // if (response.status === 201) {
     //   window.location.href = window.location.href;
     // }
     return response;
   },
   async function (error) {
-    console.log(error.response.status);
+    // console.log(error.response.status);
     if (error.response.status == 401) {
       axios
         .post("http://192.168.1.8:3005/auth/refresh-token", {

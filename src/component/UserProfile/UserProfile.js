@@ -10,7 +10,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 export default function UserProfile(props) {
   // const { userProfileId } = useParams();
-  const [data, setData] = useState();
+  const [data, setData] = useState("");
   const [isCopy, setIsCopy] = useState("Copy");
   const [isShareClicked, setIsShareClicked] = useState(false);
   // useEffect(() => {

@@ -6,17 +6,21 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./imgUploader/cropImage";
-import UserProfile from "./UserProfile/UserProfile";
-import AddCard from "./AddCard";
 import PhoneInput from "react-phone-input-2";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faRotateLeft } from "@fortawesome/free-solid-svg-icons";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import AddLink from "./AddLink";
+
 export default function About(props) {
   const [startDate, setStartDate] = useState(new Date());
 
@@ -33,6 +37,7 @@ export default function About(props) {
   const [croppedAreaPixels, setCroppedAreaPixels] = useState(null);
   const [croppedImage, setCroppedImage] = useState(null);
   const [isNavbar, setIsNavbar] = useState(false);
+  const [isLinkClick, setIsLinkClick] = useState(false);
   const [editImage, setEditImage] = useState({
     logoimage: "",
     bannerImage1: "",
@@ -42,7 +47,7 @@ export default function About(props) {
   });
 
   const [secondImage, setSecondImage] = useState({
-    logoimage: "",
+    logoimage: `http://192.168.1.8:3005/${props.formData.profileImage}`,
     bannerImage1: "",
     bannerImage2: "",
     bannerImage3: "",
@@ -63,15 +68,6 @@ export default function About(props) {
     uploadListcontainer: ".bannerImage1",
     uploadList: ".uploadBanner1",
   });
-
-  const handleChange = (event) => {
-    // props.setFormData((prevformData) => {
-    //   return {
-    //     ...prevformData,
-    //     [event.target.name]: event.target.value,
-    //   };
-    // });
-  };
 
   const addLin = () => {
     setIslinks(!isLinks);
@@ -178,23 +174,138 @@ export default function About(props) {
     }
   });
 
-  const [formData, setFormData] = useState({
-    userInfo: {},
-    userLink: [],
-    userPlugin: [],
-
-    userImages: {
-      userProfile: "",
-      bannerImage1: "",
-      bannerImage2: "",
-      bannerImage3: "",
-    },
-  });
-
   const textHander = () => {
-    console.log(formData);
+    // console.log(formData);
     console.log(props.date);
   };
+
+  const updateLink = (link, id) => {
+    console.log(link);
+    console.log(id);
+    setIsLinkClick(!isLinkClick);
+    setLinkData(() => {
+      if (link && link.type && link.type === "phone") {
+        return {
+          headerTitle: "Phone",
+          linkTitleInput: "phone",
+          title: "Phone Number*",
+          titleInput: "Enter Phone Number*",
+          type: "number",
+          type: "phone",
+          icon: faPhone,
+          linkData: link.value,
+          linkTitle: link.title,
+          countryCode: link.countryCode ? link.countryCode : "1",
+          id: id,
+        };
+      } else if (link && link.type && link.type === "email") {
+        return {
+          headerTitle: "Link Title",
+          linkTitleInput: "email",
+          title: "Email",
+          titleInput: "Enter Email",
+          type: "email",
+          type: "email",
+          icon: "/email.png",
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "website") {
+        return {
+          headerTitle: "Website Title",
+          linkTitleInput: "Website",
+          title: "Website*",
+          titleInput: "Enter Website URL",
+          type: "text",
+          type: "website",
+          icon: "/safari.png",
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "whatsapp") {
+        return {
+          headerTitle: "Whatsapp Title",
+          linkTitleInput: "Whatsapp",
+          title: "Whatsapp*",
+          titleInput: "Enter Whatsapp Number",
+          type: "text",
+          type: "whatsapp",
+          icon: faWhatsapp,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "linkedin") {
+        return {
+          headerTitle: "Linkedin Title",
+          linkTitleInput: "Linkedin",
+          title: "Linkedin*",
+          titleInput: "Enter Linkedin URl",
+          type: "text",
+          type: "linkedin",
+          icon: faLinkedinIn,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "instagram") {
+        return {
+          headerTitle: "Instagram Title",
+          linkTitleInput: "Instagram",
+          title: "Instagram*",
+          titleInput: "Enter Instagram URl",
+          type: "text",
+          type: "instagram",
+          icon: faInstagram,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "facebook") {
+        return {
+          headerTitle: "Facebook Title",
+          linkTitleInput: "Facebook",
+          title: "Facebook*",
+          titleInput: "Enter Facebook URl",
+          type: "text",
+          type: "facebook",
+          icon: faFacebookF,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "address") {
+        return {
+          headerTitle: "Address Title",
+          linkTitleInput: "Address",
+          title: "Address*",
+          titleInput: "Enter Address",
+          type: "text",
+          type: "address",
+          icon: "/googlemap.png",
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "youtube") {
+        return {
+          headerTitle: "Youtube Title",
+          linkTitleInput: "Youtube",
+          title: "Youtube*",
+          titleInput: "Enter Youtube URl",
+          type: "text",
+          type: "youtube",
+          icon: faYoutube,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      }
+    });
+  };
+
   return (
     <>
       <div className="setting">
@@ -766,7 +877,8 @@ export default function About(props) {
                 <div className="upload-img">
                   {secondImage.logoimage ? (
                     <img
-                      src={secondImage.logoimage}
+                      // src={secondImage.logoimage}
+                      src={`http://192.168.1.8:3005/${props.formData.profileImage}`}
                       alt=""
                       className="img-fluid"
                     />
@@ -892,35 +1004,41 @@ export default function About(props) {
                   name="employeeBio"
                   required
                   onChange={props.handleChange}
-                  value={props.formData.employeeBio}
+                  value={
+                    !(props.formData.employeeBio === "undefined")
+                      ? props.formData.employeeBio
+                      : ""
+                  }
                 />
               </div>
             </div>
             <div className="admin_detail-social">
               <h3>Choose/add Social handles </h3>
               <div className="admin_detail-social-grid">
-                {formData.userLink.map((links, id) => {
-                  return (
-                    <button
-                      key={id}
-                      className="btn-primary"
-                      // onClick={() => {
-                      //   updateLink(links, id);
-                      // }}
-                    >
-                      {links.type === "phone" ? "phone" : ""}
-                      {links.type === "email" ? "email" : ""}
-                      {links.type === "website" ? "website" : ""}
-                      {links.type === "whatsapp" ? "whatsapp" : ""}
-                      {links.type === "linkedin" ? "linkedin" : ""}
-                      {links.type === "instagram" ? "instagram" : ""}
-                      {links.type === "facebook" ? "facebook" : ""}
-                      {links.type === "twitter" ? "twitter" : ""}
-                      {links.type === "youtube" ? "youtube" : ""}
-                      {links.type === "address" ? "address" : ""}
-                    </button>
-                  );
-                })}
+                {props.formData &&
+                  props.formData.userLink &&
+                  props.formData.userLink.map((links, id) => {
+                    return (
+                      <button
+                        key={id}
+                        className="btn-primary"
+                        onClick={() => {
+                          updateLink(links, id);
+                        }}
+                      >
+                        {links.type === "phone" ? "phone" : ""}
+                        {links.type === "email" ? "email" : ""}
+                        {links.type === "website" ? "website" : ""}
+                        {links.type === "whatsapp" ? "whatsapp" : ""}
+                        {links.type === "linkedin" ? "linkedin" : ""}
+                        {links.type === "instagram" ? "instagram" : ""}
+                        {links.type === "facebook" ? "facebook" : ""}
+                        {links.type === "twitter" ? "twitter" : ""}
+                        {links.type === "youtube" ? "youtube" : ""}
+                        {links.type === "address" ? "address" : ""}
+                      </button>
+                    );
+                  })}
 
                 <button
                   className="btn-primary"
@@ -933,7 +1051,7 @@ export default function About(props) {
                 </button>
               </div>
             </div>
-            <div className="admin_detail-social">
+            {/* <div className="admin_detail-social">
               <h3> Choose/add Plugin handles </h3>
               <div className="admin_detail-social-grid">
                 {formData.userPlugin.map((links, id) => {
@@ -960,7 +1078,7 @@ export default function About(props) {
                   Add +
                 </button>
               </div>
-            </div>
+            </div> */}
             <div className="admin_detail-contact">
               <h3>Contact details </h3>
 
@@ -973,7 +1091,11 @@ export default function About(props) {
                   required
                   name="officeEmailId"
                   onChange={props.handleChange}
-                  value={props.formData.officeEmailId}
+                  value={
+                    !(props.formData.officeEmailId === "undefined")
+                      ? props.formData.officeEmailId
+                      : ""
+                  }
                 />
               </div>
               <div className="p-relative mb-3 countriesCode">
@@ -995,8 +1117,8 @@ export default function About(props) {
                   }
                   id="designation"
                   placeholder="enter whatsApp number"
-                  name="whatsappNumber"
-                  onChange={handleChange}
+                  name="whatsAppNumber"
+                  onChange={props.handleChange}
                   value={
                     props.formData.whatsAppNumber &&
                     props.formData.whatsAppNumber.phoneNumber
@@ -1010,18 +1132,13 @@ export default function About(props) {
                   aria-haspopup="listbox"
                 >
                   <PhoneInput
-                    // country={
-                    //   props.formData.whatsAppNumber
-                    //     ? props.formData.whatsAppNumber.code
-                    //     : ""
-                    // }
                     value={
                       props.formData.whatsAppNumber
                         ? `+${props.formData.whatsAppNumber.code}`
                         : ""
                     }
                     enableAreaCodes={true}
-                    onChange={handleChange.bind(this, "whPhone")}
+                    onChange={props.handleChange.bind(this, "whPhone")}
                     enableSearch={true}
                     disableSearchIcon={true}
                     countryCodeEditable={false}
@@ -1055,16 +1172,13 @@ export default function About(props) {
                   type="number"
                   className={
                     props.formData.mobileNumber &&
-                    props.formData.mobileNumber.phoneNumber.split("").length ===
-                      2
+                    props.formData.mobileNumber.code.split("").length === 2
                       ? "countriesCode-input form-control  formControl-2"
                       : props.formData.mobileNumber &&
-                        props.formData.mobileNumber.phoneNumber.split("")
-                          .length === 3
+                        props.formData.mobileNumber.code.split("").length === 3
                       ? "countriesCode-input form-control formControl-3"
                       : props.formData.mobileNumber &&
-                        props.formData.mobileNumber.phoneNumber.split("")
-                          .length === 4
+                        props.formData.mobileNumber.code.split("").length === 4
                       ? "countriesCode-input form-control formControl-4"
                       : "countriesCode-input form-control formControl-1"
                   }
@@ -1072,8 +1186,13 @@ export default function About(props) {
                   placeholder="enter Mobile number"
                   name="mobileNumber"
                   required
-                  onChange={handleChange}
-                  value={props.formData.mobileNumber}
+                  onChange={props.handleChange}
+                  value={
+                    props.formData.mobileNumber &&
+                    props.formData.mobileNumber.phoneNumber
+                      ? props.formData.mobileNumber.phoneNumber
+                      : ""
+                  }
                 />
 
                 <label
@@ -1086,7 +1205,7 @@ export default function About(props) {
                         ? props.formData.mobileNumber.code
                         : ""
                     }
-                    onChange={handleChange.bind(this, "phone")}
+                    onChange={props.handleChange.bind(this, "phone")}
                     enableSearch={true}
                     disableSearchIcon={true}
                     // disableCountryCode={true}
@@ -1163,6 +1282,20 @@ export default function About(props) {
       ) : (
         ""
       )} */}
+      {isLinkClick ? (
+        <div className="addcard">
+          <div className="addcard_container">
+            <AddLink
+              data={linkData}
+              sendData={updateLink}
+              setFormData={props.setFormData}
+              formData={props.formData}
+            />
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
     </>
   );
 }

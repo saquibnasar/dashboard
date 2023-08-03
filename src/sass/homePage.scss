@@ -87,6 +87,17 @@
               font-size: 19px;
             }
           }
+          .nav-link.delete {
+            transition: 0.3s ease-in-out;
+          }
+          .nav-link.delete:hover {
+            background: rgb(255, 255, 255);
+            color: rgb(255 0 0 / 70%);
+            border-radius: 8px;
+            @include media992 {
+              border-radius: 25%;
+            }
+          }
           .nav-link.active {
             // background: rgba(217, 217, 217, 0.2);
             border-radius: 16px;

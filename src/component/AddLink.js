@@ -65,8 +65,9 @@ export default function AddLink(props) {
       props.sendData();
     } else {
       if (props.data.type === "phone") {
-        if (10 > formData.value.split("").length < 8) {
-          alert("number cann't be less then 8 cann't be more then 12");
+        console.log(7 > formData.value.split("").length > 11);
+        if (7 > formData.value.split("").length > 11) {
+          alert("number cann't be less then 8 and cann't be more then 10");
         } else {
           props.setFormData((prevformData) => {
             return {

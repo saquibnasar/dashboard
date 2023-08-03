@@ -7,7 +7,7 @@ import axios from "axios";
 export default function Home(props) {
   const [toggle, setToggle] = useState(false);
   const [search, setSearch] = useState("");
-  const [data, setData] = useState();
+  const [data, setData] = useState("");
 
   const handleChange = (event) => {
     setToggle(event.target.checked);
@@ -17,7 +17,6 @@ export default function Home(props) {
     axios
       .get("http://192.168.1.8:3005/members/all")
       .then((response) => {
-        console.log(response.data);
         setData(response.data);
       })
       .catch((error) => {

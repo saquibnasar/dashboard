@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faNfcSymbol } from "@fortawesome/free-brands-svg-icons";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { faShareSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useParams } from "react-router-dom";
 import AddCard from "./AddCard";
 import LInks from "./LInks";
@@ -18,14 +19,14 @@ export default function HomePage(props) {
   const { homepageId, userId } = useParams();
   const [isLinks, setIslinks] = useState(false);
   const [isClick, setIsClick] = useState(false);
-  const [data, setData] = useState();
-  const [formData, setFormData] = useState({});
+  const [data, setData] = useState("");
+  const [formData, setFormData] = useState("");
   useEffect(() => {
     axios
       .get(`http://192.168.1.8:3005/members/${userId}`)
       .then((response) => {
-        console.log(response.data);
         setData(response.data);
+        // console.log(response.data);
         setFormData((prevData) => {
           return {
             ...prevData,
@@ -39,6 +40,7 @@ export default function HomePage(props) {
             bannerImages: response.data.bannerImages,
             profileImage: response.data.profileImage,
             employeeId: response.data.employeeId,
+            id: response.data.id,
           };
         });
       })
@@ -47,13 +49,82 @@ export default function HomePage(props) {
       });
   }, []);
 
-  const handleChange = (event) => {
-    setFormData((prevformData) => {
-      return {
-        ...prevformData,
-        [event.target.name]: event.target.value,
-      };
-    });
+  // const handleChange = (event) => {
+  //   setFormData((prevformData) => {
+  //     return {
+  //       ...prevformData,
+  //       [event.target.name]: event.target.value,
+  //     };
+  //   });
+  // };
+  const handleChange = (event, code) => {
+    if (event === "whPhone" || event === "phone") {
+      if (event === "whPhone") {
+        setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            whatsAppNumber: {
+              ...prevformData.whatsAppNumber,
+              code: code ? code : "1",
+            },
+          };
+        });
+      } else {
+        setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            mobileNumber: {
+              ...prevformData.mobileNumber,
+              code: code ? code : "1",
+            },
+          };
+        });
+      }
+    } else if (
+      event.target.name === "whatsAppNumber" ||
+      event.target.name === "mobileNumber"
+    ) {
+      if (event.target.name === "mobileNumber") {
+        setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            [event.target.name]: {
+              phoneNumber: event.target.value,
+              code: prevformData.mobileNumber.code
+                ? prevformData.mobileNumber.code
+                : "1",
+            },
+          };
+        });
+      } else {
+        setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            [event.target.name]: {
+              phoneNumber: event.target.value,
+              code: prevformData.whatsAppNumber.code
+                ? prevformData.whatsAppNumber.code
+                : "1",
+            },
+          };
+        });
+      }
+      // if (event.target.value === "") {
+      //   setFormData((prevformData) => {
+      //     return {
+      //       ...prevformData,
+      //       [event.target.name]: "",
+      //     };
+      //   });
+      // }
+    } else {
+      setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          [event.target.name]: event.target.value,
+        };
+      });
+    }
   };
 
   const addLin = () => {
@@ -79,126 +150,140 @@ export default function HomePage(props) {
 
   return (
     <>
-      <div className={`d-flex homePage ${homepageId} overflow-hidden`}>
-        <SIdebar navbarToggle={props.navbarToggle} />
-        <div className="d-flex flex-direction-column w-100 ">
-          <Topbar
-            type="user"
-            title=""
-            isNavbar={props.isNavbar}
-            text="Wilmette"
-          />
-          <div className="homePage_container mt-4">
-            <nav className="sidebar">
-              <div className="sidebar-collapse">
-                <ul className="sidebar-nav">
-                  <li className="nav-item">
-                    <NavLink
-                      className="nav-link"
-                      aria-current="page"
-                      to={`/homepage/content/${userId}`}
-                    >
-                      <img className="img-fluid" src="/dots.png" alt="" />
-                      <p className="d-lg-none">Content</p>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink
-                      className="nav-link"
-                      aria-current="page"
-                      to={`/homepage/about/${userId}`}
-                    >
-                      <FontAwesomeIcon icon={faUser} />
-                      <p className="d-lg-none">About</p>
-                    </NavLink>
-                  </li>
-                  <li className="nav-item">
-                    <NavLink
-                      className="nav-link"
-                      aria-current="page"
-                      to={`/homepage/flaxcode/${userId}`}
-                    >
-                      <img className="img-fluid" src="/iconqr.png" alt="" />
-                      <p className="d-lg-none">FlaxCode</p>
-                    </NavLink>
-                  </li>
+      {formData ? (
+        <div className={`d-flex homePage ${homepageId} overflow-hidden`}>
+          <SIdebar navbarToggle={props.navbarToggle} />
+          <div className="d-flex flex-direction-column w-100 ">
+            <Topbar
+              type="user"
+              title=""
+              isNavbar={props.isNavbar}
+              text={formData.name}
+            />
+            <div className="homePage_container mt-4">
+              <nav className="sidebar">
+                <div className="sidebar-collapse">
+                  <ul className="sidebar-nav">
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        aria-current="page"
+                        to={`/homepage/content/${userId}`}
+                      >
+                        <img className="img-fluid" src="/dots.png" alt="" />
+                        <p className="d-lg-none">Content</p>
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        aria-current="page"
+                        to={`/homepage/about/${userId}`}
+                      >
+                        <FontAwesomeIcon icon={faUser} />
+                        <p className="d-lg-none">About</p>
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        aria-current="page"
+                        to={`/homepage/flaxcode/${userId}`}
+                      >
+                        <img className="img-fluid" src="/iconqr.png" alt="" />
+                        <p className="d-lg-none">FlaxCode</p>
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link"
+                        aria-current="page"
+                        to="/setting_devices"
+                      >
+                        <FontAwesomeIcon icon={faNfcSymbol} />
+                        <p className="d-lg-none">Add Flax Devices</p>
+                      </NavLink>
+                    </li>
+                    <li className="nav-item">
+                      <NavLink
+                        className="nav-link delete"
+                        aria-current="page"
+                        to="/setting_devices"
+                      >
+                        <FontAwesomeIcon icon={faTrashCan} />
+                        <p className="d-lg-none">Delete</p>
+                      </NavLink>
+                    </li>
+                  </ul>
+                </div>
+              </nav>
+              <div
+                className={`homePage_container-bottom ${
+                  isLinks ? "d-none" : ""
+                }`}
+              >
+                {homepageId === "content" ? (
+                  <div className="links">
+                    {formData && formData.userLink ? (
+                      <LInks addLin={addLin} formData={formData} />
+                    ) : (
+                      <div className="link_container">
+                        <div>
+                          <h2>This profile doesn’t have any linked content</h2>
+                          <h3>
+                            Add links to contact Information, website,
+                            <br className="d-lg-none" />
+                            Social media handles and more
+                          </h3>
 
-                  <li className="nav-item">
-                    <NavLink
-                      className="nav-link"
-                      aria-current="page"
-                      to="/setting_devices"
-                    >
-                      <FontAwesomeIcon icon={faNfcSymbol} />
-                      <p className="d-lg-none">Add Flax Devices</p>
-                    </NavLink>
-                  </li>
-                </ul>
-              </div>
-            </nav>
-            <div
-              className={`homePage_container-bottom ${isLinks ? "d-none" : ""}`}
-            >
-              {homepageId === "content" ? (
-                <div className="links">
-                  {data && data.links ? (
-                    <LInks addLin={addLin} data={data} />
-                  ) : (
-                    <div className="link_container">
-                      <div>
-                        <h2>This profile doesn’t have any linked content</h2>
-                        <h3>
-                          Add links to contact Information, website,
-                          <br className="d-lg-none" />
-                          Social media handles and more
-                        </h3>
+                          <button className="btn_add" onClick={addLin}>
+                            <FontAwesomeIcon icon={faPlus} />
+                            Add Links and contact info
+                          </button>
+                        </div>
 
-                        <button className="btn_add" onClick={addLin}>
-                          <FontAwesomeIcon icon={faPlus} />
-                          Add Links and contact info
-                        </button>
+                        <img src="/bglink.png" alt="" className="img-fluid" />
                       </div>
-
-                      <img src="/bglink.png" alt="" className="img-fluid" />
-                    </div>
-                  )}
-                </div>
-              ) : homepageId === "about" ? (
-                <>
-                  {console.log(formData)}
-                  <About
-                    addLink={addLin}
-                    handleChange={handleChange}
-                    formData={formData}
-                    imageData={image}
-                    imagehandleChange={imagehandleChange}
-                    setImage={setImage}
-                    data={data}
-                    setFormData={setFormData}
-                  />
-                </>
-              ) : homepageId === "flaxcode" ? (
-                <FlaxCode />
-              ) : (
-                ""
-              )}
-              <div className="signup_phone text-center overflow-hidden">
-                <Link to="/a" className="btn btn-preview">
-                  Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
-                </Link>
-                <div className="signup_phone-container">
-                  <UserProfile
-                    formData={formData}
-                    logo={image.logoimage}
-                    images={image}
-                  />
+                    )}
+                  </div>
+                ) : homepageId === "about" ? (
+                  <>
+                    <About
+                      addLink={addLin}
+                      handleChange={handleChange}
+                      formData={formData}
+                      imageData={image}
+                      imagehandleChange={imagehandleChange}
+                      setImage={setImage}
+                      data={data}
+                      setFormData={setFormData}
+                    />
+                  </>
+                ) : homepageId === "flaxcode" ? (
+                  <FlaxCode />
+                ) : (
+                  ""
+                )}
+                <div className="signup_phone text-center overflow-hidden">
+                  <Link to="/a" className="btn btn-preview">
+                    Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
+                  </Link>
+                  <div className="signup_phone-container">
+                    <UserProfile
+                      formData={formData}
+                      logo={`http://192.168.1.8:3005/${formData.profileImage}`}
+                      images={image}
+                    />
+                  </div>
                 </div>
               </div>
+              {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
             </div>
-            {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
           </div>
         </div>
-      </div>
+      ) : (
+        ""
+      )}
     </>
   );
 }

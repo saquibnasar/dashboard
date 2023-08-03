@@ -40,9 +40,8 @@ export default function LInks(props) {
           Add info
         </button>
         <div className="addcard_links">
-          {props.data && props.data.links
-            ? props.data.links.map((value) => {
-                console.log(value);
+          {props.formData && props.formData.userLink
+            ? props.formData.userLink.map((value) => {
                 return (
                   <div className="addcard_link">
                     <div className="addcard_link_dot">
