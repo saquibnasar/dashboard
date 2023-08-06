@@ -102,7 +102,7 @@ export default function TeamCard(props) {
                         <span className="mx-auto">
                           {value.profileImage ? (
                             <img
-                              src={`http://192.168.1.8:3005/${value.profileImage}`}
+                              src={`${value.profileImage}`}
                               className="img-fluid"
                               alt=""
                             />

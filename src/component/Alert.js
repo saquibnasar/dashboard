@@ -11,7 +11,13 @@ export default function ALert(props) {
           <FontAwesomeIcon icon={faExclamationCircle} />
         </div>
         <p class="alertText">{props.alertText}</p>
-        <button class="alertClose" type="button" onClick={()=>{props.setAlert("")}}>
+        <button
+          class="alertClose"
+          type="button"
+          onClick={() => {
+            props.setAlertText("");
+          }}
+        >
           <FontAwesomeIcon icon={faXmark} />
         </button>
       </div>

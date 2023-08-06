@@ -15,7 +15,7 @@ export default function Signup() {
     otp: "",
   });
   const [isOtp, setIsOtp] = useState(false);
-  const [alert, setAlert] = useState("");
+  const [alertText, setAlertText] = useState("");
 
   setTimeout(() => {
     togglePassword = document.querySelector(".input-password svg");
@@ -39,7 +39,7 @@ export default function Signup() {
 
     if (isOtp) {
       axios
-        .post("http://192.168.1.6:3005/auth/verify-email-otp", {
+        .post("http://192.168.1.5:3005/auth/verify-email-otp", {
           email: formData.email,
           otp: parseInt(formData.otp),
         })
@@ -52,17 +52,17 @@ export default function Signup() {
             "refreshToken",
             response.data.result.refreshToken
           );
-          setAlert(response.data.message);
+          setAlertText(response.data.message);
           // alert(response.data.message);
           window.location.href = "/";
         })
         .catch(function (error) {
-          setAlert(error.response.data.message);
+          setAlertText(error.response.data.message);
           // alert(error.response.data.message);
         });
     } else {
       axios
-        .post("http://192.168.1.6:3005/auth/signup", {
+        .post("http://192.168.1.5:3005/auth/signup", {
           email: formData.email,
           password: formData.password,
           fullName: "Asim Nasar",
@@ -73,7 +73,7 @@ export default function Signup() {
           setIsOtp(true);
         })
         .catch(function (error) {
-          setAlert(error.response.data.message);
+          setAlertText(error.response.data.message);
           // alert(error.response.data.message);
         });
     }
@@ -198,7 +198,11 @@ export default function Signup() {
               </p>
             </form>
           </div>
-          {alert ? <Alert alertText={alert} setAlert={setAlert} /> : ""}
+          {alert ? (
+            <Alert alertText={alertText} setAlertText={setAlertText} />
+          ) : (
+            ""
+          )}
         </div>
         <div className="signup_promotion">
           <img className="img-fluid" src="/signup.png" alt="" />

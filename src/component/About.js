@@ -48,7 +48,7 @@ export default function About(props) {
   });
 
   const [secondImage, setSecondImage] = useState({
-    logoimage: `http://192.168.1.8:3005/${props.formData.profileImage}`,
+    logoimage: `${props.formData.profileImage}`,
     bannerImage1: "",
     bannerImage2: "",
     bannerImage3: "",
@@ -878,7 +878,7 @@ export default function About(props) {
                   {secondImage.logoimage ? (
                     <img
                       // src={secondImage.logoimage}
-                      src={`http://192.168.1.8:3005/${props.formData.profileImage}`}
+                      src={`${props.formData.profileImage}`}
                       alt=""
                       className="img-fluid"
                     />

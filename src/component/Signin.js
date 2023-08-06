@@ -14,7 +14,7 @@ export default function Signin() {
     email: "",
     password: "",
   });
-  const [alert, setAlert] = useState("");
+  const [alertText, setAlertText] = useState("");
   setTimeout(() => {
     togglePassword = document.querySelector(".input-password svg");
     togglePassword.addEventListener("click", () => {
@@ -36,7 +36,7 @@ export default function Signin() {
     e.preventDefault();
 
     axios
-      .post("http://192.168.1.6:3005/auth/signin", {
+      .post("http://192.168.1.5:3005/auth/signin", {
         email: formData.email,
         password: formData.password,
       })
@@ -47,7 +47,7 @@ export default function Signin() {
       })
       .catch((error) => {
         console.log(error.response.data.message);
-        setAlert(error.response.data.message);
+        setAlertText(error.response.data.message);
         // alert(error.response.data.message);
       });
   };
@@ -270,7 +270,11 @@ export default function Signin() {
             </form>
           </div>
         </div>
-        {alert ? <Alert alertText={alert} setAlert={setAlert} /> : ""}
+        {alert ? (
+          <Alert alertText={alertText} setAlertText={setAlertText} />
+        ) : (
+          ""
+        )}
 
         <div className="signup_promotion">
           <img className="img-fluid" src="/signin.png" alt="" />

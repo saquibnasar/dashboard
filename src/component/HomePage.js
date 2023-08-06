@@ -23,7 +23,7 @@ export default function HomePage(props) {
   const [formData, setFormData] = useState("");
   useEffect(() => {
     axios
-      .get(`http://192.168.1.6:3005/members/${userId}`)
+      .get(`http://192.168.1.5:3005/members/${userId}`)
       .then((response) => {
         setData(response.data);
         // console.log(response.data);

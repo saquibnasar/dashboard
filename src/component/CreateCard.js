@@ -34,13 +34,13 @@ export default function CreateCard(props) {
   const [isClick, setIsClick] = useState(false);
   const [isLinkClick, setIsLinkClick] = useState(false);
   const [isPlugin, setIsPlugin] = useState(false);
-
+  const [isSend, setIsSend] = useState(true);
   const [phoneNum, setPhoneNum] = useState({
     whPhone: "1",
     phone: "1",
   });
 
-  const [alert, setAlert] = useState("");
+  const [alertText, setAlertText] = useState("");
 
   const [linkData, setLinkData] = useState({
     headerTitle: "",
@@ -407,17 +407,17 @@ export default function CreateCard(props) {
           });
 
           setFormData((prevformData) => {
-            prevformData.userImages.userProfile.croppedAreaPixels =
-              croppedAreaPixels;
-            prevformData.userImages.userProfile.rotation = rotation;
-
-            // return {
-            //   ...prevformData,
-            //   userImages: {
-            //     ...prevformData.userImages,
-            //     userProfile: croppedImage,
-            //   },
-            // };
+            // prevformData.userImages.userProfile.croppedAreaPixels =
+            //   croppedAreaPixels;
+            // prevformData.userImages.userProfile.rotation = rotation;
+            console.log(croppedImage);
+            return {
+              ...prevformData,
+              userImages: {
+                ...prevformData.userImages,
+                userProfile: croppedImage,
+              },
+            };
             return {
               ...prevformData,
             };
@@ -549,10 +549,6 @@ export default function CreateCard(props) {
     }
 
     if (formData.userInfo.whatsappNumber) {
-      console.log(formData.userInfo.whatsappNumber.countryCode);
-      let code = formData.userInfo.whatsappNumber.countryCode
-        ? formData.userInfo.whatsappNumber.countryCode
-        : 1;
       whatsAppNumber = formData.userInfo.whatsappNumber;
 
       bodyFormData.set(
@@ -565,9 +561,6 @@ export default function CreateCard(props) {
       );
     }
     if (formData.userInfo.mobileNumber) {
-      let code = formData.userInfo.mobileNumber.countryCode
-        ? formData.userInfo.mobileNumber.countryCode
-        : 1;
       mobileNumber = formData.userInfo.mobileNumber;
 
       bodyFormData.set(
@@ -581,53 +574,115 @@ export default function CreateCard(props) {
     }
 
     // console.log(`a[] blobk ${json}`);
-
-    var requestObj = {
+    // console.log(formData.userImages.userProfile);
+    let requestObj = new Map();
+    requestObj = {
       name: formData.userInfo.username,
       profileImage: formData.userImages.userProfile,
-      bannerImages: bannerImages,
+      bannerImages: bannerImages.length === 0 ? null : bannerImages,
       designation: formData.userInfo.designation,
       employeeId: formData.userInfo.employeeId,
       employeeBio: formData.userInfo.employeeBio,
-      links: formData.userLink,
+      links: formData.userLink.length === 0 ? null : formData.userLink,
       officeEmailId: formData.userInfo.officeId,
-      whatsAppNumber: whatsAppNumber,
-      mobileNumber: mobileNumber,
+      // whatsAppNumber: whatsAppNumber,
+      // mobileNumber: mobileNumber,
     };
 
-    console.log(requestObj);
-    for (var i in requestObj) {
-      if (i == "links") {
-        for (let j = 0; j < requestObj[i].length; j++) {
-          bodyFormData.set(`links[${j}][title]`, requestObj[i][j].title);
-          bodyFormData.set(`links[${j}][value]`, requestObj[i][j].value);
-          bodyFormData.set(`links[${j}][type]`, requestObj[i][j].type);
-        }
-      } else if (i == "bannerImages") {
-        for (let j = 0; j < requestObj[i].length; j++) {
-          bodyFormData.set(i, requestObj[i][j]);
-        }
-      } else {
-        bodyFormData.set(i, requestObj[i]);
-      }
+    if (
+      formData.userInfo.whatsappNumber &&
+      (!formData.userInfo.whatsappNumber.whatsappNum ||
+        (7 > formData.userInfo.whatsappNumber.whatsappNum.split("").length &&
+          formData.userInfo.whatsappNumber.whatsappNum.split("").length < 11))
+    ) {
+      setAlertText(
+        "whatsappNumber cann't be less then 8 and cann't be more then 10"
+      );
+      setIsSend(false);
+    } else if (
+      formData.userInfo.whatsappNumber &&
+      formData.userInfo.whatsappNumber.whatsappNum
+    ) {
+      setIsSend(true);
+      // console.log(requestObj);
+
+      requestObj.whatsAppNumber = formData.userInfo.whatsappNumber.whatsappNum;
+      console.log(requestObj);
+      // requestObj.set(
+      //   `whatsAppNumber[phoneNumber]`,
+      //   formData.userInfo.whatsappNumber.whatsappNum
+      // );
+      // requestObj.set(
+      //   `whatsAppNumber[code]`,
+      //   formData.userInfo.whatsappNumber.countryCode
+      // );
+    }
+    if (
+      formData.userInfo.mobileNumber &&
+      (!formData.userInfo.mobileNumber.phoneNum ||
+        (7 > formData.userInfo.mobileNumber.phoneNum.split("").length &&
+          formData.userInfo.mobileNumber.phoneNum.split("").length < 11))
+    ) {
+      setAlertText(
+        "mobileNumber cann't be less then 8 and cann't be more then 10"
+      );
+      setIsSend(false);
+    } else if (
+      formData.userInfo.mobileNumber &&
+      formData.userInfo.mobileNumber.phoneNum
+    ) {
+      setIsSend(true);
+      // requestObj.set(
+      //   `mobileNumber[phoneNumber]`,
+      //   formData.userInfo.mobileNumber.phoneNum
+      // );
+      // requestObj.set(
+      //   `mobileNumber[code]`,
+      //   formData.userInfo.mobileNumber.countryCode
+      // );
     }
 
-    for (var pair of bodyFormData.entries()) {
-      console.log(pair);
-    }
+    // console.log(requestObj);
+    // for (var i in requestObj) {
+    //   if (i == "links") {
+    //     for (let j = 0; j < requestObj[i].length; j++) {
+    //       bodyFormData.set(`links[${j}][title]`, requestObj[i][j].title);
+    //       bodyFormData.set(`links[${j}][value]`, requestObj[i][j].value);
+    //       bodyFormData.set(`links[${j}][type]`, requestObj[i][j].type);
+    //     }
+    //   } else if (i == "bannerImages") {
+    //     for (let j = 0; j < requestObj[i].length; j++) {
+    //       bodyFormData.set(i, requestObj[i][j]);
+    //     }
+    //   } else {
+    //     bodyFormData.set(i, requestObj[i]);
+    //   }
+    // }
 
-    axios({
-      method: "post",
-      url: "http://192.168.1.6:3005/members/addMember",
-      data: JSON.stringify(bodyFormData),
-    })
-      .then((response) => {
-        setAlert(response.data.message);
-        window.location.href = "/";
-      })
-      .catch(function (error) {
-        setAlert(error.response.data.message);
-      });
+    // for (var pair of bodyFormData.entries()) {
+    //   console.log(pair);
+    // }
+    if (isSend) {
+      console.log(isSend);
+      // axios({
+      //   method: "post",
+      //   url: "http://192.168.1.5:3005/members/addMember",
+      //   data: requestObj,
+      // })
+      //   .then((response) => {
+      //     setAlertText(response.data.message);
+      //     // window.location.href = "/";
+      //   })
+      //   .catch(function (error) {
+      //     if (error.response.data.message) {
+      //       setAlertText(
+      //         error.response.data.message[
+      //           error.response.data.message.length - 1
+      //         ]
+      //       );
+      //     }
+      //   });
+    }
   };
 
   return (
@@ -1214,7 +1269,11 @@ export default function CreateCard(props) {
             </div>
           </div>
 
-          {alert ? <ALert alertText={alert} setAlert={setAlert} /> : ""}
+          {alertText ? (
+            <ALert alertText={alertText} setAlertText={setAlertText} />
+          ) : (
+            ""
+          )}
 
           <div
             className={
