@@ -43,6 +43,7 @@ axios.interceptors.response.use(
           return await axios.request(error.config);
         })
         .catch((err) => {
+          
           window.location.href = "/login";
         });
     }

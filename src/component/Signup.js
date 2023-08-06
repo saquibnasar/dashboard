@@ -4,6 +4,7 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Alert from "./Alert";
 export default function Signup() {
   let togglePassword;
   const [attribute, setAttribute] = useState("password");
@@ -14,6 +15,7 @@ export default function Signup() {
     otp: "",
   });
   const [isOtp, setIsOtp] = useState(false);
+  const [alert, setAlert] = useState("");
 
   setTimeout(() => {
     togglePassword = document.querySelector(".input-password svg");
@@ -34,9 +36,10 @@ export default function Signup() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (isOtp) {
       axios
-        .post("http://192.168.1.8:3005/auth/verify-email-otp", {
+        .post("http://192.168.1.6:3005/auth/verify-email-otp", {
           email: formData.email,
           otp: parseInt(formData.otp),
         })
@@ -49,15 +52,17 @@ export default function Signup() {
             "refreshToken",
             response.data.result.refreshToken
           );
-          alert(response.data.message);
+          setAlert(response.data.message);
+          // alert(response.data.message);
           window.location.href = "/";
         })
         .catch(function (error) {
-          alert(error.response.data.message);
+          setAlert(error.response.data.message);
+          // alert(error.response.data.message);
         });
     } else {
       axios
-        .post("http://192.168.1.8:3005/auth/signup", {
+        .post("http://192.168.1.6:3005/auth/signup", {
           email: formData.email,
           password: formData.password,
           fullName: "Asim Nasar",
@@ -68,7 +73,8 @@ export default function Signup() {
           setIsOtp(true);
         })
         .catch(function (error) {
-          alert(error.response.data.message);
+          setAlert(error.response.data.message);
+          // alert(error.response.data.message);
         });
     }
   };
@@ -192,6 +198,7 @@ export default function Signup() {
               </p>
             </form>
           </div>
+          {alert ? <Alert alertText={alert} setAlert={setAlert} /> : ""}
         </div>
         <div className="signup_promotion">
           <img className="img-fluid" src="/signup.png" alt="" />

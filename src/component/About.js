@@ -20,6 +20,7 @@ import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import AddLink from "./AddLink";
+import AdduCard from "./AddCard";
 
 export default function About(props) {
   const [startDate, setStartDate] = useState(new Date());
@@ -175,8 +176,7 @@ export default function About(props) {
   });
 
   const textHander = () => {
-    // console.log(formData);
-    console.log(props.date);
+    console.log(props.formData);
   };
 
   const updateLink = (link, id) => {
@@ -1273,15 +1273,15 @@ export default function About(props) {
           </div>
         </div>
       </div>
-      {/* {isLinks ? (
-        <AddCard
+      {isLinks ? (
+        <AdduCard
           removeLink={addLin}
           isClick={isClick}
-          setFormData={setFormData}
+          setFormData={props.setFormData}
         />
       ) : (
         ""
-      )} */}
+      )}
       {isLinkClick ? (
         <div className="addcard">
           <div className="addcard_container">

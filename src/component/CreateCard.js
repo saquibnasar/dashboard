@@ -26,6 +26,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Image from "./userDetail/Image";
 import AddLink from "./AddLink";
+import ALert from "./Alert";
 
 export default function CreateCard(props) {
   const [isLinks, setIslinks] = useState(false);
@@ -38,6 +39,8 @@ export default function CreateCard(props) {
     whPhone: "1",
     phone: "1",
   });
+
+  const [alert, setAlert] = useState("");
 
   const [linkData, setLinkData] = useState({
     headerTitle: "",
@@ -529,7 +532,7 @@ export default function CreateCard(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    var bodyFormData = new FormData();
+    var bodyFormData = new Map();
     var bannerImages = [];
     let whatsAppNumber = "";
     let mobileNumber = "";
@@ -552,11 +555,11 @@ export default function CreateCard(props) {
         : 1;
       whatsAppNumber = formData.userInfo.whatsappNumber;
 
-      bodyFormData.append(
+      bodyFormData.set(
         `whatsAppNumber[phoneNumber]`,
         formData.userInfo.whatsappNumber.whatsappNum
       );
-      bodyFormData.append(
+      bodyFormData.set(
         `whatsAppNumber[code]`,
         formData.userInfo.whatsappNumber.countryCode
       );
@@ -567,11 +570,11 @@ export default function CreateCard(props) {
         : 1;
       mobileNumber = formData.userInfo.mobileNumber;
 
-      bodyFormData.append(
+      bodyFormData.set(
         `mobileNumber[phoneNumber]`,
         formData.userInfo.mobileNumber.phoneNum
       );
-      bodyFormData.append(
+      bodyFormData.set(
         `mobileNumber[code]`,
         formData.userInfo.mobileNumber.countryCode
       );
@@ -596,38 +599,34 @@ export default function CreateCard(props) {
     for (var i in requestObj) {
       if (i == "links") {
         for (let j = 0; j < requestObj[i].length; j++) {
-          bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
-          bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
-          bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
+          bodyFormData.set(`links[${j}][title]`, requestObj[i][j].title);
+          bodyFormData.set(`links[${j}][value]`, requestObj[i][j].value);
+          bodyFormData.set(`links[${j}][type]`, requestObj[i][j].type);
         }
       } else if (i == "bannerImages") {
         for (let j = 0; j < requestObj[i].length; j++) {
-          bodyFormData.append(i, requestObj[i][j]);
+          bodyFormData.set(i, requestObj[i][j]);
         }
       } else {
-        bodyFormData.append(i, requestObj[i]);
+        bodyFormData.set(i, requestObj[i]);
       }
     }
 
     for (var pair of bodyFormData.entries()) {
+      console.log(pair);
     }
 
     axios({
       method: "post",
-      url: "http://192.168.1.8:3005/members/addMember",
-      data: bodyFormData,
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
+      url: "http://192.168.1.6:3005/members/addMember",
+      data: JSON.stringify(bodyFormData),
     })
-      .then(function (response) {
-        alert(response.data.message);
-        console.log(response.data.message);
+      .then((response) => {
+        setAlert(response.data.message);
         window.location.href = "/";
       })
       .catch(function (error) {
-        // console.log(error.response.data.message);
-        alert(error.response.data.message);
+        setAlert(error.response.data.message);
       });
   };
 
@@ -1214,6 +1213,8 @@ export default function CreateCard(props) {
               </div>
             </div>
           </div>
+
+          {alert ? <ALert alertText={alert} setAlert={setAlert} /> : ""}
 
           <div
             className={

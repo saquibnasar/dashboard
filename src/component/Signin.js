@@ -4,6 +4,8 @@ import { faEye } from "@fortawesome/free-solid-svg-icons";
 import { faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Alert from "./Alert";
+
 export default function Signin() {
   let togglePassword;
   const [attribute, setAttribute] = useState("password");
@@ -12,6 +14,7 @@ export default function Signin() {
     email: "",
     password: "",
   });
+  const [alert, setAlert] = useState("");
   setTimeout(() => {
     togglePassword = document.querySelector(".input-password svg");
     togglePassword.addEventListener("click", () => {
@@ -33,7 +36,7 @@ export default function Signin() {
     e.preventDefault();
 
     axios
-      .post("http://192.168.1.8:3005/auth/signin", {
+      .post("http://192.168.1.6:3005/auth/signin", {
         email: formData.email,
         password: formData.password,
       })
@@ -42,8 +45,10 @@ export default function Signin() {
         localStorage.setItem("refreshToken", response.data.refreshToken);
         window.location.href = "/";
       })
-      .catch( (error) =>{
-        alert(error.response.data.message);
+      .catch((error) => {
+        console.log(error.response.data.message);
+        setAlert(error.response.data.message);
+        // alert(error.response.data.message);
       });
   };
 
@@ -265,6 +270,8 @@ export default function Signin() {
             </form>
           </div>
         </div>
+        {alert ? <Alert alertText={alert} setAlert={setAlert} /> : ""}
+
         <div className="signup_promotion">
           <img className="img-fluid" src="/signin.png" alt="" />
           {/* <h1>Save upto 100% cost while sharing your business card</h1>

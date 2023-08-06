@@ -1,0 +1,49 @@
+@import "./custom.scss";
+@import "./font.scss";
+@import "./mediaqueries.scss";
+.alert {
+  top: 24px;
+  left: 50%;
+  right: auto;
+  transform: translateX(-50%);
+  position: absolute;
+  color: $white-color;
+  background-color: #f44336;
+  display: flex;
+  padding: 8px 16px;
+  gap: 8px;
+  align-items: center;
+  z-index: 10000000;
+  .alertClose {
+    font-size: 1rem;
+    background: transparent;
+    border: none;
+    color: $white-color;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    cursor: pointer;
+    padding: 6px;
+    transition: 0.3s ease-in-out;
+    border-radius: 8px;
+  }
+
+  .alertClose:hover {
+    background:rgba(255,255,255,0.4) ;
+  }
+  .icon {
+    font-size: 1.25rem;
+    color: $white-color;
+    display: flex;
+    align-items: center;
+    justify-self: center;
+    padding: 6px;
+  }
+  .alertText {
+    font-size: 1.25rem;
+    font-family: "Outfit";
+    font-weight: 400;
+    line-height: 1.43;
+    margin-right: 18px;
+  }
+}

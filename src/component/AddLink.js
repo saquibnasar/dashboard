@@ -73,7 +73,6 @@ export default function AddLink(props) {
             return {
               ...prevformData,
               userLink: [
-                ...prevformData.userLink,
                 {
                   title: formData.title,
                   value: phone + formData.value,
@@ -89,7 +88,6 @@ export default function AddLink(props) {
           return {
             ...prevformData,
             userLink: [
-              ...prevformData.userLink,
               {
                 title: formData.title,
                 value: formData.value,
