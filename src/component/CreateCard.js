@@ -26,7 +26,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Image from "./userDetail/Image";
 import AddLink from "./AddLink";
-import ALert from "./Alert";
+import Alert from "./Alert";
 
 export default function CreateCard(props) {
   const [isLinks, setIslinks] = useState(false);
@@ -34,7 +34,7 @@ export default function CreateCard(props) {
   const [isClick, setIsClick] = useState(false);
   const [isLinkClick, setIsLinkClick] = useState(false);
   const [isPlugin, setIsPlugin] = useState(false);
-  const [isSend, setIsSend] = useState(true);
+  const [isSend, setIsSend] = useState(false);
   const [phoneNum, setPhoneNum] = useState({
     whPhone: "1",
     phone: "1",
@@ -188,6 +188,7 @@ export default function CreateCard(props) {
   const updateLink = (link, id) => {
     setIsLinkClick(!isLinkClick);
 
+    // formData.usereLincoutryCode[link.value.string]
     setLinkData(() => {
       if (link && link.type && link.type === "phone") {
         return {
@@ -545,49 +546,18 @@ export default function CreateCard(props) {
     var bannerImages = [];
     let whatsAppNumber = "";
     let mobileNumber = "";
-    console.log(formData.userImages.bannerImage3);
+
     if (formData.userImages.bannerImage1) {
       bannerImages.push(formData.userImages.bannerImage1);
-      // bannerImages.push("formData.userImages.bannerImage1");
     }
 
     if (formData.userImages.bannerImage2) {
       bannerImages.push(formData.userImages.bannerImage2);
-      // bannerImages.push("formData.userImages.bannerImage2");
-      console.log(bannerImages);
     }
     if (formData.userImages.bannerImage3) {
       bannerImages.push(formData.userImages.bannerImage3);
-      // bannerImages.push("formData.userImages.bannerImage3");
     }
 
-    // if (formData.userInfo.whatsappNumber) {
-    //   whatsAppNumber = formData.userInfo.whatsappNumber;
-
-    //   bodyFormData.set(
-    //     `whatsAppNumber[phoneNumber]`,
-    //     formData.userInfo.whatsappNumber.whatsappNum
-    //   );
-    //   bodyFormData.set(
-    //     `whatsAppNumber[code]`,
-    //     formData.userInfo.whatsappNumber.countryCode
-    //   );
-    // }
-    // if (formData.userInfo.mobileNumber) {
-    //   mobileNumber = formData.userInfo.mobileNumber;
-
-    //   bodyFormData.set(
-    //     `mobileNumber[phoneNumber]`,
-    //     formData.userInfo.mobileNumber.phoneNum
-    //   );
-    //   bodyFormData.set(
-    //     `mobileNumber[code]`,
-    //     formData.userInfo.mobileNumber.countryCode
-    //   );
-    // }
-
-    // console.log(`a[] blobk ${json}`);
-    console.log(bannerImages);
     let requestObj = new Map();
     requestObj = {
       name: formData.userInfo.username,
@@ -598,76 +568,71 @@ export default function CreateCard(props) {
       employeeBio: formData.userInfo.employeeBio,
       links: formData.userLink.length === 0 ? null : formData.userLink,
       officeEmailId: formData.userInfo.officeId,
-      // whatsAppNumber: whatsAppNumber,
-      // mobileNumber: mobileNumber,
     };
 
-    if (
-      formData.userInfo.whatsappNumber &&
-      (!formData.userInfo.whatsappNumber.whatsappNum ||
-        formData.userInfo.whatsappNumber.whatsappNum.split("").length < 8 ||
-        formData.userInfo.whatsappNumber.whatsappNum.split("").length > 10)
-    ) {
-      setAlertText(
-        "whatsappNumber cann't be less then 8 and cann't be more then 10"
-      );
-      // setIsSend(false);
-    } else if (
-      formData.userInfo.whatsappNumber &&
-      formData.userInfo.whatsappNumber.whatsappNum
-    ) {
-      // setIsSend(true);
-      // console.log(requestObj);
-
-      // requestObj.whatsAppNumber = formData.userInfo.whatsappNumber.whatsappNum;
-      console.log(requestObj);
-      requestObj[`whatsAppNumber[phoneNumber]`] =
-        formData.userInfo.whatsappNumber.whatsappNum;
-      requestObj[`whatsAppNumber[code]`] =
-        formData.userInfo.whatsappNumber.countryCode;
+    if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
+      axios({
+        method: "post",
+        url: "http://192.168.1.5:3005/members/addMember",
+        data: requestObj,
+      })
+        .then((response) => {
+          setAlertText(response.data.message);
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          if (error.response.data.message) {
+            setAlertText(
+              error.response.data.message[
+                error.response.data.message.length - 1
+              ]
+            );
+          }
+        });
     }
-    if (
-      formData.userInfo.mobileNumber &&
-      (!formData.userInfo.mobileNumber.phoneNum ||
-        (7 > formData.userInfo.mobileNumber.phoneNum.split("").length &&
-          formData.userInfo.mobileNumber.phoneNum.split("").length < 11))
-    ) {
-      setAlertText(
-        "mobileNumber cann't be less then 8 and cann't be more then 10"
-      );
-      // setIsSend(false);
-    } else if (
-      formData.userInfo.mobileNumber &&
-      formData.userInfo.mobileNumber.phoneNum
-    ) {
-      // setIsSend(true);
-
-      requestObj[`mobileNumber[phoneNumber]`] =
-        formData.userInfo.mobileNumber.whatsappNum;
-      requestObj[`mobileNumber[code]`] =
-        formData.userInfo.mobileNumber.countryCode;
+    console.log(formData.userInfo.whatsappNumber);
+    if (formData.userInfo.whatsappNumber) {
+      if (
+        !(
+          formData.userInfo.whatsappNumber.whatsappNum.split("").length < 8 ||
+          formData.userInfo.whatsappNumber.whatsappNum.split("").length > 10
+        )
+      ) {
+        setAlertText("");
+        requestObj[`whatsAppNumber[phoneNumber]`] =
+          formData.userInfo.whatsappNumber.whatsappNum;
+        requestObj[`whatsAppNumber[code]`] =
+          formData.userInfo.whatsappNumber.countryCode;
+        setIsSend(true);
+      } else {
+        setIsSend(false);
+        setAlertText(
+          "whatsappNumber cann't be less then 8 and cann't be more then 10"
+        );
+      }
+    }
+    if (formData.userInfo.mobileNumber) {
+      if (
+        !formData.userInfo.mobileNumber.phoneNum ||
+        !(
+          formData.userInfo.mobileNumber.phoneNum.split("").length < 8 ||
+          formData.userInfo.mobileNumber.phoneNum.split("").length > 10
+        )
+      ) {
+        setAlertText("");
+        requestObj[`mobileNumber[phoneNumber]`] =
+          formData.userInfo.mobileNumber.phoneNum;
+        requestObj[`mobileNumber[code]`] =
+          formData.userInfo.mobileNumber.countryCode;
+        setIsSend(true);
+      } else {
+        setIsSend(false);
+        setAlertText(
+          "mobileNumber cann't be less then 8 and cann't be more then 10"
+        );
+      }
     }
 
-    // console.log(requestObj);
-    // for (var i in requestObj) {
-    //   if (i == "links") {
-    //     for (let j = 0; j < requestObj[i].length; j++) {
-    //       bodyFormData.set(`links[${j}][title]`, requestObj[i][j].title);
-    //       bodyFormData.set(`links[${j}][value]`, requestObj[i][j].value);
-    //       bodyFormData.set(`links[${j}][type]`, requestObj[i][j].type);
-    //     }
-    //   } else if (i == "bannerImages") {
-    //     for (let j = 0; j < requestObj[i].length; j++) {
-    //       bodyFormData.set(i, requestObj[i][j]);
-    //     }
-    //   } else {
-    //     bodyFormData.set(i, requestObj[i]);
-    //   }
-    // }
-
-    // for (var pair of bodyFormData.entries()) {
-    //   console.log(pair);
-    // }
     if (isSend) {
       console.log(isSend);
       axios({
@@ -677,9 +642,9 @@ export default function CreateCard(props) {
       })
         .then((response) => {
           setAlertText(response.data.message);
-          // window.location.href = "/";
+          window.location.href = "/";
         })
-        .catch(function (error) {
+        .catch((error) => {
           if (error.response.data.message) {
             setAlertText(
               error.response.data.message[
@@ -1276,7 +1241,7 @@ export default function CreateCard(props) {
           </div>
 
           {alertText ? (
-            <ALert alertText={alertText} setAlertText={setAlertText} />
+            <Alert alertText={alertText} setAlertText={setAlertText} />
           ) : (
             ""
           )}

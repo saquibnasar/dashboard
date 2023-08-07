@@ -22,7 +22,7 @@ import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import AddLink from "./AddLink";
 import AdduCard from "./AddCard";
 import Image from "./userDetail/Image";
-import ALert from "./AddLink";
+import ALert from "./Alert";
 
 export default function About(props) {
   const [startDate, setStartDate] = useState(new Date());
@@ -42,18 +42,26 @@ export default function About(props) {
   const [isNavbar, setIsNavbar] = useState(false);
   const [isLinkClick, setIsLinkClick] = useState(false);
   const [alertText, setAlertText] = useState("");
-  const [editImage, setEditImage] = useState({
-    logoimage: `${props.formData.profileImage}`,
-    bannerImage1: `${props.formData.bannerImages[0]}`,
-    bannerImage2: `${props.formData.bannerImages[1]}`,
-    bannerImage3: `${props.formData.bannerImages[2]}`,
-  });
+  // const [editImage, setEditImage] = useState({
+  //   logoimage: `${props.formData.profileImage}`,
+  //   bannerImage1: `${props.formData.bannerImages[0]}`,
+  //   bannerImage2: `${props.formData.bannerImages[1]}`,
+  //   bannerImage3: `${props.formData.bannerImages[2]}`,
+  // });
 
   const [secondImage, setSecondImage] = useState({
-    logoimage: `${props.formData.profileImage}`,
-    bannerImage1: `${props.formData.bannerImages[0]}`,
-    bannerImage2: `${props.formData.bannerImages[1]}`,
-    bannerImage3: `${props.formData.bannerImages[2]}`,
+    logoimage: props.formData.profileImage
+      ? `${props.formData.profileImage}`
+      : "",
+    bannerImage1: props.formData.bannerImages
+      ? `${props.formData.bannerImages[0]}`
+      : "",
+    bannerImage2: props.formData.bannerImages
+      ? `${props.formData.bannerImages[1]}`
+      : "",
+    bannerImage3: props.formData.bannerImages
+      ? `${props.formData.bannerImages[2]}`
+      : "",
   });
 
   const [image, setImage] = useState({
@@ -879,7 +887,7 @@ export default function About(props) {
                       setSecondImage={setSecondImage}
                       secondImage={secondImage}
                       setImage={setImage}
-                      editImage={editImage}
+                      // editImage={editImage}
                       imagehandleChange={imagehandleChange}
                       imageNum="1"
                     />
@@ -888,7 +896,7 @@ export default function About(props) {
                       setSecondImage={setSecondImage}
                       secondImage={secondImage}
                       setImage={setImage}
-                      editImage={editImage}
+                      // editImage={editImage}
                       imagehandleChange={imagehandleChange}
                       imageNum="2"
                     />
@@ -897,7 +905,7 @@ export default function About(props) {
                       setSecondImage={setSecondImage}
                       secondImage={secondImage}
                       setImage={setImage}
-                      editImage={editImage}
+                      // editImage={editImage}
                       imagehandleChange={imagehandleChange}
                       imageNum="3"
                     />
@@ -1062,7 +1070,7 @@ export default function About(props) {
                         setImage((prevformData) => {
                           return {
                             ...prevformData,
-                            logoimage: editImage.logoimage,
+                            logoimage: secondImage.logoimage,
                           };
                         });
                       }}

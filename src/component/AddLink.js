@@ -5,6 +5,7 @@ import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import UserProfile from "./UserProfile/UserProfile";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
+import Alert from "./Alert";
 
 export default function AddLink(props) {
   const [formData, setFormData] = useState({
@@ -14,6 +15,8 @@ export default function AddLink(props) {
 
   const [ifClick, setIfClick] = useState(false);
   const [phone, setPhone] = useState("+1");
+
+  const [alertText, setAlertText] = useState("");
 
   const handleChange = (event) => {
     setFormData((prevformData) => {
@@ -76,7 +79,9 @@ export default function AddLink(props) {
           formData.value.split("").length < 8 ||
           formData.value.split("").length > 10
         ) {
-          alert("number cann't be less then 8 and cann't be more then 10");
+          setAlertText(
+            "number cann't be less then 8 and cann't be more then 10"
+          );
         } else {
           props.setFormData((prevformData) => {
             return {
@@ -89,6 +94,10 @@ export default function AddLink(props) {
                   type: props.data.type,
                 },
               ],
+              usereLincoutryCode: {
+                ...prevformData.usereLincoutryCode,
+                [formData.title]: phone,
+              },
             };
           });
           props.sendData();
@@ -341,6 +350,12 @@ export default function AddLink(props) {
             </form>
           </div>
         </div>
+
+        {alertText ? (
+          <Alert alertText={alertText} setAlertText={setAlertText} />
+        ) : (
+          ""
+        )}
       </div>
       <div className="signup_phone text-center d-md-block">
         <button className="btn btn-preview">Live Preview</button>
