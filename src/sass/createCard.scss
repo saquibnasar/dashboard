@@ -500,6 +500,9 @@
         // }
       }
     }
+    .signup_phone-container::-webkit-scrollbar {
+      display: none;
+    }
   }
   .addcard {
     width: 60%;

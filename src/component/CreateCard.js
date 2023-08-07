@@ -330,47 +330,47 @@ export default function CreateCard(props) {
     });
   };
   const imagehandleChange = (e) => {
-    if (e.target.name === "logoimage") {
-      setFormData((prevformData) => {
-        return {
-          ...prevformData,
-          userImages: {
-            ...prevformData.userImages,
-            userProfile: e.target.files[0],
-          },
-        };
-      });
-    } else if (e.target.name === "bannerImage1") {
-      setFormData((prevformData) => {
-        return {
-          ...prevformData,
-          userImages: {
-            ...prevformData.userImages,
-            bannerImage1: e.target.files[0],
-          },
-        };
-      });
-    } else if (e.target.name === "bannerImage2") {
-      setFormData((prevformData) => {
-        return {
-          ...prevformData,
-          userImages: {
-            ...prevformData.userImages,
-            bannerImage2: e.target.files[0],
-          },
-        };
-      });
-    } else if (e.target.name === "bannerImage3") {
-      setFormData((prevformData) => {
-        return {
-          ...prevformData,
-          userImages: {
-            ...prevformData.userImages,
-            bannerImage3: e.target.files[0],
-          },
-        };
-      });
-    }
+    // if (e.target.name === "logoimage") {
+    //   setFormData((prevformData) => {
+    //     return {
+    //       ...prevformData,
+    //       userImages: {
+    //         ...prevformData.userImages,
+    //         userProfile: e.target.files[0],
+    //       },
+    //     };
+    //   });
+    // } else if (e.target.name === "bannerImage1") {
+    //   setFormData((prevformData) => {
+    //     return {
+    //       ...prevformData,
+    //       userImages: {
+    //         ...prevformData.userImages,
+    //         bannerImage1: e.target.files[0],
+    //       },
+    //     };
+    //   });
+    // } else if (e.target.name === "bannerImage2") {
+    //   setFormData((prevformData) => {
+    //     return {
+    //       ...prevformData,
+    //       userImages: {
+    //         ...prevformData.userImages,
+    //         bannerImage2: e.target.files[0],
+    //       },
+    //     };
+    //   });
+    // } else if (e.target.name === "bannerImage3") {
+    //   setFormData((prevformData) => {
+    //     return {
+    //       ...prevformData,
+    //       userImages: {
+    //         ...prevformData.userImages,
+    //         bannerImage3: e.target.files[0],
+    //       },
+    //     };
+    //   });
+    // }
 
     if (e.target.files.length) {
       setImage((prevformData) => {
@@ -410,7 +410,7 @@ export default function CreateCard(props) {
             // prevformData.userImages.userProfile.croppedAreaPixels =
             //   croppedAreaPixels;
             // prevformData.userImages.userProfile.rotation = rotation;
-            console.log(croppedImage);
+            // console.log(croppedImage);
             return {
               ...prevformData,
               userImages: {
@@ -418,9 +418,9 @@ export default function CreateCard(props) {
                 userProfile: croppedImage,
               },
             };
-            return {
-              ...prevformData,
-            };
+            // return {
+            //   ...prevformData,
+            // };
           });
         } else if (image.bannerImage1) {
           setSecondImage((prevformData) => {
@@ -431,12 +431,12 @@ export default function CreateCard(props) {
           });
 
           setFormData((prevformData) => {
-            prevformData.userImages.bannerImage1.croppedAreaPixels =
-              croppedAreaPixels;
-            prevformData.userImages.bannerImage1.rotation = rotation;
-
             return {
               ...prevformData,
+              userImages: {
+                ...prevformData.userImages,
+                bannerImage1: croppedImage,
+              },
             };
           });
         } else if (image.bannerImage2) {
@@ -447,12 +447,16 @@ export default function CreateCard(props) {
             };
           });
           setFormData((prevformData) => {
-            prevformData.userImages.bannerImage2.croppedAreaPixels =
-              croppedAreaPixels;
-            prevformData.userImages.bannerImage2.rotation = rotation;
+            // prevformData.userImages.bannerImage2.croppedAreaPixels =
+            //   croppedAreaPixels;
+            // prevformData.userImages.bannerImage2.rotation = rotation;
 
             return {
               ...prevformData,
+              userImages: {
+                ...prevformData.userImages,
+                bannerImage2: croppedImage,
+              },
             };
           });
         } else if (image.bannerImage3) {
@@ -463,11 +467,15 @@ export default function CreateCard(props) {
             };
           });
           setFormData((prevformData) => {
-            prevformData.userImages.bannerImage3.croppedAreaPixels =
-              croppedAreaPixels;
-            prevformData.userImages.bannerImage3.rotation = rotation;
+            // prevformData.userImages.bannerImage3.croppedAreaPixels =
+            //   croppedAreaPixels;
+            // prevformData.userImages.bannerImage3.rotation = rotation;
             return {
               ...prevformData,
+              userImages: {
+                // ...prevformData.userImages,
+                bannerImage3: croppedImage,
+              },
             };
           });
 
@@ -497,6 +505,7 @@ export default function CreateCard(props) {
         });
 
         setRotation(0);
+        setZoom(1);
       } catch (e) {
         console.error(e);
       }
@@ -536,50 +545,54 @@ export default function CreateCard(props) {
     var bannerImages = [];
     let whatsAppNumber = "";
     let mobileNumber = "";
-
+    console.log(formData.userImages.bannerImage3);
     if (formData.userImages.bannerImage1) {
       bannerImages.push(formData.userImages.bannerImage1);
+      // bannerImages.push("formData.userImages.bannerImage1");
     }
 
     if (formData.userImages.bannerImage2) {
       bannerImages.push(formData.userImages.bannerImage2);
+      // bannerImages.push("formData.userImages.bannerImage2");
+      console.log(bannerImages);
     }
     if (formData.userImages.bannerImage3) {
       bannerImages.push(formData.userImages.bannerImage3);
+      // bannerImages.push("formData.userImages.bannerImage3");
     }
 
-    if (formData.userInfo.whatsappNumber) {
-      whatsAppNumber = formData.userInfo.whatsappNumber;
+    // if (formData.userInfo.whatsappNumber) {
+    //   whatsAppNumber = formData.userInfo.whatsappNumber;
 
-      bodyFormData.set(
-        `whatsAppNumber[phoneNumber]`,
-        formData.userInfo.whatsappNumber.whatsappNum
-      );
-      bodyFormData.set(
-        `whatsAppNumber[code]`,
-        formData.userInfo.whatsappNumber.countryCode
-      );
-    }
-    if (formData.userInfo.mobileNumber) {
-      mobileNumber = formData.userInfo.mobileNumber;
+    //   bodyFormData.set(
+    //     `whatsAppNumber[phoneNumber]`,
+    //     formData.userInfo.whatsappNumber.whatsappNum
+    //   );
+    //   bodyFormData.set(
+    //     `whatsAppNumber[code]`,
+    //     formData.userInfo.whatsappNumber.countryCode
+    //   );
+    // }
+    // if (formData.userInfo.mobileNumber) {
+    //   mobileNumber = formData.userInfo.mobileNumber;
 
-      bodyFormData.set(
-        `mobileNumber[phoneNumber]`,
-        formData.userInfo.mobileNumber.phoneNum
-      );
-      bodyFormData.set(
-        `mobileNumber[code]`,
-        formData.userInfo.mobileNumber.countryCode
-      );
-    }
+    //   bodyFormData.set(
+    //     `mobileNumber[phoneNumber]`,
+    //     formData.userInfo.mobileNumber.phoneNum
+    //   );
+    //   bodyFormData.set(
+    //     `mobileNumber[code]`,
+    //     formData.userInfo.mobileNumber.countryCode
+    //   );
+    // }
 
     // console.log(`a[] blobk ${json}`);
-    // console.log(formData.userImages.userProfile);
+    console.log(bannerImages);
     let requestObj = new Map();
     requestObj = {
       name: formData.userInfo.username,
       profileImage: formData.userImages.userProfile,
-      bannerImages: bannerImages.length === 0 ? null : bannerImages,
+      bannerImages: bannerImages.length === 0 ? null : [...bannerImages],
       designation: formData.userInfo.designation,
       employeeId: formData.userInfo.employeeId,
       employeeBio: formData.userInfo.employeeBio,
@@ -592,30 +605,26 @@ export default function CreateCard(props) {
     if (
       formData.userInfo.whatsappNumber &&
       (!formData.userInfo.whatsappNumber.whatsappNum ||
-        (7 > formData.userInfo.whatsappNumber.whatsappNum.split("").length &&
-          formData.userInfo.whatsappNumber.whatsappNum.split("").length < 11))
+        formData.userInfo.whatsappNumber.whatsappNum.split("").length < 8 ||
+        formData.userInfo.whatsappNumber.whatsappNum.split("").length > 10)
     ) {
       setAlertText(
         "whatsappNumber cann't be less then 8 and cann't be more then 10"
       );
-      setIsSend(false);
+      // setIsSend(false);
     } else if (
       formData.userInfo.whatsappNumber &&
       formData.userInfo.whatsappNumber.whatsappNum
     ) {
-      setIsSend(true);
+      // setIsSend(true);
       // console.log(requestObj);
 
-      requestObj.whatsAppNumber = formData.userInfo.whatsappNumber.whatsappNum;
+      // requestObj.whatsAppNumber = formData.userInfo.whatsappNumber.whatsappNum;
       console.log(requestObj);
-      // requestObj.set(
-      //   `whatsAppNumber[phoneNumber]`,
-      //   formData.userInfo.whatsappNumber.whatsappNum
-      // );
-      // requestObj.set(
-      //   `whatsAppNumber[code]`,
-      //   formData.userInfo.whatsappNumber.countryCode
-      // );
+      requestObj[`whatsAppNumber[phoneNumber]`] =
+        formData.userInfo.whatsappNumber.whatsappNum;
+      requestObj[`whatsAppNumber[code]`] =
+        formData.userInfo.whatsappNumber.countryCode;
     }
     if (
       formData.userInfo.mobileNumber &&
@@ -626,20 +635,17 @@ export default function CreateCard(props) {
       setAlertText(
         "mobileNumber cann't be less then 8 and cann't be more then 10"
       );
-      setIsSend(false);
+      // setIsSend(false);
     } else if (
       formData.userInfo.mobileNumber &&
       formData.userInfo.mobileNumber.phoneNum
     ) {
-      setIsSend(true);
-      // requestObj.set(
-      //   `mobileNumber[phoneNumber]`,
-      //   formData.userInfo.mobileNumber.phoneNum
-      // );
-      // requestObj.set(
-      //   `mobileNumber[code]`,
-      //   formData.userInfo.mobileNumber.countryCode
-      // );
+      // setIsSend(true);
+
+      requestObj[`mobileNumber[phoneNumber]`] =
+        formData.userInfo.mobileNumber.whatsappNum;
+      requestObj[`mobileNumber[code]`] =
+        formData.userInfo.mobileNumber.countryCode;
     }
 
     // console.log(requestObj);
@@ -664,24 +670,24 @@ export default function CreateCard(props) {
     // }
     if (isSend) {
       console.log(isSend);
-      // axios({
-      //   method: "post",
-      //   url: "http://192.168.1.5:3005/members/addMember",
-      //   data: requestObj,
-      // })
-      //   .then((response) => {
-      //     setAlertText(response.data.message);
-      //     // window.location.href = "/";
-      //   })
-      //   .catch(function (error) {
-      //     if (error.response.data.message) {
-      //       setAlertText(
-      //         error.response.data.message[
-      //           error.response.data.message.length - 1
-      //         ]
-      //       );
-      //     }
-      //   });
+      axios({
+        method: "post",
+        url: "http://192.168.1.5:3005/members/addMember",
+        data: requestObj,
+      })
+        .then((response) => {
+          setAlertText(response.data.message);
+          // window.location.href = "/";
+        })
+        .catch(function (error) {
+          if (error.response.data.message) {
+            setAlertText(
+              error.response.data.message[
+                error.response.data.message.length - 1
+              ]
+            );
+          }
+        });
     }
   };
 

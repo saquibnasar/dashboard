@@ -21,6 +21,8 @@ import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import AddLink from "./AddLink";
 import AdduCard from "./AddCard";
+import Image from "./userDetail/Image";
+import ALert from "./AddLink";
 
 export default function About(props) {
   const [startDate, setStartDate] = useState(new Date());
@@ -39,20 +41,19 @@ export default function About(props) {
   const [croppedImage, setCroppedImage] = useState(null);
   const [isNavbar, setIsNavbar] = useState(false);
   const [isLinkClick, setIsLinkClick] = useState(false);
+  const [alertText, setAlertText] = useState("");
   const [editImage, setEditImage] = useState({
-    logoimage: "",
-    bannerImage1: "",
-    bannerImage2: "",
-    bannerImage3: "",
-    raw: "",
+    logoimage: `${props.formData.profileImage}`,
+    bannerImage1: `${props.formData.bannerImages[0]}`,
+    bannerImage2: `${props.formData.bannerImages[1]}`,
+    bannerImage3: `${props.formData.bannerImages[2]}`,
   });
 
   const [secondImage, setSecondImage] = useState({
     logoimage: `${props.formData.profileImage}`,
-    bannerImage1: "",
-    bannerImage2: "",
-    bannerImage3: "",
-    raw: "",
+    bannerImage1: `${props.formData.bannerImages[0]}`,
+    bannerImage2: `${props.formData.bannerImages[1]}`,
+    bannerImage3: `${props.formData.bannerImages[2]}`,
   });
 
   const [image, setImage] = useState({
@@ -60,7 +61,6 @@ export default function About(props) {
     bannerImage1: "",
     bannerImage2: "",
     bannerImage3: "",
-    raw: "",
   });
 
   const [uploadList, setUploadList] = useState({
@@ -112,11 +112,23 @@ export default function About(props) {
               logoimage: croppedImage,
             };
           });
+          props.setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              bannerImages: croppedImage,
+            };
+          });
         } else if (image.bannerImage1) {
           setSecondImage((prevformData) => {
             return {
               ...prevformData,
               bannerImage1: croppedImage,
+            };
+          });
+          props.setFormData((prevformData) => {
+            prevformData.bannerImages.splice(0, 1, croppedImage);
+            return {
+              ...prevformData,
             };
           });
         } else if (image.bannerImage2) {
@@ -126,6 +138,12 @@ export default function About(props) {
               bannerImage2: croppedImage,
             };
           });
+          props.setFormData((prevformData) => {
+            prevformData.bannerImages.splice(1, 1, croppedImage);
+            return {
+              ...prevformData,
+            };
+          });
         } else if (image.bannerImage3) {
           setSecondImage((prevformData) => {
             return {
@@ -133,14 +151,13 @@ export default function About(props) {
               bannerImage3: croppedImage,
             };
           });
+          props.setFormData((prevformData) => {
+            prevformData.bannerImages.splice(2, 1, croppedImage);
+            return {
+              ...prevformData,
+            };
+          });
         }
-
-        setEditImage({
-          logoimage: image.logoimage,
-          bannerImage1: image.bannerImage1,
-          bannerImage2: image.bannerImage2,
-          bannerImage3: image.bannerImage3,
-        });
 
         setImage((prevformData) => {
           return {
@@ -156,7 +173,7 @@ export default function About(props) {
 
         setCroppedImage(croppedImage);
       } catch (e) {
-        console.error(e);
+        setAlertText(e);
       }
     },
     [croppedAreaPixels, rotation]
@@ -180,8 +197,6 @@ export default function About(props) {
   };
 
   const updateLink = (link, id) => {
-    console.log(link);
-    console.log(id);
     setIsLinkClick(!isLinkClick);
     setLinkData(() => {
       if (link && link.type && link.type === "phone") {
@@ -311,7 +326,7 @@ export default function About(props) {
       <div className="setting">
         <div className="admin">
           <div className="admin_detail">
-            <div className="addImage">
+            {/* <div className="addImage">
               <h3>Upload banner image </h3>
               {image.bannerImage1 ||
               image.bannerImage2 ||
@@ -434,9 +449,9 @@ export default function About(props) {
                           }}
                         >
                           <div className="imgUploader">
-                            {secondImage.bannerImage1 ? (
+                            {props.formData.bannerImages[0] ? (
                               <img
-                                src={secondImage.bannerImage1}
+                                src={props.formData.bannerImages[0]}
                                 alt=""
                                 className="img-fluid"
                               />
@@ -771,6 +786,124 @@ export default function About(props) {
                   </div>
                 </div>
               </div>
+            </div> */}
+            <div className="addImage">
+              <h3>Upload banner image </h3>
+              {image.bannerImage1 ||
+              image.bannerImage2 ||
+              image.bannerImage3 ? (
+                <>
+                  <div className="crops-module">
+                    <div className="crops">
+                      <div className="crops-controls">
+                        <button
+                          className="z-1 btn"
+                          type="button"
+                          onClick={() => {
+                            setImage({
+                              preview: "",
+                            });
+                          }}
+                        >
+                          Cancel
+                        </button>
+                        <button
+                          className="z-1 btn"
+                          type="button"
+                          onClick={showCroppedImage}
+                        >
+                          Save
+                        </button>
+                      </div>
+                      <div className="crop-container">
+                        <Cropper
+                          image={
+                            image.bannerImage1 ||
+                            image.bannerImage2 ||
+                            image.bannerImage3
+                          }
+                          crop={crop}
+                          zoom={zoom}
+                          rotation={rotation}
+                          aspect={2 / 1}
+                          onCropChange={setCrop}
+                          onCropComplete={onCropComplete}
+                          onZoomChange={setZoom}
+                        />
+                      </div>
+                      <div className="crop-edit">
+                        <input
+                          type="range"
+                          value={zoom}
+                          min={1}
+                          max={3}
+                          step={0.1}
+                          aria-labelledby="Zoom"
+                          onChange={(e) => {
+                            setZoom(e.target.value);
+                          }}
+                          className="zoom-range"
+                        />
+                      </div>
+                      <div className="crop_rotate">
+                        <div
+                          className="crop_rotate-left"
+                          // htmlFor="crop_rotate-left"
+                          onClick={() =>
+                            setRotation((prevformData) => prevformData + 90)
+                          }
+                        >
+                          <FontAwesomeIcon icon={faRotateLeft} />
+                        </div>
+                        <div
+                          className="crop_rotate-right"
+                          onClick={() =>
+                            setRotation((prevformData) => prevformData - 90)
+                          }
+                        >
+                          <FontAwesomeIcon icon={faRotateRight} />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              ) : (
+                ""
+              )}
+
+              <div className="row">
+                <div className="col">
+                  <div className="tabs">
+                    <Image
+                      setUploadList={setUploadList}
+                      setSecondImage={setSecondImage}
+                      secondImage={secondImage}
+                      setImage={setImage}
+                      editImage={editImage}
+                      imagehandleChange={imagehandleChange}
+                      imageNum="1"
+                    />
+                    <Image
+                      setUploadList={setUploadList}
+                      setSecondImage={setSecondImage}
+                      secondImage={secondImage}
+                      setImage={setImage}
+                      editImage={editImage}
+                      imagehandleChange={imagehandleChange}
+                      imageNum="2"
+                    />
+                    <Image
+                      setUploadList={setUploadList}
+                      setSecondImage={setSecondImage}
+                      secondImage={secondImage}
+                      setImage={setImage}
+                      editImage={editImage}
+                      imagehandleChange={imagehandleChange}
+                      imageNum="3"
+                    />
+                  </div>
+                </div>
+              </div>
             </div>
             <div className="addImage p-relative">
               <h3>Upload Profile image </h3>
@@ -991,7 +1124,7 @@ export default function About(props) {
                   placeholder="Employee id"
                   name="employeeId"
                   required
-                  // onChange={props.handleChange}
+                  onChange={props.handleChange}
                   value={props.formData.employeeId}
                 />
               </div>
@@ -1012,6 +1145,12 @@ export default function About(props) {
                 />
               </div>
             </div>
+            {alertText ? (
+              <ALert alertText={alertText} setAlertText={setAlertText} />
+            ) : (
+              ""
+            )}
+
             <div className="admin_detail-social">
               <h3>Choose/add Social handles </h3>
               <div className="admin_detail-social-grid">

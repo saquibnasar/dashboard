@@ -65,14 +65,24 @@ export default function AddLink(props) {
       props.sendData();
     } else {
       if (props.data.type === "phone") {
-        console.log(7 > formData.value.split("").length > 11);
-        if (7 > formData.value.split("").length > 11) {
+        console.log(formData.value.split("").length < 7);
+        console.log(formData.value.split("").length > 11);
+
+        // console.log(
+        //   formData.value.split("").length < 7 &&
+        //     formData.value.split("").length > 11
+        // );
+        if (
+          formData.value.split("").length < 8 ||
+          formData.value.split("").length > 10
+        ) {
           alert("number cann't be less then 8 and cann't be more then 10");
         } else {
           props.setFormData((prevformData) => {
             return {
               ...prevformData,
               userLink: [
+                ...prevformData.userLink,
                 {
                   title: formData.title,
                   value: phone + formData.value,
@@ -88,6 +98,7 @@ export default function AddLink(props) {
           return {
             ...prevformData,
             userLink: [
+              ...prevformData.userLink,
               {
                 title: formData.title,
                 value: formData.value,

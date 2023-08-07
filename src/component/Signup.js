@@ -198,7 +198,7 @@ export default function Signup() {
               </p>
             </form>
           </div>
-          {alert ? (
+          {alertText ? (
             <Alert alertText={alertText} setAlertText={setAlertText} />
           ) : (
             ""

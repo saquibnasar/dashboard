@@ -232,6 +232,9 @@
           //   }
           // }
         }
+        .signup_phone-container::-webkit-scrollbar {
+          display: none;
+        }
       }
 
       .links {

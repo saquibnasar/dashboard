@@ -15,12 +15,14 @@ import FlaxCode from "./FlaxCode";
 import UserProfile from "./UserProfile/UserProfile";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import Alert from "./Alert";
 export default function HomePage(props) {
   const { homepageId, userId } = useParams();
   const [isLinks, setIslinks] = useState(false);
   const [isClick, setIsClick] = useState(false);
   const [data, setData] = useState("");
   const [formData, setFormData] = useState("");
+  const [alertText, setAlertText] = useState("");
   useEffect(() => {
     axios
       .get(`http://192.168.1.5:3005/members/${userId}`)
@@ -58,72 +60,76 @@ export default function HomePage(props) {
   //   });
   // };
   const handleChange = (event, code) => {
-    if (event === "whPhone" || event === "phone") {
-      if (event === "whPhone") {
-        setFormData((prevformData) => {
-          return {
-            ...prevformData,
-            whatsAppNumber: {
-              ...prevformData.whatsAppNumber,
-              code: code ? code : "1",
-            },
-          };
-        });
-      } else {
-        setFormData((prevformData) => {
-          return {
-            ...prevformData,
-            mobileNumber: {
-              ...prevformData.mobileNumber,
-              code: code ? code : "1",
-            },
-          };
-        });
-      }
-    } else if (
-      event.target.name === "whatsAppNumber" ||
-      event.target.name === "mobileNumber"
-    ) {
-      if (event.target.name === "mobileNumber") {
-        setFormData((prevformData) => {
-          return {
-            ...prevformData,
-            [event.target.name]: {
-              phoneNumber: event.target.value,
-              code: prevformData.mobileNumber.code
-                ? prevformData.mobileNumber.code
-                : "1",
-            },
-          };
-        });
-      } else {
-        setFormData((prevformData) => {
-          return {
-            ...prevformData,
-            [event.target.name]: {
-              phoneNumber: event.target.value,
-              code: prevformData.whatsAppNumber.code
-                ? prevformData.whatsAppNumber.code
-                : "1",
-            },
-          };
-        });
-      }
-      // if (event.target.value === "") {
-      //   setFormData((prevformData) => {
-      //     return {
-      //       ...prevformData,
-      //       [event.target.name]: "",
-      //     };
-      //   });
-      // }
+    if (event.target.name === "employeeId") {
+      setAlertText("user conn't change employeeId");
     } else {
-      setFormData((prevformData) => {
-        return {
-          ...prevformData,
-          [event.target.name]: event.target.value,
-        };
-      });
+      if (event === "whPhone" || event === "phone") {
+        if (event === "whPhone") {
+          setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              whatsAppNumber: {
+                ...prevformData.whatsAppNumber,
+                code: code ? code : "1",
+              },
+            };
+          });
+        } else {
+          setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              mobileNumber: {
+                ...prevformData.mobileNumber,
+                code: code ? code : "1",
+              },
+            };
+          });
+        }
+      } else if (
+        event.target.name === "whatsAppNumber" ||
+        event.target.name === "mobileNumber"
+      ) {
+        if (event.target.name === "mobileNumber") {
+          setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              [event.target.name]: {
+                phoneNumber: event.target.value,
+                code: prevformData.mobileNumber.code
+                  ? prevformData.mobileNumber.code
+                  : "1",
+              },
+            };
+          });
+        } else {
+          setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              [event.target.name]: {
+                phoneNumber: event.target.value,
+                code: prevformData.whatsAppNumber.code
+                  ? prevformData.whatsAppNumber.code
+                  : "1",
+              },
+            };
+          });
+        }
+        // if (event.target.value === "") {
+        //   setFormData((prevformData) => {
+        //     return {
+        //       ...prevformData,
+        //       [event.target.name]: "",
+        //     };
+        //   });
+        // }
+      } else {
+        setFormData((prevformData) => {
+          return {
+            ...prevformData,
+            [event.target.name]: event.target.value,
+          };
+        });
+      }
     }
   };
 
@@ -278,6 +284,12 @@ export default function HomePage(props) {
                 </div>
               </div>
               {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
+
+              {alertText ? (
+                <Alert alertText={alertText} setAlertText={setAlertText} />
+              ) : (
+                ""
+              )}
             </div>
           </div>
         </div>

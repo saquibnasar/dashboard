@@ -20,7 +20,6 @@ export default function Image(props) {
       } else {
         test.classList.add("tab-contentChecked");
       }
-      console.log(className);
     }
     if (className === ".tab-content2") {
       test3.classList.remove("tab-contentChecked");
@@ -140,7 +139,7 @@ export default function Image(props) {
                     props.setImage((prevformData) => {
                       return {
                         ...prevformData,
-                        bannerImage1: props.editImage.bannerImage1,
+                        bannerImage1: props.secondImage.bannerImage1,
                       };
                     });
                   }}
@@ -171,7 +170,7 @@ export default function Image(props) {
                     props.setImage((prevformData) => {
                       return {
                         ...prevformData,
-                        bannerImage2: props.editImage.bannerImage2,
+                        bannerImage2: props.secondImage.bannerImage2,
                       };
                     });
                   }}
@@ -202,7 +201,7 @@ export default function Image(props) {
                     props.setImage((prevformData) => {
                       return {
                         ...prevformData,
-                        bannerImage3: props.editImage.bannerImage3,
+                        bannerImage3: props.secondImage.bannerImage3,
                       };
                     });
                   }}

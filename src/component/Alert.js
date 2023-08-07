@@ -6,13 +6,13 @@ import { faXmark } from "@fortawesome/free-solid-svg-icons";
 export default function ALert(props) {
   return (
     <>
-      <div class="alert">
-        <div class="icon">
+      <div className="alert">
+        <div className="icon">
           <FontAwesomeIcon icon={faExclamationCircle} />
         </div>
-        <p class="alertText">{props.alertText}</p>
+        <p className="alertText">{props.alertText}</p>
         <button
-          class="alertClose"
+          className="alertClose"
           type="button"
           onClick={() => {
             props.setAlertText("");

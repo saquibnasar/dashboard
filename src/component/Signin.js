@@ -270,7 +270,7 @@ export default function Signin() {
             </form>
           </div>
         </div>
-        {alert ? (
+        {alertText ? (
           <Alert alertText={alertText} setAlertText={setAlertText} />
         ) : (
           ""
