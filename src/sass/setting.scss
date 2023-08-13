@@ -544,12 +544,12 @@
       }
     }
     img {
-      width: 35%;
+      width: 25%;
       @include media576 {
-        width: 45%;
+        width: 35%;
       }
       @include media430 {
-        width: 50%;
+        width: 45%;
       }
     }
   }

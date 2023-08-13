@@ -39,6 +39,7 @@ export default function LInks(props) {
           <FontAwesomeIcon icon={faPlus} />
           Add info
         </button>
+
         <div className="addcard_links">
           {props.formData && props.formData.userLink
             ? props.formData.userLink.map((value) => {

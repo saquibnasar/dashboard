@@ -40,38 +40,50 @@ export default function ImgSlider(props) {
       <div className={`swiper mySwiper`}>
         <div className={`swiper-wrapper`}>
           <Slider {...settings}>
-            {props.sliderImage.bannerImage1 ? (
-              <div className="swiper-slide">
-                <img
-                  className="img-fluid w-100"
-                  src={props.sliderImage.bannerImage1}
-                  alt=""
-                />
-              </div>
+            {props.arrayImages ? (
+              props.arrayImages.map((value) => {
+                return (
+                  <div className="swiper-slide">
+                    <img className="img-fluid w-100" src={value} alt="" />
+                  </div>
+                );
+              })
             ) : (
-              ""
-            )}
-            {props.sliderImage.bannerImage2 ? (
-              <div className="swiper-slide">
-                <img
-                  className="img-fluid w-100"
-                  src={props.sliderImage.bannerImage2}
-                  alt=""
-                />
-              </div>
-            ) : (
-              ""
-            )}
-            {props.sliderImage.bannerImage3 ? (
-              <div className="swiper-slide">
-                <img
-                  className="img-fluid w-100"
-                  src={props.sliderImage.bannerImage3}
-                  alt=""
-                />
-              </div>
-            ) : (
-              ""
+              <>
+                {props.sliderImage.bannerImage1 ? (
+                  <div className="swiper-slide">
+                    <img
+                      className="img-fluid w-100"
+                      src={props.sliderImage.bannerImage1}
+                      alt=""
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
+                {props.sliderImage.bannerImage2 ? (
+                  <div className="swiper-slide">
+                    <img
+                      className="img-fluid w-100"
+                      src={props.sliderImage.bannerImage2}
+                      alt=""
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
+                {props.sliderImage.bannerImage3 ? (
+                  <div className="swiper-slide">
+                    <img
+                      className="img-fluid w-100"
+                      src={props.sliderImage.bannerImage3}
+                      alt=""
+                    />
+                  </div>
+                ) : (
+                  ""
+                )}
+              </>
             )}
           </Slider>
         </div>

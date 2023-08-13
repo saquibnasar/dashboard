@@ -68,13 +68,6 @@ export default function AddLink(props) {
       props.sendData();
     } else {
       if (props.data.type === "phone") {
-        console.log(formData.value.split("").length < 7);
-        console.log(formData.value.split("").length > 11);
-
-        // console.log(
-        //   formData.value.split("").length < 7 &&
-        //     formData.value.split("").length > 11
-        // );
         if (
           formData.value.split("").length < 8 ||
           formData.value.split("").length > 10
@@ -94,16 +87,13 @@ export default function AddLink(props) {
                   type: props.data.type,
                 },
               ],
-              usereLincoutryCode: {
-                ...prevformData.usereLincoutryCode,
-                [formData.title]: phone,
-              },
             };
           });
           props.sendData();
         }
       } else {
         props.setFormData((prevformData) => {
+          console.log(prevformData.userLink);
           return {
             ...prevformData,
             userLink: [

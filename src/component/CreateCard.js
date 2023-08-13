@@ -573,7 +573,7 @@ export default function CreateCard(props) {
     if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
       axios({
         method: "post",
-        url: "http://192.168.1.5:3005/members/addMember",
+        url: "http://192.168.91.84:3005/members/addMember",
         data: requestObj,
       })
         .then((response) => {
@@ -634,25 +634,25 @@ export default function CreateCard(props) {
     }
 
     if (isSend) {
-      console.log(isSend);
-      axios({
-        method: "post",
-        url: "http://192.168.1.5:3005/members/addMember",
-        data: requestObj,
-      })
-        .then((response) => {
-          setAlertText(response.data.message);
-          window.location.href = "/";
-        })
-        .catch((error) => {
-          if (error.response.data.message) {
-            setAlertText(
-              error.response.data.message[
-                error.response.data.message.length - 1
-              ]
-            );
-          }
-        });
+      console.log(requestObj);
+      // axios({
+      //   method: "post",
+      //   url: "http://192.168.91.84:3005/members/addMember",
+      //   data: requestObj,
+      // })
+      //   .then((response) => {
+      //     setAlertText(response.data.message);
+      //     window.location.href = "/";
+      //   })
+      //   .catch((error) => {
+      //     if (error.response.data.message) {
+      //       setAlertText(
+      //         error.response.data.message[
+      //           error.response.data.message.length - 1
+      //         ]
+      //       );
+      //     }
+      //   });
     }
   };
 
@@ -1026,6 +1026,18 @@ export default function CreateCard(props) {
                       <input
                         type="text"
                         className="form-control"
+                        id="uniqueId"
+                        placeholder="Unique Id"
+                        name="uniqueId"
+                        required
+                        onChange={handleChange}
+                        value={formData.uniqueId}
+                      />
+                    </div>
+                    <div className="">
+                      <input
+                        type="text"
+                        className="form-control"
                         id="employeeBio"
                         placeholder="Employee bio"
                         name="employeeBio"
@@ -1246,13 +1258,7 @@ export default function CreateCard(props) {
             ""
           )}
 
-          <div
-            className={
-              isLinks
-                ? "d-md-none signup_phone text-center"
-                : "signup_phone text-center"
-            }
-          >
+          <div className="signup_phone text-center">
             <button className="btn btn-preview">Live Preview</button>
             <div className="signup_phone-container">
               <UserProfile
@@ -1307,3 +1313,4 @@ export default function CreateCard(props) {
     </>
   );
 }
+// scan this qr code to download flax activation app

@@ -25,10 +25,10 @@ export default function HomePage(props) {
   const [alertText, setAlertText] = useState("");
   useEffect(() => {
     axios
-      .get(`http://192.168.1.5:3005/members/${userId}`)
+      .get(`http://192.168.91.84:3005/members/${userId}`)
       .then((response) => {
         setData(response.data);
-        // console.log(response.data);
+        console.log(response.data);
         setFormData((prevData) => {
           return {
             ...prevData,
@@ -38,11 +38,10 @@ export default function HomePage(props) {
             officeEmailId: response.data.officeEmailId,
             whatsAppNumber: response.data.whatsAppNumber,
             mobileNumber: response.data.mobileNumber,
-            userLink: response.data.links,
+            userLink: response.data.links ? response.data.links : [],
             bannerImages: response.data.bannerImages,
             profileImage: response.data.profileImage,
             employeeId: response.data.employeeId,
-            id: response.data.id,
           };
         });
       })
@@ -60,7 +59,7 @@ export default function HomePage(props) {
   //   });
   // };
   const handleChange = (event, code) => {
-    if (event.target.name === "employeeId") {
+    if (event.target && event.target.name === "employeeId") {
       setAlertText("user conn't change employeeId");
     } else {
       if (event === "whPhone" || event === "phone") {
@@ -230,7 +229,9 @@ export default function HomePage(props) {
               >
                 {homepageId === "content" ? (
                   <div className="links">
-                    {formData && formData.userLink ? (
+                    {formData &&
+                    formData.userLink &&
+                    formData.userLink.length ? (
                       <LInks addLin={addLin} formData={formData} />
                     ) : (
                       <div className="link_container">
@@ -255,7 +256,7 @@ export default function HomePage(props) {
                 ) : homepageId === "about" ? (
                   <>
                     <About
-                      addLink={addLin}
+                      addLin={addLin}
                       handleChange={handleChange}
                       formData={formData}
                       imageData={image}
@@ -263,6 +264,8 @@ export default function HomePage(props) {
                       setImage={setImage}
                       data={data}
                       setFormData={setFormData}
+                      isLinks={isLinks}
+                      setIslinks={setIslinks}
                     />
                   </>
                 ) : homepageId === "flaxcode" ? (
@@ -270,20 +273,34 @@ export default function HomePage(props) {
                 ) : (
                   ""
                 )}
-                <div className="signup_phone text-center overflow-hidden">
+                <div
+                  className={
+                    !isLinks
+                      ? "signup_phone text-center overflow-hidden"
+                      : "d-none signup_phone"
+                  }
+                >
                   <Link to="/a" className="btn btn-preview">
                     Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
                   </Link>
                   <div className="signup_phone-container">
                     <UserProfile
                       formData={formData}
-                      logo={`http://192.168.1.8:3005/${formData.profileImage}`}
-                      images={image}
+                      logo={formData.profileImage}
+                      arrayImages={formData.bannerImages}
                     />
                   </div>
                 </div>
               </div>
-              {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
+              {isLinks ? (
+                <AddCard
+                  removeLink={addLin}
+                  isClick={isClick}
+                  setFormData={setFormData}
+                />
+              ) : (
+                ""
+              )}
 
               {alertText ? (
                 <Alert alertText={alertText} setAlertText={setAlertText} />

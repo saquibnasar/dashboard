@@ -53,15 +53,18 @@ export default function About(props) {
     logoimage: props.formData.profileImage
       ? `${props.formData.profileImage}`
       : "",
-    bannerImage1: props.formData.bannerImages
-      ? `${props.formData.bannerImages[0]}`
-      : "",
-    bannerImage2: props.formData.bannerImages
-      ? `${props.formData.bannerImages[1]}`
-      : "",
-    bannerImage3: props.formData.bannerImages
-      ? `${props.formData.bannerImages[2]}`
-      : "",
+    bannerImage1:
+      props.formData.bannerImages && props.formData.bannerImages[0]
+        ? `${props.formData.bannerImages[0]}`
+        : "",
+    bannerImage2:
+      props.formData.bannerImages && props.formData.bannerImages[1]
+        ? `${props.formData.bannerImages[1]}`
+        : "",
+    bannerImage3:
+      props.formData.bannerImages && props.formData.bannerImages[2]
+        ? `${props.formData.bannerImages[2]}`
+        : "",
   });
 
   const [image, setImage] = useState({
@@ -123,7 +126,7 @@ export default function About(props) {
           props.setFormData((prevformData) => {
             return {
               ...prevformData,
-              bannerImages: croppedImage,
+              profileImage: croppedImage,
             };
           });
         } else if (image.bannerImage1) {
@@ -134,7 +137,14 @@ export default function About(props) {
             };
           });
           props.setFormData((prevformData) => {
-            prevformData.bannerImages.splice(0, 1, croppedImage);
+            if (prevformData.bannerImages) {
+              console.log(prevformData.bannerImages);
+              prevformData.bannerImages.splice(0, 1, croppedImage);
+            } else {
+              prevformData.bannerImages = [];
+              prevformData.bannerImages.push(croppedImage);
+            }
+
             return {
               ...prevformData,
             };
@@ -147,7 +157,13 @@ export default function About(props) {
             };
           });
           props.setFormData((prevformData) => {
-            prevformData.bannerImages.splice(1, 1, croppedImage);
+            if (prevformData.bannerImages) {
+              prevformData.bannerImages.splice(1, 1, croppedImage);
+            } else {
+              prevformData.bannerImages = [];
+              prevformData.bannerImages.push(croppedImage);
+            }
+
             return {
               ...prevformData,
             };
@@ -160,7 +176,13 @@ export default function About(props) {
             };
           });
           props.setFormData((prevformData) => {
-            prevformData.bannerImages.splice(2, 1, croppedImage);
+            if (prevformData.bannerImages) {
+              prevformData.bannerImages.splice(2, 1, croppedImage);
+            } else {
+              prevformData.bannerImages = [];
+              prevformData.bannerImages.push(croppedImage);
+            }
+
             return {
               ...prevformData,
             };
@@ -202,6 +224,22 @@ export default function About(props) {
 
   const textHander = () => {
     console.log(props.formData);
+    // axios({
+    //   method: "post",
+    //   url: "http://192.168.91.84:3005/members/updateMember",
+    //   data: requestObj,
+    // })
+    //   .then((response) => {
+    //     setAlertText(response.data.message);
+    //     window.location.href = "/";
+    //   })
+    //   .catch((error) => {
+    //     if (error.response.data.message) {
+    //       setAlertText(
+    //         error.response.data.message[error.response.data.message.length - 1]
+    //       );
+    //     }
+    //   });
   };
 
   const updateLink = (link, id) => {
@@ -1190,7 +1228,7 @@ export default function About(props) {
                 <button
                   className="btn-primary"
                   onClick={() => {
-                    addLin();
+                    props.addLin();
                     // setType("card");
                   }}
                 >
@@ -1246,6 +1284,7 @@ export default function About(props) {
                 />
               </div>
               <div className="p-relative mb-3 countriesCode">
+                {console.log(props.formData)}
                 <input
                   type="number"
                   className={
@@ -1420,9 +1459,9 @@ export default function About(props) {
           </div>
         </div>
       </div>
-      {isLinks ? (
+      {props.isLinks ? (
         <AdduCard
-          removeLink={addLin}
+          removeLink={props.addLin}
           isClick={isClick}
           setFormData={props.setFormData}
         />

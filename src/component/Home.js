@@ -15,14 +15,14 @@ export default function Home(props) {
 
   useEffect(() => {
     axios
-      .get("http://192.168.1.5:3005/members/all")
+      .get("http://192.168.91.84:3005/members/all")
       .then((response) => {
         setData(response.data);
       })
       .catch((error) => {
-        // if(error.response.status ==401){
-        //   window.location.href = "/login";
-        // }
+        if (error.response.status == 401) {
+          window.location.href = "/login";
+        }
       });
   }, []);
 
