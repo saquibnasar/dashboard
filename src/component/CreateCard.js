@@ -582,15 +582,21 @@ export default function CreateCard(props) {
         })
         .catch((error) => {
           if (error.response.data.message) {
-            setAlertText(
-              error.response.data.message[
-                error.response.data.message.length - 1
-              ]
-            );
+            if (!error.response.data.message === "Member already exists") {
+              setAlertText(
+                error.response.data.message[
+                  error.response.data.message.length - 1
+                ]
+              );
+            } else {
+              setAlertText(
+                error.response.data.message + ", use different employee id"
+              );
+            }
           }
         });
     }
-    console.log(formData.userInfo.whatsappNumber);
+    // console.log(formData.userInfo.whatsappNumber);
     if (formData.userInfo.whatsappNumber) {
       if (
         !(
@@ -635,24 +641,30 @@ export default function CreateCard(props) {
 
     if (isSend) {
       console.log(requestObj);
-      // axios({
-      //   method: "post",
-      //   url: "http://192.168.91.84:3005/members/addMember",
-      //   data: requestObj,
-      // })
-      //   .then((response) => {
-      //     setAlertText(response.data.message);
-      //     window.location.href = "/";
-      //   })
-      //   .catch((error) => {
-      //     if (error.response.data.message) {
-      //       setAlertText(
-      //         error.response.data.message[
-      //           error.response.data.message.length - 1
-      //         ]
-      //       );
-      //     }
-      //   });
+      axios({
+        method: "post",
+        url: "http://192.168.91.84:3005/members/addMember",
+        data: requestObj,
+      })
+        .then((response) => {
+          setAlertText(response.data.message);
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          if (error.response.data.message) {
+            if (!error.response.data.message === "Member already exists") {
+              setAlertText(
+                error.response.data.message[
+                  error.response.data.message.length - 1
+                ]
+              );
+            } else {
+              setAlertText(
+                error.response.data.message + ", use different employee id"
+              );
+            }
+          }
+        });
     }
   };
 
@@ -1022,7 +1034,7 @@ export default function CreateCard(props) {
                         value={formData.employeeId}
                       />
                     </div>
-                    <div className="">
+                    {/* <div className="">
                       <input
                         type="text"
                         className="form-control"
@@ -1033,7 +1045,7 @@ export default function CreateCard(props) {
                         onChange={handleChange}
                         value={formData.uniqueId}
                       />
-                    </div>
+                    </div> */}
                     <div className="">
                       <input
                         type="text"

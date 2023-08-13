@@ -130,102 +130,238 @@ export default function Image(props) {
               Upload image
               <FontAwesomeIcon icon={faCloudArrowUp} />
             </label>
-
-            {props.imageNum === "1" && props.secondImage.bannerImage1 ? (
+            {props.type === "about" ? (
               <>
-                <div
-                  className="uploadList-item"
-                  onClick={() => {
-                    props.setImage((prevformData) => {
-                      return {
-                        ...prevformData,
-                        bannerImage1: props.secondImage.bannerImage1,
-                      };
-                    });
-                  }}
-                >
-                  Edit
-                  <FontAwesomeIcon icon={faPen} />
-                </div>
-                <div
-                  className="uploadList-item"
-                  onClick={() => {
-                    props.setSecondImage((prevformData) => {
-                      return {
-                        ...prevformData,
-                        bannerImage1: "",
-                      };
-                    });
-                  }}
-                >
-                  Clear
-                  <FontAwesomeIcon icon={faXmark} />
-                </div>
-              </>
-            ) : props.imageNum === "2" && props.secondImage.bannerImage2 ? (
-              <>
-                <div
-                  className="uploadList-item"
-                  onClick={() => {
-                    props.setImage((prevformData) => {
-                      return {
-                        ...prevformData,
-                        bannerImage2: props.secondImage.bannerImage2,
-                      };
-                    });
-                  }}
-                >
-                  Edit
-                  <FontAwesomeIcon icon={faPen} />
-                </div>
-                <div
-                  className="uploadList-item"
-                  onClick={() => {
-                    props.setSecondImage((prevformData) => {
-                      return {
-                        ...prevformData,
-                        bannerImage2: "",
-                      };
-                    });
-                  }}
-                >
-                  Clear
-                  <FontAwesomeIcon icon={faXmark} />
-                </div>
-              </>
-            ) : props.imageNum === "3" && props.secondImage.bannerImage3 ? (
-              <>
-                <div
-                  className="uploadList-item"
-                  onClick={() => {
-                    props.setImage((prevformData) => {
-                      return {
-                        ...prevformData,
-                        bannerImage3: props.secondImage.bannerImage3,
-                      };
-                    });
-                  }}
-                >
-                  Edit
-                  <FontAwesomeIcon icon={faPen} />
-                </div>
-                <div
-                  className="uploadList-item"
-                  onClick={() => {
-                    props.setSecondImage((prevformData) => {
-                      return {
-                        ...prevformData,
-                        bannerImage3: "",
-                      };
-                    });
-                  }}
-                >
-                  Clear
-                  <FontAwesomeIcon icon={faXmark} />
-                </div>
+                {props.imageNum === "1" && props.secondImage.bannerImage1 ? (
+                  <>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage1: props.secondImage.bannerImage1,
+                          };
+                        });
+                      }}
+                    >
+                      Edit
+                      <FontAwesomeIcon icon={faPen} />
+                    </div>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setSecondImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage1: "",
+                          };
+                        });
+                        props.setFormData((prevformData) => {
+                          if (
+                            prevformData.bannerImages &&
+                            prevformData.bannerImages.length === 1
+                          ) {
+                            prevformData.bannerImages = null;
+                          } else {
+                            prevformData.bannerImages.splice(0, 1);
+                          }
+                          return prevformData;
+                        });
+                      }}
+                    >
+                      Clear
+                      <FontAwesomeIcon icon={faXmark} />
+                    </div>
+                  </>
+                ) : props.imageNum === "2" && props.secondImage.bannerImage2 ? (
+                  <>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage2: props.secondImage.bannerImage2,
+                          };
+                        });
+                      }}
+                    >
+                      Edit
+                      <FontAwesomeIcon icon={faPen} />
+                    </div>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setSecondImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage2: "",
+                          };
+                        });
+                        props.setFormData((prevformData) => {
+                          if (
+                            prevformData.bannerImages &&
+                            prevformData.bannerImages.length === 1
+                          ) {
+                            prevformData.bannerImages = null;
+                          } else {
+                            prevformData.bannerImages.splice(1, 1);
+                          }
+                          return prevformData;
+                        });
+                      }}
+                    >
+                      Clear
+                      <FontAwesomeIcon icon={faXmark} />
+                    </div>
+                  </>
+                ) : props.imageNum === "3" && props.secondImage.bannerImage3 ? (
+                  <>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage3: props.secondImage.bannerImage3,
+                          };
+                        });
+                      }}
+                    >
+                      Edit
+                      <FontAwesomeIcon icon={faPen} />
+                    </div>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setSecondImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage3: "",
+                          };
+                        });
+                        props.setFormData((prevformData) => {
+                          if (
+                            prevformData.bannerImages &&
+                            prevformData.bannerImages.length === 1
+                          ) {
+                            prevformData.bannerImages = null;
+                          } else {
+                            prevformData.bannerImages.splice(2, 1);
+                          }
+                          return prevformData;
+                        });
+                      }}
+                    >
+                      Clear
+                      <FontAwesomeIcon icon={faXmark} />
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
               </>
             ) : (
-              ""
+              <>
+                {" "}
+                {props.imageNum === "1" && props.secondImage.bannerImage1 ? (
+                  <>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage1: props.secondImage.bannerImage1,
+                          };
+                        });
+                      }}
+                    >
+                      Edit
+                      <FontAwesomeIcon icon={faPen} />
+                    </div>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setSecondImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage1: "",
+                          };
+                        });
+                      }}
+                    >
+                      Clear
+                      <FontAwesomeIcon icon={faXmark} />
+                    </div>
+                  </>
+                ) : props.imageNum === "2" && props.secondImage.bannerImage2 ? (
+                  <>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage2: props.secondImage.bannerImage2,
+                          };
+                        });
+                      }}
+                    >
+                      Edit
+                      <FontAwesomeIcon icon={faPen} />
+                    </div>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setSecondImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage2: "",
+                          };
+                        });
+                      }}
+                    >
+                      Clear
+                      <FontAwesomeIcon icon={faXmark} />
+                    </div>
+                  </>
+                ) : props.imageNum === "3" && props.secondImage.bannerImage3 ? (
+                  <>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage3: props.secondImage.bannerImage3,
+                          };
+                        });
+                      }}
+                    >
+                      Edit
+                      <FontAwesomeIcon icon={faPen} />
+                    </div>
+                    <div
+                      className="uploadList-item"
+                      onClick={() => {
+                        props.setSecondImage((prevformData) => {
+                          return {
+                            ...prevformData,
+                            bannerImage3: "",
+                          };
+                        });
+                      }}
+                    >
+                      Clear
+                      <FontAwesomeIcon icon={faXmark} />
+                    </div>
+                  </>
+                ) : (
+                  ""
+                )}
+              </>
             )}
           </div>
           <input
