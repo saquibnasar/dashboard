@@ -29,6 +29,23 @@ export default function Setting(props) {
   const [image, setImage] = useState({ preview: "", raw: "", secondImage: "" });
   const [secondImage, setSecondImage] = useState({ preview: "", raw: "" });
   const [editImage, setEditImage] = useState({ preview: "", raw: "" });
+  const [formData, setFormData] = useState({
+    companyLogo: null,
+    companyName: null,
+    companyWebsite: null,
+    companyCopyright: null,
+    companyDisclaimer: null,
+  });
+
+  {
+    /* {
+    "companyLogo": "companyLogo",
+    "companyName": "name",
+    "companyWebsite": "website",
+    "companyCopyright": "copyright",
+    "companyDisclaimer": "disclaimer11"
+} */
+  }
 
   const addLin = () => {
     setIslinks(!isLinks);
@@ -100,6 +117,10 @@ export default function Setting(props) {
       }
     }
   });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+  };
 
   return (
     <>

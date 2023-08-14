@@ -264,7 +264,7 @@ export default function About(props) {
 
     axios({
       method: "post",
-      url: "http://192.168.91.84:3005/members/update",
+      url: "http://192.168.91.84:3005/members/updatemember",
       data: requestObj,
     })
       .then((response) => {
