@@ -22,6 +22,7 @@ import AddCard from "./AddCard";
 import React, { useState, useCallback } from "react";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./imgUploader/cropImage";
+
 export default function Setting(props) {
   const { settingId } = useParams();
   const [isClick, setIsClick] = useState(false);
@@ -30,11 +31,11 @@ export default function Setting(props) {
   const [secondImage, setSecondImage] = useState({ preview: "", raw: "" });
   const [editImage, setEditImage] = useState({ preview: "", raw: "" });
   const [formData, setFormData] = useState({
-    companyLogo: null,
-    companyName: null,
-    companyWebsite: null,
-    companyCopyright: null,
-    companyDisclaimer: null,
+    companyLogo: "",
+    companyName: "",
+    companyWebsite: "",
+    companyCopyright: "",
+    companyDisclaimer: "",
   });
 
   {
@@ -52,6 +53,7 @@ export default function Setting(props) {
   };
 
   const handleChange = (e) => {
+    console.log(e.target);
     if (!e.target.files[0].length) {
       setImage((prevformData) => {
         return {
@@ -100,7 +102,14 @@ export default function Setting(props) {
         };
       });
 
+      setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          companyLogo: croppedImage,
+        };
+      });
       setRotation(0);
+      setZoom(1);
     } catch (e) {
       console.error(e);
     }
@@ -118,8 +127,18 @@ export default function Setting(props) {
     }
   });
 
+  const formhandle = (event) => {
+    setFormData((prevformData) => {
+      return {
+        ...prevformData,
+        [event.target.name]: event.target.value,
+      };
+    });
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(formData);
   };
 
   return (
@@ -266,7 +285,7 @@ export default function Setting(props) {
                   ""
                 )}
                 <div className="team_setting">
-                  <form>
+                  <form onSubmit={handleSubmit}>
                     <div className="Company_logo">
                       <h3>Company logo</h3>
                       <div className="upload-img">
@@ -337,6 +356,12 @@ export default function Setting(props) {
                                       preview: "",
                                     };
                                   });
+                                  setFormData((prevformData) => {
+                                    return {
+                                      ...prevformData,
+                                      companyLogo: "",
+                                    };
+                                  });
                                 }}
                               >
                                 Clear
@@ -347,14 +372,7 @@ export default function Setting(props) {
                             ""
                           )}
                         </div>
-                        {/* <input
-                          type="file"
-                          id="upload-button"
-                          accept="image/*"
-                          className="d-none"
-                          value=""
-                          onChange={handleChange}
-                        /> */}
+
                         <input
                           type="file"
                           id="upload-button"
@@ -379,31 +397,53 @@ export default function Setting(props) {
 
                     <div className="Company_name">
                       {/* <h3>Company name</h3> */}
+
                       <input
-                        className="form-control"
                         type="text"
-                        placeholder="Company name"
+                        className="form-control"
+                        id="company name"
+                        placeholder="company name"
+                        name="companyName"
+                        required
+                        onChange={formhandle}
+                        value={formData.companyName}
                       />
                       <input
-                        className="form-control"
                         type="text"
-                        placeholder="Website"
+                        className="form-control"
+                        id="website"
+                        placeholder="website"
+                        name="companyWebsite"
+                        required
+                        onChange={formhandle}
+                        value={formData.companyWebsite}
                       />
                       <input
-                        className="form-control"
                         type="text"
-                        placeholder="Copyright"
+                        className="form-control"
+                        id="copyright"
+                        placeholder="copyright"
+                        name="companyCopyright"
+                        required
+                        onChange={formhandle}
+                        value={formData.companyCopyright}
                       />
                       <input
-                        className="form-control"
                         type="text"
-                        placeholder="Disclaimer "
+                        className="form-control"
+                        id="disclaimer"
+                        placeholder="disclaimer"
+                        name="companyDisclaimer"
+                        required
+                        onChange={formhandle}
+                        value={formData.companyDisclaimer}
                       />
+
                       <button type="button" onClick={addLin}>
                         Company social media links
                       </button>
                     </div>
-                    <button type="submit">Update</button>
+                    <button type="submit">save</button>
                   </form>
                 </div>
               </>

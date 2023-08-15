@@ -104,5 +104,5 @@ export default async function getCroppedImg(
   //     resolve(URL.createObjectURL(file));
   //   }, "image/jpeg");
   // });
-  return croppedCanvas.toDataURL("image/jpeg");
+  return file;
 }

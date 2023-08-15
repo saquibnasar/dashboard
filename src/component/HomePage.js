@@ -25,7 +25,7 @@ export default function HomePage(props) {
   const [alertText, setAlertText] = useState("");
   useEffect(() => {
     axios
-      .get(`http://192.168.91.84:3005/members/${userId}`)
+      .get(`http://192.168.128.83:3005/members/${userId}`)
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -65,6 +65,8 @@ export default function HomePage(props) {
       if (event === "whPhone" || event === "phone") {
         if (event === "whPhone") {
           setFormData((prevformData) => {
+            console.log(prevformData);
+            prevformData.whatsAppNumber = {};
             return {
               ...prevformData,
               whatsAppNumber: {
@@ -94,33 +96,39 @@ export default function HomePage(props) {
               ...prevformData,
               [event.target.name]: {
                 phoneNumber: event.target.value,
-                code: prevformData.mobileNumber.code
-                  ? prevformData.mobileNumber.code
-                  : "1",
+                code:
+                  prevformData.mobileNumber && prevformData.mobileNumber.code
+                    ? prevformData.mobileNumber.code
+                    : "1",
               },
             };
           });
         } else {
           setFormData((prevformData) => {
+            console.log(prevformData);
             return {
               ...prevformData,
               [event.target.name]: {
                 phoneNumber: event.target.value,
-                code: prevformData.whatsAppNumber.code
-                  ? prevformData.whatsAppNumber.code
-                  : "1",
+                code:
+                  prevformData.whatsAppNumber &&
+                  prevformData.whatsAppNumber.code
+                    ? prevformData.whatsAppNumber.code
+                    : "1",
               },
             };
           });
         }
-        // if (event.target.value === "") {
-        //   setFormData((prevformData) => {
-        //     return {
-        //       ...prevformData,
-        //       [event.target.name]: "",
-        //     };
-        //   });
-        // }
+        console.log(event.target.value);
+        if (event.target.value === "") {
+          console.log(event.target.name);
+          setFormData((prevformData) => {
+            return {
+              ...prevformData,
+              [event.target.name]: null,
+            };
+          });
+        }
       } else {
         setFormData((prevformData) => {
           return {

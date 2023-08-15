@@ -17,13 +17,13 @@ export default function Signup() {
   const [isOtp, setIsOtp] = useState(false);
   const [alertText, setAlertText] = useState("");
 
-  setTimeout(() => {
+  const changeInputType = () => {
     togglePassword = document.querySelector(".input-password svg");
     togglePassword.addEventListener("click", () => {
       setAttribute(attribute === "password" ? "text" : "password");
       setFont(font === faEye ? faEyeSlash : faEye);
     });
-  }, 1);
+  };
 
   const handleChange = (event) => {
     setFormData((prevformData) => {
@@ -39,7 +39,7 @@ export default function Signup() {
 
     if (isOtp) {
       axios
-        .post("http://192.168.91.84:3005/auth/verify-email-otp", {
+        .post("http://192.168.128.83:3005/auth/verify-email-otp", {
           email: formData.email,
           otp: parseInt(formData.otp),
         })
@@ -62,7 +62,7 @@ export default function Signup() {
         });
     } else {
       axios
-        .post("http://192.168.91.84:3005/auth/signup", {
+        .post("http://192.168.128.83:3005/auth/signup", {
           email: formData.email,
           password: formData.password,
           fullName: "Asim Nasar",
@@ -177,7 +177,7 @@ export default function Signup() {
                         value={formData.password}
                         onChange={handleChange}
                       />
-                      <FontAwesomeIcon icon={font} />
+                      <FontAwesomeIcon icon={font} onClick={changeInputType} />
                       <label className="did-floating-label">Password</label>
                     </div>
                   </div>

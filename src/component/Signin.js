@@ -15,13 +15,6 @@ export default function Signin() {
     password: "",
   });
   const [alertText, setAlertText] = useState("");
-  setTimeout(() => {
-    togglePassword = document.querySelector(".input-password svg");
-    togglePassword.addEventListener("click", () => {
-      setAttribute(attribute === "password" ? "text" : "password");
-      setFont(font === faEye ? faEyeSlash : faEye);
-    });
-  }, 1);
 
   const handleChange = (event) => {
     setFormData((prevformData) => {
@@ -31,12 +24,19 @@ export default function Signin() {
       };
     });
   };
+  const changeInputType = () => {
+    togglePassword = document.querySelector(".input-password svg");
+    togglePassword.addEventListener("click", () => {
+      setAttribute(attribute === "password" ? "text" : "password");
+      setFont(font === faEye ? faEyeSlash : faEye);
+    });
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     axios
-      .post("http://192.168.91.84:3005/auth/signin", {
+      .post("http://192.168.128.83:3005/auth/signin", {
         email: formData.email,
         password: formData.password,
       })
@@ -126,7 +126,7 @@ export default function Signin() {
                     value={formData.password}
                     onChange={handleChange}
                   />
-                  <FontAwesomeIcon icon={font} />
+                  <FontAwesomeIcon icon={font} onClick={changeInputType} />
                   <label className="did-floating-label">Password</label>
                 </div>
               </div>

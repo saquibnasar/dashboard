@@ -27,6 +27,7 @@ import "react-phone-input-2/lib/style.css";
 import Image from "./userDetail/Image";
 import AddLink from "./AddLink";
 import Alert from "./Alert";
+import imageCompression from "browser-image-compression";
 
 export default function CreateCard(props) {
   const [isLinks, setIslinks] = useState(false);
@@ -162,10 +163,8 @@ export default function CreateCard(props) {
         setFormData((prevformData) => {
           return {
             ...prevformData,
-            userInfo: {
-              ...prevformData.userInfo,
-              [event.target.name]: "",
-            },
+
+            [event.target.name]: null,
           };
         });
       }
@@ -372,15 +371,46 @@ export default function CreateCard(props) {
     //     };
     //   });
     // }
+    const imageFile = e.target.files[0];
+    console.log(e.target.files[0]);
+    // console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
+    // console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
 
-    if (e.target.files.length) {
-      setImage((prevformData) => {
-        return {
-          ...prevformData,
-          [e.target.name]: URL.createObjectURL(e.target.files[0]),
-        };
+    const options = {
+      maxSizeMB: 1,
+      maxWidthOrHeight: 1920,
+      useWebWorker: true,
+    };
+    try {
+      const compressedFile = imageCompression(imageFile, options).then((x) => {
+        const downloadLink = URL.createObjectURL(x);
+        console.log(downloadLink);
+        setImage((prevformData) => {
+          return {
+            ...prevformData,
+            [e.target.name]: downloadLink,
+          };
+        });
       });
+
+      // setImage((prevformData) => {
+      //   return {
+      //     ...prevformData,
+      //     [e.target.name]: compressedFile,
+      //   };
+      // });
+    } catch (error) {
+      console.log(error);
     }
+
+    // if (e.target.files.length) {
+    //   setImage((prevformData) => {
+    //     return {
+    //       ...prevformData,
+    //       [e.target.name]: URL.createObjectURL(e.target.files[0]),
+    //     };
+    //   });
+    // }
   };
 
   const onCropComplete = useCallback((croppedArea, croppedAreaPixels) => {
@@ -568,82 +598,41 @@ export default function CreateCard(props) {
       employeeBio: formData.userInfo.employeeBio,
       links: formData.userLink.length === 0 ? null : formData.userLink,
       officeEmailId: formData.userInfo.officeId,
+      whatsAppNumber: formData.userInfo.whatsappNumber
+        ? {
+            phoneNumber: formData.userInfo.whatsappNumber.whatsappNum,
+            code: formData.userInfo.whatsappNumber.countryCode,
+          }
+        : null,
+      mobileNumber: formData.userInfo.mobileNumber
+        ? {
+            phoneNumber: formData.userInfo.mobileNumber.phoneNum,
+            code: formData.userInfo.mobileNumber.countryCode,
+          }
+        : null,
     };
 
-    if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
-      axios({
-        method: "post",
-        url: "http://192.168.91.84:3005/members/addMember",
-        data: requestObj,
-      })
-        .then((response) => {
-          setAlertText(response.data.message);
-          window.location.href = "/";
-        })
-        .catch((error) => {
-          if (error.response.data.message) {
-            if (!error.response.data.message === "Member already exists") {
-              setAlertText(
-                error.response.data.message[
-                  error.response.data.message.length - 1
-                ]
-              );
-            } else {
-              setAlertText(
-                error.response.data.message + ", use different employee id"
-              );
-            }
-          }
-        });
-    }
-    // console.log(formData.userInfo.whatsappNumber);
-    if (formData.userInfo.whatsappNumber) {
-      if (
-        !(
-          formData.userInfo.whatsappNumber.whatsappNum.split("").length < 8 ||
-          formData.userInfo.whatsappNumber.whatsappNum.split("").length > 10
-        )
-      ) {
-        setAlertText("");
-        requestObj[`whatsAppNumber[phoneNumber]`] =
-          formData.userInfo.whatsappNumber.whatsappNum;
-        requestObj[`whatsAppNumber[code]`] =
-          formData.userInfo.whatsappNumber.countryCode;
-        setIsSend(true);
-      } else {
-        setIsSend(false);
-        setAlertText(
-          "whatsappNumber cann't be less then 8 and cann't be more then 10"
-        );
-      }
-    }
-    if (formData.userInfo.mobileNumber) {
-      if (
-        !formData.userInfo.mobileNumber.phoneNum ||
-        !(
-          formData.userInfo.mobileNumber.phoneNum.split("").length < 8 ||
-          formData.userInfo.mobileNumber.phoneNum.split("").length > 10
-        )
-      ) {
-        setAlertText("");
-        requestObj[`mobileNumber[phoneNumber]`] =
-          formData.userInfo.mobileNumber.phoneNum;
-        requestObj[`mobileNumber[code]`] =
-          formData.userInfo.mobileNumber.countryCode;
-        setIsSend(true);
-      } else {
-        setIsSend(false);
-        setAlertText(
-          "mobileNumber cann't be less then 8 and cann't be more then 10"
-        );
-      }
-    }
-
-    if (isSend) {
+    if (
+      formData.userInfo.whatsappNumber &&
+      (formData.userInfo.whatsappNumber.whatsappNum.split("").length < 8 ||
+        formData.userInfo.whatsappNumber.whatsappNum.split("").length > 10)
+    ) {
+      setAlertText(
+        "whatsappNumber cann't be less then 8 and cann't be more then 10"
+      );
+    } else if (
+      formData.userInfo.mobileNumber &&
+      (formData.userInfo.mobileNumber.phoneNum.split("").length < 8 ||
+        formData.userInfo.mobileNumber.phoneNum.split("").length > 10)
+    ) {
+      setAlertText(
+        "mobileNumber cann't be less then 8 and cann't be more then 10"
+      );
+    } else {
       console.log(requestObj);
       axios({
         method: "post",
-        url: "http://192.168.91.84:3005/members/addMember",
+        url: "http://192.168.128.83:3005/members/addMember",
         data: requestObj,
       })
         .then((response) => {
@@ -651,21 +640,118 @@ export default function CreateCard(props) {
           window.location.href = "/";
         })
         .catch((error) => {
+          console.log(error.response.data);
           if (error.response.data.message) {
-            if (!error.response.data.message === "Member already exists") {
+            if (error.response.data.message === "Member already exists") {
+              setAlertText(
+                error.response.data.message + ", use different employee id"
+              );
+            } else {
               setAlertText(
                 error.response.data.message[
                   error.response.data.message.length - 1
                 ]
               );
-            } else {
-              setAlertText(
-                error.response.data.message + ", use different employee id"
-              );
             }
           }
         });
     }
+
+    // if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
+    //   axios({
+    //     method: "post",
+    //     url: "http://192.168.128.83:3005/members/addMember",
+    //     data: requestObj,
+    //   })
+    //     .then((response) => {
+    //       setAlertText(response.data.message);
+    //       window.location.href = "/";
+    //     })
+    //     .catch((error) => {
+    //       if (error.response.data.message) {
+    //         if (!error.response.data.message === "Member already exists") {
+    //           setAlertText(
+    //             error.response.data.message[
+    //               error.response.data.message.length - 1
+    //             ]
+    //           );
+    //         } else {
+    //           setAlertText(
+    //             error.response.data.message + ", use different employee id"
+    //           );
+    //         }
+    //       }
+    //     });
+    // }
+    // if (formData.userInfo.whatsappNumber) {
+    //   if (
+    //     !(
+    //       formData.userInfo.whatsappNumber.whatsappNum.split("").length < 8 ||
+    //       formData.userInfo.whatsappNumber.whatsappNum.split("").length > 10
+    //     )
+    //   ) {
+    //     setAlertText("");
+    //     requestObj[`whatsAppNumber[phoneNumber]`] =
+    //       formData.userInfo.whatsappNumber.whatsappNum;
+    //     requestObj[`whatsAppNumber[code]`] =
+    //       formData.userInfo.whatsappNumber.countryCode;
+    //     setIsSend(true);
+    //   } else {
+    //     setAlertText(
+    //       "whatsappNumber cann't be less then 8 and cann't be more then 10"
+    //     );
+    //     setIsSend(false);
+    //   }
+    // }
+    // if (formData.userInfo.mobileNumber) {
+    //   if (
+    //     !formData.userInfo.mobileNumber.phoneNum ||
+    //     !(
+    //       formData.userInfo.mobileNumber.phoneNum.split("").length < 8 ||
+    //       formData.userInfo.mobileNumber.phoneNum.split("").length > 10
+    //     )
+    //   ) {
+    //     setAlertText("");
+    //     requestObj[`mobileNumber[phoneNumber]`] =
+    //       formData.userInfo.mobileNumber.phoneNum;
+    //     requestObj[`mobileNumber[code]`] =
+    //       formData.userInfo.mobileNumber.countryCode;
+    //     setIsSend(true);
+    //   } else {
+    //     setAlertText(
+    //       "mobileNumber cann't be less then 8 and cann't be more then 10"
+    //     );
+    //     setIsSend(false);
+    //   }
+    // }
+
+    // if (isSend) {
+    //   console.log(requestObj);
+    //   axios({
+    //     method: "post",
+    //     url: "http://192.168.128.83:3005/members/addMember",
+    //     data: requestObj,
+    //   })
+    //     .then((response) => {
+    //       setAlertText(response.data.message);
+    //       window.location.href = "/";
+    //     })
+    //     .catch((error) => {
+    //       if (error.response.data.message) {
+    //         if (!error.response.data.message === "Member already exists") {
+    //           setAlertText(
+    //             error.response.data.message[
+    //               error.response.data.message.length - 1
+    //             ]
+    //           );
+    //         } else {
+    //           setAlertText(
+    //             error.response.data.message + ", use different employee id"
+    //           );
+    //         }
+    //       }
+    //     });
+    // }
   };
 
   return (

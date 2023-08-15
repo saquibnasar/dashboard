@@ -228,7 +228,7 @@ export default function About(props) {
     console.log(props.formData);
     // axios({
     //   method: "post",
-    //   url: "http://192.168.91.84:3005/members/updateMember",
+    //   url: "http://192.168.128.83:3005/members/updateMember",
     //   data: requestObj,
     // })
     //   .then((response) => {
@@ -248,6 +248,7 @@ export default function About(props) {
     e.preventDefault();
 
     let requestObj = new Map();
+    console.log(props.formData);
     requestObj = {
       name: props.formData.name,
       profileImage: props.formData.profileImage,
@@ -257,29 +258,68 @@ export default function About(props) {
       employeeBio: props.formData.employeeBio,
       links:
         props.formData.userLink.length === 0 ? null : props.formData.userLink,
-      officeEmailId: props.formData.officeId,
-      whatsAppNumber: props.formData.whatsAppNumber,
-      mobileNumber: props.formData.mobileNumber,
+      officeEmailId: props.formData.officeEmailId,
+      whatsAppNumber:
+        props.formData.whatsAppNumber &&
+        props.formData.whatsAppNumber.phoneNumber
+          ? {
+              phoneNumber: props.formData.whatsAppNumber.phoneNumber,
+              code: props.formData.whatsAppNumber.code,
+            }
+          : null,
+      mobileNumber:
+        props.formData.mobileNumber && props.formData.mobileNumber.phoneNumber
+          ? {
+              phoneNumber: props.formData.mobileNumber.phoneNumber,
+              code: props.formData.mobileNumber.code,
+            }
+          : null,
     };
-
-    axios({
-      method: "post",
-      url: "http://192.168.91.84:3005/members/updatemember",
-      data: requestObj,
-    })
-      .then((response) => {
-        console.log(response);
-        setAlertText(response.data.message);
-        // window.location.href = "/";
-      })
-      .catch((error) => {
-        console.log(error);
-        if (error.response.data.message) {
-          setAlertText(
-            error.response.data.message[error.response.data.message.length - 1]
-          );
-        }
-      });
+    console.log(requestObj);
+    if (
+      requestObj.whatsAppNumber &&
+      (requestObj.whatsAppNumber.phoneNumber.split("").length < 8 ||
+        requestObj.whatsAppNumber.phoneNumber.split("").length > 10)
+    ) {
+      setAlertText(
+        "whatsappNumber cann't be less then 8 and cann't be more then 10"
+      );
+    } else if (
+      requestObj.mobileNumber &&
+      (requestObj.mobileNumber.phoneNumber.split("").length < 8 ||
+        requestObj.mobileNumber.phoneNumber.split("").length > 10)
+    ) {
+      setAlertText(
+        "mobileNumber cann't be less then 8 and cann't be more then 10"
+      );
+    } else {
+      // console.log(requestObj);s
+      // axios({
+      //   method: "post",
+      //   url: "http://192.168.128.83:3005/members/updatemember",
+      //   data: requestObj,
+      // })
+      //   .then((response) => {
+      //     setAlertText(response.data.message);
+      //     window.location.href = "/";
+      //   })
+      //   .catch((error) => {
+      //     console.log(error.response.data);
+      //     if (error.response.data.message) {
+      //       if (error.response.data.message === "Member already exists") {
+      //         setAlertText(
+      //           error.response.data.message + ", use different employee id"
+      //         );
+      //       } else {
+      //         setAlertText(
+      //           error.response.data.message[
+      //             error.response.data.message.length - 1
+      //           ]
+      //         );
+      //       }
+      //     }
+      //   });
+    }
   };
 
   const updateLink = (link, id) => {

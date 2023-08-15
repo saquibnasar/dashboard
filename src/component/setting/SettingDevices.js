@@ -1,4 +1,5 @@
 import React from "react";
+import { QRCode } from "react-qrcode-logo";
 
 export default function SettingDevices() {
   return (
@@ -13,7 +14,15 @@ export default function SettingDevices() {
           Use Flax app to Activate NFC cards
         </h2>
         <h3></h3>
-        <img src="/qrcode.png" alt="" className="img-fluid" />
+        <QRCode
+          value="https://flax.ai/"
+          logoImage="https://www.flaxapp.co/assets/images/jhjhjh2.png"
+          logoWidth="68"
+          logoHeight="28"
+          logoOpacity={1}
+        />
+
+        {/* <img src="/qrcode.png" alt="" className="img-fluid" /> */}
       </div>
     </>
   );
