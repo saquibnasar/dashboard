@@ -15,13 +15,22 @@ import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { faCamera } from "@fortawesome/free-solid-svg-icons";
 import { faCloudArrowUp } from "@fortawesome/free-solid-svg-icons";
+import { faPhone } from "@fortawesome/free-solid-svg-icons";
 import { NavLink, useParams } from "react-router-dom";
+
+import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
+import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
+import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import AddCard from "./AddCard";
 // import AddLink from "./AddLink";
-
 import React, { useState, useCallback } from "react";
+import axios from "axios";
+import Alert from "./Alert";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./imgUploader/cropImage";
+import AddLink from "./AddLink";
 
 export default function Setting(props) {
   const { settingId } = useParams();
@@ -30,12 +39,26 @@ export default function Setting(props) {
   const [image, setImage] = useState({ preview: "", raw: "", secondImage: "" });
   const [secondImage, setSecondImage] = useState({ preview: "", raw: "" });
   const [editImage, setEditImage] = useState({ preview: "", raw: "" });
+  const [alertText, setAlertText] = useState("");
+
+  const [isLinkClick, setIsLinkClick] = useState(false);
   const [formData, setFormData] = useState({
     companyLogo: "",
     companyName: "",
     companyWebsite: "",
     companyCopyright: "",
     companyDisclaimer: "",
+    userLink: [],
+  });
+
+  const [linkData, setLinkData] = useState({
+    headerTitle: "",
+    linkTitleInput: "",
+    title: "",
+    titleInput: "",
+    type: "",
+    linktype: "",
+    icon: "",
   });
 
   {
@@ -80,7 +103,7 @@ export default function Setting(props) {
         croppedAreaPixels,
         rotation
       );
-
+      console.log(croppedImage);
       setImage((prevformData) => {
         return {
           ...prevformData,
@@ -96,6 +119,7 @@ export default function Setting(props) {
       });
 
       setImage((prevformData) => {
+        prevformData.
         return {
           ...prevformData,
           preview: "",
@@ -127,6 +151,132 @@ export default function Setting(props) {
     }
   });
 
+  const updateLink = (link, id) => {
+    setIsLinkClick(!isLinkClick);
+
+    // formData.usereLincoutryCode[link.value.string]
+    setLinkData(() => {
+      if (link && link.type && link.type === "phone") {
+        return {
+          headerTitle: "Phone",
+          linkTitleInput: "phone",
+          title: "Phone Number*",
+          titleInput: "Enter Phone Number*",
+          type: "number",
+          type: "phone",
+          icon: faPhone,
+          linkData: link.value,
+          linkTitle: link.title,
+          countryCode: link.countryCode ? link.countryCode : "1",
+          id: id,
+        };
+      } else if (link && link.type && link.type === "email") {
+        return {
+          headerTitle: "Link Title",
+          linkTitleInput: "email",
+          title: "Email",
+          titleInput: "Enter Email",
+          type: "email",
+          type: "email",
+          icon: "/email.png",
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "website") {
+        return {
+          headerTitle: "Website Title",
+          linkTitleInput: "Website",
+          title: "Website*",
+          titleInput: "Enter Website URL",
+          type: "text",
+          type: "website",
+          icon: "/safari.png",
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "whatsapp") {
+        return {
+          headerTitle: "Whatsapp Title",
+          linkTitleInput: "Whatsapp",
+          title: "Whatsapp*",
+          titleInput: "Enter Whatsapp Number",
+          type: "text",
+          type: "whatsapp",
+          icon: faWhatsapp,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "linkedin") {
+        return {
+          headerTitle: "Linkedin Title",
+          linkTitleInput: "Linkedin",
+          title: "Linkedin*",
+          titleInput: "Enter Linkedin URl",
+          type: "text",
+          type: "linkedin",
+          icon: faLinkedinIn,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "instagram") {
+        return {
+          headerTitle: "Instagram Title",
+          linkTitleInput: "Instagram",
+          title: "Instagram*",
+          titleInput: "Enter Instagram URl",
+          type: "text",
+          type: "instagram",
+          icon: faInstagram,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "facebook") {
+        return {
+          headerTitle: "Facebook Title",
+          linkTitleInput: "Facebook",
+          title: "Facebook*",
+          titleInput: "Enter Facebook URl",
+          type: "text",
+          type: "facebook",
+          icon: faFacebookF,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "address") {
+        return {
+          headerTitle: "Address Title",
+          linkTitleInput: "Address",
+          title: "Address*",
+          titleInput: "Enter Address",
+          type: "text",
+          type: "address",
+          icon: "/googlemap.png",
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "youtube") {
+        return {
+          headerTitle: "Youtube Title",
+          linkTitleInput: "Youtube",
+          title: "Youtube*",
+          titleInput: "Enter Youtube URl",
+          type: "text",
+          type: "youtube",
+          icon: faYoutube,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      }
+    });
+  };
   const formhandle = (event) => {
     setFormData((prevformData) => {
       return {
@@ -139,6 +289,30 @@ export default function Setting(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+    axios({
+      method: "post",
+      url: "http://192.168.128.83:3005/members/addMember",
+      data: formData,
+    })
+      .then((response) => {
+        setAlertText(response.data.message);
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        if (error.response.data.message) {
+          if (error.response.data.message === "Member already exists") {
+            setAlertText(
+              error.response.data.message + ", use different employee id"
+            );
+          } else {
+            setAlertText(
+              error.response.data.message[
+                error.response.data.message.length - 1
+              ]
+            );
+          }
+        }
+      });
   };
 
   return (
@@ -438,10 +612,40 @@ export default function Setting(props) {
                         onChange={formhandle}
                         value={formData.companyDisclaimer}
                       />
-
-                      <button type="button" onClick={addLin}>
-                        Company social media links
-                      </button>
+                      <div>
+                        <div className="admin_detail-social">
+                          <div className="admin_detail-social-grid">
+                            {formData.userLink.map((links, id) => {
+                              return (
+                                <button
+                                  key={id}
+                                  className="btn-primary"
+                                  type="button"
+                                  onClick={() => {
+                                    updateLink(links, id);
+                                  }}
+                                >
+                                  {links.type === "phone" ? "phone" : ""}
+                                  {links.type === "email" ? "email" : ""}
+                                  {links.type === "website" ? "website" : ""}
+                                  {links.type === "whatsapp" ? "whatsapp" : ""}
+                                  {links.type === "linkedin" ? "linkedin" : ""}
+                                  {links.type === "instagram"
+                                    ? "instagram"
+                                    : ""}
+                                  {links.type === "facebook" ? "facebook" : ""}
+                                  {links.type === "twitter" ? "twitter" : ""}
+                                  {links.type === "youtube" ? "youtube" : ""}
+                                  {links.type === "address" ? "address" : ""}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                        <button type="button" onClick={addLin}>
+                          Company social media links
+                        </button>
+                      </div>
                     </div>
                     <button type="submit">save</button>
                   </form>
@@ -456,7 +660,29 @@ export default function Setting(props) {
             ) : (
               <Admin />
             )}
-            {isLinks ? <AddCard removeLink={addLin} isClick={isClick} /> : ""}
+            {isLinkClick ? (
+              <div className="addcard">
+                <div className="addcard_container">
+                  <AddLink
+                    data={linkData}
+                    sendData={updateLink}
+                    setFormData={setFormData}
+                    formData={formData}
+                  />
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+            {isLinks ? (
+              <AddCard
+                removeLink={addLin}
+                isClick={isClick}
+                setFormData={setFormData}
+              />
+            ) : (
+              ""
+            )}
           </div>
 
           {/* {isClick ? <AddLink data={linkData} sendData={sendData} /> : ""} */}
