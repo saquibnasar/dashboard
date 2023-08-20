@@ -1,4 +1,4 @@
-import React, { useState, useCallback, Component, useEffect } from "react";
+import React, { useState, useCallback } from "react";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./imgUploader/cropImage";
 import UserProfile from "./UserProfile/UserProfile";
