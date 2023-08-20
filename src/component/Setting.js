@@ -103,7 +103,7 @@ export default function Setting(props) {
         croppedAreaPixels,
         rotation
       );
-      console.log(croppedImage);
+
       setImage((prevformData) => {
         return {
           ...prevformData,
@@ -119,7 +119,6 @@ export default function Setting(props) {
       });
 
       setImage((prevformData) => {
-        prevformData.
         return {
           ...prevformData,
           preview: "",
