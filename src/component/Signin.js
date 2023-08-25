@@ -36,7 +36,7 @@ export default function Signin() {
     e.preventDefault();
 
     axios
-      .post("http://192.168.128.83:3005/auth/signin", {
+      .post("http://192.168.130.83:3005/auth/signin", {
         email: formData.email,
         password: formData.password,
       })
@@ -46,8 +46,8 @@ export default function Signin() {
         window.location.href = "/";
       })
       .catch((error) => {
-        console.log(error.response.data.message);
-        setAlertText(error.response.data.message);
+        alert(error.response.data.message);
+        // setAlertText(error.response.data.message);
         // alert(error.response.data.message);
       });
   };

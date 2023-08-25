@@ -457,11 +457,13 @@ export default function CreateCard(props) {
           setSecondImage((prevformData) => {
             return {
               ...prevformData,
+
               bannerImage1: croppedImage,
             };
           });
 
           setFormData((prevformData) => {
+            console.log(prevformData);
             return {
               ...prevformData,
               userImages: {
@@ -478,9 +480,7 @@ export default function CreateCard(props) {
             };
           });
           setFormData((prevformData) => {
-            // prevformData.userImages.bannerImage2.croppedAreaPixels =
-            //   croppedAreaPixels;
-            // prevformData.userImages.bannerImage2.rotation = rotation;
+            console.log(prevformData);
 
             return {
               ...prevformData,
@@ -504,7 +504,7 @@ export default function CreateCard(props) {
             return {
               ...prevformData,
               userImages: {
-                // ...prevformData.userImages,
+                ...prevformData.userImages,
                 bannerImage3: croppedImage,
               },
             };
@@ -577,6 +577,7 @@ export default function CreateCard(props) {
     let whatsAppNumber = "";
     let mobileNumber = "";
 
+    console.log(formData);
     if (formData.userImages.bannerImage1) {
       bannerImages.push(formData.userImages.bannerImage1);
     }
@@ -632,7 +633,7 @@ export default function CreateCard(props) {
       console.log(requestObj);
       axios({
         method: "post",
-        url: "http://192.168.128.83:3005/members/addMember",
+        url: "http://192.168.130.83:3005/members/addMember",
         data: requestObj,
       })
         .then((response) => {
@@ -660,7 +661,7 @@ export default function CreateCard(props) {
     // if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
     //   axios({
     //     method: "post",
-    //     url: "http://192.168.128.83:3005/members/addMember",
+    //     url: "http://192.168.130.83:3005/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
@@ -729,7 +730,7 @@ export default function CreateCard(props) {
     //   console.log(requestObj);
     //   axios({
     //     method: "post",
-    //     url: "http://192.168.128.83:3005/members/addMember",
+    //     url: "http://192.168.130.83:3005/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {

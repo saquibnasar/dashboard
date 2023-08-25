@@ -25,7 +25,7 @@ export default function HomePage(props) {
   const [alertText, setAlertText] = useState("");
   useEffect(() => {
     axios
-      .get(`http://192.168.128.83:3005/members/${userId}`)
+      .get(`http://192.168.130.83:3005/members/${userId}`)
       .then((response) => {
         setData(response.data);
         console.log(response.data);

@@ -228,7 +228,7 @@ export default function About(props) {
     console.log(props.formData);
     // axios({
     //   method: "post",
-    //   url: "http://192.168.128.83:3005/members/updateMember",
+    //   url: "http://192.168.130.83:3005/members/updateMember",
     //   data: requestObj,
     // })
     //   .then((response) => {
@@ -296,7 +296,7 @@ export default function About(props) {
       // console.log(requestObj);s
       // axios({
       //   method: "post",
-      //   url: "http://192.168.128.83:3005/members/updatemember",
+      //   url: "http://192.168.130.83:3005/members/updatemember",
       //   data: requestObj,
       // })
       //   .then((response) => {

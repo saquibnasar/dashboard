@@ -290,7 +290,7 @@ export default function Setting(props) {
     console.log(formData);
     axios({
       method: "post",
-      url: "http://192.168.128.83:3005/members/addMember",
+      url: "http://192.168.130.83:3005/members/addMember",
       data: formData,
     })
       .then((response) => {
