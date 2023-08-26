@@ -37,7 +37,7 @@ export default function UserProfile(props) {
   });
   return (
     <>
-      <section className="userProile hero main-container p-relative">
+      <section className='userProile hero main-container p-relative'>
         {/* {isShareClicked ? (
           <div className="share_link" id="share_link">
             <div className="share_link-container" id="share_link-container">
@@ -390,7 +390,7 @@ export default function UserProfile(props) {
                 <button
                   className="btn-copy mt-4"
                   onClick={() => {
-                    navigator.clipboard.writeText("http://192.168.1.8:3000/a");
+                    navigator.clipboard.writeText("http://172.20.10.3:3000/a");
                     setIsCopy("Copied!");
                     setTimeout(() => {
                       setIsCopy("Copy");
@@ -431,7 +431,7 @@ export default function UserProfile(props) {
             ></path>
           </svg>
         </button> */}
-        <div className="logo-only">
+        <div className='logo-only'>
           {props.images &&
           (props.images.bannerImage1 ||
             props.images.bannerImage2 ||
@@ -452,7 +452,7 @@ export default function UserProfile(props) {
               alt=""
             /> */}
         </div>
-        <div className="container">
+        <div className='container'>
           <div
             className={
               props.images &&
@@ -469,9 +469,9 @@ export default function UserProfile(props) {
               alt=""
             /> */}
             {props.logo ? (
-              <img className="img-fluid" src={props.logo} alt="" />
+              <img className='img-fluid' src={props.logo} alt='' />
             ) : (
-              <span className="logo">
+              <span className='logo'>
                 <FontAwesomeIcon icon={faUser} />
               </span>
             )}
@@ -500,7 +500,7 @@ export default function UserProfile(props) {
                 : "xxxxxxxxx"}
             </h3>
             <span></span>
-            <h4 className="">About ComXXXX</h4>
+            <h4 className=''>About ComXXXX</h4>
             <h5>
               {props.formData &&
               props.formData.userInfo &&
@@ -508,7 +508,7 @@ export default function UserProfile(props) {
                 ? props.formData.userInfo.employeeBio
                 : "user bio"}
             </h5>
-            <button className="btn">Save My Contact </button>
+            <button className='btn'>Save My Contact </button>
           </div>
 
           {props.formData &&
@@ -907,7 +907,7 @@ export default function UserProfile(props) {
                   <button
                     className="btn-copy mt-4"
                     onClick={() => {
-                      navigator.clipboard.writeText("http://192.168.1.8:3000/a");
+                      navigator.clipboard.writeText("http://172.20.10.3:3000/a");
                       setIsCopy("Copied!");
                       setTimeout(() => {
                         setIsCopy("Copy");

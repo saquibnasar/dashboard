@@ -25,7 +25,7 @@ export default function HomePage(props) {
   const [alertText, setAlertText] = useState("");
   useEffect(() => {
     axios
-      .get(`http://192.168.130.83:3005/members/${userId}`)
+      .get(`http://172.20.10.3:3005/members/${userId}`)
       .then((response) => {
         setData(response.data);
         console.log(response.data);
@@ -166,65 +166,65 @@ export default function HomePage(props) {
       {formData ? (
         <div className={`d-flex homePage ${homepageId} overflow-hidden`}>
           <SIdebar navbarToggle={props.navbarToggle} />
-          <div className="d-flex flex-direction-column w-100 ">
+          <div className='d-flex flex-direction-column w-100 '>
             <Topbar
-              type="user"
-              title=""
+              type='user'
+              title=''
               isNavbar={props.isNavbar}
               text={formData.name}
             />
-            <div className="homePage_container mt-4">
-              <nav className="sidebar">
-                <div className="sidebar-collapse">
-                  <ul className="sidebar-nav">
-                    <li className="nav-item">
+            <div className='homePage_container mt-4'>
+              <nav className='sidebar'>
+                <div className='sidebar-collapse'>
+                  <ul className='sidebar-nav'>
+                    <li className='nav-item'>
                       <NavLink
-                        className="nav-link"
-                        aria-current="page"
+                        className='nav-link'
+                        aria-current='page'
                         to={`/homepage/content/${userId}`}
                       >
-                        <img className="img-fluid" src="/dots.png" alt="" />
-                        <p className="d-lg-none">Content</p>
+                        <img className='img-fluid' src='/dots.png' alt='' />
+                        <p className='d-lg-none'>Content</p>
                       </NavLink>
                     </li>
-                    <li className="nav-item">
+                    <li className='nav-item'>
                       <NavLink
-                        className="nav-link"
-                        aria-current="page"
+                        className='nav-link'
+                        aria-current='page'
                         to={`/homepage/about/${userId}`}
                       >
                         <FontAwesomeIcon icon={faUser} />
-                        <p className="d-lg-none">About</p>
+                        <p className='d-lg-none'>About</p>
                       </NavLink>
                     </li>
-                    <li className="nav-item">
+                    <li className='nav-item'>
                       <NavLink
-                        className="nav-link"
-                        aria-current="page"
+                        className='nav-link'
+                        aria-current='page'
                         to={`/homepage/flaxcode/${userId}`}
                       >
-                        <img className="img-fluid" src="/iconqr.png" alt="" />
-                        <p className="d-lg-none">FlaxCode</p>
+                        <img className='img-fluid' src='/iconqr.png' alt='' />
+                        <p className='d-lg-none'>FlaxCode</p>
                       </NavLink>
                     </li>
-                    <li className="nav-item">
+                    <li className='nav-item'>
                       <NavLink
-                        className="nav-link"
-                        aria-current="page"
-                        to="/setting_devices"
+                        className='nav-link'
+                        aria-current='page'
+                        to='/setting_devices'
                       >
                         <FontAwesomeIcon icon={faNfcSymbol} />
-                        <p className="d-lg-none">Add Flax Devices</p>
+                        <p className='d-lg-none'>Add Flax Devices</p>
                       </NavLink>
                     </li>
-                    <li className="nav-item">
+                    <li className='nav-item'>
                       <NavLink
-                        className="nav-link delete"
-                        aria-current="page"
-                        to="/setting_devices"
+                        className='nav-link delete'
+                        aria-current='page'
+                        to='/setting_devices'
                       >
                         <FontAwesomeIcon icon={faTrashCan} />
-                        <p className="d-lg-none">Delete</p>
+                        <p className='d-lg-none'>Delete</p>
                       </NavLink>
                     </li>
                   </ul>
@@ -236,28 +236,28 @@ export default function HomePage(props) {
                 }`}
               >
                 {homepageId === "content" ? (
-                  <div className="links">
+                  <div className='links'>
                     {formData &&
                     formData.userLink &&
                     formData.userLink.length ? (
                       <LInks addLin={addLin} formData={formData} />
                     ) : (
-                      <div className="link_container">
+                      <div className='link_container'>
                         <div>
                           <h2>This profile doesn’t have any linked content</h2>
                           <h3>
                             Add links to contact Information, website,
-                            <br className="d-lg-none" />
+                            <br className='d-lg-none' />
                             Social media handles and more
                           </h3>
 
-                          <button className="btn_add" onClick={addLin}>
+                          <button className='btn_add' onClick={addLin}>
                             <FontAwesomeIcon icon={faPlus} />
                             Add Links and contact info
                           </button>
                         </div>
 
-                        <img src="/bglink.png" alt="" className="img-fluid" />
+                        <img src='/bglink.png' alt='' className='img-fluid' />
                       </div>
                     )}
                   </div>
@@ -288,10 +288,10 @@ export default function HomePage(props) {
                       : "d-none signup_phone"
                   }
                 >
-                  <Link to="/a" className="btn btn-preview">
+                  <Link to='/a' className='btn btn-preview'>
                     Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
                   </Link>
-                  <div className="signup_phone-container">
+                  <div className='signup_phone-container'>
                     <UserProfile
                       formData={formData}
                       logo={formData.profileImage}

@@ -42,15 +42,15 @@ export default function Image(props) {
   };
   return (
     <>
-      <div className="tab">
+      <div className='tab'>
         <input
           // type="radio"
           id={`rd${props.imageNum}`}
-          name="rd"
+          name='rd'
           onClick={test.bind(this, `.tab-content${props.imageNum}`)}
           // onClick={test}
         />
-        <label className="tab-label" htmlFor={`rd${props.imageNum}`}>
+        <label className='tab-label' htmlFor={`rd${props.imageNum}`}>
           Upload images
           <FontAwesomeIcon icon={faPlus} />
         </label>
@@ -80,13 +80,13 @@ export default function Image(props) {
               }
             }}
           >
-            <div className="imgUploader">
+            <div className='imgUploader'>
               {props.imageNum === "1" ? (
                 props.secondImage.bannerImage1 ? (
                   <img
-                    src={props.secondImage.bannerImage1}
-                    alt=""
-                    className="img-fluid"
+                    src={URL.createObjectURL(props.secondImage.bannerImage1)}
+                    alt=''
+                    className='img-fluid'
                   />
                 ) : (
                   <>item with images see 60% more visits from customers</>
@@ -94,37 +94,37 @@ export default function Image(props) {
               ) : props.imageNum === "2" ? (
                 props.secondImage.bannerImage2 ? (
                   <img
-                    src={props.secondImage.bannerImage2}
-                    alt=""
-                    className="img-fluid"
+                    src={URL.createObjectURL(props.secondImage.bannerImage2)}
+                    alt=''
+                    className='img-fluid'
                   />
                 ) : (
                   <>item with images see 60% more visits from customers</>
                 )
               ) : props.secondImage.bannerImage3 ? (
                 <img
-                  src={props.secondImage.bannerImage3}
-                  alt=""
-                  className="img-fluid"
+                  src={URL.createObjectURL(props.secondImage.bannerImage3)}
+                  alt=''
+                  className='img-fluid'
                 />
               ) : (
                 <>item with images see 60% more visits from customers</>
               )}
             </div>
-            <div className="uploadImg-btn">
+            <div className='uploadImg-btn'>
               <FontAwesomeIcon icon={faCamera} />
             </div>
           </div>
           <div className={`uploadList uploadBanner${props.imageNum}`}>
             <label
-              className="uploadList-item"
+              className='uploadList-item'
               htmlFor={`uploadBanner${props.imageNum}-photo`}
             >
               Take photo
               <FontAwesomeIcon icon={faCamera} />
             </label>
             <label
-              className="uploadList-item"
+              className='uploadList-item'
               htmlFor={`uploadBanner${props.imageNum}-image`}
             >
               Upload image
@@ -135,7 +135,7 @@ export default function Image(props) {
                 {props.imageNum === "1" && props.secondImage.bannerImage1 ? (
                   <>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setImage((prevformData) => {
                           return {
@@ -149,7 +149,7 @@ export default function Image(props) {
                       <FontAwesomeIcon icon={faPen} />
                     </div>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setSecondImage((prevformData) => {
                           return {
@@ -177,7 +177,7 @@ export default function Image(props) {
                 ) : props.imageNum === "2" && props.secondImage.bannerImage2 ? (
                   <>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setImage((prevformData) => {
                           return {
@@ -191,7 +191,7 @@ export default function Image(props) {
                       <FontAwesomeIcon icon={faPen} />
                     </div>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setSecondImage((prevformData) => {
                           return {
@@ -219,7 +219,7 @@ export default function Image(props) {
                 ) : props.imageNum === "3" && props.secondImage.bannerImage3 ? (
                   <>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setImage((prevformData) => {
                           return {
@@ -233,7 +233,7 @@ export default function Image(props) {
                       <FontAwesomeIcon icon={faPen} />
                     </div>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setSecondImage((prevformData) => {
                           return {
@@ -268,7 +268,7 @@ export default function Image(props) {
                 {props.imageNum === "1" && props.secondImage.bannerImage1 ? (
                   <>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setImage((prevformData) => {
                           return {
@@ -282,7 +282,7 @@ export default function Image(props) {
                       <FontAwesomeIcon icon={faPen} />
                     </div>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setSecondImage((prevformData) => {
                           return {
@@ -299,7 +299,7 @@ export default function Image(props) {
                 ) : props.imageNum === "2" && props.secondImage.bannerImage2 ? (
                   <>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setImage((prevformData) => {
                           return {
@@ -313,7 +313,7 @@ export default function Image(props) {
                       <FontAwesomeIcon icon={faPen} />
                     </div>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setSecondImage((prevformData) => {
                           return {
@@ -330,7 +330,7 @@ export default function Image(props) {
                 ) : props.imageNum === "3" && props.secondImage.bannerImage3 ? (
                   <>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setImage((prevformData) => {
                           return {
@@ -344,7 +344,7 @@ export default function Image(props) {
                       <FontAwesomeIcon icon={faPen} />
                     </div>
                     <div
-                      className="uploadList-item"
+                      className='uploadList-item'
                       onClick={() => {
                         props.setSecondImage((prevformData) => {
                           return {
@@ -365,23 +365,23 @@ export default function Image(props) {
             )}
           </div>
           <input
-            type="file"
+            type='file'
             id={`uploadBanner${props.imageNum}-photo`}
-            className="d-none"
+            className='d-none'
             name={`bannerImage${props.imageNum}`}
-            value=""
+            value=''
             onChange={props.imagehandleChange}
             capture
-            accept="image/*"
+            accept='image/*'
           />
           <input
-            type="file"
+            type='file'
             id={`uploadBanner${props.imageNum}-image`}
-            className="d-none"
+            className='d-none'
             name={`bannerImage${props.imageNum}`}
-            value=""
+            value=''
             onChange={props.imagehandleChange}
-            accept="image/*"
+            accept='image/*'
           />
         </div>
       </div>

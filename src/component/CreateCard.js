@@ -572,12 +572,11 @@ export default function CreateCard(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    var bodyFormData = new Map();
+    var bodyFormData = new FormData();
     var bannerImages = [];
     let whatsAppNumber = "";
     let mobileNumber = "";
 
-    console.log(formData);
     if (formData.userImages.bannerImage1) {
       bannerImages.push(formData.userImages.bannerImage1);
     }
@@ -630,11 +629,26 @@ export default function CreateCard(props) {
         "mobileNumber cann't be less then 8 and cann't be more then 10"
       );
     } else {
-      console.log(requestObj);
+      for (var i in requestObj) {
+        if (i == "bannerImages") {
+          if (requestObj[i]) {
+            for (let j = 0; j < requestObj[i].length; j++) {
+              bodyFormData.append("bannerImages", bannerImages[j]);
+            }
+          }
+        } else {
+          bodyFormData.append(i, requestObj[i]);
+        }
+      }
+      bodyFormData.forEach((e, i) => {
+        console.log(i);
+        console.log(e);
+      });
       axios({
         method: "post",
-        url: "http://192.168.130.83:3005/members/addMember",
-        data: requestObj,
+        url: "http://172.20.10.3:3005/members/addMember",
+        data: bodyFormData,
+        headers: { "Content-Type": "multipart/form-data" },
       })
         .then((response) => {
           setAlertText(response.data.message);
@@ -661,7 +675,7 @@ export default function CreateCard(props) {
     // if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
     //   axios({
     //     method: "post",
-    //     url: "http://192.168.130.83:3005/members/addMember",
+    //     url: "http://172.20.10.3:3005/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
@@ -730,7 +744,7 @@ export default function CreateCard(props) {
     //   console.log(requestObj);
     //   axios({
     //     method: "post",
-    //     url: "http://192.168.130.83:3005/members/addMember",
+    //     url: "http://172.20.10.3:3005/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
@@ -757,28 +771,28 @@ export default function CreateCard(props) {
 
   return (
     <>
-      <div className="h-100vh">
-        <div className="createCard about p-relative h-100">
-          <div className="setting">
-            <div className="admin">
-              <div className="admin_detail">
-                <Link to="/" className="signup_navbar-back">
+      <div className='h-100vh'>
+        <div className='createCard about p-relative h-100'>
+          <div className='setting'>
+            <div className='admin'>
+              <div className='admin_detail'>
+                <Link to='/' className='signup_navbar-back'>
                   <FontAwesomeIcon icon={faArrowLeft} />
                   Back
                 </Link>
-                <form action="" onSubmit={handleSubmit}>
-                  <div className="addImage">
+                <form action='' onSubmit={handleSubmit}>
+                  <div className='addImage'>
                     <h3>Upload banner image </h3>
                     {image.bannerImage1 ||
                     image.bannerImage2 ||
                     image.bannerImage3 ? (
                       <>
-                        <div className="crops-module">
-                          <div className="crops">
-                            <div className="crops-controls">
+                        <div className='crops-module'>
+                          <div className='crops'>
+                            <div className='crops-controls'>
                               <button
-                                className="z-1 btn"
-                                type="button"
+                                className='z-1 btn'
+                                type='button'
                                 onClick={() => {
                                   setImage({
                                     preview: "",
@@ -788,14 +802,14 @@ export default function CreateCard(props) {
                                 Cancel
                               </button>
                               <button
-                                className="z-1 btn"
-                                type="button"
+                                className='z-1 btn'
+                                type='button'
                                 onClick={showCroppedImage}
                               >
                                 Save
                               </button>
                             </div>
-                            <div className="crop-container">
+                            <div className='crop-container'>
                               <Cropper
                                 image={
                                   image.bannerImage1 ||
@@ -811,23 +825,23 @@ export default function CreateCard(props) {
                                 onZoomChange={setZoom}
                               />
                             </div>
-                            <div className="crop-edit">
+                            <div className='crop-edit'>
                               <input
-                                type="range"
+                                type='range'
                                 value={zoom}
                                 min={1}
                                 max={3}
                                 step={0.1}
-                                aria-labelledby="Zoom"
+                                aria-labelledby='Zoom'
                                 onChange={(e) => {
                                   setZoom(e.target.value);
                                 }}
-                                className="zoom-range"
+                                className='zoom-range'
                               />
                             </div>
-                            <div className="crop_rotate">
+                            <div className='crop_rotate'>
                               <div
-                                className="crop_rotate-left"
+                                className='crop_rotate-left'
                                 // htmlFor="crop_rotate-left"
                                 onClick={() =>
                                   setRotation(
@@ -838,7 +852,7 @@ export default function CreateCard(props) {
                                 <FontAwesomeIcon icon={faRotateLeft} />
                               </div>
                               <div
-                                className="crop_rotate-right"
+                                className='crop_rotate-right'
                                 onClick={() =>
                                   setRotation(
                                     (prevformData) => prevformData - 90
@@ -855,9 +869,9 @@ export default function CreateCard(props) {
                       ""
                     )}
 
-                    <div className="row">
-                      <div className="col">
-                        <div className="tabs">
+                    <div className='row'>
+                      <div className='col'>
+                        <div className='tabs'>
                           <Image
                             setUploadList={setUploadList}
                             setSecondImage={setSecondImage}
@@ -865,7 +879,7 @@ export default function CreateCard(props) {
                             setImage={setImage}
                             editImage={editImage}
                             imagehandleChange={imagehandleChange}
-                            imageNum="1"
+                            imageNum='1'
                           />
                           <Image
                             setUploadList={setUploadList}
@@ -874,7 +888,7 @@ export default function CreateCard(props) {
                             setImage={setImage}
                             editImage={editImage}
                             imagehandleChange={imagehandleChange}
-                            imageNum="2"
+                            imageNum='2'
                           />
                           <Image
                             setUploadList={setUploadList}
@@ -883,23 +897,23 @@ export default function CreateCard(props) {
                             setImage={setImage}
                             editImage={editImage}
                             imagehandleChange={imagehandleChange}
-                            imageNum="3"
+                            imageNum='3'
                           />
                         </div>
                       </div>
                     </div>
                   </div>
 
-                  <div className="addImage p-relative">
+                  <div className='addImage p-relative'>
                     <h3>Upload Profile image </h3>
                     {image.logoimage ? (
                       <>
-                        <div className="crops-module">
-                          <div className="crops">
-                            <div className="crops-controls">
+                        <div className='crops-module'>
+                          <div className='crops'>
+                            <div className='crops-controls'>
                               <button
-                                className="z-1 btn"
-                                type="button"
+                                className='z-1 btn'
+                                type='button'
                                 onClick={() => {
                                   setImage({
                                     preview: "",
@@ -909,14 +923,14 @@ export default function CreateCard(props) {
                                 Cancel
                               </button>
                               <button
-                                className="z-1 btn"
-                                type="button"
+                                className='z-1 btn'
+                                type='button'
                                 onClick={showCroppedImage}
                               >
                                 Save
                               </button>
                             </div>
-                            <div className="crop-container">
+                            <div className='crop-container'>
                               <Cropper
                                 image={image.logoimage}
                                 crop={crop}
@@ -925,29 +939,29 @@ export default function CreateCard(props) {
                                 onCropChange={setCrop}
                                 onCropComplete={onCropComplete}
                                 onZoomChange={setZoom}
-                                cropShape="round"
+                                cropShape='round'
                                 showGrid={false}
                                 rotation={rotation.logoimage}
                                 // cropSize={{ width: 110, height: 110 }}
                               />
                             </div>
-                            <div className="crop-edit">
+                            <div className='crop-edit'>
                               <input
-                                type="range"
+                                type='range'
                                 value={zoom}
                                 min={1}
                                 max={3}
                                 step={0.1}
-                                aria-labelledby="Zoom"
+                                aria-labelledby='Zoom'
                                 onChange={(e) => {
                                   setZoom(e.target.value);
                                 }}
-                                className="zoom-range"
+                                className='zoom-range'
                               />
                             </div>
-                            <div className="crop_rotate">
+                            <div className='crop_rotate'>
                               <div
-                                className="crop_rotate-left"
+                                className='crop_rotate-left'
                                 onClick={() =>
                                   setRotation(
                                     (prevformData) => prevformData - 90
@@ -957,7 +971,7 @@ export default function CreateCard(props) {
                                 <FontAwesomeIcon icon={faRotateLeft} />
                               </div>
                               <div
-                                className="crop_rotate-right"
+                                className='crop_rotate-right'
                                 onClick={() =>
                                   setRotation(
                                     (prevformData) => prevformData - 90
@@ -974,7 +988,7 @@ export default function CreateCard(props) {
                       ""
                     )}
                     <div
-                      className="uploadImg-container justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column p-relative"
+                      className='uploadImg-container justify-content-between align-sm-items-start align-items-center mt-3 gap-sm-2 f-sm-column p-relative'
                       onClick={() => {
                         setUploadList((prevformData) => {
                           return {
@@ -994,14 +1008,14 @@ export default function CreateCard(props) {
                           logoimage.style.transform = "unset";
                         }
                       }}
-                      id="imgfor"
+                      id='imgfor'
                     >
-                      <div className="upload-img">
+                      <div className='upload-img'>
                         {secondImage.logoimage ? (
                           <img
                             src={secondImage.logoimage}
-                            alt=""
-                            className="img-fluid"
+                            alt=''
+                            className='img-fluid'
                           />
                         ) : (
                           <>
@@ -1010,37 +1024,37 @@ export default function CreateCard(props) {
                         )}
 
                         <input
-                          type="file"
-                          id="upload-button"
-                          className="d-none"
+                          type='file'
+                          id='upload-button'
+                          className='d-none'
                           onChange={imagehandleChange}
-                          name="logoimage"
-                          value=""
-                          accept="image/*"
+                          name='logoimage'
+                          value=''
+                          accept='image/*'
                         />
                         <input
-                          type="file"
-                          id="upload-photo"
-                          className="d-none"
+                          type='file'
+                          id='upload-photo'
+                          className='d-none'
                           onChange={imagehandleChange}
-                          name="logoimage"
+                          name='logoimage'
                           capture
-                          value=""
-                          accept="image/*"
+                          value=''
+                          accept='image/*'
                         />
                       </div>
-                      <div className="uploadImg-btn">
+                      <div className='uploadImg-btn'>
                         <FontAwesomeIcon icon={faCamera} />
                       </div>
                     </div>
-                    <div className="uploadList logoimage" htmlFor="imgfor">
-                      <label className="uploadList-item" htmlFor="upload-photo">
+                    <div className='uploadList logoimage' htmlFor='imgfor'>
+                      <label className='uploadList-item' htmlFor='upload-photo'>
                         Take photo
                         <FontAwesomeIcon icon={faCamera} />
                       </label>
                       <label
-                        className="uploadList-item"
-                        htmlFor="upload-button"
+                        className='uploadList-item'
+                        htmlFor='upload-button'
                       >
                         Upload image
                         <FontAwesomeIcon icon={faCloudArrowUp} />
@@ -1048,7 +1062,7 @@ export default function CreateCard(props) {
                       {secondImage.logoimage ? (
                         <>
                           <div
-                            className="uploadList-item"
+                            className='uploadList-item'
                             onClick={() => {
                               setImage((prevformData) => {
                                 return {
@@ -1062,7 +1076,7 @@ export default function CreateCard(props) {
                             <FontAwesomeIcon icon={faPen} />
                           </div>
                           <div
-                            className="uploadList-item"
+                            className='uploadList-item'
                             onClick={() => {
                               setSecondImage((prevformData) => {
                                 return {
@@ -1082,40 +1096,40 @@ export default function CreateCard(props) {
                     </div>
                   </div>
 
-                  <div className="admin_detail-member">
+                  <div className='admin_detail-member'>
                     <h3>Enter user detail </h3>
 
-                    <div className="">
+                    <div className=''>
                       <input
-                        type="text"
-                        className="form-control"
-                        id="Name"
-                        placeholder="Name"
+                        type='text'
+                        className='form-control'
+                        id='Name'
+                        placeholder='Name'
                         required
-                        name="username"
+                        name='username'
                         onChange={handleChange}
                         value={formData.username}
                       />
                     </div>
-                    <div className="">
+                    <div className=''>
                       <input
-                        type="text"
-                        className="form-control"
-                        id="designation"
-                        placeholder="Designation"
-                        name="designation"
+                        type='text'
+                        className='form-control'
+                        id='designation'
+                        placeholder='Designation'
+                        name='designation'
                         onChange={handleChange}
                         value={formData.designation}
                         required
                       />
                     </div>
-                    <div className="">
+                    <div className=''>
                       <input
-                        type="text"
-                        className="form-control"
-                        id="employeeId"
-                        placeholder="Employee id"
-                        name="employeeId"
+                        type='text'
+                        className='form-control'
+                        id='employeeId'
+                        placeholder='Employee id'
+                        name='employeeId'
                         required
                         onChange={handleChange}
                         value={formData.employeeId}
@@ -1133,27 +1147,27 @@ export default function CreateCard(props) {
                         value={formData.uniqueId}
                       />
                     </div> */}
-                    <div className="">
+                    <div className=''>
                       <input
-                        type="text"
-                        className="form-control"
-                        id="employeeBio"
-                        placeholder="Employee bio"
-                        name="employeeBio"
+                        type='text'
+                        className='form-control'
+                        id='employeeBio'
+                        placeholder='Employee bio'
+                        name='employeeBio'
                         onChange={handleChange}
                         value={formData.employeeBio}
                       />
                     </div>
                   </div>
-                  <div className="admin_detail-social">
+                  <div className='admin_detail-social'>
                     <h3>Choose/add Social handles </h3>
-                    <div className="admin_detail-social-grid">
+                    <div className='admin_detail-social-grid'>
                       {formData.userLink.map((links, id) => {
                         return (
                           <button
                             key={id}
-                            className="btn-primary"
-                            type="button"
+                            className='btn-primary'
+                            type='button'
                             onClick={() => {
                               updateLink(links, id);
                             }}
@@ -1173,8 +1187,8 @@ export default function CreateCard(props) {
                       })}
 
                       <button
-                        className="btn-primary"
-                        type="button"
+                        className='btn-primary'
+                        type='button'
                         onClick={() => {
                           addLin();
                           setType("card");
@@ -1184,15 +1198,15 @@ export default function CreateCard(props) {
                       </button>
                     </div>
                   </div>
-                  <div className="admin_detail-social">
+                  <div className='admin_detail-social'>
                     <h3> Choose/add Plugin handles </h3>
-                    <div className="admin_detail-social-grid">
+                    <div className='admin_detail-social-grid'>
                       {formData.userPlugin.map((links, id) => {
                         return (
                           <button
                             key={id}
-                            className="btn-primary"
-                            type="button"
+                            className='btn-primary'
+                            type='button'
                             onClick={() => {
                               updatePlugin(links, id);
                             }}
@@ -1203,8 +1217,8 @@ export default function CreateCard(props) {
                       })}
 
                       <button
-                        className="btn-primary"
-                        type="button"
+                        className='btn-primary'
+                        type='button'
                         onClick={() => {
                           addLin();
                           setType("plugin");
@@ -1215,23 +1229,23 @@ export default function CreateCard(props) {
                     </div>
                   </div>
 
-                  <div className="admin_detail-contact">
+                  <div className='admin_detail-contact'>
                     <h3>Contact details </h3>
 
-                    <div className="mb-3">
+                    <div className='mb-3'>
                       <input
-                        type="text"
-                        className="form-control"
-                        id="Name"
-                        placeholder="office email id"
-                        name="officeId"
+                        type='text'
+                        className='form-control'
+                        id='Name'
+                        placeholder='office email id'
+                        name='officeId'
                         onChange={handleChange}
                         value={formData.officeId}
                       />
                     </div>
-                    <div className="p-relative mb-3 countriesCode">
+                    <div className='p-relative mb-3 countriesCode'>
                       <input
-                        type="number"
+                        type='number'
                         className={
                           phoneNum.whPhone &&
                           phoneNum.whPhone.split("").length === 2
@@ -1244,17 +1258,17 @@ export default function CreateCard(props) {
                             ? "countriesCode-input form-control formControl-4"
                             : "countriesCode-input form-control formControl-1"
                         }
-                        id="designation"
-                        placeholder="enter whatsApp number"
-                        name="whatsappNumber"
+                        id='designation'
+                        placeholder='enter whatsApp number'
+                        name='whatsappNumber'
                         onChange={handleChange}
                         value={formData.whatsappNumber}
                       />
                       {/* <label className="did-floating-label">+91</label> */}
                       <label
-                        className="did-floating-label z-1"
+                        className='did-floating-label z-1'
                         // htmlFor="number"
-                        aria-haspopup="listbox"
+                        aria-haspopup='listbox'
                       >
                         <PhoneInput
                           country={"us"}
@@ -1285,9 +1299,9 @@ export default function CreateCard(props) {
                         />
                       </label>
                     </div>
-                    <div className="p-relative mb-3 countriesCode z">
+                    <div className='p-relative mb-3 countriesCode z'>
                       <input
-                        type="number"
+                        type='number'
                         // className="form-control "
                         className={
                           phoneNum.phone &&
@@ -1301,17 +1315,17 @@ export default function CreateCard(props) {
                             ? "countriesCode-input form-control formControl-4"
                             : "countriesCode-input form-control formControl-1"
                         }
-                        id="company"
-                        placeholder="enter Mobile number"
-                        name="mobileNumber"
+                        id='company'
+                        placeholder='enter Mobile number'
+                        name='mobileNumber'
                         onChange={handleChange}
                         value={formData.mobileNumber}
                       />
 
                       <label
-                        className="did-floating-label countriesCode"
+                        className='did-floating-label countriesCode'
                         // htmlFor="number"
-                        aria-haspopup="listbox"
+                        aria-haspopup='listbox'
                       >
                         <PhoneInput
                           country={"us"}
@@ -1343,7 +1357,7 @@ export default function CreateCard(props) {
                       </label>
                     </div>
                   </div>
-                  <button type="submit" className="btn-primary">
+                  <button type='submit' className='btn-primary'>
                     Save
                   </button>
                 </form>
@@ -1357,9 +1371,9 @@ export default function CreateCard(props) {
             ""
           )}
 
-          <div className="signup_phone text-center">
-            <button className="btn btn-preview">Live Preview</button>
-            <div className="signup_phone-container">
+          <div className='signup_phone text-center'>
+            <button className='btn btn-preview'>Live Preview</button>
+            <div className='signup_phone-container'>
               <UserProfile
                 formData={formData}
                 logo={secondImage.logoimage}
@@ -1380,8 +1394,8 @@ export default function CreateCard(props) {
             ""
           )}
           {isLinkClick ? (
-            <div className="addcard">
-              <div className="addcard_container">
+            <div className='addcard'>
+              <div className='addcard_container'>
                 <AddLink
                   data={linkData}
                   sendData={updateLink}
@@ -1394,8 +1408,8 @@ export default function CreateCard(props) {
             ""
           )}
           {isPlugin ? (
-            <div className="addcard">
-              <div className="addcard_container">
+            <div className='addcard'>
+              <div className='addcard_container'>
                 <AddPlugin
                   data={linkData}
                   sendData={updatePlugin}
