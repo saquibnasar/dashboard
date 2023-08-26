@@ -106,7 +106,7 @@ export default function AddPlugin(props) {
           <div className="addlink_content-top">
             <div className={`addlink_content-top-icon ${props.data.type}`}>
               {props.data.type === "email" ||
-              props.data.type === "address" ||
+              props.data.type === "googlemap" ||
               props.data.type === "website" ? (
                 <img className="img-fluid" src={props.data.icon} alt="" />
               ) : (

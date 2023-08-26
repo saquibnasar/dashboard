@@ -247,14 +247,14 @@ export default function Setting(props) {
           linkTitle: link.title,
           id: id,
         };
-      } else if (link && link.type && link.type === "address") {
+      } else if (link && link.type && link.type === "googlemap") {
         return {
           headerTitle: "Address Title",
           linkTitleInput: "Address",
           title: "Address*",
           titleInput: "Enter Address",
           type: "text",
-          type: "address",
+          type: "googlemap",
           icon: "/googlemap.png",
           linkData: link.value,
           linkTitle: link.title,
@@ -290,7 +290,7 @@ export default function Setting(props) {
     console.log(formData);
     axios({
       method: "post",
-      url: "http://172.20.10.3:3005/members/addMember",
+      url: "http://192.168.130.83:3005/members/addMember",
       data: formData,
     })
       .then((response) => {
@@ -316,64 +316,64 @@ export default function Setting(props) {
 
   return (
     <>
-      <div className='d-flex h-100vh'>
+      <div className="d-flex h-100vh">
         <SIdebar navbarToggle={props.navbarToggle} />
-        <div className='d-flex flex-direction-column w-100 overflow-hidden'>
-          <Topbar type='setting' isNavbar={props.isNavbar} text='Settings' />
-          <div className='setting mt-4 p-relative'>
-            <nav className='sidebar'>
-              <div className='sidebar-collapse'>
-                <ul className='sidebar-nav'>
-                  <li className='nav-item'>
+        <div className="d-flex flex-direction-column w-100 overflow-hidden">
+          <Topbar type="setting" isNavbar={props.isNavbar} text="Settings" />
+          <div className="setting mt-4 p-relative">
+            <nav className="sidebar">
+              <div className="sidebar-collapse">
+                <ul className="sidebar-nav">
+                  <li className="nav-item">
                     <NavLink
-                      className='nav-link'
-                      aria-current='page'
-                      to='/setting/team'
+                      className="nav-link"
+                      aria-current="page"
+                      to="/setting/team"
                     >
-                      <img className='img-fluid' src='/dots.png' alt='' />
-                      <p className='d-lg-none'> Team settings</p>
+                      <img className="img-fluid" src="/dots.png" alt="" />
+                      <p className="d-lg-none"> Team settings</p>
                     </NavLink>
                   </li>
-                  <li className='nav-item'>
+                  <li className="nav-item">
                     <NavLink
-                      className='nav-link'
-                      aria-current='page'
-                      to='/setting/subscription'
+                      className="nav-link"
+                      aria-current="page"
+                      to="/setting/subscription"
                     >
                       <FontAwesomeIcon icon={faUser} />
-                      <p className='d-lg-none'>My subscription</p>
+                      <p className="d-lg-none">My subscription</p>
                     </NavLink>
                   </li>
-                  <li className='nav-item'>
+                  <li className="nav-item">
                     <NavLink
-                      className='nav-link'
-                      aria-current='page'
-                      to='/setting/support'
+                      className="nav-link"
+                      aria-current="page"
+                      to="/setting/support"
                     >
-                      <img className='img-fluid' src='/iconqr.png' alt='' />
+                      <img className="img-fluid" src="/iconqr.png" alt="" />
                       {/* <FontAwesomeIcon icon={faHourglassEmpty} /> */}
-                      <p className='d-lg-none'>Support</p>
+                      <p className="d-lg-none">Support</p>
                     </NavLink>
                   </li>
 
-                  <li className='nav-item'>
+                  <li className="nav-item">
                     <NavLink
-                      className='nav-link'
-                      aria-current='page'
-                      to='/setting/devices'
+                      className="nav-link"
+                      aria-current="page"
+                      to="/setting/devices"
                     >
                       <FontAwesomeIcon icon={faNfcSymbol} />
-                      <p className='d-lg-none'>Add Flax Devices</p>
+                      <p className="d-lg-none">Add Flax Devices</p>
                     </NavLink>
                   </li>
-                  <li className='nav-item'>
+                  <li className="nav-item">
                     <NavLink
-                      className='nav-link'
-                      aria-current='page'
-                      to='/setting/admin'
+                      className="nav-link"
+                      aria-current="page"
+                      to="/setting/admin"
                     >
                       <FontAwesomeIcon icon={faUserShield} />
-                      <p className='d-lg-none'>Admin Details</p>
+                      <p className="d-lg-none">Admin Details</p>
                     </NavLink>
                   </li>
                 </ul>
@@ -383,12 +383,12 @@ export default function Setting(props) {
               <>
                 {image.preview ? (
                   <>
-                    <div className='crops-module'>
-                      <div className='crops'>
-                        <div className='crops-controls'>
+                    <div className="crops-module">
+                      <div className="crops">
+                        <div className="crops-controls">
                           <button
-                            className='z-1 btn'
-                            type='button'
+                            className="z-1 btn"
+                            type="button"
                             onClick={() => {
                               setImage({
                                 preview: "",
@@ -398,14 +398,14 @@ export default function Setting(props) {
                             Cancel
                           </button>
                           <button
-                            className='z-1 btn'
-                            type='button'
+                            className="z-1 btn"
+                            type="button"
                             onClick={showCroppedImage}
                           >
                             Save
                           </button>
                         </div>
-                        <div className='crop-container'>
+                        <div className="crop-container">
                           <Cropper
                             image={image.preview}
                             crop={crop}
@@ -418,23 +418,23 @@ export default function Setting(props) {
                             // showGrid={false}
                           />
                         </div>
-                        <div className='crop-edit'>
+                        <div className="crop-edit">
                           <input
-                            type='range'
+                            type="range"
                             value={zoom}
                             min={1}
                             max={3}
                             step={0.1}
-                            aria-labelledby='Zoom'
+                            aria-labelledby="Zoom"
                             onChange={(e) => {
                               setZoom(e.target.value);
                             }}
-                            className='zoom-range'
+                            className="zoom-range"
                           />
                         </div>
-                        <div className='crop_rotate'>
+                        <div className="crop_rotate">
                           <div
-                            className='crop_rotate-left'
+                            className="crop_rotate-left"
                             // htmlFor="crop_rotate-left"
                             onClick={() =>
                               setRotation((prevformData) => prevformData + 90)
@@ -443,7 +443,7 @@ export default function Setting(props) {
                             <FontAwesomeIcon icon={faRotateLeft} />
                           </div>
                           <div
-                            className='crop_rotate-right'
+                            className="crop_rotate-right"
                             onClick={() =>
                               setRotation((prevformData) => prevformData - 90)
                             }
@@ -457,13 +457,13 @@ export default function Setting(props) {
                 ) : (
                   ""
                 )}
-                <div className='team_setting'>
+                <div className="team_setting">
                   <form onSubmit={handleSubmit}>
-                    <div className='Company_logo'>
+                    <div className="Company_logo">
                       <h3>Company logo</h3>
-                      <div className='upload-img'>
+                      <div className="upload-img">
                         <label
-                          className='logo'
+                          className="logo"
                           onClick={() => {
                             const logoimage =
                               document.querySelector(".logoimage");
@@ -478,8 +478,8 @@ export default function Setting(props) {
                           {image.secondImage ? (
                             <img
                               src={image.secondImage}
-                              alt='dummy'
-                              className='img-fluid'
+                              alt="dummy"
+                              className="img-fluid"
                             />
                           ) : (
                             <>
@@ -489,17 +489,17 @@ export default function Setting(props) {
                             </>
                           )}
                         </label>
-                        <div className='uploadList logoimage' htmlFor='imgfor'>
+                        <div className="uploadList logoimage" htmlFor="imgfor">
                           <label
-                            className='uploadList-item'
-                            htmlFor='upload-photo'
+                            className="uploadList-item"
+                            htmlFor="upload-photo"
                           >
                             Take photo
                             <FontAwesomeIcon icon={faCamera} />
                           </label>
                           <label
-                            className='uploadList-item'
-                            htmlFor='upload-button'
+                            className="uploadList-item"
+                            htmlFor="upload-button"
                           >
                             Upload image
                             <FontAwesomeIcon icon={faCloudArrowUp} />
@@ -507,7 +507,7 @@ export default function Setting(props) {
                           {image.secondImage ? (
                             <>
                               <div
-                                className='uploadList-item'
+                                className="uploadList-item"
                                 onClick={() => {
                                   setImage((prevformData) => {
                                     return {
@@ -521,7 +521,7 @@ export default function Setting(props) {
                                 <FontAwesomeIcon icon={faPen} />
                               </div>
                               <div
-                                className='uploadList-item'
+                                className="uploadList-item"
                                 onClick={() => {
                                   setSecondImage((prevformData) => {
                                     return {
@@ -547,79 +547,79 @@ export default function Setting(props) {
                         </div>
 
                         <input
-                          type='file'
-                          id='upload-button'
-                          className='d-none'
+                          type="file"
+                          id="upload-button"
+                          className="d-none"
                           onChange={handleChange}
-                          name='logoimage'
-                          value=''
-                          accept='image/*'
+                          name="logoimage"
+                          value=""
+                          accept="image/*"
                         />
                         <input
-                          type='file'
-                          id='upload-photo'
-                          className='d-none'
+                          type="file"
+                          id="upload-photo"
+                          className="d-none"
                           onChange={handleChange}
-                          name='logoimage'
+                          name="logoimage"
                           capture
-                          value=''
-                          accept='image/*'
+                          value=""
+                          accept="image/*"
                         />
                       </div>
                     </div>
 
-                    <div className='Company_name'>
+                    <div className="Company_name">
                       {/* <h3>Company name</h3> */}
 
                       <input
-                        type='text'
-                        className='form-control'
-                        id='company name'
-                        placeholder='company name'
-                        name='companyName'
+                        type="text"
+                        className="form-control"
+                        id="company name"
+                        placeholder="company name"
+                        name="companyName"
                         required
                         onChange={formhandle}
                         value={formData.companyName}
                       />
                       <input
-                        type='text'
-                        className='form-control'
-                        id='website'
-                        placeholder='website'
-                        name='companyWebsite'
+                        type="text"
+                        className="form-control"
+                        id="website"
+                        placeholder="website"
+                        name="companyWebsite"
                         required
                         onChange={formhandle}
                         value={formData.companyWebsite}
                       />
                       <input
-                        type='text'
-                        className='form-control'
-                        id='copyright'
-                        placeholder='copyright'
-                        name='companyCopyright'
+                        type="text"
+                        className="form-control"
+                        id="copyright"
+                        placeholder="copyright"
+                        name="companyCopyright"
                         required
                         onChange={formhandle}
                         value={formData.companyCopyright}
                       />
                       <input
-                        type='text'
-                        className='form-control'
-                        id='disclaimer'
-                        placeholder='disclaimer'
-                        name='companyDisclaimer'
+                        type="text"
+                        className="form-control"
+                        id="disclaimer"
+                        placeholder="disclaimer"
+                        name="companyDisclaimer"
                         required
                         onChange={formhandle}
                         value={formData.companyDisclaimer}
                       />
                       <div>
-                        <div className='admin_detail-social'>
-                          <div className='admin_detail-social-grid'>
+                        <div className="admin_detail-social">
+                          <div className="admin_detail-social-grid">
                             {formData.userLink.map((links, id) => {
                               return (
                                 <button
                                   key={id}
-                                  className='btn-primary'
-                                  type='button'
+                                  className="btn-primary"
+                                  type="button"
                                   onClick={() => {
                                     updateLink(links, id);
                                   }}
@@ -635,18 +635,18 @@ export default function Setting(props) {
                                   {links.type === "facebook" ? "facebook" : ""}
                                   {links.type === "twitter" ? "twitter" : ""}
                                   {links.type === "youtube" ? "youtube" : ""}
-                                  {links.type === "address" ? "address" : ""}
+                                  {links.type === "googlemap" ? "address" : ""}
                                 </button>
                               );
                             })}
                           </div>
                         </div>
-                        <button type='button' onClick={addLin}>
+                        <button type="button" onClick={addLin}>
                           Company social media links
                         </button>
                       </div>
                     </div>
-                    <button type='submit'>save</button>
+                    <button type="submit">save</button>
                   </form>
                 </div>
               </>
@@ -660,8 +660,8 @@ export default function Setting(props) {
               <Admin />
             )}
             {isLinkClick ? (
-              <div className='addcard'>
-                <div className='addcard_container'>
+              <div className="addcard">
+                <div className="addcard_container">
                   <AddLink
                     data={linkData}
                     sendData={updateLink}

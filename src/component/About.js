@@ -19,6 +19,7 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import AddLink from "./AddLink";
 import AdduCard from "./AddCard";
 import Image from "./userDetail/Image";
@@ -228,7 +229,7 @@ export default function About(props) {
     console.log(props.formData);
     // axios({
     //   method: "post",
-    //   url: "http://172.20.10.3:3005/members/updateMember",
+    //   url: "http://192.168.130.83:3005/members/updateMember",
     //   data: requestObj,
     // })
     //   .then((response) => {
@@ -296,7 +297,7 @@ export default function About(props) {
       // console.log(requestObj);s
       // axios({
       //   method: "post",
-      //   url: "http://172.20.10.3:3005/members/updatemember",
+      //   url: "http://192.168.130.83:3005/members/updatemember",
       //   data: requestObj,
       // })
       //   .then((response) => {
@@ -417,14 +418,27 @@ export default function About(props) {
           linkTitle: link.title,
           id: id,
         };
-      } else if (link && link.type && link.type === "address") {
+      } else if (link && link.type && link.type === "twitter") {
+        return {
+          headerTitle: "Twitter Title",
+          linkTitleInput: "Twitter",
+          title: "Twitter*",
+          titleInput: "Enter Twiter URL",
+          type: "text",
+          type: "twitter",
+          icon: faTwitter,
+          linkData: link.value,
+          linkTitle: link.title,
+          id: id,
+        };
+      } else if (link && link.type && link.type === "googlemap") {
         return {
           headerTitle: "Address Title",
           linkTitleInput: "Address",
           title: "Address*",
           titleInput: "Enter Address",
           type: "text",
-          type: "address",
+          type: "googlemap",
           icon: "/googlemap.png",
           linkData: link.value,
           linkTitle: link.title,
@@ -846,7 +860,7 @@ export default function About(props) {
                           {links.type === "facebook" ? "facebook" : ""}
                           {links.type === "twitter" ? "twitter" : ""}
                           {links.type === "youtube" ? "youtube" : ""}
-                          {links.type === "address" ? "address" : ""}
+                          {links.type === "googlemap" ? "address" : ""}
                         </button>
                       );
                     })}
