@@ -72,7 +72,7 @@ export default function AddLink(props) {
           formData.value.split("").length < 8 ||
           formData.value.split("").length > 10
         ) {
-          setAlertText(
+          props.setAlertText(
             "number cann't be less then 8 and cann't be more then 10"
           );
         } else {
@@ -341,11 +341,11 @@ export default function AddLink(props) {
           </div>
         </div>
 
-        {alertText ? (
+        {/* {alertText ? (
           <Alert alertText={alertText} setAlertText={setAlertText} />
         ) : (
           ""
-        )}
+        )} */}
       </div>
       <div className="signup_phone text-center d-md-block">
         <button className="btn btn-preview">Live Preview</button>
