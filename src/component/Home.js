@@ -15,7 +15,7 @@ export default function Home(props) {
 
   useEffect(() => {
     axios
-      .get("http://172.20.10.3:3005/members/all")
+      .get("http://192.168.130.83:3005/members/all")
       .then((response) => {
         setData(response.data);
       })
@@ -29,9 +29,9 @@ export default function Home(props) {
   return (
     <>
       {data ? (
-        <div className='d-flex h-100vh'>
+        <div className="d-flex h-100vh">
           <SIdebar navbarToggle={props.navbarToggle} />
-          <div className='d-flex flex-direction-column w-100'>
+          <div className="d-flex flex-direction-column w-100">
             <Topbar
               handleChange={handleChange}
               setSearch={setSearch}

@@ -92,6 +92,7 @@ export default function TeamCard(props) {
                     : item.first_name.toLowerCase().includes(props.search);
                 })
                 .map((value) => {
+                  console.log(value);
                   return (
                     <Link
                       key={value.id}
@@ -100,7 +101,11 @@ export default function TeamCard(props) {
                     >
                       <div className="d-flex gap-2">
                         <span className="mx-auto">
-                          {value.profileImage ? (
+                          {value.profileImage &&
+                          !(
+                            value.profileImage === "null" ||
+                            value.profileImage === "undefined"
+                          ) ? (
                             <img
                               src={`${value.profileImage}`}
                               className="img-fluid"
@@ -112,7 +117,15 @@ export default function TeamCard(props) {
                         </span>
                         <div className="d-flex flex-direction-column gap-2">
                           <h3>{value.name}</h3>
-                          <h4 className="mx-auto">{value.officeEmailId}</h4>
+                          <h4 className="mx-auto">
+                            {value.officeEmailId &&
+                            !(
+                              value.officeEmailId === "null" ||
+                              value.officeEmailId === "undefined"
+                            )
+                              ? value.officeEmailId
+                              : ""}
+                          </h4>
                         </div>
                       </div>
                       <div className="d-flex gap-2 align-items-center f-md-column">
