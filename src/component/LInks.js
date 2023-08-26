@@ -21,7 +21,7 @@ export default function LInks(props) {
     facebook: true,
     twitter: true,
     youtube: true,
-    address: true,
+    googlemap: true,
   });
   const handleChange = (e) => {
     setChecked((prevformData) => {

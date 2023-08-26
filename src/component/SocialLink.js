@@ -45,7 +45,7 @@ export default function SocialLink(props) {
           if (value.type === "youtube") {
             icon = faYoutube;
           }
-          if (value.type === "address") {
+          if (value.type === "googlemap") {
             icon = "/googlemap.png";
           }
 

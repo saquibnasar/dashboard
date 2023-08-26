@@ -12,6 +12,8 @@ export default function ImgSlider(props) {
     autoplay: true,
     autoplaySpeed: 3000,
   };
+  console.log(props.arrayImages);
+  console.log(props.sliderImage);
   return (
     <>
       {/* <div className={`swiper mySwiper ${props.border} ${props.className}`}>
@@ -39,22 +41,27 @@ export default function ImgSlider(props) {
 
       <div className={`swiper mySwiper`}>
         <div className={`swiper-wrapper`}>
-          <Slider {...settings}>
-            {props.arrayImages ? (
-              props.arrayImages.map((value) => {
-                return (
-                  <div className="swiper-slide">
-                    <img className="img-fluid w-100" src={value} alt="" />
-                  </div>
-                );
-              })
-            ) : (
-              <>
+          {props.arrayImages ? (
+            <>
+              <Slider {...settings}>
+                {props.arrayImages.map((value) => {
+                  return (
+                    <div className="swiper-slide">
+                      <img className="img-fluid w-100" src={value} alt="" />
+                    </div>
+                  );
+                })}
+              </Slider>
+            </>
+          ) : (
+            <>
+              {" "}
+              <Slider {...settings}>
                 {props.sliderImage.bannerImage1 ? (
                   <div className="swiper-slide">
                     <img
                       className="img-fluid w-100"
-                      src={props.sliderImage.bannerImage1}
+                      src={URL.createObjectURL(props.sliderImage.bannerImage1)}
                       alt=""
                     />
                   </div>
@@ -65,7 +72,7 @@ export default function ImgSlider(props) {
                   <div className="swiper-slide">
                     <img
                       className="img-fluid w-100"
-                      src={props.sliderImage.bannerImage2}
+                      src={URL.createObjectURL(props.sliderImage.bannerImage2)}
                       alt=""
                     />
                   </div>
@@ -76,16 +83,16 @@ export default function ImgSlider(props) {
                   <div className="swiper-slide">
                     <img
                       className="img-fluid w-100"
-                      src={props.sliderImage.bannerImage3}
+                      src={URL.createObjectURL(props.sliderImage.bannerImage3)}
                       alt=""
                     />
                   </div>
                 ) : (
                   ""
-                )}
-              </>
-            )}
-          </Slider>
+                )}{" "}
+              </Slider>
+            </>
+          )}
         </div>
       </div>
     </>

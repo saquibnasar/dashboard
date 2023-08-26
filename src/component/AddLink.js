@@ -133,7 +133,7 @@ export default function AddLink(props) {
           <div className="addlink_content-top">
             <div className={`addlink_content-top-icon ${props.data.type}`}>
               {props.data.type === "email" ||
-              props.data.type === "address" ||
+              props.data.type === "googlemap" ||
               props.data.type === "website" ? (
                 <img className="img-fluid" src={props.data.icon} alt="" />
               ) : (
@@ -236,7 +236,7 @@ export default function AddLink(props) {
                         className="did-floating-input"
                         type={props.data.linktype}
                         placeholder={
-                          props.data.type === "address"
+                          props.data.type === "googlemap"
                             ? ifClick
                               ? `Business address*`
                               : " "
@@ -288,7 +288,7 @@ export default function AddLink(props) {
                           : ifClick
                           ? `https://www.${props.data.linktype}.com/xxxx`
                           : " "} */}
-                        {props.data.type === "address"
+                        {props.data.type === "googlemap"
                           ? !ifClick
                             ? `Business address*`
                             : props.data.type

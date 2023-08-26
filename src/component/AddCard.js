@@ -305,7 +305,7 @@ export default function AddCard(props) {
                       title: "Address*",
                       titleInput: "Enter Address",
                       linktype: "text",
-                      type: "address",
+                      type: "googlemap",
                       icon: "/googlemap.png",
                     })}
                   >
