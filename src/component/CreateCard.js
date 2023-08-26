@@ -1430,6 +1430,8 @@ export default function CreateCard(props) {
                   sendData={updateLink}
                   setFormData={setFormData}
                   formData={formData}
+                  alertText={alertText}
+                  setAlertText={setAlertText}
                 />
               </div>
             </div>
