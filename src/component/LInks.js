@@ -43,6 +43,29 @@ export default function LInks(props) {
         <div className="addcard_links">
           {props.formData && props.formData.userLink
             ? props.formData.userLink.map((value) => {
+                console.log(value.type);
+                let link = faWhatsapp;
+                if (value.type === "phone") {
+                  link = faPhone;
+                } else if (value.type === "whatsapp") {
+                  link = faWhatsapp;
+                } else if (value.type === "linkedin") {
+                  link = faLinkedinIn;
+                } else if (value.type === "instagram") {
+                  link = faInstagram;
+                } else if (value.type === "facebook") {
+                  link = faFacebookF;
+                } else if (value.type === "twitter") {
+                  link = faTwitter;
+                } else if (value.type === "youtube") {
+                  link = faYoutube;
+                } else if (value.type === "website") {
+                  link = "/safari.png";
+                } else if (value.type === "googlemap") {
+                  link = "/googlemap.png";
+                } else if (value.type === "email") {
+                  link = "/email.png";
+                }
                 return (
                   <div className="addcard_link">
                     <div className="addcard_link_dot">
@@ -57,10 +80,12 @@ export default function LInks(props) {
                       </svg>
                     </div>
                     <div className="addcard_link-item-icon">
-                      {value.type ? (
-                        <img className="img-fluid" src="/email.png" alt="" />
+                      {value.type === "email" ||
+                      value.type === "website" ||
+                      value.type === "googlemap" ? (
+                        <img className="img-fluid" src={link} alt="" />
                       ) : (
-                        <FontAwesomeIcon icon={faWhatsapp} />
+                        <FontAwesomeIcon icon={link} />
                       )}
                     </div>
                     <p>{value.title}</p>

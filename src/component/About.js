@@ -248,8 +248,24 @@ export default function About(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    var bodyFormData = new FormData();
+    var bannerImages = [];
+    let whatsAppNumber = "";
+    let mobileNumber = "";
+
+    // if (props.formData.userImages.bannerImage1) {
+    //   bannerImages.push(props.formData.userImages.bannerImage1);
+    // }
+
+    // if (props.formData.userImages.bannerImage2) {
+    //   bannerImages.push(props.formData.userImages.bannerImage2);
+    // }
+    // if (props.formData.userImages.bannerImage3) {
+    //   bannerImages.push(props.formData.userImages.bannerImage3);
+    // }
+
     let requestObj = new Map();
-    console.log(props.formData);
+    // console.log(props.formData);
     requestObj = {
       name: props.formData.name,
       profileImage: props.formData.profileImage,
@@ -276,7 +292,7 @@ export default function About(props) {
             }
           : null,
     };
-    console.log(requestObj);
+    // console.log(requestObj);
     if (
       requestObj.whatsAppNumber &&
       (requestObj.whatsAppNumber.phoneNumber.split("").length < 8 ||
@@ -294,7 +310,67 @@ export default function About(props) {
         "mobileNumber cann't be less then 8 and cann't be more then 10"
       );
     } else {
-      // console.log(requestObj);s
+      // console.log("requestOb ]is ]");
+      // console.log(requestObj);
+      for (var i in requestObj) {
+        // console.log(i);
+        // console.log(requestObj[i]);
+        if (i == "bannerImages") {
+          if (requestObj[i]) {
+            for (let j = 0; j < requestObj[i].length; j++) {
+              // console.log("bannerImagesDAta", requestObj[i][j]);
+              // console.log(requestObj[i]);
+              // console.log(requestObj[i][j]);
+              // console.log(typeof bannerImages[i][j] != "string");
+              // console.log(requestObj[i][j].name);
+              if (requestObj[i][j].name) {
+                console.log(requestObj[i]);
+                bodyFormData.append("bannerImages", j);
+                bodyFormData.append(
+                  "bannerImages",
+                  bannerImages[i][parseInt(j)]
+                );
+              }
+              // if (
+              //   typeof requestObj[i][j] === "string" ||
+              //   !(requestObj[i][j] instanceof String)
+              // ) {
+              //   console.log(requestObj[i][j]);
+              // }
+
+              // var type = typeof bannerImages[i][j];
+
+              // if (type != "string") {
+              //   console.log("bannerImagesDAta", requestObj[i][j]);
+              //   bodyFormData.append("bannerImages", bannerImages[j]);
+              // }
+            }
+          }
+        } else if (i == "links" && requestObj[i]) {
+          for (let j = 0; j < requestObj[i].length; j++) {
+            bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
+            bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
+            bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
+          }
+        } else if (
+          (i == "whatsAppNumber" || i == "mobileNumber") &&
+          requestObj[i]
+        ) {
+          // console.log("whatsapp");
+          // console.log(requestObj[i]);
+          bodyFormData.append(`${i}[phoneNumber]`, requestObj[i].phoneNumber);
+          bodyFormData.append(`${i}[code]`, requestObj[i].code);
+        } else {
+          if (requestObj[i]) {
+            bodyFormData.append(i, requestObj[i]);
+          }
+        }
+      }
+
+      bodyFormData.forEach((e, i) => {
+        console.log(i, e, typeof e);
+      });
+      // console.log(requestObj
       // axios({
       //   method: "post",
       //   url: "http://192.168.130.83:3005/members/updatemember",
@@ -958,15 +1034,17 @@ export default function About(props) {
                   >
                     <PhoneInput
                       value={
-                        props.formData.whatsAppNumber
-                          ? `+${props.formData.whatsAppNumber.code}`
-                          : ""
+                        props.formData.whatsAppNumber &&
+                        !props.formData.whatsAppNumber.code === "1"
+                          ? props.formData.whatsAppNumber.code
+                          : "1"
                       }
                       enableAreaCodes={true}
                       onChange={props.handleChange.bind(this, "whPhone")}
                       enableSearch={true}
                       disableSearchIcon={true}
                       countryCodeEditable={false}
+                      country="us"
                       inputProps={{
                         name: "phone",
                         // required: true,
@@ -1037,6 +1115,7 @@ export default function About(props) {
                       disableSearchIcon={true}
                       // disableCountryCode={true}
                       countryCodeEditable={false}
+                      country="us"
                       inputProps={{
                         name: "phone",
                         // required: true,

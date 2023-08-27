@@ -606,45 +606,28 @@ export default function CreateCard(props) {
     requestObj = {
       name: formData.userInfo.username ? formData.userInfo.username : null,
       profileImage: formData.userImages.userProfile,
-      // &&
-      // !formData.userImages.userProfile.value === undefined
-      //   ? formData.userImages.userProfile
-      //   : null,
       bannerImages: bannerImages.length === 0 ? null : [...bannerImages],
       designation: formData.userInfo.designation,
-      // &&
-      // !formData.userInfo.designation.value === undefined
-      //   ? formData.userInfo.employeeBio
-      //   : null,
       employeeId: formData.userInfo.employeeId,
-      employeeBio:
-        formData.userInfo.employeeBio &&
-        !formData.userInfo.employeeBio.value === undefined
-          ? formData.userInfo.employeeBio
-          : null,
-      links: formData.userLink.length === 0 ? null : formData.userLink,
+      employeeBio: formData.userInfo.employeeBio,
+      links: formData.userLink,
       officeEmailId: formData.userInfo.officeId,
-      whatsAppNumber:
-        formData.userInfo.whatsappNumber &&
-        !formData.userInfo.whatsappNumber.whatsappNum === undefined
-          ? {
-              phoneNumber: formData.userInfo.whatsappNumber.whatsappNum,
-              code: formData.userInfo.whatsappNumber.countryCode,
-            }
-          : null,
-      mobileNumber:
-        formData.userInfo.mobileNumber &&
-        !formData.userInfo.mobileNumber.whatsappNum === undefined
-          ? {
-              phoneNumber: formData.userInfo.mobileNumber.phoneNum,
-              code: formData.userInfo.mobileNumber.countryCode,
-            }
-          : null,
+      whatsAppNumber: formData.userInfo.whatsappNumber
+        ? {
+            phoneNumber: formData.userInfo.whatsappNumber.whatsappNum,
+            code: formData.userInfo.whatsappNumber.countryCode,
+          }
+        : null,
+      mobileNumber: formData.userInfo.mobileNumber
+        ? {
+            phoneNumber: formData.userInfo.mobileNumber.phoneNum,
+            code: formData.userInfo.mobileNumber.countryCode,
+          }
+        : null,
     };
 
     if (
-      formData.userInfo.mobileNumber &&
-      !formData.userInfo.whatsappNumber.whatsappNum === undefined &&
+      formData.userInfo.whatsappNumber &&
       (formData.userInfo.whatsappNumber.whatsappNum.split("").length < 8 ||
         formData.userInfo.whatsappNumber.whatsappNum.split("").length > 10)
     ) {
@@ -653,7 +636,6 @@ export default function CreateCard(props) {
       );
     } else if (
       formData.userInfo.mobileNumber &&
-      !formData.userInfo.mobileNumber.whatsappNum === undefined &&
       (formData.userInfo.mobileNumber.phoneNum.split("").length < 8 ||
         formData.userInfo.mobileNumber.phoneNum.split("").length > 10)
     ) {
@@ -662,18 +644,28 @@ export default function CreateCard(props) {
       );
     } else {
       for (var i in requestObj) {
+        console.log(i);
+        console.log(requestObj[i]);
         if (i == "bannerImages") {
           if (requestObj[i]) {
             for (let j = 0; j < requestObj[i].length; j++) {
               bodyFormData.append("bannerImages", bannerImages[j]);
             }
           }
-        } else if (i == "links") {
+        } else if (i == "links" && requestObj[i]) {
           for (let j = 0; j < requestObj[i].length; j++) {
             bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
             bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
             bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
           }
+        } else if (
+          (i == "whatsAppNumber" || i == "mobileNumber") &&
+          requestObj[i]
+        ) {
+          // console.log("whatsapp");
+          // console.log(requestObj[i]);
+          bodyFormData.append(`${i}[phoneNumber]`, requestObj[i].phoneNumber);
+          bodyFormData.append(`${i}[code]`, requestObj[i].code);
         } else {
           if (requestObj[i]) {
             bodyFormData.append(i, requestObj[i]);
@@ -681,9 +673,9 @@ export default function CreateCard(props) {
         }
       }
 
-      bodyFormData.forEach((e, i) => {
-        console.log(i, e, typeof e);
-      });
+      // bodyFormData.forEach((e, i) => {
+      //   console.log(i, e, typeof e);
+      // });
       axios({
         method: "post",
         url: "http://192.168.130.83:3005/members/addMember",
@@ -695,21 +687,13 @@ export default function CreateCard(props) {
           window.location.href = "/";
         })
         .catch((error) => {
+          console.log(error.response.data.message);
+          console.log(error.response.status);
           setAlertText(
-            error.response.status == 409
+            error.response.status === 409
               ? error.response.data.message
               : error.response.data.message[0]
           );
-
-          if (error.response.data.message) {
-            if (error.response.data.message === "Member already exists") {
-              setAlertText(
-                error.response.data.message + ", use different employee id"
-              );
-            } else {
-              setAlertText(error.response.data.message[0]);
-            }
-          }
         });
     }
 
