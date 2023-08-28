@@ -390,7 +390,7 @@ export default function UserProfile(props) {
                 <button
                   className="btn-copy mt-4"
                   onClick={() => {
-                    navigator.clipboard.writeText("http://192.168.130.83:3000/a");
+                    navigator.clipboard.writeText("http://192.168.174.83:3000/a");
                     setIsCopy("Copied!");
                     setTimeout(() => {
                       setIsCopy("Copy");
@@ -910,7 +910,7 @@ export default function UserProfile(props) {
                   <button
                     className="btn-copy mt-4"
                     onClick={() => {
-                      navigator.clipboard.writeText("http://192.168.130.83:3000/a");
+                      navigator.clipboard.writeText("http://192.168.174.83:3000/a");
                       setIsCopy("Copied!");
                       setTimeout(() => {
                         setIsCopy("Copy");

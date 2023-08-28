@@ -91,16 +91,16 @@ export default async function getCroppedImg(
 
   // console.log(croppedCanvas);
   var val = canvasToBlob(croppedCanvas);
-  console.log(val.name);
-  console.log(val.type);
-  console.log(val.size);
+  // console.log(val.name);
+  // console.log(val.type);
+  // console.log(val.size);
   // As Base64 string
 
   var splitedValType = val.type.split("/")[1];
 
   var files = new File([val], `name.${splitedValType}`, { type: val.type });
-  console.log("type is ");
-  console.log(files.type);
+  // console.log("type is ");
+  // console.log(files.type);
 
   return files;
 }

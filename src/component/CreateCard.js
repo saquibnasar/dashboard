@@ -678,7 +678,7 @@ export default function CreateCard(props) {
       // });
       axios({
         method: "post",
-        url: "http://192.168.130.83:3005/members/addMember",
+        url: "http://192.168.174.83:3005/members/addMember",
         data: bodyFormData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -700,7 +700,7 @@ export default function CreateCard(props) {
     // if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
     //   axios({
     //     method: "post",
-    //     url: "http://192.168.130.83:3005/members/addMember",
+    //     url: "http://192.168.174.83:3005/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
@@ -769,7 +769,7 @@ export default function CreateCard(props) {
     //   console.log(requestObj);
     //   axios({
     //     method: "post",
-    //     url: "http://192.168.130.83:3005/members/addMember",
+    //     url: "http://192.168.174.83:3005/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {

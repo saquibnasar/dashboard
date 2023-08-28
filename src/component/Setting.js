@@ -25,7 +25,7 @@ import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import AddCard from "./AddCard";
 // import AddLink from "./AddLink";
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import axios from "axios";
 import Alert from "./Alert";
 import Cropper from "react-easy-crop";
@@ -43,12 +43,12 @@ export default function Setting(props) {
 
   const [isLinkClick, setIsLinkClick] = useState(false);
   const [formData, setFormData] = useState({
-    companyLogo: "",
+    // companyLogo: "",
     companyName: "",
     companyWebsite: "",
     companyCopyright: "",
     companyDisclaimer: "",
-    userLink: [],
+    // userLink: [],
   });
 
   const [linkData, setLinkData] = useState({
@@ -61,15 +61,18 @@ export default function Setting(props) {
     icon: "",
   });
 
-  {
-    /* {
-    "companyLogo": "companyLogo",
-    "companyName": "name",
-    "companyWebsite": "website",
-    "companyCopyright": "copyright",
-    "companyDisclaimer": "disclaimer11"
-} */
-  }
+  useEffect(() => {
+    axios
+      .get("http://192.168.174.83:3005/settings/getCompanyDetails")
+      .then((response) => {
+        setFormData(response.data);
+      })
+      .catch((error) => {
+        if (error.response.status == 401) {
+          window.location.href = "/login";
+        }
+      });
+  }, []);
 
   const addLin = () => {
     setIslinks(!isLinks);
@@ -290,12 +293,12 @@ export default function Setting(props) {
     console.log(formData);
     axios({
       method: "post",
-      url: "http://192.168.130.83:3005/members/addMember",
+      url: "http://192.168.174.83:3005/settings/updateCompanyDetails",
       data: formData,
     })
       .then((response) => {
         setAlertText(response.data.message);
-        window.location.href = "/";
+        window.location.href = "/setting/team";
       })
       .catch((error) => {
         if (error.response.data.message) {
@@ -614,7 +617,7 @@ export default function Setting(props) {
                       <div>
                         <div className="admin_detail-social">
                           <div className="admin_detail-social-grid">
-                            {formData.userLink.map((links, id) => {
+                            {/* {formData.userLink.map((links, id) => {
                               return (
                                 <button
                                   key={id}
@@ -638,7 +641,7 @@ export default function Setting(props) {
                                   {links.type === "googlemap" ? "address" : ""}
                                 </button>
                               );
-                            })}
+                            })} */}
                           </div>
                         </div>
                         <button type="button" onClick={addLin}>

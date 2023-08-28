@@ -40,6 +40,7 @@ export default function Image(props) {
       }
     }
   };
+  console.log();
   return (
     <>
       <div className="tab">
@@ -85,7 +86,8 @@ export default function Image(props) {
                 props.secondImage.bannerImage1 ? (
                   <img
                     src={
-                      props.type === "about"
+                      props.type === "about" &&
+                      !props.secondImage.bannerImage1.name
                         ? props.secondImage.bannerImage1
                         : URL.createObjectURL(props.secondImage.bannerImage1)
                     }
@@ -99,7 +101,8 @@ export default function Image(props) {
                 props.secondImage.bannerImage2 ? (
                   <img
                     src={
-                      props.type === "about"
+                      props.type === "about" &&
+                      !props.secondImage.bannerImage2.name
                         ? props.secondImage.bannerImage2
                         : URL.createObjectURL(props.secondImage.bannerImage2)
                     }
@@ -112,7 +115,8 @@ export default function Image(props) {
               ) : props.secondImage.bannerImage3 ? (
                 <img
                   src={
-                    props.type === "about"
+                    props.type === "about" &&
+                    !props.secondImage.bannerImage3.name
                       ? props.secondImage.bannerImage3
                       : URL.createObjectURL(props.secondImage.bannerImage3)
                   }
