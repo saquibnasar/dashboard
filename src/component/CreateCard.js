@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./imgUploader/cropImage";
 import UserProfile from "./UserProfile/UserProfile";
@@ -455,10 +455,6 @@ export default function CreateCard(props) {
           });
 
           setFormData((prevformData) => {
-            // prevformData.userImages.userProfile.croppedAreaPixels =
-            //   croppedAreaPixels;
-            // prevformData.userImages.userProfile.rotation = rotation;
-            // console.log(croppedImage);
             return {
               ...prevformData,
               userImages: {
@@ -466,9 +462,6 @@ export default function CreateCard(props) {
                 userProfile: croppedImage,
               },
             };
-            // return {
-            //   ...prevformData,
-            // };
           });
         } else if (image.bannerImage1) {
           setSecondImage((prevformData) => {
@@ -512,9 +505,6 @@ export default function CreateCard(props) {
             };
           });
           setFormData((prevformData) => {
-            // prevformData.userImages.bannerImage3.croppedAreaPixels =
-            //   croppedAreaPixels;
-            // prevformData.userImages.bannerImage3.rotation = rotation;
             return {
               ...prevformData,
               userImages: {
@@ -588,8 +578,6 @@ export default function CreateCard(props) {
     e.preventDefault();
     var bodyFormData = new FormData();
     var bannerImages = [];
-    let whatsAppNumber = "";
-    let mobileNumber = "";
 
     if (formData.userImages.bannerImage1) {
       bannerImages.push(formData.userImages.bannerImage1);
@@ -678,7 +666,7 @@ export default function CreateCard(props) {
       // });
       axios({
         method: "post",
-        url: "http://192.168.174.83:3005/members/addMember",
+        url: "http://192.168.4.83:3005/members/addMember",
         data: bodyFormData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -700,7 +688,7 @@ export default function CreateCard(props) {
     // if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
     //   axios({
     //     method: "post",
-    //     url: "http://192.168.174.83:3005/members/addMember",
+    //     url: "http://192.168.4.83:3005/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
@@ -769,7 +757,7 @@ export default function CreateCard(props) {
     //   console.log(requestObj);
     //   axios({
     //     method: "post",
-    //     url: "http://192.168.174.83:3005/members/addMember",
+    //     url: "http://192.168.4.83:3005/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
@@ -793,6 +781,11 @@ export default function CreateCard(props) {
     //     });
     // }
   };
+
+  useEffect(() => {
+    const setting = document.querySelector(".setting");
+    setting.scrollTop = 0;
+  }, []);
 
   return (
     <>
@@ -1413,6 +1406,7 @@ export default function CreateCard(props) {
               isClick={isClick}
               setFormData={setFormData}
               type={type}
+              setAlertText={setAlertText}
             />
           ) : (
             ""

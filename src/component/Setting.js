@@ -43,7 +43,7 @@ export default function Setting(props) {
 
   const [isLinkClick, setIsLinkClick] = useState(false);
   const [formData, setFormData] = useState({
-    // companyLogo: "",
+    companyLogo: "",
     companyName: "",
     companyWebsite: "",
     companyCopyright: "",
@@ -63,7 +63,7 @@ export default function Setting(props) {
 
   useEffect(() => {
     axios
-      .get("http://192.168.174.83:3005/settings/getCompanyDetails")
+      .get("http://192.168.4.83:3005/settings/getCompanyDetails")
       .then((response) => {
         setFormData(response.data);
       })
@@ -290,15 +290,28 @@ export default function Setting(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    var bodyFormData = new FormData();
     console.log(formData);
+
+    for (var i in formData) {
+      if (formData[i]) {
+        bodyFormData.append(i, formData[i]);
+      }
+    }
+
+    bodyFormData.forEach((e, i) => {
+      console.log(i, e, typeof e);
+    });
+
     axios({
       method: "post",
-      url: "http://192.168.174.83:3005/settings/updateCompanyDetails",
-      data: formData,
+      url: "http://192.168.4.83:3005/settings/updateCompanyDetails",
+      data: bodyFormData,
+      headers: { "Content-Type": "multipart/form-data" },
     })
       .then((response) => {
         setAlertText(response.data.message);
-        window.location.href = "/setting/team";
+        // window.location.href = "/setting/team";
       })
       .catch((error) => {
         if (error.response.data.message) {
@@ -478,9 +491,13 @@ export default function Setting(props) {
                             }
                           }}
                         >
-                          {image.secondImage ? (
+                          {formData.companyLogo ? (
                             <img
-                              src={image.secondImage}
+                              src={
+                                formData.companyLogo.name
+                                  ? URL.createObjectURL(formData.companyLogo)
+                                  : formData.companyLogo
+                              }
                               alt="dummy"
                               className="img-fluid"
                             />
@@ -507,7 +524,7 @@ export default function Setting(props) {
                             Upload image
                             <FontAwesomeIcon icon={faCloudArrowUp} />
                           </label>
-                          {image.secondImage ? (
+                          {formData.companyLogo ? (
                             <>
                               <div
                                 className="uploadList-item"
@@ -662,6 +679,12 @@ export default function Setting(props) {
             ) : (
               <Admin />
             )}
+
+            {alertText ? (
+              <Alert alertText={alertText} setAlertText={setAlertText} />
+            ) : (
+              ""
+            )}
             {isLinkClick ? (
               <div className="addcard">
                 <div className="addcard_container">
@@ -670,6 +693,7 @@ export default function Setting(props) {
                     sendData={updateLink}
                     setFormData={setFormData}
                     formData={formData}
+                    setAlertText={setAlertText}
                   />
                 </div>
               </div>
@@ -681,6 +705,7 @@ export default function Setting(props) {
                 removeLink={addLin}
                 isClick={isClick}
                 setFormData={setFormData}
+                setAlertText={setAlertText}
               />
             ) : (
               ""

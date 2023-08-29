@@ -9,6 +9,7 @@ import HomePage from "./component/HomePage";
 import { useState } from "react";
 import Signin from "./component/Signin";
 import UserProfile from "./component/UserProfile/UserProfile";
+import MainProfile from "./component/UserProfile/MainProfile";
 
 function App() {
   const [isNavbar, setIsNavbar] = useState(false);
@@ -54,7 +55,8 @@ function App() {
           path="/setting/:settingId"
           element={<Setting navbarToggle={navbarToggle} isNavbar={isNavbar} />}
         />
-        <Route path="/:userProfileId" element={<UserProfile />} />
+        {/* <Route path="/:userProfileId" element={<UserProfile />} /> */}
+        <Route path="/:mainProfileid" element={<MainProfile />} />
       </Routes>
     </BrowserRouter>
   );

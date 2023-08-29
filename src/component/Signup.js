@@ -39,7 +39,7 @@ export default function Signup() {
 
     if (isOtp) {
       axios
-        .post("http://192.168.174.83:3005/auth/verify-email-otp", {
+        .post("http://192.168.4.83:3005/auth/verify-email-otp", {
           email: formData.email,
           otp: parseInt(formData.otp),
         })
@@ -62,7 +62,7 @@ export default function Signup() {
         });
     } else {
       axios
-        .post("http://192.168.174.83:3005/auth/signup", {
+        .post("http://192.168.4.83:3005/auth/signup", {
           email: formData.email,
           password: formData.password,
           fullName: "Asim Nasar",

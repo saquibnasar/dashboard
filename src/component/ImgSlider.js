@@ -47,7 +47,11 @@ export default function ImgSlider(props) {
                 {props.arrayImages.map((value) => {
                   return (
                     <div className="swiper-slide">
-                      <img className="img-fluid w-100" src={value} alt="" />
+                      <img
+                        className="img-fluid w-100"
+                        src={value.name ? URL.createObjectURL(value) : value}
+                        alt=""
+                      />
                     </div>
                   );
                 })}
@@ -61,7 +65,11 @@ export default function ImgSlider(props) {
                   <div className="swiper-slide">
                     <img
                       className="img-fluid w-100"
-                      src={URL.createObjectURL(props.sliderImage.bannerImage1)}
+                      src={
+                        props.sliderImage.bannerImage1
+                          ? URL.createObjectURL(props.sliderImage.bannerImage1)
+                          : props.sliderImage.bannerImage1
+                      }
                       alt=""
                     />
                   </div>
@@ -72,7 +80,11 @@ export default function ImgSlider(props) {
                   <div className="swiper-slide">
                     <img
                       className="img-fluid w-100"
-                      src={URL.createObjectURL(props.sliderImage.bannerImage2)}
+                      src={
+                        props.sliderImage.bannerImage2
+                          ? URL.createObjectURL(props.sliderImage.bannerImage2)
+                          : props.sliderImage.bannerImage2
+                      }
                       alt=""
                     />
                   </div>
@@ -83,7 +95,11 @@ export default function ImgSlider(props) {
                   <div className="swiper-slide">
                     <img
                       className="img-fluid w-100"
-                      src={URL.createObjectURL(props.sliderImage.bannerImage3)}
+                      src={
+                        props.sliderImage.bannerImage3
+                          ? URL.createObjectURL(props.sliderImage.bannerImage3)
+                          : props.sliderImage.bannerImage3
+                      }
                       alt=""
                     />
                   </div>

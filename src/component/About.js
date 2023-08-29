@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -229,7 +229,7 @@ export default function About(props) {
     console.log(props.formData);
     // axios({
     //   method: "post",
-    //   url: "http://192.168.174.83:3005/members/updateMember",
+    //   url: "http://192.168.4.83:3005/members/updateMember",
     //   data: requestObj,
     // })
     //   .then((response) => {
@@ -373,12 +373,12 @@ export default function About(props) {
       console.log(requestObj);
       axios({
         method: "post",
-        url: "http://192.168.174.83:3005/members/updatemember",
+        url: "http://192.168.4.83:3005/members/updatemember",
         data: bodyFormData,
       })
         .then((response) => {
           setAlertText(response.data.message);
-          window.location.href = window.location.href;
+          // window.location.href = window.location.href;
         })
         .catch((error) => {
           console.log(error.response.data);
@@ -536,6 +536,11 @@ export default function About(props) {
       }
     });
   };
+
+  useEffect(() => {
+    const setting = document.querySelector(".setting");
+    setting.scrollTop = 0;
+  }, []);
 
   return (
     <>
@@ -841,6 +846,11 @@ export default function About(props) {
                               logoimage: "",
                             };
                           });
+                          props.setFormData((prevformData) => {
+                            prevformData.profileImag = null;
+
+                            return prevformData;
+                          });
                         }}
                       >
                         Clear
@@ -907,11 +917,6 @@ export default function About(props) {
                   />
                 </div>
               </div>
-              {alertText ? (
-                <ALert alertText={alertText} setAlertText={setAlertText} />
-              ) : (
-                ""
-              )}
 
               <div className="admin_detail-social">
                 <h3>Choose/add Social handles </h3>
@@ -923,6 +928,7 @@ export default function About(props) {
                         <button
                           key={id}
                           className="btn-primary"
+                          type="button"
                           onClick={() => {
                             updateLink(links, id);
                           }}
@@ -943,6 +949,7 @@ export default function About(props) {
 
                   <button
                     className="btn-primary"
+                    type="button"
                     onClick={() => {
                       props.addLin();
                       // setType("card");
@@ -1034,10 +1041,9 @@ export default function About(props) {
                   >
                     <PhoneInput
                       value={
-                        props.formData.whatsAppNumber &&
-                        !props.formData.whatsAppNumber.code === "1"
+                        props.formData.whatsAppNumber
                           ? props.formData.whatsAppNumber.code
-                          : "1"
+                          : ""
                       }
                       enableAreaCodes={true}
                       onChange={props.handleChange.bind(this, "whPhone")}
@@ -1185,6 +1191,11 @@ export default function About(props) {
           </div>
         </div>
       </div>
+      {alertText ? (
+        <ALert alertText={alertText} setAlertText={setAlertText} />
+      ) : (
+        ""
+      )}
       {props.isLinks ? (
         <AdduCard
           removeLink={props.addLin}
@@ -1202,6 +1213,7 @@ export default function About(props) {
               sendData={updateLink}
               setFormData={props.setFormData}
               formData={props.formData}
+              setAlertText={setAlertText}
             />
           </div>
         </div>

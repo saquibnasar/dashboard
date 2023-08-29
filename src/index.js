@@ -34,7 +34,7 @@ axios.interceptors.response.use(
     // console.log(error.response.status);
     if (error.response.status == 401) {
       axios
-        .post("http://192.168.174.83:3005/auth/refresh-token", {
+        .post("http://192.168.4.83:3005/auth/refresh-token", {
           refreshToken: window.localStorage.getItem("refreshToken"),
         })
         .then(async (res) => {

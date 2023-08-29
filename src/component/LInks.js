@@ -67,7 +67,7 @@ export default function LInks(props) {
                   link = "/email.png";
                 }
                 return (
-                  <div className="addcard_link">
+                  <div className={`addcard_link ${value.type}`}>
                     <div className="addcard_link_dot">
                       <svg
                         width="8"

@@ -121,7 +121,7 @@ export default function AddLink(props) {
     });
     props.sendData();
   };
-
+  console.log(props.formData);
   return (
     <div className="addlink d-flex justify-content-between align-items-center">
       <div className="addlink-container">
@@ -350,7 +350,10 @@ export default function AddLink(props) {
       <div className="signup_phone text-center d-md-block">
         <button className="btn btn-preview">Live Preview</button>
         <div className="signup_phone-container">
-          <UserProfile formData={formData} />
+          <UserProfile
+            formData={props.formData}
+            arrayImages={props.formData && props.formData.bannerImages}
+          />
         </div>
       </div>
     </div>

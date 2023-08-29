@@ -26,7 +26,7 @@ export default function HomePage(props) {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.174.83:3005/members/${userId}`)
+      .get(`http://192.168.4.83:3005/members/${userId}`)
       .then((response) => {
         setData(response.data);
 

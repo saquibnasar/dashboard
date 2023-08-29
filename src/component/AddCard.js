@@ -331,6 +331,7 @@ export default function AddCard(props) {
                 data={linkData}
                 sendData={sendData}
                 setFormData={props.setFormData}
+                setAlertText={props.setAlertText}
               />
             )}
           </div>

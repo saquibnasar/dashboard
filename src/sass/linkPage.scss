@@ -136,6 +136,26 @@
         color: $text;
       }
     }
+    .addcard_link.phone {
+      .addcard_link-item-icon {
+        background-color: #3ae432;
+      }
+    }
+    .addcard_link.twitter {
+      .addcard_link-item-icon {
+        background-color: #1da1f2;
+      }
+    }
+    .addcard_link.whatsapp {
+      .addcard_link-item-icon {
+        background-color: #128c7e;
+      }
+    }
+    .addcard_link.linkedin {
+      .addcard_link-item-icon {
+        background-color: #0a66c2;
+      }
+    }
     .addcard_link:hover {
       transform: scale(1.02);
     }
