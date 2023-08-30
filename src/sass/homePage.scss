@@ -89,6 +89,9 @@
           }
           .nav-link.delete {
             transition: 0.3s ease-in-out;
+            background-color: transparent;
+            width: 100%;
+            border: none;
           }
           .nav-link.delete:hover {
             background: rgb(255, 255, 255);

@@ -162,6 +162,24 @@ export default function HomePage(props) {
       });
     }
   };
+  const deleteHander = (event) => {
+    console.log(userId);
+    axios({
+      method: "DELETE",
+      // url: "http://192.168.4.83:3005/members/updatemember",
+      url: "http://192.168.4.83:3005/members/deleteMember",
+      data: {
+        employeeId: userId,
+      },
+    })
+      .then((response) => {
+        setAlertText(response.data.message);
+        window.location.href = "/";
+      })
+      .catch((error) => {
+        setAlertText(error.response.data.message);
+      });
+  };
 
   return (
     <>
@@ -221,14 +239,15 @@ export default function HomePage(props) {
                       </NavLink>
                     </li>
                     <li className="nav-item">
-                      <NavLink
+                      <button
+                        type="button"
                         className="nav-link delete"
                         aria-current="page"
-                        to="/setting_devices"
+                        onClick={deleteHander}
                       >
                         <FontAwesomeIcon icon={faTrashCan} />
                         <p className="d-lg-none">Delete</p>
-                      </NavLink>
+                      </button>
                     </li>
                   </ul>
                 </div>

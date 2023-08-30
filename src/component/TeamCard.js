@@ -89,7 +89,7 @@ export default function TeamCard(props) {
                 .filter((item) => {
                   return props.search.toLowerCase() === ""
                     ? item
-                    : item.first_name.toLowerCase().includes(props.search);
+                    : item.name.toLowerCase().includes(props.search);
                 })
                 .map((value) => {
                   console.log(value);
