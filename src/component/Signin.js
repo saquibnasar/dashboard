@@ -36,10 +36,13 @@ export default function Signin() {
     e.preventDefault();
 
     axios
-      .post("http://192.168.4.83:3005/auth/signin", {
-        email: formData.email,
-        password: formData.password,
-      })
+      .post(
+        "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/auth/signin",
+        {
+          email: formData.email,
+          password: formData.password,
+        }
+      )
       .then(function (response) {
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("refreshToken", response.data.refreshToken);

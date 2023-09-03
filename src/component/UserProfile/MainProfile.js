@@ -15,7 +15,9 @@ export default function MainProfile(props) {
   const [isShareClicked, setIsShareClicked] = useState(false);
   useEffect(() => {
     axios
-      .get(`http://192.168.4.83:3005/members/${mainProfileid}`)
+      .get(
+        `http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/${mainProfileid}`
+      )
       .then((response) => {
         setData(response.data);
       })
@@ -391,7 +393,7 @@ export default function MainProfile(props) {
                     className="btn-copy mt-4"
                     onClick={() => {
                       navigator.clipboard.writeText(
-                        "http://192.168.4.83:3000/a"
+                        "http://192.168.0.103:3000/a"
                       );
                       setIsCopy("Copied!");
                       setTimeout(() => {

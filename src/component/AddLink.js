@@ -58,6 +58,7 @@ export default function AddLink(props) {
         value: formData.value,
         countryCode: phone,
         type: props.data.type,
+        isActive: false,
       };
       props.setFormData((prevformData) => {
         return {
@@ -85,6 +86,7 @@ export default function AddLink(props) {
                   title: formData.title,
                   value: phone + formData.value,
                   type: props.data.type,
+                  isActive: true,
                 },
               ],
             };
@@ -102,6 +104,7 @@ export default function AddLink(props) {
                 title: formData.title,
                 value: formData.value,
                 type: props.data.type,
+                isActive: true,
               },
             ],
           };

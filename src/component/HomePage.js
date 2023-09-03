@@ -26,7 +26,9 @@ export default function HomePage(props) {
 
   useEffect(() => {
     axios
-      .get(`http://192.168.4.83:3005/members/${userId}`)
+      .get(
+        `http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/${userId}`
+      )
       .then((response) => {
         setData(response.data);
 
@@ -166,8 +168,8 @@ export default function HomePage(props) {
     console.log(userId);
     axios({
       method: "DELETE",
-      // url: "http://192.168.4.83:3005/members/updatemember",
-      url: "http://192.168.4.83:3005/members/deleteMember",
+      // url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/updatemember",
+      url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/deleteMember",
       data: {
         employeeId: userId,
       },

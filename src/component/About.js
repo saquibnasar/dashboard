@@ -229,7 +229,7 @@ export default function About(props) {
     console.log(props.formData);
     // axios({
     //   method: "post",
-    //   url: "http://192.168.4.83:3005/members/updateMember",
+    //   url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/updateMember",
     //   data: requestObj,
     // })
     //   .then((response) => {
@@ -247,7 +247,7 @@ export default function About(props) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(props.formData.userLink);
     var bodyFormData = new FormData();
     var bannerImages = [];
     let whatsAppNumber = "";
@@ -351,6 +351,15 @@ export default function About(props) {
             bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
             bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
             bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
+            bodyFormData.append(`links[${j}][id]`, requestObj[i][j].id);
+            bodyFormData.append(
+              `links[${j}][countryCode]`,
+              requestObj[i][j].countryCode
+            );
+            bodyFormData.append(
+              `links[${j}][isActive]`,
+              requestObj[i][j].isActive
+            );
           }
         } else if (
           (i == "whatsAppNumber" || i == "mobileNumber") &&
@@ -373,7 +382,7 @@ export default function About(props) {
       console.log(requestObj);
       axios({
         method: "post",
-        url: "http://192.168.4.83:3005/members/updatemember",
+        url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/updatemember",
         data: bodyFormData,
       })
         .then((response) => {

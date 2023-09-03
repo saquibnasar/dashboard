@@ -39,10 +39,13 @@ export default function Signup() {
 
     if (isOtp) {
       axios
-        .post("http://192.168.4.83:3005/auth/verify-email-otp", {
-          email: formData.email,
-          otp: parseInt(formData.otp),
-        })
+        .post(
+          "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/auth/verify-email-otp",
+          {
+            email: formData.email,
+            otp: parseInt(formData.otp),
+          }
+        )
         .then(function (response) {
           localStorage.setItem("userName", response.data.result.userName);
           localStorage.setItem("fullName", response.data.result.fullName);
@@ -62,11 +65,14 @@ export default function Signup() {
         });
     } else {
       axios
-        .post("http://192.168.4.83:3005/auth/signup", {
-          email: formData.email,
-          password: formData.password,
-          fullName: "Asim Nasar",
-        })
+        .post(
+          "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/auth/signup",
+          {
+            email: formData.email,
+            password: formData.password,
+            fullName: "Asim Nasar",
+          }
+        )
         .then(function (response) {
           localStorage.setItem("accessToken", response.data.accessToken);
           localStorage.setItem("refreshToken", response.data.refreshToken);

@@ -645,6 +645,10 @@ export default function CreateCard(props) {
             bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
             bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
             bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
+            bodyFormData.append(
+              `links[${j}][isActive]`,
+              requestObj[i][j].isActive
+            );
           }
         } else if (
           (i == "whatsAppNumber" || i == "mobileNumber") &&
@@ -666,7 +670,7 @@ export default function CreateCard(props) {
       // });
       axios({
         method: "post",
-        url: "http://192.168.4.83:3005/members/addMember",
+        url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/addMember",
         data: bodyFormData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -688,7 +692,7 @@ export default function CreateCard(props) {
     // if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
     //   axios({
     //     method: "post",
-    //     url: "http://192.168.4.83:3005/members/addMember",
+    //     url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
@@ -757,7 +761,7 @@ export default function CreateCard(props) {
     //   console.log(requestObj);
     //   axios({
     //     method: "post",
-    //     url: "http://192.168.4.83:3005/members/addMember",
+    //     url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
