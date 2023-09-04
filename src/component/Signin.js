@@ -37,7 +37,7 @@ export default function Signin() {
 
     axios
       .post(
-        "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/auth/signin",
+        "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/auth/signin",
         {
           email: formData.email,
           password: formData.password,

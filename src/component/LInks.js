@@ -11,27 +11,44 @@ import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 
 export default function LInks(props) {
-  const [checked, setChecked] = useState({
-    call: true,
-    email: true,
-    website: true,
-    whatsapp: true,
-    linkedIn: true,
-    instagram: true,
-    facebook: true,
-    twitter: true,
-    youtube: true,
-    googlemap: true,
-  });
-  const handleChange = (e) => {
-    setChecked((prevformData) => {
+  const handleChange = (id, e) => {
+    console.log(e.target.checked);
+    props.setFormData((prevformData) => {
+      let newArr = [...prevformData.userLink];
+      if (prevformData.userLink[id].id) {
+        newArr[id] = {
+          title: prevformData.userLink[id].title,
+          value: prevformData.userLink[id].value,
+          type: prevformData.userLink[id].type,
+          isActive: e.target.checked,
+          countryCode: prevformData.userLink[id].countryCode,
+          id: prevformData.userLink[id].id,
+          memberId: prevformData.userLink[id].memberId,
+        };
+      } else {
+        newArr[id] = {
+          title: prevformData.userLink[id].title,
+          value: prevformData.userLink[id].value,
+          type: prevformData.userLink[id].type,
+          isActive: e.target.checked,
+          countryCode: prevformData.userLink[id].countryCode,
+        };
+      }
+
       return {
         ...prevformData,
-        [e.target.name]: e.target.checked,
+        userLink: [...newArr],
       };
     });
   };
-  // console.log(props.data);
+  const handleDelete = (id) => {
+    console.log(id);
+    props.setFormData((prevformData) => {
+      prevformData.userLink.splice(id, 1);
+      return { ...prevformData };
+    });
+  };
+
   return (
     <>
       <div className="linkPage">
@@ -42,8 +59,7 @@ export default function LInks(props) {
 
         <div className="addcard_links">
           {props.formData && props.formData.userLink
-            ? props.formData.userLink.map((value) => {
-                console.log(value.type);
+            ? props.formData.userLink.map((value, key) => {
                 let link = faWhatsapp;
                 if (value.type === "phone") {
                   link = faPhone;
@@ -90,8 +106,11 @@ export default function LInks(props) {
                     </div>
                     <p>{value.title}</p>
                     <div className="addcard_link-edit">
-                      {!checked.email ? (
-                        <div className="addcard_link-delete">
+                      {!value.isActive ? (
+                        <div
+                          className="addcard_link-delete"
+                          onClick={handleDelete.bind(this, key)}
+                        >
                           <FontAwesomeIcon icon={faTrashCan} />
                         </div>
                       ) : (
@@ -101,12 +120,13 @@ export default function LInks(props) {
                       <button className="form-check">
                         <input
                           type="checkbox"
-                          id="email"
-                          onChange={handleChange}
-                          checked={checked.email}
-                          name="email"
+                          id={key}
+                          onChange={handleChange.bind(this, key)}
+                          checked={value.isActive}
+                          // // value={value.isActive}
+                          // value={value.isActive}
                         />
-                        <label htmlFor="email"></label>
+                        <label htmlFor={key}></label>
                       </button>
                     </div>
                   </div>

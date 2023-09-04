@@ -92,7 +92,6 @@ export default function TeamCard(props) {
                     : item.name.toLowerCase().includes(props.search);
                 })
                 .map((value) => {
-                  console.log(value);
                   return (
                     <Link
                       key={value.id}

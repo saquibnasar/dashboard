@@ -141,7 +141,6 @@ export default function About(props) {
           });
           props.setFormData((prevformData) => {
             if (prevformData.bannerImages) {
-              console.log(prevformData.bannerImages);
               prevformData.bannerImages.splice(0, 1, croppedImage);
             } else {
               prevformData.bannerImages = [];
@@ -225,29 +224,9 @@ export default function About(props) {
     }
   });
 
-  const textHander = () => {
-    console.log(props.formData);
-    // axios({
-    //   method: "post",
-    //   url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/updateMember",
-    //   data: requestObj,
-    // })
-    //   .then((response) => {
-    //     setAlertText(response.data.message);
-    //     window.location.href = "/";
-    //   })
-    //   .catch((error) => {
-    //     if (error.response.data.message) {
-    //       setAlertText(
-    //         error.response.data.message[error.response.data.message.length - 1]
-    //       );
-    //     }
-    //   });
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(props.formData.userLink);
+
     var bodyFormData = new FormData();
     var bannerImages = [];
     let whatsAppNumber = "";
@@ -265,7 +244,7 @@ export default function About(props) {
     // }
 
     let requestObj = new Map();
-    // console.log(props.formData);
+
     requestObj = {
       name: props.formData.name,
       profileImage: props.formData.profileImage,
@@ -292,8 +271,7 @@ export default function About(props) {
             }
           : null,
     };
-    console.log(requestObj);
-    // console.log(requestObj);
+
     if (
       requestObj.whatsAppNumber &&
       (requestObj.whatsAppNumber.phoneNumber.split("").length < 8 ||
@@ -311,39 +289,16 @@ export default function About(props) {
         "mobileNumber cann't be less then 8 and cann't be more then 10"
       );
     } else {
-      // console.log("requestOb ]is ]");
-      // console.log(requestObj);
       for (var i in requestObj) {
-        // console.log(i);
-        // console.log(requestObj[i]);
         if (i == "bannerImages") {
           if (requestObj[i]) {
             for (let j = 0; j < requestObj[i].length; j++) {
-              // console.log("bannerImagesDAta", requestObj[i][j]);
-              // console.log(requestObj[i]);
-              // console.log(requestObj[i][j]);
-              // console.log(typeof bannerImages[i][j] != "string");
-              // console.log(requestObj[i][j].name);
               if (requestObj[i][j].name) {
-                console.log(requestObj[i][j]);
                 if (requestObj[i]) {
                   bodyFormData.append("bannerImages", j);
                   bodyFormData.append("bannerImages", requestObj[i][j]);
                 }
               }
-              // if (
-              //   typeof requestObj[i][j] === "string" ||
-              //   !(requestObj[i][j] instanceof String)
-              // ) {
-              //   console.log(requestObj[i][j]);
-              // }
-
-              // var type = typeof bannerImages[i][j];
-
-              // if (type != "string") {
-              //   console.log("bannerImagesDAta", requestObj[i][j]);
-              //   bodyFormData.append("bannerImages", bannerImages[j]);
-              // }
             }
           }
         } else if (i == "links" && requestObj[i]) {
@@ -365,8 +320,6 @@ export default function About(props) {
           (i == "whatsAppNumber" || i == "mobileNumber") &&
           requestObj[i]
         ) {
-          // console.log("whatsapp");
-          // console.log(requestObj[i]);
           bodyFormData.append(`${i}[phoneNumber]`, requestObj[i].phoneNumber);
           bodyFormData.append(`${i}[code]`, requestObj[i].code);
         } else {
@@ -379,10 +332,10 @@ export default function About(props) {
       bodyFormData.forEach((e, i) => {
         console.log(i, e, typeof e);
       });
-      console.log(requestObj);
+
       axios({
         method: "post",
-        url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/updatemember",
+        url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/updatemember",
         data: bodyFormData,
       })
         .then((response) => {
@@ -390,7 +343,6 @@ export default function About(props) {
           // window.location.href = window.location.href;
         })
         .catch((error) => {
-          console.log(error.response.data);
           if (error.response.data.message) {
             if (error.response.data.message === "Member already exists") {
               setAlertText(
@@ -422,6 +374,7 @@ export default function About(props) {
           icon: faPhone,
           linkData: link.value,
           linkTitle: link.title,
+          countryCode: link.countryCode,
           countryCode: link.countryCode ? link.countryCode : "1",
           id: id,
         };
@@ -1189,11 +1142,7 @@ export default function About(props) {
                   />
                 </div>
               </div>
-              <button
-                type="formData"
-                className="btn-save mt-5"
-                onClick={textHander}
-              >
+              <button type="formData" className="btn-save mt-5">
                 Save
               </button>
             </form>

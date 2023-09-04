@@ -12,8 +12,7 @@ export default function ImgSlider(props) {
     autoplay: true,
     autoplaySpeed: 3000,
   };
-  console.log(props.arrayImages);
-  console.log(props.sliderImage);
+
   return (
     <>
       {/* <div className={`swiper mySwiper ${props.border} ${props.className}`}>

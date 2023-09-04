@@ -24,18 +24,13 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   function (response) {
-    // console.log(response.status);
-    // if (response.status === 201) {
-    //   window.location.href = window.location.href;
-    // }
     return response;
   },
   async function (error) {
-    // console.log(error.response.status);
     if (error.response.status == 401) {
       axios
         .post(
-          "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/auth/refresh-token",
+          "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/auth/refresh-token",
           {
             refreshToken: window.localStorage.getItem("refreshToken"),
           }

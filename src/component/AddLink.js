@@ -11,6 +11,7 @@ export default function AddLink(props) {
   const [formData, setFormData] = useState({
     value: props.data.linkData ? props.data.linkData : "",
     title: props.data.linkTitle ? props.data.linkTitle : "",
+    countryCode: props.data.countryCode ? props.data.countryCode : "",
   });
 
   const [ifClick, setIfClick] = useState(false);
@@ -19,12 +20,21 @@ export default function AddLink(props) {
   const [alertText, setAlertText] = useState("");
 
   const handleChange = (event) => {
-    setFormData((prevformData) => {
-      return {
-        ...prevformData,
-        [event.target.name]: event.target.value,
-      };
-    });
+    if (event.target) {
+      setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          [event.target.name]: event.target.value,
+        };
+      });
+    } else {
+      setFormData((prevformData) => {
+        return {
+          ...prevformData,
+          countryCode: event,
+        };
+      });
+    }
   };
   const check = (event) => {
     if (
@@ -87,6 +97,7 @@ export default function AddLink(props) {
                   value: phone + formData.value,
                   type: props.data.type,
                   isActive: true,
+                  countryCode: formData.countryCode,
                 },
               ],
             };
@@ -95,7 +106,6 @@ export default function AddLink(props) {
         }
       } else {
         props.setFormData((prevformData) => {
-          console.log(prevformData.userLink);
           return {
             ...prevformData,
             userLink: [
@@ -124,7 +134,7 @@ export default function AddLink(props) {
     });
     props.sendData();
   };
-  console.log(props.formData);
+
   return (
     <div className="addlink d-flex justify-content-between align-items-center">
       <div className="addlink-container">
@@ -212,7 +222,7 @@ export default function AddLink(props) {
                               ? `${props.data.countryCode}`
                               : phone
                           }
-                          onChange={(val) => setPhone(val)}
+                          onChange={handleChange}
                           enableSearch={true}
                           disableSearchIcon={true}
                           // disableCountryCode={true}

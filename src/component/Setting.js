@@ -64,7 +64,7 @@ export default function Setting(props) {
   useEffect(() => {
     axios
       .get(
-        "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/settings/getCompanyDetails"
+        "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/settings/getCompanyDetails"
       )
       .then((response) => {
         setFormData(response.data);
@@ -81,7 +81,6 @@ export default function Setting(props) {
   };
 
   const handleChange = (e) => {
-    console.log(e.target);
     if (!e.target.files[0].length) {
       setImage((prevformData) => {
         return {
@@ -293,7 +292,6 @@ export default function Setting(props) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     var bodyFormData = new FormData();
-    console.log(formData);
 
     for (var i in formData) {
       if (formData[i]) {
@@ -307,7 +305,7 @@ export default function Setting(props) {
 
     axios({
       method: "post",
-      url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/settings/updateCompanyDetails",
+      url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/settings/updateCompanyDetails",
       data: bodyFormData,
       headers: { "Content-Type": "multipart/form-data" },
     })

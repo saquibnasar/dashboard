@@ -16,7 +16,7 @@ export default function MainProfile(props) {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/${mainProfileid}`
+        `http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/${mainProfileid}`
       )
       .then((response) => {
         setData(response.data);

@@ -27,13 +27,12 @@ export default function HomePage(props) {
   useEffect(() => {
     axios
       .get(
-        `http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/${userId}`
+        `http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/${userId}`
       )
       .then((response) => {
         setData(response.data);
 
         setFormData((prevData) => {
-          console.log(response.data.links);
           return {
             name: response.data.name,
             designation: response.data.designation,
@@ -69,7 +68,6 @@ export default function HomePage(props) {
       if (event === "whPhone" || event === "phone") {
         if (event === "whPhone") {
           setFormData((prevformData) => {
-            console.log(prevformData);
             prevformData.whatsAppNumber = {};
             return {
               ...prevformData,
@@ -109,7 +107,6 @@ export default function HomePage(props) {
           });
         } else {
           setFormData((prevformData) => {
-            console.log(prevformData);
             return {
               ...prevformData,
               [event.target.name]: {
@@ -125,7 +122,6 @@ export default function HomePage(props) {
         }
 
         if (event.target.value === "") {
-          console.log(event.target.name);
           setFormData((prevformData) => {
             return {
               ...prevformData,
@@ -165,11 +161,10 @@ export default function HomePage(props) {
     }
   };
   const deleteHander = (event) => {
-    console.log(userId);
     axios({
       method: "DELETE",
-      // url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/updatemember",
-      url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/deleteMember",
+      // url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/updatemember",
+      url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/deleteMember",
       data: {
         employeeId: userId,
       },
@@ -187,7 +182,6 @@ export default function HomePage(props) {
     <>
       {formData ? (
         <div className={`d-flex homePage ${homepageId} overflow-hidden`}>
-          {console.log(formData)}
           <SIdebar navbarToggle={props.navbarToggle} />
           <div className="d-flex flex-direction-column w-100 ">
             <Topbar
@@ -264,7 +258,11 @@ export default function HomePage(props) {
                     {formData &&
                     formData.userLink &&
                     formData.userLink.length ? (
-                      <LInks addLin={addLin} formData={formData} />
+                      <LInks
+                        addLin={addLin}
+                        formData={formData}
+                        setFormData={setFormData}
+                      />
                     ) : (
                       <div className="link_container">
                         <div>

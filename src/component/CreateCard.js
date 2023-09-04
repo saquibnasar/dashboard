@@ -390,9 +390,6 @@ export default function CreateCard(props) {
     // }
     const imageFile = e.target.files[0];
 
-    // console.log("originalFile instanceof Blob", imageFile instanceof Blob); // true
-    // console.log(`originalFile size ${imageFile.size / 1024 / 1024} MB`);
-
     const options = {
       maxSizeMB: 1,
       maxWidthOrHeight: 1920,
@@ -632,8 +629,6 @@ export default function CreateCard(props) {
       );
     } else {
       for (var i in requestObj) {
-        console.log(i);
-        console.log(requestObj[i]);
         if (i == "bannerImages") {
           if (requestObj[i]) {
             for (let j = 0; j < requestObj[i].length; j++) {
@@ -642,13 +637,28 @@ export default function CreateCard(props) {
           }
         } else if (i == "links" && requestObj[i]) {
           for (let j = 0; j < requestObj[i].length; j++) {
-            bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
-            bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
-            bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
-            bodyFormData.append(
-              `links[${j}][isActive]`,
-              requestObj[i][j].isActive
-            );
+            if (requestObj[i][j].type === "phone") {
+              console.log(requestObj[i][j]);
+              bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
+              bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
+              bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
+              bodyFormData.append(
+                `links[${j}][countryCode]`,
+                requestObj[i][j].countryCode
+              );
+              bodyFormData.append(
+                `links[${j}][isActive]`,
+                requestObj[i][j].isActive
+              );
+            } else {
+              bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
+              bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
+              bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
+              bodyFormData.append(
+                `links[${j}][isActive]`,
+                requestObj[i][j].isActive
+              );
+            }
           }
         } else if (
           (i == "whatsAppNumber" || i == "mobileNumber") &&
@@ -670,7 +680,7 @@ export default function CreateCard(props) {
       // });
       axios({
         method: "post",
-        url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/addMember",
+        url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/addMember",
         data: bodyFormData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -692,7 +702,7 @@ export default function CreateCard(props) {
     // if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
     //   axios({
     //     method: "post",
-    //     url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/addMember",
+    //     url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
@@ -761,7 +771,7 @@ export default function CreateCard(props) {
     //   console.log(requestObj);
     //   axios({
     //     method: "post",
-    //     url: "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/members/addMember",
+    //     url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
@@ -1142,6 +1152,7 @@ export default function CreateCard(props) {
                         name="designation"
                         onChange={handleChange}
                         value={formData.designation}
+                        required
                       />
                     </div>
                     <div className="">

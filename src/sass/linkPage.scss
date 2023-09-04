@@ -156,23 +156,15 @@
         background-color: #0a66c2;
       }
     }
-    .addcard_link:hover {
-      transform: scale(1.02);
-    }
-
-    .addcard_link:nth-child(5) {
+    .addcard_link.youtube {
       .addcard_link-item-icon {
-        background: #0a66c2;
-        color: $white-color;
+        background-color: $white-color;
+        svg {
+          color: #ff0000;
+        }
       }
     }
-    .addcard_link:nth-child(4) {
-      .addcard_link-item-icon {
-        background: #128c7e;
-        color: $white-color;
-      }
-    }
-    .addcard_link:nth-child(6) {
+    .addcard_link.instagram {
       .addcard_link-item-icon {
         background: linear-gradient(
           45deg,
@@ -182,29 +174,57 @@
           #cc2366 75%,
           #bc1888 100%
         );
-        color: $white-color;
       }
     }
-    .addcard_link:nth-child(7) {
-      .addcard_link-item-icon {
-        background: #1296f4;
-        color: $white-color;
-      }
+    .addcard_link:hover {
+      transform: scale(1.02);
     }
-    .addcard_link:nth-child(8) {
-      .addcard_link-item-icon {
-        background: #1da1f2;
-        color: $white-color;
-      }
-    }
-    .addcard_link:nth-child(9) {
-      .addcard_link-item-icon {
-        background: $white-color;
-        svg {
-          color: #ff0000;
-        }
-      }
-    }
+
+    // .addcard_link:nth-child(5) {
+    //   .addcard_link-item-icon {
+    //     background: #0a66c2;
+    //     color: $white-color;
+    //   }
+    // }
+    // .addcard_link:nth-child(4) {
+    //   .addcard_link-item-icon {
+    //     background: #128c7e;
+    //     color: $white-color;
+    //   }
+    // }
+    // .addcard_link:nth-child(6) {
+    //   .addcard_link-item-icon {
+    //     background: linear-gradient(
+    //       45deg,
+    //       #f09433 0%,
+    //       #e6683c 25%,
+    //       #dc2743 50%,
+    //       #cc2366 75%,
+    //       #bc1888 100%
+    //     );
+    //     color: $white-color;
+    //   }
+    // }
+    // .addcard_link:nth-child(7) {
+    //   .addcard_link-item-icon {
+    //     background: #1296f4;
+    //     color: $white-color;
+    //   }
+    // }
+    // .addcard_link:nth-child(8) {
+    //   .addcard_link-item-icon {
+    //     background: #1da1f2;
+    //     color: $white-color;
+    //   }
+    // }
+    // .addcard_link:nth-child(9) {
+    //   .addcard_link-item-icon {
+    //     background: $white-color;
+    //     svg {
+    //       color: #ff0000;
+    //     }
+    //   }
+    // }
   }
 }
 .links:has(.linkPage) {

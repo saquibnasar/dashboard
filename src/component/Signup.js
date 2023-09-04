@@ -40,7 +40,7 @@ export default function Signup() {
     if (isOtp) {
       axios
         .post(
-          "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/auth/verify-email-otp",
+          "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/auth/verify-email-otp",
           {
             email: formData.email,
             otp: parseInt(formData.otp),
@@ -66,7 +66,7 @@ export default function Signup() {
     } else {
       axios
         .post(
-          "http://ec2-43-205-210-253.ap-south-1.compute.amazonaws.com:3000/auth/signup",
+          "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/auth/signup",
           {
             email: formData.email,
             password: formData.password,
