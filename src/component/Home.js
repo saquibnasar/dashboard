@@ -19,6 +19,7 @@ export default function Home(props) {
         "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/all"
       )
       .then((response) => {
+        console.log(response.data);
         setData(response.data);
       })
       .catch((error) => {

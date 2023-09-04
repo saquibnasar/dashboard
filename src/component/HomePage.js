@@ -31,7 +31,7 @@ export default function HomePage(props) {
       )
       .then((response) => {
         setData(response.data);
-
+        console.log(response.data);
         setFormData((prevData) => {
           return {
             name: response.data.name,

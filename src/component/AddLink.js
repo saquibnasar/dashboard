@@ -136,7 +136,7 @@ export default function AddLink(props) {
   };
 
   return (
-    <div className="addlink d-flex justify-content-between align-items-center">
+    <div className="addlink">
       <div className="addlink-container">
         <div className="addlink-back" onClick={props.sendData}>
           <FontAwesomeIcon icon={faArrowLeft} />
@@ -318,7 +318,7 @@ export default function AddLink(props) {
                 </div>
               </div>
               {props.data.linkData ? (
-                <div className="d-flex justify-content-between align-items-center mt-4">
+                <div className="d-flex justify-content-between align-items-center mt-4 f-md-column">
                   <button
                     type="button"
                     className="btn btn-delete"

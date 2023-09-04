@@ -181,8 +181,11 @@
       // }
     }
     .addlink {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 70px;
       @include media992 {
-        flex-direction: column;
+        grid-template-columns: auto;
       }
       .addlink-container {
         @include media992 {
@@ -435,8 +438,8 @@
           box-shadow: inset 0px 0px 5px rgba(255, 255, 255, 0.9);
           padding: 0px;
           margin: auto;
-          width: 232px;
-          height: 530px;
+          width: 283px;
+          height: 583px;
           overflow-x: hidden;
           position: relative;
           overflow-y: scroll;
@@ -454,7 +457,7 @@
           }
           .userProile {
             width: 567px;
-            transform: scale(0.41) translate(-72%, -72%); /* overflow: scroll; */ /* height: 50%; */ /* height: 1537px; */
+            transform: scale(0.5) translate(-50%, -50%);
             overflow: hidden;
             position: absolute;
             @include media768 {
