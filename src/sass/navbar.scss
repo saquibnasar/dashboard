@@ -284,6 +284,11 @@
         align-items: center;
         color: $text;
         gap: 8px;
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+        }
         span {
           width: 30px;
           height: 30px;

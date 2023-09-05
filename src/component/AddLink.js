@@ -331,7 +331,7 @@ export default function AddLink(props) {
                 </div>
               </div>
               {props.data.linkData ? (
-                <div className="d-flex justify-content-between align-items-center mt-4 f-md-column">
+                <div className="d-flex gap-4 justify-content-between align-items-center mt-4 f-md-column">
                   <button
                     type="button"
                     className="btn btn-delete"

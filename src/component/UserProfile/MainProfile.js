@@ -19,12 +19,14 @@ export default function MainProfile(props) {
         `http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/${mainProfileid}`
       )
       .then((response) => {
+        console.log(response);
         setData(response.data);
       })
       .catch((error) => {
         console.log(error.response);
       });
   }, []);
+
   window.addEventListener("click", function (e) {
     if (
       document.getElementById("share_link") &&
@@ -403,7 +405,7 @@ export default function MainProfile(props) {
                   >
                     <div className="d-flex align-items-center gap-3">
                       <img className="img-fluid" src="/logo.png" alt="" />
-                      <p className="">flax.ai/a</p>
+                      <p className="">flax.ai/{data.employeeId}</p>
                     </div>
                     <p className={isCopy === "Copied!" ? "Copied" : ""}>
                       {isCopy}
@@ -436,17 +438,8 @@ export default function MainProfile(props) {
             </svg>
           </button>
           <div className="logo-only">
-            {props.images &&
-            (props.images.bannerImage1 ||
-              props.images.bannerImage2 ||
-              props.images.bannerImage3) ? (
-              <ImgSlider sliderImage={props.images} />
-            ) : (
-              ""
-            )}
-
-            {props.arrayImages ? (
-              <ImgSlider arrayImages={props.arrayImages} />
+            {data.bannerImages ? (
+              <ImgSlider arrayImages={data.bannerImages} />
             ) : (
               ""
             )}
@@ -454,85 +447,33 @@ export default function MainProfile(props) {
           <div className="container">
             <div
               className={
-                props.images &&
-                (props.images.bannerImage1 ||
-                  props.images.bannerImage2 ||
-                  props.images.bannerImage3)
+                data.bannerImages
                   ? "header_content text-center"
                   : "header_content text-center mt-5"
               }
             >
-              {/* <img
-              className="img-fluid"
-              src={props.logo ? props.logo : "/qrcode.png"}
-              alt=""
-            /> */}
-              {props.logo ? (
-                <img
-                  className="img-fluid"
-                  src={
-                    props.logo.name
-                      ? URL.createObjectURL(props.logo)
-                      : props.logo
-                  }
-                  alt=""
-                />
+              {data.profileImage ? (
+                <img className="img-fluid" src={data.profileImage} alt="" />
               ) : (
                 <span className="logo">
                   <FontAwesomeIcon icon={faUser} />
                 </span>
               )}
 
-              <h1>
-                {props.formData &&
-                props.formData.userInfo &&
-                props.formData.userInfo.username
-                  ? props.formData.userInfo.username
-                  : "user name"}
-              </h1>
+              <h1>{data.name}</h1>
               <h2>
-                {props.formData &&
-                props.formData.userInfo &&
-                props.formData.userInfo.designation
-                  ? props.formData.userInfo.designation
-                  : "Designation"}{" "}
+                {data.designation}
                 at company
               </h2>
-              <h3>
-                Employee ID -{" "}
-                {props.formData &&
-                props.formData.userInfo &&
-                props.formData.userInfo.employeeId
-                  ? props.formData.userInfo.employeeId
-                  : "xxxxxxxxx"}
-              </h3>
+              <h3>Employee ID - {data.employeeId}</h3>
               <span></span>
-              <h4 className="">About ComXXXX</h4>
-              <h5>
-                {props.formData &&
-                props.formData.userInfo &&
-                props.formData.userInfo.employeeBio
-                  ? props.formData.userInfo.employeeBio
-                  : "user bio"}
-              </h5>
+              <h4 className="">About Company</h4>
+              <h5>{data && data.employeeBio ? data.employeeBio : ""}</h5>
               <button className="btn">Save My Contact </button>
             </div>
-
-            {props.formData &&
-            props.formData.userLink &&
-            props.formData.userLink.length ? (
-              <SocialLink links={props.formData.userLink} />
-            ) : (
-              ""
-            )}
-
-            {props.formData &&
-            props.formData.userPlugin &&
-            props.formData.userPlugin.length ? (
-              <Video data={props.formData.userPlugin} />
-            ) : (
-              ""
-            )}
+            {data && data.links ? <SocialLink links={data.links} /> : ""}
+            {data && data.userPlugin ? <Video data={data.userPlugin} /> : ""}
+            <Footer />
           </div>
         </section>
       ) : (

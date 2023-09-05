@@ -191,6 +191,7 @@ export default function HomePage(props) {
               isNavbar={props.isNavbar}
               text={formData.name}
               image={formData.profileImage}
+              link={formData.employeeId}
             />
             <div className="homePage_container mt-4">
               <nav className="sidebar">
@@ -316,7 +317,10 @@ export default function HomePage(props) {
                       : "d-none signup_phone"
                   }
                 >
-                  <Link to="/a" className="btn btn-preview">
+                  <Link
+                    to={`/${formData.employeeId}`}
+                    className="btn btn-preview"
+                  >
                     Live Preview <FontAwesomeIcon icon={faShareSquare} />{" "}
                   </Link>
                   <div className="signup_phone-container">

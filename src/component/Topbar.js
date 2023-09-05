@@ -162,7 +162,7 @@ export default function Topbar(props) {
             {props.type === "setting" ? (
               ""
             ) : props.type === "user" ? (
-              <Link to="/createCard" className="SettingProfile">
+              <Link to={`/${props.link}`} className="SettingProfile">
                 <div className="SettingProfile_user">Share Your Profile</div>
                 <FontAwesomeIcon icon={faShare} />
               </Link>
@@ -390,7 +390,7 @@ export default function Topbar(props) {
           {props.type === "setting" ? (
             ""
           ) : props.type === "user" ? (
-            <Link to="/createCard" className="SettingProfile">
+            <Link to={`/${props.link}`} className="SettingProfile">
               <div className="SettingProfile_user">Share Your Profile</div>
               <FontAwesomeIcon icon={faShare} />
             </Link>

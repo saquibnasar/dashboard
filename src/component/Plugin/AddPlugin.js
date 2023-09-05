@@ -174,7 +174,7 @@ export default function AddPlugin(props) {
               </div>
 
               {props.data.linkData ? (
-                <div className="d-flex justify-content-between align-items-center mt-4">
+                <div className="d-flex gap-4 justify-content-between align-items-center mt-4">
                   <button
                     type="button"
                     className="btn btn-delete"
