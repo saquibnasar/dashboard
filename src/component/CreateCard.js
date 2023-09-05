@@ -575,7 +575,7 @@ export default function CreateCard(props) {
     e.preventDefault();
     var bodyFormData = new FormData();
     var bannerImages = [];
-
+    console.log(formData);
     if (formData.userImages.bannerImage1) {
       bannerImages.push(formData.userImages.bannerImage1);
     }
@@ -597,32 +597,36 @@ export default function CreateCard(props) {
       employeeBio: formData.userInfo.employeeBio,
       links: formData.userLink,
       officeEmailId: formData.userInfo.officeId,
-      whatsAppNumber: formData.userInfo.whatsappNumber
-        ? {
-            phoneNumber: formData.userInfo.whatsappNumber.whatsappNum,
-            code: formData.userInfo.whatsappNumber.countryCode,
-          }
-        : null,
-      mobileNumber: formData.userInfo.mobileNumber
-        ? {
-            phoneNumber: formData.userInfo.mobileNumber.phoneNum,
-            code: formData.userInfo.mobileNumber.countryCode,
-          }
-        : null,
+      whatsAppNumber:
+        formData.userInfo.whatsappNumber &&
+        formData.userInfo.whatsappNumber.whatsappNum
+          ? {
+              phoneNumber: formData.userInfo.whatsappNumber.whatsappNum,
+              code: formData.userInfo.whatsappNumber.countryCode,
+            }
+          : null,
+      mobileNumber:
+        formData.userInfo.mobileNumber &&
+        formData.userInfo.mobileNumber.phoneNum
+          ? {
+              phoneNumber: formData.userInfo.mobileNumber.phoneNum,
+              code: formData.userInfo.mobileNumber.countryCode,
+            }
+          : null,
     };
 
     if (
-      formData.userInfo.whatsappNumber &&
-      (formData.userInfo.whatsappNumber.whatsappNum.split("").length < 8 ||
-        formData.userInfo.whatsappNumber.whatsappNum.split("").length > 10)
+      requestObj.whatsAppNumber &&
+      (requestObj.whatsAppNumber.phoneNumber.split("").length < 8 ||
+        requestObj.whatsAppNumber.phoneNumber.split("").length > 10)
     ) {
       setAlertText(
         "whatsappNumber cann't be less then 8 and cann't be more then 10"
       );
     } else if (
-      formData.userInfo.mobileNumber &&
-      (formData.userInfo.mobileNumber.phoneNum.split("").length < 8 ||
-        formData.userInfo.mobileNumber.phoneNum.split("").length > 10)
+      requestObj.mobileNumber &&
+      (requestObj.mobileNumber.phoneNumber.split("").length < 8 ||
+        requestObj.mobileNumber.phoneNumber.split("").length > 10)
     ) {
       setAlertText(
         "mobileNumber cann't be less then 8 and cann't be more then 10"
@@ -638,7 +642,6 @@ export default function CreateCard(props) {
         } else if (i == "links" && requestObj[i]) {
           for (let j = 0; j < requestObj[i].length; j++) {
             if (requestObj[i][j].type === "phone") {
-              console.log(requestObj[i][j]);
               bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
               bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
               bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
@@ -675,9 +678,9 @@ export default function CreateCard(props) {
         }
       }
 
-      // bodyFormData.forEach((e, i) => {
-      //   console.log(i, e, typeof e);
-      // });
+      bodyFormData.forEach((e, i) => {
+        console.log(i, e, typeof e);
+      });
       axios({
         method: "post",
         url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/addMember",
@@ -689,8 +692,9 @@ export default function CreateCard(props) {
           window.location.href = "/";
         })
         .catch((error) => {
-          console.log(error.response.data.message);
+          console.log(error.response.message);
           console.log(error.response.status);
+          console.log(error);
           setAlertText(
             error.response.status === 409
               ? error.response.data.message
@@ -911,6 +915,7 @@ export default function CreateCard(props) {
                             setImage={setImage}
                             editImage={editImage}
                             imagehandleChange={imagehandleChange}
+                            setFormData={setFormData}
                             imageNum="1"
                           />
                           <Image
@@ -921,6 +926,7 @@ export default function CreateCard(props) {
                             editImage={editImage}
                             imagehandleChange={imagehandleChange}
                             imageNum="2"
+                            setFormData={setFormData}
                           />
                           <Image
                             setUploadList={setUploadList}
@@ -930,6 +936,7 @@ export default function CreateCard(props) {
                             editImage={editImage}
                             imagehandleChange={imagehandleChange}
                             imageNum="3"
+                            setFormData={setFormData}
                           />
                         </div>
                       </div>
@@ -1115,6 +1122,12 @@ export default function CreateCard(props) {
                                   ...prevformData,
                                   logoimage: "",
                                 };
+                              });
+                              setFormData((prevformData) => {
+                                if (prevformData.userImages) {
+                                  prevformData.userImages.userProfile = null;
+                                }
+                                return prevformData;
                               });
                             }}
                           >
@@ -1461,4 +1474,3 @@ export default function CreateCard(props) {
     </>
   );
 }
-// scan this qr code to download flax activation app

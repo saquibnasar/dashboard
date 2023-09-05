@@ -303,31 +303,31 @@ export default function Setting(props) {
       console.log(i, e, typeof e);
     });
 
-    axios({
-      method: "post",
-      url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/settings/updateCompanyDetails",
-      data: bodyFormData,
-      headers: { "Content-Type": "multipart/form-data" },
-    })
-      .then((response) => {
-        setAlertText(response.data.message);
-        // window.location.href = "/setting/team";
-      })
-      .catch((error) => {
-        if (error.response.data.message) {
-          if (error.response.data.message === "Member already exists") {
-            setAlertText(
-              error.response.data.message + ", use different employee id"
-            );
-          } else {
-            setAlertText(
-              error.response.data.message[
-                error.response.data.message.length - 1
-              ]
-            );
-          }
-        }
-      });
+    // axios({
+    //   method: "post",
+    //   url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/settings/updateCompanyDetails",
+    //   data: bodyFormData,
+    //   headers: { "Content-Type": "multipart/form-data" },
+    // })
+    //   .then((response) => {
+    //     setAlertText(response.data.message);
+    //     // window.location.href = "/setting/team";
+    //   })
+    //   .catch((error) => {
+    //     if (error.response.data.message) {
+    //       if (error.response.data.message === "Member already exists") {
+    //         setAlertText(
+    //           error.response.data.message + ", use different employee id"
+    //         );
+    //       } else {
+    //         setAlertText(
+    //           error.response.data.message[
+    //             error.response.data.message.length - 1
+    //           ]
+    //         );
+    //       }
+    //     }
+    //   });
   };
 
   return (

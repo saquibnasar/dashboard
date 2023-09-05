@@ -372,9 +372,13 @@ export default function Topbar(props) {
           {props.type ? (
             <Link to="/createCard" className="SettingProfile">
               <div className="SettingProfile_user">
-                <span>
-                  <FontAwesomeIcon icon={faUser} />
-                </span>
+                {props.image ? (
+                  <img className="img-fluid" src={props.image} alt="" />
+                ) : (
+                  <span>
+                    <FontAwesomeIcon icon={faUser} />
+                  </span>
+                )}
                 NewProfile
               </div>
               <FontAwesomeIcon icon={faAngleDown} />

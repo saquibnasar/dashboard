@@ -97,39 +97,71 @@ export default function UserProfile(props) {
                 <FontAwesomeIcon icon={faUser} />
               </span>
             )}
+            {props.formData && props.formData.id ? (
+              <>
+                {" "}
+                <h1>
+                  {props.formData && props.formData.name
+                    ? props.formData.name
+                    : "user name"}
+                </h1>
+                <h2>
+                  {props.formData && props.formData.designation
+                    ? props.formData.designation
+                    : "Designation"}{" "}
+                  at company
+                </h2>
+                <h3>
+                  Employee ID -{" "}
+                  {props.formData && props.formData.employeeId
+                    ? props.formData.employeeId
+                    : "xxxxxxxxx"}
+                </h3>
+                <span></span>
+                <h4 className="">About ComXXXX</h4>
+                <h5>
+                  {props.formData && props.formData.employeeBio
+                    ? props.formData.employeeBio
+                    : "user bio"}
+                </h5>
+              </>
+            ) : (
+              <>
+                <h1>
+                  {props.formData &&
+                  props.formData.userInfo &&
+                  props.formData.userInfo.username
+                    ? props.formData.userInfo.username
+                    : "user name"}
+                </h1>
+                <h2>
+                  {props.formData &&
+                  props.formData.userInfo &&
+                  props.formData.userInfo.designation
+                    ? props.formData.userInfo.designation
+                    : "Designation"}{" "}
+                  at company
+                </h2>
+                <h3>
+                  Employee ID -{" "}
+                  {props.formData &&
+                  props.formData.userInfo &&
+                  props.formData.userInfo.employeeId
+                    ? props.formData.userInfo.employeeId
+                    : "xxxxxxxxx"}
+                </h3>
+                <span></span>
+                <h4 className="">About ComXXXX</h4>
+                <h5>
+                  {props.formData &&
+                  props.formData.userInfo &&
+                  props.formData.userInfo.employeeBio
+                    ? props.formData.userInfo.employeeBio
+                    : "user bio"}
+                </h5>
+              </>
+            )}
 
-            <h1>
-              {props.formData &&
-              props.formData.userInfo &&
-              props.formData.userInfo.username
-                ? props.formData.userInfo.username
-                : "user name"}
-            </h1>
-            <h2>
-              {props.formData &&
-              props.formData.userInfo &&
-              props.formData.userInfo.designation
-                ? props.formData.userInfo.designation
-                : "Designation"}{" "}
-              at company
-            </h2>
-            <h3>
-              Employee ID -{" "}
-              {props.formData &&
-              props.formData.userInfo &&
-              props.formData.userInfo.employeeId
-                ? props.formData.userInfo.employeeId
-                : "xxxxxxxxx"}
-            </h3>
-            <span></span>
-            <h4 className="">About ComXXXX</h4>
-            <h5>
-              {props.formData &&
-              props.formData.userInfo &&
-              props.formData.userInfo.employeeBio
-                ? props.formData.userInfo.employeeBio
-                : "user bio"}
-            </h5>
             <button className="btn">Save My Contact </button>
           </div>
 

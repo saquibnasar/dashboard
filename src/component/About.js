@@ -202,7 +202,7 @@ export default function About(props) {
         });
 
         setRotation(0);
-
+        setZoom(1);
         setCroppedImage(croppedImage);
       } catch (e) {
         setAlertText(e);
@@ -244,7 +244,7 @@ export default function About(props) {
     // }
 
     let requestObj = new Map();
-
+    console.log(props.formData.userLink);
     requestObj = {
       name: props.formData.name,
       profileImage: props.formData.profileImage,
@@ -303,18 +303,27 @@ export default function About(props) {
           }
         } else if (i == "links" && requestObj[i]) {
           for (let j = 0; j < requestObj[i].length; j++) {
-            bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
-            bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
-            bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
-            bodyFormData.append(`links[${j}][id]`, requestObj[i][j].id);
-            bodyFormData.append(
-              `links[${j}][countryCode]`,
-              requestObj[i][j].countryCode
-            );
-            bodyFormData.append(
-              `links[${j}][isActive]`,
-              requestObj[i][j].isActive
-            );
+            if (requestObj[i][j].type === "phone") {
+              bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
+              bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
+              bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
+              bodyFormData.append(
+                `links[${j}][countryCode]`,
+                requestObj[i][j].countryCode
+              );
+              bodyFormData.append(
+                `links[${j}][isActive]`,
+                requestObj[i][j].isActive
+              );
+            } else {
+              bodyFormData.append(`links[${j}][title]`, requestObj[i][j].title);
+              bodyFormData.append(`links[${j}][value]`, requestObj[i][j].value);
+              bodyFormData.append(`links[${j}][type]`, requestObj[i][j].type);
+              bodyFormData.append(
+                `links[${j}][isActive]`,
+                requestObj[i][j].isActive
+              );
+            }
           }
         } else if (
           (i == "whatsAppNumber" || i == "mobileNumber") &&

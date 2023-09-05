@@ -6,7 +6,7 @@ import UserProfile from "./UserProfile/UserProfile";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Alert from "./Alert";
-
+import axios from "axios";
 export default function AddLink(props) {
   const [formData, setFormData] = useState({
     value: props.data.linkData ? props.data.linkData : "",
@@ -21,6 +21,19 @@ export default function AddLink(props) {
 
   const handleChange = (event) => {
     if (event.target) {
+      fetch(`https://youtube.com/oembed?url=${event.target.value}&format=json`)
+        .then((res) => res.json())
+        .then((data) => {
+          setFormData((preData) => {
+            return {
+              ...preData,
+              title: data.title,
+            };
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
       setFormData((prevformData) => {
         return {
           ...prevformData,
@@ -66,7 +79,7 @@ export default function AddLink(props) {
       newArr[props.data.id] = {
         title: formData.title,
         value: formData.value,
-        countryCode: phone,
+        countryCode: formData.countryCode,
         type: props.data.type,
         isActive: false,
       };

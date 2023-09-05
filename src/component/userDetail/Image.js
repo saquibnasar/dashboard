@@ -289,7 +289,7 @@ export default function Image(props) {
                         props.setImage((prevformData) => {
                           return {
                             ...prevformData,
-                            bannerImage1: props.secondImage.bannerImage1,
+                            bannerImage1: props.editImage.bannerImage1,
                           };
                         });
                       }}
@@ -306,6 +306,13 @@ export default function Image(props) {
                             bannerImage1: "",
                           };
                         });
+
+                        props.setFormData((prevformData) => {
+                          if (prevformData.userImages) {
+                            prevformData.userImages.bannerImage1 = null;
+                          }
+                          return prevformData;
+                        });
                       }}
                     >
                       Clear
@@ -320,7 +327,7 @@ export default function Image(props) {
                         props.setImage((prevformData) => {
                           return {
                             ...prevformData,
-                            bannerImage2: props.secondImage.bannerImage2,
+                            bannerImage2: props.editImage.bannerImage2,
                           };
                         });
                       }}
@@ -337,6 +344,12 @@ export default function Image(props) {
                             bannerImage2: "",
                           };
                         });
+                        props.setFormData((prevformData) => {
+                          if (prevformData.userImages) {
+                            prevformData.userImages.bannerImage2 = null;
+                          }
+                          return prevformData;
+                        });
                       }}
                     >
                       Clear
@@ -351,7 +364,7 @@ export default function Image(props) {
                         props.setImage((prevformData) => {
                           return {
                             ...prevformData,
-                            bannerImage3: props.secondImage.bannerImage3,
+                            bannerImage3: props.editImage.bannerImage3,
                           };
                         });
                       }}
@@ -367,6 +380,12 @@ export default function Image(props) {
                             ...prevformData,
                             bannerImage3: "",
                           };
+                        });
+                        props.setFormData((prevformData) => {
+                          if (prevformData.userImages) {
+                            prevformData.userImages.bannerImage3 = null;
+                          }
+                          return prevformData;
                         });
                       }}
                     >

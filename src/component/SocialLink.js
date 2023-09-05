@@ -13,6 +13,7 @@ export default function SocialLink(props) {
     <>
       <div className="social_media">
         {props.links.map((value, id) => {
+          console.log(value.isActive);
           let icon;
           let link = value.value;
           if (value.type === "phone") {
@@ -49,7 +50,7 @@ export default function SocialLink(props) {
             icon = "/googlemap.png";
           }
 
-          return (
+          return value.isActive ? (
             <a
               key={id}
               href={link}
@@ -70,6 +71,8 @@ export default function SocialLink(props) {
               </div>
               <FontAwesomeIcon icon={faShareSquare} />
             </a>
+          ) : (
+            ""
           );
         })}
       </div>

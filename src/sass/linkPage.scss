@@ -40,7 +40,7 @@
       border-radius: 20px;
       padding: 15px 12px;
       align-items: center;
-      // cursor: pointer;
+      cursor: pointer;
       .addcard_link_dot {
         svg {
           transform: scale(1.5);
@@ -154,6 +154,14 @@
     .addcard_link.linkedin {
       .addcard_link-item-icon {
         background-color: #0a66c2;
+      }
+    }
+    .addcard_link.facebook {
+      .addcard_link-item-icon {
+        background-color: #1296f4;
+        svg {
+          color: $white-color;
+        }
       }
     }
     .addcard_link.youtube {

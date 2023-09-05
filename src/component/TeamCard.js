@@ -117,13 +117,7 @@ export default function TeamCard(props) {
                         <div className="d-flex flex-direction-column gap-2">
                           <h3>{value.name}</h3>
                           <h4 className="mx-auto">
-                            {value.officeEmailId &&
-                            !(
-                              value.officeEmailId === "null" ||
-                              value.officeEmailId === "undefined"
-                            )
-                              ? value.officeEmailId
-                              : ""}
+                            {value.officeEmailId ? value.officeEmailId : ""}
                           </h4>
                         </div>
                       </div>
@@ -132,7 +126,7 @@ export default function TeamCard(props) {
                           Edit
                           <FontAwesomeIcon icon={faPencil} />
                         </button>
-                        <Link to="/a" className="ShareCard">
+                        <Link to={value.employeeId} className="ShareCard">
                           Share
                           <FontAwesomeIcon icon={faShareSquare} />
                         </Link>

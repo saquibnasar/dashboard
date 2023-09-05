@@ -44,6 +44,7 @@ export default function HomePage(props) {
             bannerImages: response.data.bannerImages,
             profileImage: response.data.profileImage,
             employeeId: response.data.employeeId,
+            id: response.data.id,
           };
         });
         console.log(formData);
@@ -189,6 +190,7 @@ export default function HomePage(props) {
               title=""
               isNavbar={props.isNavbar}
               text={formData.name}
+              image={formData.profileImage}
             />
             <div className="homePage_container mt-4">
               <nav className="sidebar">
@@ -254,7 +256,7 @@ export default function HomePage(props) {
                 }`}
               >
                 {homepageId === "content" ? (
-                  <div className="links">
+                  <>
                     {formData &&
                     formData.userLink &&
                     formData.userLink.length ? (
@@ -264,25 +266,29 @@ export default function HomePage(props) {
                         setFormData={setFormData}
                       />
                     ) : (
-                      <div className="link_container">
-                        <div>
-                          <h2>This profile doesn’t have any linked content</h2>
-                          <h3>
-                            Add links to contact Information, website,
-                            <br className="d-lg-none" />
-                            Social media handles and more
-                          </h3>
+                      <div className="links">
+                        <div className="link_container">
+                          <div>
+                            <h2>
+                              This profile doesn’t have any linked content
+                            </h2>
+                            <h3>
+                              Add links to contact Information, website,
+                              <br className="d-lg-none" />
+                              Social media handles and more
+                            </h3>
 
-                          <button className="btn_add" onClick={addLin}>
-                            <FontAwesomeIcon icon={faPlus} />
-                            Add Links and contact info
-                          </button>
+                            <button className="btn_add" onClick={addLin}>
+                              <FontAwesomeIcon icon={faPlus} />
+                              Add Links and contact info
+                            </button>
+                          </div>
+
+                          <img src="/bglink.png" alt="" className="img-fluid" />
                         </div>
-
-                        <img src="/bglink.png" alt="" className="img-fluid" />
                       </div>
                     )}
-                  </div>
+                  </>
                 ) : homepageId === "about" ? (
                   <>
                     <About
