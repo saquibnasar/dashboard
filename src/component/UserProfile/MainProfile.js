@@ -8,6 +8,7 @@ import Video from "./Video";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import vCardsJS from "vcard-creator";
 export default function MainProfile(props) {
   const { mainProfileid } = useParams();
   const [data, setData] = useState("");
@@ -37,7 +38,83 @@ export default function MainProfile(props) {
       }
     }
   });
-  console.log(data);
+
+  // const getBase64FromUrl = async (url) => {
+  //   const { data } = await axios({
+  //     method: "GET",
+  //     url,
+  //     responseType: "blob",
+  //   });
+
+  //   return new Promise((resolve) => {
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(data);
+  //     reader.onloadend = () => {
+  //       const base64data = reader.result;
+  //       resolve(base64data);
+  //     };
+  //   });
+  // };
+  // const fs = require("fs");
+  const getBase64 = (file) => {
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    // reader.onload = function () {
+    //   cb(reader.result);
+    // };
+  };
+  // getBase64();
+  // const [baseImage, setBaseImage] = useState("");
+  // const convertBase64 = (file) => {
+  //   return new Promise((resolve, reject) => {
+  //     const fileReader = new FileReader();
+  //     fileReader.readAsDataURL(file);
+
+  //     fileReader.onload = () => {
+  //       resolve(fileReader.result);
+  //     };
+
+  //     fileReader.onerror = (error) => {
+  //       reject(error);
+  //     };
+  //   });
+  // };
+  // const uploadImage = async (e) => {
+  //   // const file = e.target.files[0];
+  //   const base64 = await convertBase64(e);
+  //   setBaseImage(base64);
+  // };
+  // uploadImage(data.profileImage);
+
+  const generateVCF = async () => {
+    const vCard = new vCardsJS();
+    // console.log(baseImage);
+    vCard
+      .addCompany("")
+      .addEmail("")
+      .addPhoneNumber("", "PREF;WORK")
+      .addPhoneNumber("", "WORK")
+      .addAddress("");
+    // .addPhoto(baseImage, "JPEG");
+    // download(vCard.toString(), "dlText.vcf");
+
+    vCard.addName("lastname", "dfg");
+    // const image = new FileReader(data.profileImage);
+    // console.log(image);
+    // vCard.addPhoto(data.profileImage, "JPEG");
+
+    const cardTXT = vCard.toString().slice(0, -11) + "END:VCARD";
+
+    const file = new Blob([cardTXT], {
+      type: "text/plain;charset=utf-8",
+    });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(file);
+    a.download = "vcard.vcf";
+    a.click();
+  };
+  // console.log(data.profileImage.Base64);÷
+
   return (
     <>
       {data ? (
@@ -469,10 +546,34 @@ export default function MainProfile(props) {
               <span></span>
               <h4 className="">About Company</h4>
               <h5>{data && data.employeeBio ? data.employeeBio : ""}</h5>
-              <button className="btn">Save My Contact </button>
+              <button
+                className="btn"
+                onClick={() => {
+                  generateVCF();
+                }}
+              >
+                Save My Contact
+              </button>
+              {/* <input
+                type="file"
+                onChange={(e) => {
+                  uploadImage(e);
+                }}
+              /> */}
             </div>
             {data && data.links ? <SocialLink links={data.links} /> : ""}
             {data && data.userPlugin ? <Video data={data.userPlugin} /> : ""}
+
+            <iframe
+              width="374"
+              height="665"
+              src="https://www.youtube.com/embed/XVvyMeaNUaM"
+              title="Ash Charizard Attitude Edit 🔥 || UK LUCARIO || #shorts #pokemon #ashcharizard"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen
+            ></iframe>
+
             <Footer />
           </div>
         </section>

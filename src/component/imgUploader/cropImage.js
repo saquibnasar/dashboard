@@ -88,7 +88,6 @@ export default async function getCroppedImg(
     pixelCrop.width,
     pixelCrop.height
   );
-
   // console.log(croppedCanvas);
   var val = canvasToBlob(croppedCanvas);
   // console.log(val.name);
