@@ -8,9 +8,11 @@ import Video from "./Video";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
-import vCardsJS from "vcard-creator";
+import VCard from "vcard-creator";
+// import imageToBase64 from "image-to-base64";
 export default function MainProfile(props) {
   const { mainProfileid } = useParams();
+
   const [data, setData] = useState("");
   const [isCopy, setIsCopy] = useState("Copy");
   const [isShareClicked, setIsShareClicked] = useState(false);
@@ -63,6 +65,7 @@ export default function MainProfile(props) {
     //   cb(reader.result);
     // };
   };
+
   // getBase64();
   // const [baseImage, setBaseImage] = useState("");
   // const convertBase64 = (file) => {
@@ -85,20 +88,54 @@ export default function MainProfile(props) {
   //   setBaseImage(base64);
   // };
   // uploadImage(data.profileImage);
+  const getEmergencyFoundImg = async (urlImg) => {
+    var img = new Image();
+    img.src = urlImg;
+    img.crossOrigin = "Anonymous";
 
-  const generateVCF = async () => {
-    const vCard = new vCardsJS();
-    // console.log(baseImage);
+    var canvas = document.createElement("canvas"),
+      ctx = canvas.getContext("2d");
+
+    canvas.height = 529;
+    canvas.width = 529;
+    ctx.drawImage(img, 0, 0);
+
+    var b64 = canvas.toDataURL("image/png");
+
+    return b64;
+  };
+  const generateVCF = async (e) => {
+    // const image = new Image();
+    // image.setAttribute("crossOrigin", "anonymous"); // needed to avoid cross-origin issues on CodeSandbox
+    // image.src = data.profileImage;
+
+    // const canvas = document.createElement("canvas");
+    // const ctx = canvas.getContext("2d");
+    // canvas.height = 500;
+    // canvas.width = 500;
+    // ctx.drawImage(image, 0, 0);
+    // const dataUrl = canvas.toDataURL();
+    // // callback && callback(dataUrl);
+
+    // // image.src = data.profileImage;
+    const hello = await getEmergencyFoundImg(data.profileImage);
+    console.log(e);
+
+    const vCard = new VCard();
+
+    const myVCalendar = new VCard("vcalendar");
+    vCard.setFormat("vcalendar");
     vCard
       .addCompany("")
       .addEmail("")
       .addPhoneNumber("", "PREF;WORK")
       .addPhoneNumber("", "WORK")
       .addAddress("");
-    // .addPhoto(baseImage, "JPEG");
+
     // download(vCard.toString(), "dlText.vcf");
 
     vCard.addName("lastname", "dfg");
+    vCard.addPhoto(data.profileImage, "png");
     // const image = new FileReader(data.profileImage);
     // console.log(image);
     // vCard.addPhoto(data.profileImage, "JPEG");
@@ -554,12 +591,12 @@ export default function MainProfile(props) {
               >
                 Save My Contact
               </button>
-              {/* <input
+              <input
                 type="file"
                 onChange={(e) => {
-                  uploadImage(e);
+                  generateVCF(e);
                 }}
-              /> */}
+              />
             </div>
             {data && data.links ? <SocialLink links={data.links} /> : ""}
             {data && data.userPlugin ? <Video data={data.userPlugin} /> : ""}

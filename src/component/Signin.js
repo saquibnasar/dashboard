@@ -7,7 +7,6 @@ import axios from "axios";
 import Alert from "./Alert";
 
 export default function Signin() {
-  let togglePassword;
   const [attribute, setAttribute] = useState("password");
   const [font, setFont] = useState(faEye);
   const [formData, setFormData] = useState({
@@ -25,11 +24,8 @@ export default function Signin() {
     });
   };
   const changeInputType = () => {
-    togglePassword = document.querySelector(".input-password svg");
-    togglePassword.addEventListener("click", () => {
-      setAttribute(attribute === "password" ? "text" : "password");
-      setFont(font === faEye ? faEyeSlash : faEye);
-    });
+    setAttribute(attribute === "password" ? "text" : "password");
+    setFont(font === faEye ? faEyeSlash : faEye);
   };
 
   const handleSubmit = (e) => {
