@@ -63,9 +63,7 @@ export default function Setting(props) {
 
   useEffect(() => {
     axios
-      .get(
-        "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/settings/getCompanyDetails"
-      )
+      .get("http://13.127.69.231/settings/getCompanyDetails")
       .then((response) => {
         setFormData(response.data);
       })
@@ -305,7 +303,7 @@ export default function Setting(props) {
 
     // axios({
     //   method: "post",
-    //   url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/settings/updateCompanyDetails",
+    //   url: "http://13.127.69.231/settings/updateCompanyDetails",
     //   data: bodyFormData,
     //   headers: { "Content-Type": "multipart/form-data" },
     // })

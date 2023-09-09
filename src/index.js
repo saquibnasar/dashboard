@@ -29,12 +29,9 @@ axios.interceptors.response.use(
   async function (error) {
     if (error.response.status == 401) {
       axios
-        .post(
-          "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/auth/refresh-token",
-          {
-            refreshToken: window.localStorage.getItem("refreshToken"),
-          }
-        )
+        .post("http://13.127.69.231/auth/refresh-token", {
+          refreshToken: window.localStorage.getItem("refreshToken"),
+        })
         .then(async (res) => {
           localStorage.setItem("accessToken", res.data.accessToken);
           localStorage.setItem("refreshToken", res.data.refreshToken);

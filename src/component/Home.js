@@ -15,9 +15,7 @@ export default function Home(props) {
 
   useEffect(() => {
     axios
-      .get(
-        "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/all"
-      )
+      .get("http://13.127.69.231/members/all")
       .then((response) => {
         console.log(response.data);
         setData(response.data);

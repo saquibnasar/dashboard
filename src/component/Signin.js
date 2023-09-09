@@ -32,13 +32,10 @@ export default function Signin() {
     e.preventDefault();
 
     axios
-      .post(
-        "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/auth/signin",
-        {
-          email: formData.email,
-          password: formData.password,
-        }
-      )
+      .post("http://13.127.69.231/auth/signin", {
+        email: formData.email,
+        password: formData.password,
+      })
       .then(function (response) {
         localStorage.setItem("accessToken", response.data.accessToken);
         localStorage.setItem("refreshToken", response.data.refreshToken);

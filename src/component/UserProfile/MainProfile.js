@@ -10,6 +10,7 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import VCard from "vcard-creator";
 // import imageToBase64 from "image-to-base64";
+import Vimeo from "@u-wave/react-vimeo";
 export default function MainProfile(props) {
   const { mainProfileid } = useParams();
 
@@ -18,9 +19,7 @@ export default function MainProfile(props) {
   const [isShareClicked, setIsShareClicked] = useState(false);
   useEffect(() => {
     axios
-      .get(
-        `http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/${mainProfileid}`
-      )
+      .get(`http://13.127.69.231/members/${mainProfileid}`)
       .then((response) => {
         console.log(response);
         setData(response.data);
@@ -123,20 +122,18 @@ export default function MainProfile(props) {
 
     const vCard = new VCard();
 
-    const myVCalendar = new VCard("vcalendar");
-    vCard.setFormat("vcalendar");
-    vCard
-      .addCompany("")
-      .addEmail("")
-      .addPhoneNumber("", "PREF;WORK")
-      .addPhoneNumber("", "WORK")
-      .addAddress("");
-
+    // const myVCalendar = new VCard("vcalendar");
+    // vCard.setFormat("vcalendar");
+    //
     // download(vCard.toString(), "dlText.vcf");
 
-    vCard.addName("lastname", "dfg");
+    vCard.addName("", "saquib");
     vCard.addPhoto(data.profileImage, "png");
+    vCard.addEmail("saquibsiddiqui023@gmail.com");
+    vCard.addPhoneNumber(1234121212, "phonenumber");
+    vCard.addPhoneNumber(123456789, "whatsappNumber");
     // const image = new FileReader(data.profileImage);
+
     // console.log(image);
     // vCard.addPhoto(data.profileImage, "JPEG");
 
@@ -183,7 +180,11 @@ export default function MainProfile(props) {
                 </div>
 
                 <div className="share_link-links">
-                  <a target="_blank" className="" href="/">
+                  <a
+                    target="_blank"
+                    className=""
+                    href="https://wa.me/9910268828"
+                  >
                     <div className="d-flex align-items-center gap-3">
                       <svg
                         viewBox="0 0 24 24"
@@ -591,26 +592,64 @@ export default function MainProfile(props) {
               >
                 Save My Contact
               </button>
-              <input
+              {/* <input
                 type="file"
                 onChange={(e) => {
                   generateVCF(e);
                 }}
-              />
+              /> */}
             </div>
             {data && data.links ? <SocialLink links={data.links} /> : ""}
             {data && data.userPlugin ? <Video data={data.userPlugin} /> : ""}
-
-            <iframe
+            {/* <ReactPlayer
+              // url={`https://www.youtube.com/embed/${url}?showinfo=0&amp;modestbranding=1&modestbranding=3&controls=0&rel=1&contore=1`}
+              url={"https://www.youtube.com/embed/XVvyMeaNUaM"}
+              light={true}
+              width="100%"
+              playing={true}
+              className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu reactYoutube"
+              height="100%"
+              controls
               width="374"
               height="665"
-              src="https://www.youtube.com/embed/XVvyMeaNUaM"
-              title="Ash Charizard Attitude Edit 🔥 || UK LUCARIO || #shorts #pokemon #ashcharizard"
-              frameborder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowfullscreen
-            ></iframe>
+            /> */}
 
+            <div className="_username__featuredLink__MeYB7 text-start">
+              <h3>kdfsj</h3>
+              <div className="BaseEmbeddedLink_baseEmbeddedLinkWrapper__SlpfZ">
+                <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
+                  <div className="BaseEmbeddedLink_baseEmbeddedLinkContainer__SlSm5 BaseEmbeddedLink_baseEmbeddedLinkContainerEmbed__py5x8">
+                    <div className="BaseEmbeddedLink_baseEmbeddedLinkItem__EDHSQ BaseEmbeddedLink_baseEmbeddedLinkItemVisible__63uQ_">
+                      <iframe
+                        width="374"
+                        height="665"
+                        src="https://www.youtube.com/embed/XVvyMeaNUaM"
+                        title="Ash Charizard Attitude Edit 🔥 || UK LUCARIO || #shorts #pokemon #ashcharizard"
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        allowfullscreen
+                        className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu reactYoutube"
+                      ></iframe>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* <embed
+              src="https://www.youtube.com/"
+              style={{ width: "500px", height: "300px" }}
+            ></embed> */}
+            <Vimeo video="862202839" autoplay />
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSdP8NdF_kgFQF4DCo1xZ9D9G7gf6MmhQmmNhuulTPZw5Bxu7g/viewform?usp=sf_link"
+              width="640"
+              height="947"
+              frameborder="0"
+              marginheight="0"
+              marginwidth="0"
+            >
+              Loading…
+            </iframe>
             <Footer />
           </div>
         </section>

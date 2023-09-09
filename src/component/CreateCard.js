@@ -683,7 +683,7 @@ export default function CreateCard(props) {
       });
       axios({
         method: "post",
-        url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/addMember",
+        url: "http://13.127.69.231/members/addMember",
         data: bodyFormData,
         headers: { "Content-Type": "multipart/form-data" },
       })
@@ -706,7 +706,7 @@ export default function CreateCard(props) {
     // if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
     //   axios({
     //     method: "post",
-    //     url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/addMember",
+    //     url: "http://13.127.69.231/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {
@@ -775,7 +775,7 @@ export default function CreateCard(props) {
     //   console.log(requestObj);
     //   axios({
     //     method: "post",
-    //     url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/addMember",
+    //     url: "http://13.127.69.231/members/addMember",
     //     data: requestObj,
     //   })
     //     .then((response) => {

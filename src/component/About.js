@@ -344,7 +344,7 @@ export default function About(props) {
 
       axios({
         method: "post",
-        url: "http://ec2-3-111-248-112.ap-south-1.compute.amazonaws.com:3000/members/updatemember",
+        url: "http://13.127.69.231/members/updatemember",
         data: bodyFormData,
       })
         .then((response) => {
