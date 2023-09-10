@@ -113,9 +113,11 @@
         input:checked + label:after {
           left: 50%;
         }
-        label,
-        label:after {
-          // transition: 0.5s;
+        input:checked + label:hover {
+          background-color: #e9e4ed;
+        }
+        label:hover {
+          background-color: #4353fc;
         }
       }
       .addcard_link-edit {
@@ -127,6 +129,11 @@
           svg {
             font-size: 1rem;
             color: $text-secondary;
+          }
+        }
+        .addcard_link-delete:hover {
+          svg {
+            color: rgba(255, 0, 0, 0.7);
           }
         }
       }

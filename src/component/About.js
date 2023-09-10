@@ -969,7 +969,7 @@ export default function About(props) {
                     className="form-control"
                     id="Name"
                     placeholder="office email id"
-                    required
+                    // required
                     name="officeEmailId"
                     onChange={props.handleChange}
                     value={

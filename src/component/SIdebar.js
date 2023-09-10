@@ -93,7 +93,7 @@ export default function SIdebar(props) {
               onClick={() => {
                 window.localStorage.removeItem("accessToken");
                 window.localStorage.removeItem("refreshToken");
-                window.location.href = '/login';
+                window.location.href = "/login";
               }}
             >
               <FontAwesomeIcon icon={faRightFromBracket} />

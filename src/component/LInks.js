@@ -10,6 +10,7 @@ import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
 import { faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import AddLink from "./AddLink";
+import Modal from "./Plugin/Modal";
 
 export default function LInks(props) {
   const [isLinkClick, setIsLinkClick] = useState(false);
@@ -47,16 +48,23 @@ export default function LInks(props) {
   };
   const handleDelete = (id, event) => {
     console.log(id);
-    // props.setFormData((prevformData) => {
-    //   prevformData.userLink.splice(id, 1);
-    //   return { ...prevformData };
-    // });
+    props.setFormData((prevformData) => {
+      prevformData.userLink.splice(id, 1);
+      return { ...prevformData };
+    });
   };
-
+  const [isModal, setIsModal] = useState(false);
   const updateLink = (link, id, event) => {
-    // console.log();
-    // console.log(link);
-    if (props.formData.userLink[id].id === link.id) {
+    console.log(props.formData.userLink);
+    console.log(link);
+    console.log(id);
+    console.log(props.formData.userLink[id].id === link.id);
+    if (
+      props.formData.userLink.length &&
+      link &&
+      props.formData.userLink[id].id === link.id
+    ) {
+      console.log("jdfs");
       setIsLinkClick(!isLinkClick);
       setLinkData(() => {
         if (link && link.type && link.type === "phone") {
@@ -213,6 +221,15 @@ export default function LInks(props) {
       ) : (
         ""
       )}{" "}
+      {isModal ? (
+        <Modal
+          type="remove"
+          setIsModal={setIsModal}
+          deleteHander={handleDelete}
+        />
+      ) : (
+        ""
+      )}
       <div className={isLinkClick ? "links d-none" : "links"}>
         <div className="linkPage">
           <button className="btn-link" onClick={props.addLin}>
@@ -278,8 +295,9 @@ export default function LInks(props) {
                           <div
                             className="addcard_link-delete"
                             onClick={(e) => {
-                              // e.cancelBubble = false;
-                              handleDelete(key);
+                              e.stopPropagation();
+                              // handleDelete(key);
+                              setIsModal(true);
                             }}
                           >
                             <FontAwesomeIcon icon={faTrashCan} />

@@ -16,6 +16,7 @@ import UserProfile from "./UserProfile/UserProfile";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import Alert from "./Alert";
+import Modal from "./Plugin/Modal";
 export default function HomePage(props) {
   const { homepageId, userId } = useParams();
   const [isLinks, setIslinks] = useState(false);
@@ -23,8 +24,10 @@ export default function HomePage(props) {
   const [data, setData] = useState("");
   const [formData, setFormData] = useState("");
   const [alertText, setAlertText] = useState("");
+  const [isModal, setIsModal] = useState(false);
   window.addEventListener("click", () => {
     setAlertText("");
+    // setIsModal(false);
   });
   useEffect(() => {
     axios
@@ -164,7 +167,6 @@ export default function HomePage(props) {
   const deleteHander = (event) => {
     axios({
       method: "DELETE",
-      // url: "http://13.127.69.231/members/updatemember",
       url: "http://13.127.69.231/members/deleteMember",
       data: {
         employeeId: userId,
@@ -242,7 +244,9 @@ export default function HomePage(props) {
                         type="button"
                         className="nav-link delete"
                         aria-current="page"
-                        onClick={deleteHander}
+                        onClick={() => {
+                          setIsModal(true);
+                        }}
                       >
                         <FontAwesomeIcon icon={faTrashCan} />
                         <p className="d-lg-none">Delete</p>
@@ -344,6 +348,11 @@ export default function HomePage(props) {
 
               {alertText ? (
                 <Alert alertText={alertText} setAlertText={setAlertText} />
+              ) : (
+                ""
+              )}
+              {isModal ? (
+                <Modal setIsModal={setIsModal} deleteHander={deleteHander} />
               ) : (
                 ""
               )}

@@ -31,6 +31,7 @@ import Alert from "./Alert";
 import Cropper from "react-easy-crop";
 import getCroppedImg from "./imgUploader/cropImage";
 import AddLink from "./AddLink";
+import Modal from "./Plugin/Modal";
 
 export default function Setting(props) {
   const { settingId } = useParams();

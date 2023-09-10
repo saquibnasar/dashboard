@@ -7,6 +7,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/style.css";
 import Alert from "./Alert";
 import axios from "axios";
+import Modal from "./Plugin/Modal";
 export default function AddLink(props) {
   const [formData, setFormData] = useState({
     value: props.data.linkData ? props.data.linkData : "",
@@ -16,8 +17,8 @@ export default function AddLink(props) {
 
   const [ifClick, setIfClick] = useState(false);
   const [phone, setPhone] = useState("+1");
+  const [isModal, setIsModal] = useState(false);
 
-  const [alertText, setAlertText] = useState("");
   console.log(props.setAlertText);
   const handleChange = (event) => {
     if (event.target) {
@@ -337,7 +338,9 @@ export default function AddLink(props) {
                   <button
                     type="button"
                     className="btn btn-delete"
-                    onClick={deleteElement}
+                    onClick={() => {
+                      setIsModal(true);
+                    }}
                   >
                     <FontAwesomeIcon icon={faTrashCan} />
                     Remove
@@ -369,11 +372,15 @@ export default function AddLink(props) {
           </div>
         </div>
 
-        {/* {alertText ? (
-          <Alert alertText={alertText} setAlertText={setAlertText} />
+        {isModal ? (
+          <Modal
+            type="remove"
+            setIsModal={setIsModal}
+            deleteHander={deleteElement}
+          />
         ) : (
           ""
-        )} */}
+        )}
       </div>
       <div className="signup_phone text-center d-md-block">
         <button className="btn btn-preview">Live Preview</button>
