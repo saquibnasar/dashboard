@@ -21,7 +21,7 @@ import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import AddLink from "./AddLink";
-import AdduCard from "./AddCard";
+import AddCard from "./AddCard";
 import Image from "./userDetail/Image";
 import ALert from "./Alert";
 import axios from "axios";
@@ -51,7 +51,9 @@ export default function About(props) {
   //   bannerImage2: `${props.formData.bannerImages[1]}`,
   //   bannerImage3: `${props.formData.bannerImages[2]}`,
   // });
-
+  window.addEventListener("click", () => {
+    setAlertText("");
+  });
   const [secondImage, setSecondImage] = useState({
     logoimage: props.formData.profileImage
       ? `${props.formData.profileImage}`
@@ -1164,10 +1166,11 @@ export default function About(props) {
         ""
       )}
       {props.isLinks ? (
-        <AdduCard
+        <AddCard
           removeLink={props.addLin}
           isClick={isClick}
           setFormData={props.setFormData}
+          setAlertText={setAlertText}
         />
       ) : (
         ""

@@ -263,6 +263,21 @@
               color: #ff0000;
               font-size: 33px;
             }
+            .addlink_content-top-icon.vimeo {
+              background: $white-color;
+              color: #16d5ff;
+              font-size: 33px;
+            }
+            .addlink_content-top-icon.googleForm {
+              background: $white-color;
+              color: #7248bc;
+              font-size: 33px;
+            }
+            .addlink_content-top-icon.twitch {
+              background: $white-color;
+              color: #7456a8;
+              font-size: 33px;
+            }
 
             h1 {
               margin-bottom: 0px;
@@ -529,6 +544,30 @@
           .addcard_link-item-icon {
             background: $white-color;
             color: #ff0000;
+          }
+        }
+      }
+      .addcard_link.vimeo {
+        .addcard_link-item {
+          .addcard_link-item-icon {
+            background: $white-color;
+            color: #16d5ff;
+          }
+        }
+      }
+      .addcard_link.googleForm {
+        .addcard_link-item {
+          .addcard_link-item-icon {
+            background: $white-color;
+            color: #7248bc;
+          }
+        }
+      }
+      .addcard_link.twitch {
+        .addcard_link-item {
+          .addcard_link-item-icon {
+            background: $white-color;
+            color: #7456a8;
           }
         }
       }

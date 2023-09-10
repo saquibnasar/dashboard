@@ -11,9 +11,11 @@ export default function AddPlugin(props) {
   const [ifClick, setIfClick] = useState(false);
 
   const handleChange = (event) => {
-    fetch(`https://youtube.com/oembed?url=${event.target.value}&format=json`)
-      .then((res) => res.json())
+    console.log(event.target.value);
+    fetch(`${event.target.value}`)
+      // .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setFormData((preData) => {
           return {
             ...preData,
@@ -22,7 +24,7 @@ export default function AddPlugin(props) {
         });
       })
       .catch((err) => {
-        // console.log(err);
+        console.log(err);
       });
     setFormData((prevformData) => {
       return {
@@ -123,27 +125,6 @@ export default function AddPlugin(props) {
             >
               <div className="mt-5 email_input">
                 <div id="emailHelp" className="form-text">
-                  {props.data.headerTitle}
-                </div>
-                <div className="did-floating-label-content input-group">
-                  <input
-                    className="did-floating-input"
-                    type="text"
-                    placeholder=" "
-                    required
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    id="userText"
-                  />
-
-                  <label className="did-floating-label" htmlFor="userText">
-                    {props.data.linkTitleInput}
-                  </label>
-                </div>
-              </div>
-              <div className="mt-4 email_input">
-                <div id="emailHelp" className="form-text">
                   {props.data.title}
                 </div>
                 <div className="did-floating-label-content input-group">
@@ -169,6 +150,27 @@ export default function AddPlugin(props) {
                     {!ifClick
                       ? `https://www.${props.data.type}.com/xxxx`
                       : props.data.titleInput}
+                  </label>
+                </div>
+              </div>
+              <div className="mt-4 email_input">
+                <div id="emailHelp" className="form-text">
+                  {props.data.headerTitle}
+                </div>
+                <div className="did-floating-label-content input-group">
+                  <input
+                    className="did-floating-input"
+                    type="text"
+                    placeholder=" "
+                    required
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    id="userText"
+                  />
+
+                  <label className="did-floating-label" htmlFor="userText">
+                    {props.data.linkTitleInput}
                   </label>
                 </div>
               </div>

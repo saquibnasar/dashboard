@@ -53,7 +53,9 @@ export default function CreateCard(props) {
     linktype: "",
     icon: "",
   });
-
+  window.addEventListener("click", () => {
+    setAlertText("");
+  });
   const [crop, setCrop] = useState({
     x: 0,
     y: 0,
@@ -257,6 +259,7 @@ export default function CreateCard(props) {
           icon: faWhatsapp,
           linkData: link.value,
           linkTitle: link.title,
+          countryCode: link.countryCode ? link.countryCode : "1",
           id: id,
         };
       } else if (link && link.type && link.type === "linkedin") {

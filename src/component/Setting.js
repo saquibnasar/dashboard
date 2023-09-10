@@ -40,7 +40,9 @@ export default function Setting(props) {
   const [secondImage, setSecondImage] = useState({ preview: "", raw: "" });
   const [editImage, setEditImage] = useState({ preview: "", raw: "" });
   const [alertText, setAlertText] = useState("");
-
+  window.addEventListener("click", () => {
+    setAlertText("");
+  });
   const [isLinkClick, setIsLinkClick] = useState(false);
   const [formData, setFormData] = useState({
     companyLogo: "",

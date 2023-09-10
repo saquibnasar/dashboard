@@ -14,7 +14,9 @@ export default function Signin() {
     password: "",
   });
   const [alertText, setAlertText] = useState("");
-
+  window.addEventListener("click", () => {
+    setAlertText("");
+  });
   const handleChange = (event) => {
     setFormData((prevformData) => {
       return {

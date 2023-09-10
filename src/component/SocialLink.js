@@ -13,7 +13,6 @@ export default function SocialLink(props) {
     <>
       <div className="social_media">
         {props.links.map((value, id) => {
-          console.log(value.isActive);
           let icon;
           let link = value.value;
           if (value.type === "phone") {

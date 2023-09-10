@@ -47,149 +47,153 @@ export default function LInks(props) {
   };
   const handleDelete = (id, event) => {
     console.log(id);
-    props.setFormData((prevformData) => {
-      prevformData.userLink.splice(id, 1);
-      return { ...prevformData };
-    });
+    // props.setFormData((prevformData) => {
+    //   prevformData.userLink.splice(id, 1);
+    //   return { ...prevformData };
+    // });
   };
 
   const updateLink = (link, id, event) => {
-    setIsLinkClick(!isLinkClick);
-    setLinkData(() => {
-      if (link && link.type && link.type === "phone") {
-        return {
-          headerTitle: "Phone",
-          linkTitleInput: "phone",
-          title: "Phone Number*",
-          titleInput: "Enter Phone Number*",
-          type: "number",
-          type: "phone",
-          icon: faPhone,
-          linkData: link.value,
-          linkTitle: link.title,
-          countryCode: link.countryCode,
-          countryCode: link.countryCode ? link.countryCode : "1",
-          id: id,
-        };
-      } else if (link && link.type && link.type === "email") {
-        return {
-          headerTitle: "Link Title",
-          linkTitleInput: "email",
-          title: "Email",
-          titleInput: "Enter Email",
-          type: "email",
-          type: "email",
-          icon: "/email.png",
-          linkData: link.value,
-          linkTitle: link.title,
-          id: id,
-        };
-      } else if (link && link.type && link.type === "website") {
-        return {
-          headerTitle: "Website Title",
-          linkTitleInput: "Website",
-          title: "Website*",
-          titleInput: "Enter Website URL",
-          type: "text",
-          type: "website",
-          icon: "/safari.png",
-          linkData: link.value,
-          linkTitle: link.title,
-          id: id,
-        };
-      } else if (link && link.type && link.type === "whatsapp") {
-        return {
-          headerTitle: "Whatsapp Title",
-          linkTitleInput: "Whatsapp",
-          title: "Whatsapp*",
-          titleInput: "Enter Whatsapp Number",
-          type: "text",
-          type: "whatsapp",
-          icon: faWhatsapp,
-          linkData: link.value,
-          linkTitle: link.title,
-          id: id,
-        };
-      } else if (link && link.type && link.type === "linkedin") {
-        return {
-          headerTitle: "Linkedin Title",
-          linkTitleInput: "Linkedin",
-          title: "Linkedin*",
-          titleInput: "Enter Linkedin URl",
-          type: "text",
-          type: "linkedin",
-          icon: faLinkedinIn,
-          linkData: link.value,
-          linkTitle: link.title,
-          id: id,
-        };
-      } else if (link && link.type && link.type === "instagram") {
-        return {
-          headerTitle: "Instagram Title",
-          linkTitleInput: "Instagram",
-          title: "Instagram*",
-          titleInput: "Enter Instagram URl",
-          type: "text",
-          type: "instagram",
-          icon: faInstagram,
-          linkData: link.value,
-          linkTitle: link.title,
-          id: id,
-        };
-      } else if (link && link.type && link.type === "facebook") {
-        return {
-          headerTitle: "Facebook Title",
-          linkTitleInput: "Facebook",
-          title: "Facebook*",
-          titleInput: "Enter Facebook URl",
-          type: "text",
-          type: "facebook",
-          icon: faFacebookF,
-          linkData: link.value,
-          linkTitle: link.title,
-          id: id,
-        };
-      } else if (link && link.type && link.type === "twitter") {
-        return {
-          headerTitle: "Twitter Title",
-          linkTitleInput: "Twitter",
-          title: "Twitter*",
-          titleInput: "Enter Twiter URL",
-          type: "text",
-          type: "twitter",
-          icon: faTwitter,
-          linkData: link.value,
-          linkTitle: link.title,
-          id: id,
-        };
-      } else if (link && link.type && link.type === "googlemap") {
-        return {
-          headerTitle: "Address Title",
-          linkTitleInput: "Address",
-          title: "Address*",
-          titleInput: "Enter Address",
-          type: "text",
-          type: "googlemap",
-          icon: "/googlemap.png",
-          linkData: link.value,
-          linkTitle: link.title,
-          id: id,
-        };
-      } else if (link && link.type && link.type === "youtube") {
-        return {
-          headerTitle: "Youtube Title",
-          linkTitleInput: "Youtube",
-          title: "Youtube*",
-          titleInput: "Enter Youtube URl",
-          type: "text",
-          type: "youtube",
-          icon: faYoutube,
-          linkData: link.value,
-          linkTitle: link.title,
-          id: id,
-        };
-      }
-    });
+    // console.log();
+    // console.log(link);
+    if (props.formData.userLink[id].id === link.id) {
+      setIsLinkClick(!isLinkClick);
+      setLinkData(() => {
+        if (link && link.type && link.type === "phone") {
+          return {
+            headerTitle: "Phone",
+            linkTitleInput: "phone",
+            title: "Phone Number*",
+            titleInput: "Enter Phone Number*",
+            type: "number",
+            type: "phone",
+            icon: faPhone,
+            linkData: link.value,
+            linkTitle: link.title,
+            countryCode: link.countryCode,
+            countryCode: link.countryCode ? link.countryCode : "1",
+            id: id,
+          };
+        } else if (link && link.type && link.type === "email") {
+          return {
+            headerTitle: "Link Title",
+            linkTitleInput: "email",
+            title: "Email",
+            titleInput: "Enter Email",
+            type: "email",
+            type: "email",
+            icon: "/email.png",
+            linkData: link.value,
+            linkTitle: link.title,
+            id: id,
+          };
+        } else if (link && link.type && link.type === "website") {
+          return {
+            headerTitle: "Website Title",
+            linkTitleInput: "Website",
+            title: "Website*",
+            titleInput: "Enter Website URL",
+            type: "text",
+            type: "website",
+            icon: "/safari.png",
+            linkData: link.value,
+            linkTitle: link.title,
+            id: id,
+          };
+        } else if (link && link.type && link.type === "whatsapp") {
+          return {
+            headerTitle: "Whatsapp Title",
+            linkTitleInput: "Whatsapp",
+            title: "Whatsapp*",
+            titleInput: "Enter Whatsapp Number",
+            type: "text",
+            type: "whatsapp",
+            icon: faWhatsapp,
+            linkData: link.value,
+            linkTitle: link.title,
+            id: id,
+          };
+        } else if (link && link.type && link.type === "linkedin") {
+          return {
+            headerTitle: "Linkedin Title",
+            linkTitleInput: "Linkedin",
+            title: "Linkedin*",
+            titleInput: "Enter Linkedin URl",
+            type: "text",
+            type: "linkedin",
+            icon: faLinkedinIn,
+            linkData: link.value,
+            linkTitle: link.title,
+            id: id,
+          };
+        } else if (link && link.type && link.type === "instagram") {
+          return {
+            headerTitle: "Instagram Title",
+            linkTitleInput: "Instagram",
+            title: "Instagram*",
+            titleInput: "Enter Instagram URl",
+            type: "text",
+            type: "instagram",
+            icon: faInstagram,
+            linkData: link.value,
+            linkTitle: link.title,
+            id: id,
+          };
+        } else if (link && link.type && link.type === "facebook") {
+          return {
+            headerTitle: "Facebook Title",
+            linkTitleInput: "Facebook",
+            title: "Facebook*",
+            titleInput: "Enter Facebook URl",
+            type: "text",
+            type: "facebook",
+            icon: faFacebookF,
+            linkData: link.value,
+            linkTitle: link.title,
+            id: id,
+          };
+        } else if (link && link.type && link.type === "twitter") {
+          return {
+            headerTitle: "Twitter Title",
+            linkTitleInput: "Twitter",
+            title: "Twitter*",
+            titleInput: "Enter Twiter URL",
+            type: "text",
+            type: "twitter",
+            icon: faTwitter,
+            linkData: link.value,
+            linkTitle: link.title,
+            id: id,
+          };
+        } else if (link && link.type && link.type === "googlemap") {
+          return {
+            headerTitle: "Address Title",
+            linkTitleInput: "Address",
+            title: "Address*",
+            titleInput: "Enter Address",
+            type: "text",
+            type: "googlemap",
+            icon: "/googlemap.png",
+            linkData: link.value,
+            linkTitle: link.title,
+            id: id,
+          };
+        } else if (link && link.type && link.type === "youtube") {
+          return {
+            headerTitle: "Youtube Title",
+            linkTitleInput: "Youtube",
+            title: "Youtube*",
+            titleInput: "Enter Youtube URl",
+            type: "text",
+            type: "youtube",
+            icon: faYoutube,
+            linkData: link.value,
+            linkTitle: link.title,
+            id: id,
+          };
+        }
+      });
+    }
   };
 
   return (
@@ -199,7 +203,7 @@ export default function LInks(props) {
           <div className="addcard_container">
             <AddLink
               data={linkData}
-              sendData={updateLink}
+              sendData={() => setIsLinkClick(!isLinkClick)}
               setFormData={props.setFormData}
               formData={props.formData}
               setAlertText={setAlertText}
@@ -273,14 +277,16 @@ export default function LInks(props) {
                         {!value.isActive ? (
                           <div
                             className="addcard_link-delete"
-                            onClick={handleDelete.bind(this, key)}
+                            onClick={(e) => {
+                              // e.cancelBubble = false;
+                              handleDelete(key);
+                            }}
                           >
                             <FontAwesomeIcon icon={faTrashCan} />
                           </div>
                         ) : (
                           ""
-                        )}
-
+                        )}{" "}
                         <button type="button" className="form-check">
                           <input
                             type="checkbox"

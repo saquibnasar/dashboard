@@ -7,20 +7,27 @@ import { faLinkedinIn } from "@fortawesome/free-brands-svg-icons";
 import { faFacebookF } from "@fortawesome/free-brands-svg-icons";
 import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import { faYoutube } from "@fortawesome/free-brands-svg-icons";
+import { faVimeoV } from "@fortawesome/free-brands-svg-icons";
 import { faInstagram } from "@fortawesome/free-brands-svg-icons";
+import { faTwitch } from "@fortawesome/free-brands-svg-icons";
+import { faFileLines } from "@fortawesome/free-solid-svg-icons";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
+
 import AddLink from "./AddLink";
 import AddPlugin from "./Plugin/AddPlugin";
+import Alert from "./Alert";
 
 export default function AddCard(props) {
   const [linkData, setLinkData] = useState({});
   const [isClick, setIsClick] = useState(false);
-
+  const [alertText, setAlertText] = useState("");
   const sendData = (data) => {
     setLinkData(data);
     setIsClick(!isClick);
   };
-
+  window.addEventListener("click", () => {
+    setAlertText("");
+  });
   return (
     <>
       {props.type === "plugin" ? (
@@ -65,6 +72,75 @@ export default function AddCard(props) {
                       <FontAwesomeIcon icon={faPlus} />
                     </div>
                   </div>
+                  <div
+                    className={`addcard_link vimeo`}
+                    onClick={sendData.bind(this, {
+                      headerTitle: "Vimeo Title",
+                      linkTitleInput: "Vimeo",
+                      title: "Vimeo*",
+                      titleInput: "Enter Vimeo URl",
+                      linktype: "text",
+                      type: "vimeo",
+                      icon: faVimeoV,
+                    })}
+                  >
+                    <div className="addcard_link-item">
+                      <div className="addcard_link-item-icon">
+                        <FontAwesomeIcon icon={faVimeoV} />
+                      </div>
+                      <p>Vimeo</p>
+                    </div>
+
+                    <div className="addcard_link-add">
+                      <FontAwesomeIcon icon={faPlus} />
+                    </div>
+                  </div>
+                  <div
+                    className={`addcard_link googleForm`}
+                    onClick={sendData.bind(this, {
+                      headerTitle: "Google form Title",
+                      linkTitleInput: "Google Form",
+                      title: "Google Form*",
+                      titleInput: "Enter Google form URl",
+                      linktype: "text",
+                      type: "googleForm",
+                      icon: faFileLines,
+                    })}
+                  >
+                    <div className="addcard_link-item">
+                      <div className="addcard_link-item-icon">
+                        <FontAwesomeIcon icon={faFileLines} />
+                      </div>
+                      <p>Google Form</p>
+                    </div>
+
+                    <div className="addcard_link-add">
+                      <FontAwesomeIcon icon={faPlus} />
+                    </div>
+                  </div>
+                  <div
+                    className={`addcard_link twitch`}
+                    onClick={sendData.bind(this, {
+                      headerTitle: "Twitch Title",
+                      linkTitleInput: "Twitch",
+                      title: "Twitch*",
+                      titleInput: "Enter Twitch URl",
+                      linktype: "text",
+                      type: "twitch",
+                      icon: faTwitch,
+                    })}
+                  >
+                    <div className="addcard_link-item">
+                      <div className="addcard_link-item-icon">
+                        <FontAwesomeIcon icon={faTwitch} />
+                      </div>
+                      <p>Twitch</p>
+                    </div>
+
+                    <div className="addcard_link-add">
+                      <FontAwesomeIcon icon={faPlus} />
+                    </div>
+                  </div>
                 </div>
               </div>
             ) : (
@@ -78,6 +154,7 @@ export default function AddCard(props) {
         </div>
       ) : (
         <div className="addcard">
+          {console.log(props)}
           <div className="addcard_container">
             {!isClick ? (
               <div>
@@ -331,11 +408,16 @@ export default function AddCard(props) {
                 data={linkData}
                 sendData={sendData}
                 setFormData={props.setFormData}
-                setAlertText={props.setAlertText}
+                setAlertText={setAlertText}
               />
             )}
           </div>
         </div>
+      )}
+      {alertText ? (
+        <Alert alertText={alertText} setAlertText={setAlertText} />
+      ) : (
+        ""
       )}
     </>
   );

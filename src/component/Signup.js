@@ -20,7 +20,9 @@ export default function Signup() {
     setAttribute(attribute === "password" ? "text" : "password");
     setFont(font === faEye ? faEyeSlash : faEye);
   };
-
+  window.addEventListener("click", () => {
+    setAlertText("");
+  });
   const handleChange = (event) => {
     setFormData((prevformData) => {
       return {

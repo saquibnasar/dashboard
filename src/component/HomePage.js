@@ -23,7 +23,9 @@ export default function HomePage(props) {
   const [data, setData] = useState("");
   const [formData, setFormData] = useState("");
   const [alertText, setAlertText] = useState("");
-
+  window.addEventListener("click", () => {
+    setAlertText("");
+  });
   useEffect(() => {
     axios
       .get(`http://13.127.69.231/members/${userId}`)

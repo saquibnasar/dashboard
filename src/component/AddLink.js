@@ -18,7 +18,7 @@ export default function AddLink(props) {
   const [phone, setPhone] = useState("+1");
 
   const [alertText, setAlertText] = useState("");
-
+  console.log(props.setAlertText);
   const handleChange = (event) => {
     if (event.target) {
       fetch(`https://youtube.com/oembed?url=${event.target.value}&format=json`)
@@ -91,7 +91,7 @@ export default function AddLink(props) {
       });
       props.sendData();
     } else {
-      if (props.data.type === "phone") {
+      if (props.data.type === "phone" || props.data.type === "whatsapp") {
         if (
           formData.value.split("").length < 8 ||
           formData.value.split("").length > 10
@@ -174,33 +174,13 @@ export default function AddLink(props) {
               onSubmit={handleSubmit}
               onKeyDown={onKeyDownHandlerdfs}
             >
-              <div className="mt-5 email_input">
-                <div id="emailHelp" className="form-text">
-                  {props.data.headerTitle}
-                </div>
-                <div className="did-floating-label-content input-group">
-                  <input
-                    className="did-floating-input"
-                    type="text"
-                    placeholder=" "
-                    required
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    id="userText"
-                  />
-
-                  <label className="did-floating-label" htmlFor="userText">
-                    {props.data.linkTitleInput}
-                  </label>
-                </div>
-              </div>
               <div className="mt-4 email_input">
                 <div id="emailHelp" className="form-text">
                   {props.data.title}
                 </div>
                 <div className="did-floating-label-content input-group">
-                  {props.data.type === "phone" ? (
+                  {props.data.type === "phone" ||
+                  props.data.type === "whatsapp" ? (
                     <>
                       <input
                         className="did-floating-input countriesCode-input"
@@ -330,6 +310,28 @@ export default function AddLink(props) {
                   )}
                 </div>
               </div>
+              <div className="mt-5 email_input">
+                <div id="emailHelp" className="form-text">
+                  {props.data.headerTitle}
+                </div>
+                <div className="did-floating-label-content input-group">
+                  <input
+                    className="did-floating-input"
+                    type="text"
+                    placeholder=" "
+                    required
+                    name="title"
+                    value={formData.title}
+                    onChange={handleChange}
+                    id="userText"
+                  />
+
+                  <label className="did-floating-label" htmlFor="userText">
+                    {props.data.linkTitleInput}
+                  </label>
+                </div>
+              </div>
+
               {props.data.linkData ? (
                 <div className="d-flex gap-4 justify-content-between align-items-center mt-4 f-md-column">
                   <button

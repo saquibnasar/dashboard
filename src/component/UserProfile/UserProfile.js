@@ -35,7 +35,7 @@ export default function UserProfile(props) {
       }
     }
   });
-  console.log(props.formData);
+
   return (
     <>
       <section className="userProile hero main-container p-relative">
