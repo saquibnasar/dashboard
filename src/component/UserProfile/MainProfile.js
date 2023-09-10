@@ -639,11 +639,27 @@ export default function MainProfile(props) {
               src="https://www.youtube.com/"
               style={{ width: "500px", height: "300px" }}
             ></embed> */}
+            <iframe
+              src="https://player.twitch.tv/?channel=s0mcs&parent=www.example.com"
+              frameborder="0"
+              allowfullscreen="true"
+              scrolling="no"
+              height="378"
+              width="620"
+            ></iframe>
             <Vimeo video="862202839" autoplay />
             <iframe
-              src="https://docs.google.com/forms/d/e/1FAIpQLSdP8NdF_kgFQF4DCo1xZ9D9G7gf6MmhQmmNhuulTPZw5Bxu7g/viewform?usp=sf_link"
+              src="https://player.twitch.tv/?video=1920624098&parent=www.example.com"
+              frameborder="0"
+              allowfullscreen="true"
+              scrolling="no"
+              height="378"
+              width="620"
+            ></iframe>
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSeISh91y8QoxKDBnt98ehrZxnJIlZUwV1YBvKk_jm_Tvz45hQ/viewform?embedded=true"
               width="640"
-              height="947"
+              height="1118"
               frameborder="0"
               marginheight="0"
               marginwidth="0"
