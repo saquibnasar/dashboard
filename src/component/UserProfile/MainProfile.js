@@ -601,18 +601,6 @@ export default function MainProfile(props) {
             </div>
             {data && data.links ? <SocialLink links={data.links} /> : ""}
             {data && data.userPlugin ? <Video data={data.userPlugin} /> : ""}
-            {/* <ReactPlayer
-              // url={`https://www.youtube.com/embed/${url}?showinfo=0&amp;modestbranding=1&modestbranding=3&controls=0&rel=1&contore=1`}
-              url={"https://www.youtube.com/embed/XVvyMeaNUaM"}
-              light={true}
-              width="100%"
-              playing={true}
-              className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu reactYoutube"
-              height="100%"
-              controls
-              width="374"
-              height="665"
-            /> */}
 
             <div className="_username__featuredLink__MeYB7 text-start">
               <h3>kdfsj</h3>
@@ -620,26 +608,23 @@ export default function MainProfile(props) {
                 <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
                   <div className="BaseEmbeddedLink_baseEmbeddedLinkContainer__SlSm5 BaseEmbeddedLink_baseEmbeddedLinkContainerEmbed__py5x8">
                     <div className="BaseEmbeddedLink_baseEmbeddedLinkItem__EDHSQ BaseEmbeddedLink_baseEmbeddedLinkItemVisible__63uQ_">
-                      <iframe
-                        width="374"
-                        height="665"
-                        src="https://www.youtube.com/embed/XVvyMeaNUaM"
-                        title="Ash Charizard Attitude Edit 🔥 || UK LUCARIO || #shorts #pokemon #ashcharizard"
-                        frameborder="0"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowfullscreen
+                      <ReactPlayer
+                        url={`https://www.youtube.com/embed/"https://www.youtube.com/embed/qwr1HJOuPs4?si=kwgynkJJNIjPgn0d"?showinfo=0&amp;modestbranding=1&modestbranding=3&controls=0&rel=1&contore=1`}
+                        // url={value.value}
+                        light={true}
+                        width="100%"
+                        playing={true}
                         className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu reactYoutube"
-                      ></iframe>
+                        height="100%"
+                        controls
+                      />
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            {/* <embed
-              src="https://www.youtube.com/"
-              style={{ width: "500px", height: "300px" }}
-            ></embed> */}
-            <iframe
+
+            {/* <iframe
               src="https://player.twitch.tv/?channel=s0mcs&parent=www.example.com"
               frameborder="0"
               allowfullscreen="true"
@@ -665,7 +650,7 @@ export default function MainProfile(props) {
               marginwidth="0"
             >
               Loading…
-            </iframe>
+            </iframe> */}
             <Footer />
           </div>
         </section>
