@@ -47,7 +47,7 @@ export default function ImgSlider(props) {
                   return (
                     <div className="swiper-slide">
                       <img
-                        className="img-fluid w-100"
+                        className="img-fluid"
                         src={value.name ? URL.createObjectURL(value) : value}
                         alt=""
                       />
