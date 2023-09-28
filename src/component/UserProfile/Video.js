@@ -5,27 +5,54 @@ export default function Video(props) {
     <>
       {props.data.map((value, id) => {
         return (
-          <div key={id} className="_username__featuredLink__MeYB7 text-start">
-            <h3>{value.title}</h3>
-            <div className="BaseEmbeddedLink_baseEmbeddedLinkWrapper__SlpfZ">
-              <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
-                <div className="BaseEmbeddedLink_baseEmbeddedLinkContainer__SlSm5 BaseEmbeddedLink_baseEmbeddedLinkContainerEmbed__py5x8">
-                  <div className="BaseEmbeddedLink_baseEmbeddedLinkItem__EDHSQ BaseEmbeddedLink_baseEmbeddedLinkItemVisible__63uQ_">
-                    <ReactPlayer
-                      // url={`https://www.youtube.com/embed/${url}?showinfo=0&amp;modestbranding=1&modestbranding=3&controls=0&rel=1&contore=1`}
-                      url={value.value}
-                      light={true}
-                      width="100%"
-                      playing={true}
-                      className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu reactYoutube"
-                      height="100%"
-                      controls
-                    />
+          <div className="div-username-featuredlink-m">
+            <h3 className="heading-3">{value.title}</h3>
+            <div className="_username__featuredLink__MeYB7">
+              <div className="BaseEmbeddedLink_baseEmbeddedLinkWrapper__SlpfZ">
+                <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
+                  <div className="BaseEmbeddedLink_baseEmbeddedLinkContainer__SlSm5 BaseEmbeddedLink_baseEmbeddedLinkContainerEmbed__py5x8">
+                    <div className="BaseEmbeddedLink_baseEmbeddedLinkItem__EDHSQ BaseEmbeddedLink_baseEmbeddedLinkItemVisible__63uQ_">
+                      <ReactPlayer
+                        // url={`https://www.youtube.com/embed/${url}?showinfo=0&amp;modestbranding=1&modestbranding=3&controls=0&rel=1&contore=1`}
+                        url={value.value}
+                        light={true}
+                        width="100%"
+                        playing={true}
+                        className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu reactYoutube"
+                        height="100%"
+                        controls
+                      />
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          // <div key={id} className="_username__featuredLink__MeYB7 text-start">
+          //   <h3></h3>
+
+          // </div>
+          // <div key={id} className="_username__featuredLink__MeYB7 text-start">
+          //   <h3>{value.title}</h3>
+          //   <div className="BaseEmbeddedLink_baseEmbeddedLinkWrapper__SlpfZ">
+          //     <div className="BaseEmbeddedLink_baseEmbeddedLink__WXu5a">
+          //       <div className="BaseEmbeddedLink_baseEmbeddedLinkContainer__SlSm5 BaseEmbeddedLink_baseEmbeddedLinkContainerEmbed__py5x8">
+          //         <div className="BaseEmbeddedLink_baseEmbeddedLinkItem__EDHSQ BaseEmbeddedLink_baseEmbeddedLinkItemVisible__63uQ_">
+          //           <ReactPlayer
+          //             // url={`https://www.youtube.com/embed/${url}?showinfo=0&amp;modestbranding=1&modestbranding=3&controls=0&rel=1&contore=1`}
+          //             url={value.value}
+          //             light={true}
+          //             width="100%"
+          //             playing={true}
+          //             className="EmbeddedYouTube_embeddedYouTube__kZebg EmbeddedYouTube_featuredLinkEmbeddedVideo__GERzu reactYoutube"
+          //             height="100%"
+          //             controls
+          //           />
+          //         </div>
+          //       </div>
+          //     </div>
+          //   </div>
+          // </div>
         );
       })}
       {/* <div className="_username__featuredLink__MeYB7">
