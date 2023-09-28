@@ -183,10 +183,10 @@ export default function MainProfile(props) {
           ) : (
             ""
           )}
-          {/* <div className="frame-container user-logo ">
+          <div className="frame-container user-logo banner_image">
             <img className="img-fluid" src={"user.jpeg"} alt="" />
-          </div> */}
-          <div className={data.bannerImages ? "banner_image" : ""}>
+          </div>
+          <div className={data.bannerImages ? "banner_image" : "banner_image"}>
             <div className="d-grid gap-2">
               <div className="it-challenges">IT Challenges</div>
               <div className="chief-technology-officer-container">
