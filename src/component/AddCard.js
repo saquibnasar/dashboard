@@ -52,6 +52,29 @@ export default function AddCard(props) {
                   <div
                     className={`addcard_link youtube`}
                     onClick={sendData.bind(this, {
+                      headerTitle: "Youtube Short Title",
+                      linkTitleInput: "Youtube ",
+                      title: "Youtube Short link*",
+                      titleInput: "Enter Youtube URl",
+                      linktype: "text",
+                      type: "youtube",
+                      icon: faYoutube,
+                    })}
+                  >
+                    <div className="addcard_link-item">
+                      <div className="addcard_link-item-icon">
+                        <FontAwesomeIcon icon={faYoutube} />
+                      </div>
+                      <p>Youtube Short</p>
+                    </div>
+
+                    <div className="addcard_link-add">
+                      <FontAwesomeIcon icon={faPlus} />
+                    </div>
+                  </div>
+                  <div
+                    className={`addcard_link youtube`}
+                    onClick={sendData.bind(this, {
                       headerTitle: "Youtube Title",
                       linkTitleInput: "Youtube",
                       title: "Youtube*",
