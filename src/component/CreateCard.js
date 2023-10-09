@@ -706,101 +706,101 @@ export default function CreateCard(props) {
         });
     }
 
-    // if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
-    //   axios({
-    //     method: "post",
-    //     url: "http://13.127.69.231/members/addMember",
-    //     data: requestObj,
-    //   })
-    //     .then((response) => {
-    //       setAlertText(response.data.message);
-    //       window.location.href = "/";
-    //     })
-    //     .catch((error) => {
-    //       if (error.response.data.message) {
-    //         if (!error.response.data.message === "Member already exists") {
-    //           setAlertText(
-    //             error.response.data.message[
-    //               error.response.data.message.length - 1
-    //             ]
-    //           );
-    //         } else {
-    //           setAlertText(
-    //             error.response.data.message + ", use different employee id"
-    //           );
-    //         }
-    //       }
-    //     });
-    // }
-    // if (formData.userInfo.whatsappNumber) {
-    //   if (
-    //     !(
-    //       formData.userInfo.whatsappNumber.whatsappNum.split("").length < 8 ||
-    //       formData.userInfo.whatsappNumber.whatsappNum.split("").length > 10
-    //     )
-    //   ) {
-    //     setAlertText("");
-    //     requestObj[`whatsAppNumber[phoneNumber]`] =
-    //       formData.userInfo.whatsappNumber.whatsappNum;
-    //     requestObj[`whatsAppNumber[code]`] =
-    //       formData.userInfo.whatsappNumber.countryCode;
-    //     setIsSend(true);
-    //   } else {
-    //     setAlertText(
-    //       "whatsappNumber cann't be less then 8 and cann't be more then 10"
-    //     );
-    //     setIsSend(false);
-    //   }
-    // }
-    // if (formData.userInfo.mobileNumber) {
-    //   if (
-    //     !formData.userInfo.mobileNumber.phoneNum ||
-    //     !(
-    //       formData.userInfo.mobileNumber.phoneNum.split("").length < 8 ||
-    //       formData.userInfo.mobileNumber.phoneNum.split("").length > 10
-    //     )
-    //   ) {
-    //     setAlertText("");
-    //     requestObj[`mobileNumber[phoneNumber]`] =
-    //       formData.userInfo.mobileNumber.phoneNum;
-    //     requestObj[`mobileNumber[code]`] =
-    //       formData.userInfo.mobileNumber.countryCode;
-    //     setIsSend(true);
-    //   } else {
-    //     setAlertText(
-    //       "mobileNumber cann't be less then 8 and cann't be more then 10"
-    //     );
-    //     setIsSend(false);
-    //   }
-    // }
+    if (!formData.userInfo.whatsappNumber && !formData.userInfo.mobileNumber) {
+      axios({
+        method: "post",
+        url: "http://13.127.69.231/members/addMember",
+        data: requestObj,
+      })
+        .then((response) => {
+          setAlertText(response.data.message);
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          if (error.response.data.message) {
+            if (!error.response.data.message === "Member already exists") {
+              setAlertText(
+                error.response.data.message[
+                  error.response.data.message.length - 1
+                ]
+              );
+            } else {
+              setAlertText(
+                error.response.data.message + ", use different employee id"
+              );
+            }
+          }
+        });
+    }
+    if (formData.userInfo.whatsappNumber) {
+      if (
+        !(
+          formData.userInfo.whatsappNumber.whatsappNum.split("").length < 8 ||
+          formData.userInfo.whatsappNumber.whatsappNum.split("").length > 10
+        )
+      ) {
+        setAlertText("");
+        requestObj[`whatsAppNumber[phoneNumber]`] =
+          formData.userInfo.whatsappNumber.whatsappNum;
+        requestObj[`whatsAppNumber[code]`] =
+          formData.userInfo.whatsappNumber.countryCode;
+        setIsSend(true);
+      } else {
+        setAlertText(
+          "whatsappNumber cann't be less then 8 and cann't be more then 10"
+        );
+        setIsSend(false);
+      }
+    }
+    if (formData.userInfo.mobileNumber) {
+      if (
+        !formData.userInfo.mobileNumber.phoneNum ||
+        !(
+          formData.userInfo.mobileNumber.phoneNum.split("").length < 8 ||
+          formData.userInfo.mobileNumber.phoneNum.split("").length > 10
+        )
+      ) {
+        setAlertText("");
+        requestObj[`mobileNumber[phoneNumber]`] =
+          formData.userInfo.mobileNumber.phoneNum;
+        requestObj[`mobileNumber[code]`] =
+          formData.userInfo.mobileNumber.countryCode;
+        setIsSend(true);
+      } else {
+        setAlertText(
+          "mobileNumber cann't be less then 8 and cann't be more then 10"
+        );
+        setIsSend(false);
+      }
+    }
 
-    // if (isSend) {
-    //   console.log(requestObj);
-    //   axios({
-    //     method: "post",
-    //     url: "http://13.127.69.231/members/addMember",
-    //     data: requestObj,
-    //   })
-    //     .then((response) => {
-    //       setAlertText(response.data.message);
-    //       window.location.href = "/";
-    //     })
-    //     .catch((error) => {
-    //       if (error.response.data.message) {
-    //         if (!error.response.data.message === "Member already exists") {
-    //           setAlertText(
-    //             error.response.data.message[
-    //               error.response.data.message.length - 1
-    //             ]
-    //           );
-    //         } else {
-    //           setAlertText(
-    //             error.response.data.message + ", use different employee id"
-    //           );
-    //         }
-    //       }
-    //     });
-    // }
+    if (isSend) {
+      console.log(requestObj);
+      axios({
+        method: "post",
+        url: "http://13.127.69.231/members/addMember",
+        data: requestObj,
+      })
+        .then((response) => {
+          setAlertText(response.data.message);
+          window.location.href = "/";
+        })
+        .catch((error) => {
+          if (error.response.data.message) {
+            if (!error.response.data.message === "Member already exists") {
+              setAlertText(
+                error.response.data.message[
+                  error.response.data.message.length - 1
+                ]
+              );
+            } else {
+              setAlertText(
+                error.response.data.message + ", use different employee id"
+              );
+            }
+          }
+        });
+    }
   };
 
   useEffect(() => {

@@ -87,20 +87,17 @@ export default function MainProfile(props) {
   return (
     <>
       <div className="desktop-4 userProile hero mainProfile">
-        <div className="logo-only">
-          {data.bannerImages ? (
-            // <ImgSlider arrayImages={data.bannerImages} />
-            <ImgSlider arrayImages={["/bglink.png"]} />
-          ) : (
-            ""
-          )}
-          <ImgSlider arrayImages={["/testImage.png"]} />
-        </div>
+        {data.bannerImages ? (
+          <div className="logo-only">
+            <ImgSlider arrayImages={data.bannerImages} />
+          </div>
+        ) : (
+          ""
+        )}
+
         <div
           className={
-            data.bannerImages
-              ? `frame-parent banner_image`
-              : "frame-parent banner_image"
+            data.bannerImages ? `frame-parent banner_image` : "frame-parent"
           }
         >
           {data.profileImage ? (
@@ -116,20 +113,28 @@ export default function MainProfile(props) {
           ) : (
             ""
           )}
-          <div className="frame-container user-logo banner_image">
-            <img className="img-fluid" src={"user.jpeg"} alt="" />
-          </div>
-          <div className={data.bannerImages ? "banner_image" : "banner_image"}>
+
+          <div className={data.bannerImages ? "banner_image" : "mt-4"}>
             <div className="d-grid gap-2">
-              <div className="it-challenges">IT Challenges</div>
+              {data.name ? (
+                <div className="it-challenges">{data.name}</div>
+              ) : (
+                ""
+              )}
+
               <div className="chief-technology-officer-container">
-                <span className="chief-technology-officer">{`Chief Technology Officer | `}</span>
-                <span className="employee-id-">Employee ID - CN00119</span>
+                <span className="chief-technology-officer">
+                  {data.designation ? `${data.designation} |` : ""}
+                </span>{" "}
+                <span className="employee-id-">
+                  Employee ID - {data.employeeId}
+                </span>
               </div>
-              <div className="community-of-200k">
-                Community of 200k+ passionate developers. Find our content,
-                resources and links below.
-              </div>
+              {data && data.employeeBio ? (
+                <div className="community-of-200k">{data.employeeBio}</div>
+              ) : (
+                ""
+              )}
             </div>
             <button
               type="button"
@@ -141,26 +146,17 @@ export default function MainProfile(props) {
               Save My Contact
               <FontAwesomeIcon icon={faAddressBook} />
             </button>
-            <div className="frame-group">
+            <div className="frame-group ">
+              {data && data.links ? <SocialLink links={data.links} /> : ""}
               <div className="d-grid gap-3 m-auto">
-                {data && data.links ? <SocialLink links={data.links} /> : ""}
-
                 {data && data.userPlugin && data.userPlugin.length ? (
                   <Video data={data.userPlugin} />
                 ) : (
                   ""
                 )}
-                <Video
-                  data={[
-                    {
-                      value: "https://youtu.be/xqyUdNxWazA?si=8JBQLWiYJZiucWZN",
-                      title: "New Iphone 15pro",
-                    },
-                  ]}
-                />
               </div>
 
-              <div className="frame-parent1 m-auto">
+              <div className="frame-parent1 footer m-auto">
                 <div className="whats-parent">
                   <div className="copyright-2023-investorsclinic">
                     © Copyright 2023 investorsclinic.in All Rights Reserved
